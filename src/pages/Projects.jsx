@@ -20,7 +20,7 @@ export default function Projects() {
     <Layout current="/projects/">
       <PageHero
         eyebrow="Projects"
-        title="Systems, and the part that was hard."
+        title={<>Systems, and the part that <span className="hardware">was hard</span>.</>}
         lede="Each project below is a real-world problem, the architecture chosen for it, and the engineering that made it work."
       >
         <Button href="/start/" size="lg">Request a system like these</Button>
@@ -71,7 +71,7 @@ export default function Projects() {
       <section className="final" aria-labelledby="proj-cta">
         <div className="container">
           <Reveal className="final__inner">
-            <h2 className="display-2 final__title" id="proj-cta">Have a system like this to build?</h2>
+            <h2 className="display-2 final__title" id="proj-cta">Have a system like this to <span className="signal">build</span>?</h2>
             <div className="final__actions">
               <Button href="/start/" size="lg">Start a project</Button>
             </div>

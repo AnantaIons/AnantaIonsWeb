@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-25T05:50:36.809Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-25T10:16:46.231Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -119,16 +119,16 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  8825 chars, 0 hidden
-  PASS  /engineering/ readable without JS  4465 chars, 0 hidden
+  PASS  / readable without JS  9202 chars, 0 hidden
+  PASS  /engineering/ readable without JS  4793 chars, 0 hidden
   PASS  /capabilities/ readable without JS  3504 chars, 0 hidden
   PASS  /projects/ readable without JS  6185 chars, 0 hidden
   PASS  /about/ readable without JS  1994 chars, 0 hidden
   PASS  /start/ readable without JS  1279 chars, 0 hidden
 
 WEIGHT
-  PASS  first-load JS under 120 kB  53.2 kB
-  PASS  CSS under 60 kB  37.0 kB
+  PASS  first-load JS under 120 kB  57.3 kB
+  PASS  CSS under 60 kB  42.1 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
   TODO  project "DLMS/COSEM Protocol Analyzer" is unverified placeholder content

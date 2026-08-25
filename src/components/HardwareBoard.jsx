@@ -79,13 +79,22 @@ export default function HardwareBoard({ annotations }) {
                 fill="none" stroke="var(--ai-copper)" strokeWidth="1.5" opacity="0.8" />
 
           {/* the traces — drawn by the Engineering Trace when the scene goes live */}
-          {TRACES.map((t) => (
-            <path
-              key={t.d}
-              className={`trace-path${t.signal ? ' trace-path--signal' : ''}`}
-              style={{ '--trace-length': t.len }}
-              d={t.d}
-            />
+          {TRACES.map((t, i) => (
+            <g key={t.d}>
+              <path
+                className={`trace-path${t.signal ? ' trace-path--signal' : ''}`}
+                style={{ '--trace-length': t.len }}
+                d={t.d}
+              />
+              {/* the signal actually moving along the conductor */}
+              <path
+                className="trace-live"
+                d={t.d}
+                stroke={t.signal ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'}
+                style={{ '--live-len': t.len, '--live-delay': `${(i * 0.42).toFixed(2)}s`,
+                         '--dur-flow': `${(2.6 + i * 0.3).toFixed(1)}s` }}
+              />
+            </g>
           ))}
 
           {/* the controller — the intelligent centre of the board */}
@@ -100,7 +109,7 @@ export default function HardwareBoard({ annotations }) {
             ))}
             <rect x="300" y="222" width="120" height="120" rx="1"
                   fill="var(--ai-panel-3)" stroke="var(--ai-gold)" strokeWidth="1.25" />
-            <circle cx="316" cy="238" r="4" fill="var(--ai-gold)" />
+            <circle cx="316" cy="238" r="4" fill="var(--ai-gold)" className="board__led" />
             <text x="360" y="278" textAnchor="middle" className="board__chip">MCU</text>
             <text x="360" y="298" textAnchor="middle" className="board__chip-sub">FIRMWARE</text>
           </g>

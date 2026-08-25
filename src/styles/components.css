@@ -634,3 +634,133 @@ code { font-family: var(--font-mono); font-size: 0.9em; color: var(--text-emphas
   .start__grid { grid-template-columns: 1fr; }
   .start__aside { position: static; }
 }
+
+/* ===========================================================================
+   MOTION & COLOUR PASS
+   Copper returns to display type; gold and copper are used across the page
+   rather than held in reserve; and the traces carry a signal instead of
+   sitting still. Everything here collapses under prefers-reduced-motion.
+   ======================================================================== */
+
+/* --- The document's own conductor ---------------------------------------- */
+.scroll-trace {
+  position: fixed; inset-block-start: 0; inset-inline: 0;
+  height: 2px; z-index: calc(var(--z-sticky) + 1);
+  background: var(--border-hairline);
+  pointer-events: none;
+}
+.scroll-trace span {
+  display: block; height: 100%;
+  width: calc(var(--progress, 0) * 100%);
+  background: linear-gradient(90deg, var(--hardware), var(--accent));
+  box-shadow: 0 0 10px -1px var(--accent);
+}
+@media (prefers-reduced-motion: reduce) { .scroll-trace { display: none; } }
+
+/* --- Hero: the statement arrives a line at a time ------------------------- */
+@media (min-width: 46rem) {
+  .hero__line { overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+  .js .hero__line > span { display: inline-block; transform: translate3d(0, 105%, 0); }
+  .js .reveal.is-live .hero__line > span {
+    animation: line-rise 820ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 95ms);
+  }
+  @keyframes line-rise { to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .js .hero__line > span { transform: none; }
+    .js .reveal.is-live .hero__line > span { animation: none; }
+  }
+}
+
+/* The board's status LED breathes while the board is live. */
+.board__led { animation: led 2.6s var(--ease-in-out) infinite; transform-origin: center; }
+@keyframes led { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .board__led { animation: none; opacity: 1; } }
+
+/* --- The connected system ------------------------------------------------ */
+.web {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+  align-items: center; margin: 0;
+}
+.web__figure {
+  border: var(--border-width) solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(60% 60% at 50% 50%, var(--accent-wash), transparent 70%),
+    var(--surface-panel);
+  padding: var(--space-md);
+}
+.web__figure svg { width: 100%; height: auto; max-height: 30rem; }
+.web__dot { animation: node-blink 2.9s var(--ease-in-out) infinite; }
+@keyframes node-blink { 0%, 100% { opacity: 0.35; } 45% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .web__dot { animation: none; opacity: 1; } }
+.web__legend { display: grid; gap: var(--space-lg); }
+.web__group .label { margin-bottom: var(--space-sm); }
+.web__note {
+  padding-top: var(--space-md);
+  border-top: var(--border-width) solid var(--border-hairline);
+  color: var(--text-secondary); font-size: var(--fs-body-sm); max-width: 46ch;
+}
+@media (max-width: 54rem) { .web { grid-template-columns: 1fr; } }
+
+/* --- Chips now carry which side of the system they belong to ------------- */
+.chip { transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.chip:hover { border-color: var(--border-hardware); color: var(--text-primary); }
+.chip--signal { border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--text-emphasis); }
+.chip--hardware { border-color: var(--ai-copper-deep); color: var(--text-hardware); }
+
+/* --- Capability cells: a conductor sweeps in on hover -------------------- */
+.cap { position: relative; overflow: hidden; }
+.cap::before {
+  content: ''; position: absolute; inset-block-start: 0; inset-inline-start: 0;
+  width: 100%; height: 2px; transform: scaleX(0); transform-origin: left;
+  background: linear-gradient(90deg, var(--hardware), var(--accent));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.cap:hover::before, .cap:focus-within::before { transform: scaleX(1); }
+.cap:hover { border-color: var(--border-hardware); }
+.cap__rail { transition: opacity var(--dur-base) var(--ease-out); }
+.cap:hover .cap__rail { opacity: 0.85; }
+
+/* --- More colour, held to one accent per element ------------------------- */
+.scene--raised {
+  background:
+    radial-gradient(90ch 40ch at 88% 0%, var(--hardware-wash), transparent 60%),
+    var(--surface-raised);
+}
+.proof__link { position: relative; }
+.proof__link::after {
+  content: ''; position: absolute; inset-block-end: 0; inset-inline: 0;
+  height: 2px; transform: scaleX(0); transform-origin: left;
+  background: linear-gradient(90deg, var(--accent), var(--hardware));
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.proof__link:hover::after { transform: scaleX(1); }
+.study__spec-item dt { color: var(--text-hardware); }
+.footer__heading { display: flex; align-items: center; gap: var(--space-xs); }
+.footer__heading::before {
+  content: ''; width: 6px; height: 6px; background: var(--hardware); flex: none;
+}
+.principles__item:nth-child(even) { border-top-color: var(--hardware); }
+.industries__item:nth-child(even) { border-top-color: var(--accent); }
+.industries__item:nth-child(even) .industries__icon { color: var(--text-signal); }
+.entry__item { transition: background-color var(--dur-fast) var(--ease-out); }
+.entry__item:hover { background: var(--accent-wash); }
+.stack__panel {
+  background:
+    radial-gradient(70ch 30ch at 100% 0%, var(--accent-wash), transparent 65%),
+    var(--surface-panel);
+}
+
+/* The sequence delay is set inline on the wrapper (it is per-item data, not a
+   style rule); the node reads it back so the stagger stays in the markup. */
+.process__node .trace-seq { animation-delay: inherit; }
+
+.web__label {
+  fill: var(--ai-txt); font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.01em;
+}
+/* Below this width the diagram is small enough that 11px SVG type stops being
+   readable — the legend carries the names there instead. */
+@media (max-width: 46rem) { .web__label { display: none; } }

@@ -13,7 +13,7 @@ export default function About() {
     <Layout current="/about/">
       <PageHero
         eyebrow="About"
-        title="An engineering partner, not a services desk."
+        title={<>An <span className="signal">engineering partner</span>, not a services desk.</>}
         lede="Bring an idea, a prototype, a hardware platform or a technical requirement. We architect, engineer and validate the embedded layer that makes it a reliable product."
       >
         <Button href="/start/" size="lg">Work with us</Button>
@@ -40,7 +40,7 @@ export default function About() {
         <div className="container">
           <Reveal className="scene__head">
             <p className="label"><TraceNode /> How we work</p>
-            <h2 className="display-2" id="principles-title">Engineering quality over marketing claims.</h2>
+            <h2 className="display-2" id="principles-title">Engineering quality over <span className="hardware">marketing claims</span>.</h2>
           </Reveal>
           <ul className="principles">
             {principles.map(([title, body], i) => (
@@ -57,7 +57,7 @@ export default function About() {
         <div className="container">
           <Reveal className="scene__head">
             <p className="label"><TraceNode /> Where it runs</p>
-            <h2 className="display-2" id="industries-title">Engineering that runs in the field.</h2>
+            <h2 className="display-2" id="industries-title">Engineering that runs in <span className="hardware">the field</span>.</h2>
           </Reveal>
           <ul className="industries">
             {industries.map(([icon, title, body], i) => (
@@ -93,7 +93,7 @@ export default function About() {
       <section className="final" aria-labelledby="about-cta">
         <div className="container">
           <Reveal className="final__inner">
-            <h2 className="display-2 final__title" id="about-cta">Let’s engineer what’s next.</h2>
+            <h2 className="display-2 final__title" id="about-cta">Let’s engineer <span className="signal">what’s next</span>.</h2>
             <div className="final__actions">
               <Button href="/start/" size="lg">Start a project</Button>
               <Button href="/engineering/" size="lg" variant="outline">See the stack</Button>

@@ -72,6 +72,9 @@
 /* The terminal node — the corner square inherited from the original identity,
    now doing a job: it marks where a trace begins, branches or arrives. */
 .trace-node {
+  /* A span is inline by default, and width/height do not apply to inline
+     boxes — outside a flex container the node collapsed to 0x0. */
+  display: inline-block;
   width: 8px;
   height: 8px;
   flex: none;
@@ -118,3 +121,63 @@
   .trace::after { display: none; }
 }
 .no-js .trace-path { stroke-dashoffset: 0; }
+
+/* ---------------------------------------------------------------------------
+   LIVE CONDUCTORS
+
+   A trace that has been drawn stays drawn. A trace that is CARRYING something
+   gets a short lit segment travelling along it, on a loop — the difference
+   between a wire and a wire with a signal on it. Built from stroke-dash rather
+   than a moving element, so it follows any path exactly and costs one
+   compositor property.
+
+   Every live conductor stops completely under prefers-reduced-motion: a
+   signal you cannot see moving is just a brighter wire, which is the correct
+   still frame of this idea.
+   ------------------------------------------------------------------------ */
+
+.trace-live {
+  fill: none;
+  stroke: var(--ai-gold);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 14 var(--live-len, 300);
+  stroke-dashoffset: calc(var(--live-len, 300) + 14);
+  opacity: 0;
+}
+.is-live .trace-live {
+  opacity: 1;
+  animation: trace-flow var(--dur-flow, 3.2s) linear infinite var(--live-delay, 0s);
+}
+@keyframes trace-flow { to { stroke-dashoffset: 0; } }
+
+/* A node that is receiving the signal breathes. */
+.trace-node--pulsing { animation: node-pulse 2.8s var(--ease-in-out) infinite; }
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-wash); }
+  50%      { box-shadow: 0 0 0 5px transparent; }
+}
+
+/* Nodes along a rail energise in sequence rather than all at once, so the
+   order of the steps is legible from the motion alone. */
+.is-live .trace-seq { animation: node-arrive var(--dur-base) var(--ease-out) backwards; }
+@keyframes node-arrive {
+  from { background: var(--border-hairline); transform: scale(0.7); }
+  to   { background: var(--accent); transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-live .trace-live { animation: none; opacity: 0.55; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .trace-node--pulsing { animation: none; }
+  .is-live .trace-seq { animation: none; }
+}
+
+/* Without JavaScript nothing sets .is-live, so a live conductor would never
+   appear. Show it as the same still frame reduced motion gets: the diagram is
+   complete, only the movement is missing. */
+.no-js .trace-live {
+  opacity: 0.55;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}

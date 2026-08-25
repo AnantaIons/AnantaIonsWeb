@@ -167,8 +167,11 @@ for (const page of pages) {
   await p.goto(BASE + page.route, { waitUntil: 'domcontentloaded' });
   const r = await p.evaluate(() => ({
     text: document.getElementById('main')?.innerText.trim().length ?? 0,
+    // Decorative nodes are not content: an aria-hidden SVG overlay at zero
+    // opacity is a missing flourish, not an unreadable page.
     hidden: [...document.querySelectorAll('#main *')]
-      .filter((el) => getComputedStyle(el).opacity === '0').length,
+      .filter((el) => getComputedStyle(el).opacity === '0')
+      .filter((el) => !el.closest('[aria-hidden="true"], [role="presentation"]')).length,
   }));
   check(r.text > 500 && r.hidden === 0, `${page.route} readable without JS`,
     `${r.text} chars, ${r.hidden} hidden`);

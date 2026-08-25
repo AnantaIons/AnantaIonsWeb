@@ -12,7 +12,7 @@ export default function Start() {
     <Layout current="/start/">
       <PageHero
         eyebrow="Start a project"
-        title="Tell us what has to work."
+        title={<>Tell us <span className="signal">what has to work</span>.</>}
         lede="Four short steps: the problem, the hardware, the firmware and intelligence, and how it has to ship. Only the first two answers are required — the rest sharpen the conversation."
       />
 

@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import Reveal from '../components/Reveal.jsx';
 import HardwareBoard from '../components/HardwareBoard.jsx';
+import ConnectivityWeb from '../components/ConnectivityWeb.jsx';
 import StackSequence from '../components/StackSequence.jsx';
 import { TraceLink, TraceNode, TraceRail } from '../components/Trace.jsx';
 import { PlaceholderTag } from '../components/Placeholder.jsx';
@@ -36,10 +37,10 @@ function Hero() {
 
         <Reveal delay={60}>
           <h1 className="display-1 hero__title" id="hero-title">
-            <span className="hero__line">Engineering</span>
-            <span className="hero__line hero__line--signal">intelligence</span>
-            <span className="hero__line">between silicon</span>
-            <span className="hero__line">and the real world.</span>
+            <span className="hero__line"><span style={{ '--i': 0 }}>Engineering</span></span>
+            <span className="hero__line"><span style={{ '--i': 1 }} className="signal">intelligence</span></span>
+            <span className="hero__line"><span style={{ '--i': 2 }}>between silicon</span></span>
+            <span className="hero__line"><span style={{ '--i': 3 }}>and the <span className="hardware">real world.</span></span></span>
           </h1>
         </Reveal>
 
@@ -83,7 +84,7 @@ function HardwareScene() {
       <div className="container">
         <Reveal className="scene__head">
           <p className="label"><TraceNode /> Scene 02 · Real systems</p>
-          <h2 className="display-2" id="hardware-title">We build the whole board, not a slice of it.</h2>
+          <h2 className="display-2" id="hardware-title">We build the <span className="signal">whole board</span>, not a slice of it.</h2>
           <p className="lede">
             Electronics, firmware, connectivity and intelligence are one system. Engineering them
             separately is where products fail — so we take responsibility for the path between them.
@@ -104,7 +105,7 @@ function StackScene() {
       <div className="container">
         <Reveal className="scene__head">
           <p className="label"><TraceNode /> Scene 03 · The stack</p>
-          <h2 className="display-2" id="stack-title">Six layers between an idea and a shipped product.</h2>
+          <h2 className="display-2" id="stack-title">Six layers between an idea and a <span className="hardware">shipped product</span>.</h2>
           <p className="lede">
             The trace runs from silicon to product. Follow it — every layer is one we work at,
             and the handoffs between them are where the engineering actually lives.
@@ -123,7 +124,15 @@ function CapabilitiesScene() {
       <div className="container">
         <Reveal className="scene__head">
           <p className="label"><TraceNode /> Scene 04 · Capabilities</p>
-          <h2 className="display-2" id="cap-title">Seven disciplines, one system-level team.</h2>
+          <h2 className="display-2" id="cap-title">Seven disciplines, one <span className="signal">system-level</span> team.</h2>
+          <p className="lede">
+            One team across the whole path, which is the only way the handoffs between
+            these disciplines get an owner.
+          </p>
+        </Reveal>
+
+        <Reveal delay={80} className="scene__figure">
+          <ConnectivityWeb />
         </Reveal>
 
         <div className="bento">
@@ -166,7 +175,7 @@ function ProofScene() {
       <div className="container">
         <Reveal className="scene__head">
           <p className="label"><TraceNode /> Scene 05 · Proof</p>
-          <h2 className="display-2" id="proof-title">Systems we have engineered.</h2>
+          <h2 className="display-2" id="proof-title">Systems we have <span className="hardware">engineered</span>.</h2>
           <p className="lede">
             Each one is a real-world problem, an architecture, and the part that was genuinely hard.
           </p>
@@ -221,9 +230,11 @@ function ProcessScene() {
         <Reveal className="process">
           <TraceRail className="process__rail" />
           <ol className="process__list">
-            {process.map((s) => (
+            {process.map((s, i) => (
               <li className="process__step" key={s.no}>
-                <span className="process__node"><TraceNode signal lg /></span>
+                <span className="process__node" style={{ animationDelay: `${i * 110}ms` }}>
+                  <TraceNode signal lg className="trace-seq" />
+                </span>
                 <p className="mono process__no">{s.no}</p>
                 <h3 className="heading-2 process__label">{s.label}</h3>
                 <p className="process__body">{s.body}</p>
@@ -260,7 +271,7 @@ function FinalScene() {
       <div className="container">
         <Reveal className="final__inner">
           <h2 className="display-1 final__title" id="final-title">
-            Let’s engineer<br />what’s next.
+            Let’s engineer<br /><span className="signal">what’s next.</span>
           </h2>
           <ul className="final__list" aria-label="What we engineer">
             {['Hardware', 'Firmware', 'Connectivity', 'Intelligence', 'Real-world systems'].map((x) => (

@@ -10,7 +10,7 @@ export default function Capabilities() {
     <Layout current="/capabilities/">
       <PageHero
         eyebrow="Capabilities"
-        title="What we do, how we do it, and what it fixes."
+        title={<>What we do, how we do it, and <span className="signal">what it fixes</span>.</>}
         lede="Seven disciplines. Each one states the work, the method, and the failure it is meant to prevent — because a capability list that says nothing testable is worth nothing."
       >
         <Button href="/start/" size="lg">Start a project</Button>
@@ -52,7 +52,7 @@ export default function Capabilities() {
         <div className="container">
           <Reveal className="final__inner">
             <h2 className="display-2 final__title" id="cap-cta">
-              Which layer is your problem on?
+              Which layer is <span className="hardware">your problem</span> on?
             </h2>
             <p className="lede">
               If you are not sure, that is a good reason to talk — narrowing it down is the

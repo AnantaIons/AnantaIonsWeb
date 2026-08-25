@@ -31,6 +31,9 @@ function ProjectGlyph({ domain }) {
         <rect width="240" height="160" fill={`url(#g-${domain.replace(/\s/g, '')})`} />
         <path className="trace-path" style={{ '--trace-length': 320 }}
               d="M0 132 H56 V96 H108 V132 H184 V64 H240" />
+        <path className="trace-live" d="M0 132 H56 V96 H108 V132 H184 V64 H240"
+              stroke="var(--ai-copper-txt)"
+              style={{ '--live-len': 320, '--dur-flow': '4s' }} />
         <rect x="88" y="44" width="64" height="64" rx="1"
               fill="var(--ai-panel-2)" stroke="var(--ai-line-2)" />
         <g transform="translate(108 64) scale(1)" stroke="var(--ai-gold)" strokeWidth="1.5"
