@@ -1,0 +1,7 @@
+/* Ananta Ions — radius. Aggressively angular: 2px on every interactive element, never more (except avatars/social dots). */
+:root {
+  --radius-none: 0px;
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-full: 9999px;
+}

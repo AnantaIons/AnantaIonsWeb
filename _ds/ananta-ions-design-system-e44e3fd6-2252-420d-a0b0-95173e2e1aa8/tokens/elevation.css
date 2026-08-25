@@ -1,0 +1,7 @@
+/* Ananta Ions — elevation. Effectively no drop shadow on cards/content. Separation comes from hairline borders, not lift. The only shadow is a 5px ambient on sticky chrome. */
+:root {
+  --elev-0: none;
+  --border-card: 1px solid var(--color-hairline);
+  --border-card-dark: 1px solid var(--color-hairline-strong);
+  --shadow-sticky: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
