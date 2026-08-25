@@ -181,7 +181,7 @@ a:hover { color: var(--text-emphasis); }
 .mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.5px;
 }
 
 .emph { color: var(--text-emphasis); }

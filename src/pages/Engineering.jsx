@@ -52,7 +52,7 @@ export default function Engineering() {
             </p>
           </Reveal>
           <Reveal delay={80} className="scene__figure">
-            <HardwareBoard annotations={ANNOTATIONS} />
+            <HardwareBoard annotations={ANNOTATIONS} id="board-eng" />
           </Reveal>
         </div>
       </section>

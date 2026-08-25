@@ -68,23 +68,36 @@ export default function ConnectivityWeb() {
                 stroke="var(--ai-copper)" strokeWidth="1" />
           <rect x={CX - 3} y={CY - 3} width="6" height="6" fill="var(--ai-gold)" />
 
-          {/* protocol nodes — the label is decorative reinforcement of the
-              legend below, and is hidden at widths where it would be too
-              small to read */}
+          {/* protocol nodes. Two forms of the same node: a labelled plate for
+              widths where 11px SVG type is readable, and a plain square below
+              that, where the legend carries the names instead. Swapped in CSS
+              rather than JS so it costs nothing and survives a resize. */}
           {points.map((p, i) => (
             <g key={`n-${p.label}`}>
-              <rect x={p.x - p.w / 2} y={p.y - 15} width={p.w} height="30" rx="1"
-                    fill="var(--ai-panel-2)" stroke="var(--ai-line-2)" />
-              <rect x={p.x - p.w / 2} y={p.y - 15} width="2.5" height="30"
-                    fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'} />
-              <circle cx={p.x - p.w / 2 + 11} cy={p.y} r="2.6"
+              <g className="web__node web__node--wide">
+                <rect x={p.x - p.w / 2} y={p.y - 15} width={p.w} height="30" rx="1"
+                      fill="var(--ai-panel-2)" stroke="var(--ai-line-2)" />
+                <rect x={p.x - p.w / 2} y={p.y - 15} width="2.5" height="30"
+                      fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'} />
+                <circle cx={p.x - p.w / 2 + 11} cy={p.y} r="2.6"
+                        fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'}
+                        className="web__dot" style={{ animationDelay: `${(i * 0.24).toFixed(2)}s` }} />
+                <text x={p.x - p.w / 2 + 20} y={p.y + 4} textAnchor="start" className="web__label">
+                  {p.label}
+                </text>
+              </g>
+              <g className="web__node web__node--compact">
+                <rect x={p.x - 12} y={p.y - 12} width="24" height="24" rx="1"
+                      fill="var(--ai-panel-2)" stroke="var(--ai-line-2)" />
+                <rect x={p.x - 12} y={p.y - 12} width="24" height="2.5"
+                      fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'} />
+                <rect x={p.x - 3.5} y={p.y - 2} width="7" height="7"
                       fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'}
                       className="web__dot" style={{ animationDelay: `${(i * 0.24).toFixed(2)}s` }} />
-              <text x={p.x - p.w / 2 + 20} y={p.y + 4} textAnchor="start" className="web__label">
-                {p.label}
-              </text>
+              </g>
             </g>
           ))}
+
         </svg>
       </div>
 

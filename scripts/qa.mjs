@@ -118,6 +118,30 @@ for (const page of pages) {
     'JSON-LD graph present');
   check(consoleErrors.length === 0, 'no console errors', consoleErrors.join(' | '));
 
+  // Duplicate ids break `url(#…)` references and label associations. SVG
+  // <defs> in a component rendered twice on one page is the usual source.
+  const dupes = await p.evaluate(() => {
+    const seen = new Map();
+    for (const el of document.querySelectorAll('[id]')) seen.set(el.id, (seen.get(el.id) || 0) + 1);
+    return [...seen].filter(([, n]) => n > 1).map(([id, n]) => `#${id}×${n}`);
+  });
+  check(dupes.length === 0, 'no duplicate ids', dupes.join(', '));
+
+  // SVG type that renders under 9px on screen is decoration pretending to be
+  // a label. Either scale it or hide it and let the HTML carry the meaning.
+  const tiny = await p.evaluate(() => {
+    const out = [];
+    for (const t of document.querySelectorAll('svg text')) {
+      if (getComputedStyle(t).display === 'none' || !t.ownerSVGElement) continue;
+      const svg = t.ownerSVGElement;
+      const scale = svg.getBoundingClientRect().width / (svg.viewBox.baseVal.width || 1);
+      const px = parseFloat(getComputedStyle(t).fontSize) * scale;
+      if (px < 9) out.push(`"${t.textContent.slice(0, 10)}" ${px.toFixed(1)}px`);
+    }
+    return [...new Set(out)];
+  });
+  check(tiny.length === 0, 'no illegible SVG type', tiny.slice(0, 3).join(', '));
+
   // Keyboard: the primary CTA must be reachable, and focus must be visible.
   const kb = await p.evaluate(() => {
     const el = document.querySelector('.skip-link');
@@ -127,6 +151,28 @@ for (const page of pages) {
   });
   check(kb.focused, 'skip link is focusable');
 
+  await p.close();
+}
+
+/* ---- 1b: deep links --------------------------------------------------- */
+/* Hydration changes the stack's height, and the browser's scroll anchoring
+   moves the page in response — which used to land fragment links hundreds of
+   pixels from their target. */
+say('\nDEEP LINKS');
+for (const [route, frag] of [['/engineering/', 'process'], ['/engineering/', 'connectivity'],
+                             ['/about/', 'industries'], ['/start/', 'contact'],
+                             ['/projects/', 'ble-sensor-bridge'], ['/', 'stack']]) {
+  const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(`${BASE}${route}#${frag}`, { waitUntil: 'networkidle' });
+  await p.waitForTimeout(1400);
+  const r = await p.evaluate(() => {
+    const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (!el) return { ok: false, why: 'no such element' };
+    const box = el.getBoundingClientRect();
+    const header = document.querySelector('.masthead').getBoundingClientRect().height;
+    return { ok: box.top >= header - 4 && box.top < window.innerHeight, top: Math.round(box.top) };
+  });
+  check(r.ok, `${route}#${frag} lands on target`, `top ${r.top ?? r.why}`);
   await p.close();
 }
 

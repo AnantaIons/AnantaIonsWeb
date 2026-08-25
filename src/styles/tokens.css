@@ -89,9 +89,18 @@
   --focus-ring:        var(--ai-gold);
 
   /* ---- TYPE ------------------------------------------------------------- */
-  --font-sans: 'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-               Arial, Helvetica, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  /* One family across every role — the design system's rule, and what the
+     original site did: hierarchy comes from weight and size, never from a
+     second typeface. Arial is the documented fallback, so the stack ends
+     where the spec says it ends rather than drifting into system UI faces.
+     `--font-mono` is Inter too; what makes a numeral column line up is
+     tabular figures, not a monospace. */
+  --font-sans: 'Inter var', 'Inter', Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-sans);
+  /* The one exception: literal data a reader may need to copy character for
+     character — code identifiers, and the intake form's raw payload preview.
+     Never used for brand type. */
+  --font-code: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
   --fw-regular: 400;
   --fw-medium:  500;

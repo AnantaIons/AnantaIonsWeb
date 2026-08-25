@@ -143,6 +143,6 @@ input[type='file'].field__control::file-selector-button {
   background: var(--surface-base);
   border: var(--border-width) solid var(--border-hairline);
   border-radius: var(--radius-sm);
-  font-family: var(--font-mono); font-size: var(--fs-label);
+  font-family: var(--font-code); font-size: var(--fs-label);
   white-space: pre-wrap; overflow-x: auto; color: var(--text-secondary);
 }

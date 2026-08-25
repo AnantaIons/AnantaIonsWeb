@@ -19,16 +19,16 @@ const GLYPHS = {
   Automation:         'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM12 2v3M12 19v3M2 12h3M19 12h3',
 };
 
-function ProjectGlyph({ domain }) {
+function ProjectGlyph({ domain, id }) {
   return (
     <div className="study__glyph" aria-hidden="true">
       <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid meet">
         <defs>
-          <pattern id={`g-${domain.replace(/\s/g, '')}`} width="16" height="16" patternUnits="userSpaceOnUse">
+          <pattern id={`g-${id}`} width="16" height="16" patternUnits="userSpaceOnUse">
             <path d="M16 0H0V16" fill="none" stroke="var(--ai-line)" strokeWidth="0.5" />
           </pattern>
         </defs>
-        <rect width="240" height="160" fill={`url(#g-${domain.replace(/\s/g, '')})`} />
+        <rect width="240" height="160" fill={`url(#g-${id})`} />
         <path className="trace-path" style={{ '--trace-length': 320 }}
               d="M0 132 H56 V96 H108 V132 H184 V64 H240" />
         <path className="trace-live" d="M0 132 H56 V96 H108 V132 H184 V64 H240"
@@ -69,7 +69,7 @@ export default function ProjectStudy({ project, index }) {
         {!p.verified ? <PlaceholderTag>Unverified — placeholder project</PlaceholderTag> : null}
       </div>
 
-      <ProjectGlyph domain={p.domain} />
+      <ProjectGlyph domain={p.domain} id={p.id} />
 
       <div className="study__body">
         <div className="study__section">

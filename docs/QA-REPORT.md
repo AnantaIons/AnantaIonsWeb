@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-25T10:16:46.231Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-25T10:34:11.527Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -20,6 +20,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
 
  /engineering/
@@ -37,6 +39,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
 
  /capabilities/
@@ -54,6 +58,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
 
  /projects/
@@ -71,6 +77,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
 
  /about/
@@ -88,6 +96,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
 
  /start/
@@ -105,7 +115,17 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
   PASS  skip link is focusable
+
+DEEP LINKS
+  PASS  /engineering/#process lands on target  top 96
+  PASS  /engineering/#connectivity lands on target  top 96
+  PASS  /about/#industries lands on target  top 96
+  PASS  /start/#contact lands on target  top 96
+  PASS  /projects/#ble-sensor-bridge lands on target  top 78
+  PASS  /#stack lands on target  top 96
 
 RESPONSIVE
   PASS  360px
@@ -127,8 +147,8 @@ WITHOUT JAVASCRIPT
   PASS  /start/ readable without JS  1279 chars, 0 hidden
 
 WEIGHT
-  PASS  first-load JS under 120 kB  57.3 kB
-  PASS  CSS under 60 kB  42.1 kB
+  PASS  first-load JS under 120 kB  58.1 kB
+  PASS  CSS under 60 kB  42.3 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
   TODO  project "DLMS/COSEM Protocol Analyzer" is unverified placeholder content

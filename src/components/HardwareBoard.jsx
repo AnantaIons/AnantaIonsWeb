@@ -26,7 +26,12 @@ const TRACES = [
   { d: 'M420 288 H446 V352 H470',            len: 140, signal: true  },
 ];
 
-export default function HardwareBoard({ annotations }) {
+export default function HardwareBoard({ annotations, id = 'board' }) {
+  /* The homepage renders this twice. SVG <defs> ids are document-global, so
+     without a per-instance prefix the second board silently paints with the
+     first board's pattern and gradient. */
+  const gridId = `${id}-grid`;
+  const faceId = `${id}-face`;
   return (
     <figure className="board">
       <div className="board__figure">
@@ -38,10 +43,10 @@ export default function HardwareBoard({ annotations }) {
           preserveAspectRatio="xMidYMid meet"
         >
           <defs>
-            <pattern id="board-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <pattern id={gridId} width="20" height="20" patternUnits="userSpaceOnUse">
               <path d="M20 0H0V20" fill="none" stroke="var(--ai-line)" strokeWidth="0.5" opacity="0.5" />
             </pattern>
-            <linearGradient id="board-face" x1="0" y1="0" x2="1" y2="1">
+            <linearGradient id={faceId} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stopColor="#12151a" />
               <stop offset="1" stopColor="#0a0c10" />
             </linearGradient>
@@ -49,8 +54,8 @@ export default function HardwareBoard({ annotations }) {
 
           {/* substrate */}
           <rect x="24" y="30" width="652" height="440" rx="2"
-                fill="url(#board-face)" stroke="var(--ai-line-2)" />
-          <rect x="24" y="30" width="652" height="440" fill="url(#board-grid)" />
+                fill={`url(#${faceId})`} stroke="var(--ai-line-2)" />
+          <rect x="24" y="30" width="652" height="440" fill={`url(#${gridId})`} />
 
           {/* mounting holes */}
           {[[44, 50], [656, 50], [44, 450], [656, 450]].map(([cx, cy]) => (

@@ -221,15 +221,21 @@
 .board__svg { width: 100%; height: auto; }
 .board__tag {
   fill: var(--ai-txt-3); font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: 0.12em;
+  font-size: 13px; letter-spacing: 0.12em;
 }
 .board__chip {
   fill: var(--ai-white); font-family: var(--font-sans);
-  font-size: 17px; font-weight: 700; letter-spacing: 0.06em;
+  font-size: 20px; font-weight: 700; letter-spacing: 0.06em;
 }
 .board__chip-sub {
   fill: var(--ai-gold); font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: 0.22em;
+  font-size: 12px; letter-spacing: 0.22em;
+}
+
+/* Below this width the board is small enough that its in-diagram type drops
+   under 9px. The annotations beneath it say the same things, legibly. */
+@media (max-width: 46rem) {
+  .board__tag, .board__chip, .board__chip-sub { display: none; }
 }
 .board__annotations-title { margin-bottom: var(--space-md); }
 .board__list { display: grid; gap: var(--space-md); }
@@ -573,7 +579,7 @@
   text-transform: uppercase; color: var(--text-hardware);
 }
 .placeholder-notice__body { margin-top: var(--space-xs); color: var(--text-secondary); font-size: var(--fs-body-sm); max-width: 82ch; }
-code { font-family: var(--font-mono); font-size: 0.9em; color: var(--text-emphasis); }
+code { font-family: var(--font-code); font-size: 0.9em; color: var(--text-emphasis); }
 
 /* --- Footer --------------------------------------------------------------- */
 .footer { position: relative; border-top: var(--border-width) solid var(--border-hairline); background: var(--surface-base); }
@@ -659,7 +665,9 @@ code { font-family: var(--font-mono); font-size: 0.9em; color: var(--text-emphas
 
 /* --- Hero: the statement arrives a line at a time ------------------------- */
 @media (min-width: 46rem) {
-  .hero__line { overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+  /* The mask needs room for ascenders and descenders, or it clips the "g" in
+     "Engineering" for good — not only while the line is rising. */
+  .hero__line { overflow: hidden; padding-block: 0.14em 0.18em; margin-block: -0.14em -0.18em; }
   .js .hero__line > span { display: inline-block; transform: translate3d(0, 105%, 0); }
   .js .reveal.is-live .hero__line > span {
     animation: line-rise 820ms var(--ease-out) both;
@@ -762,5 +770,10 @@ code { font-family: var(--font-mono); font-size: 0.9em; color: var(--text-emphas
   font-size: 11px; font-weight: 600; letter-spacing: 0.01em;
 }
 /* Below this width the diagram is small enough that 11px SVG type stops being
-   readable — the legend carries the names there instead. */
-@media (max-width: 46rem) { .web__label { display: none; } }
+   readable. The whole labelled plate swaps for a plain square — leaving the
+   plate and hiding only its text left wide, empty boxes. */
+.web__node--compact { display: none; }
+@media (max-width: 46rem) {
+  .web__node--wide { display: none; }
+  .web__node--compact { display: block; }
+}

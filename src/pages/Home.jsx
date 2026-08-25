@@ -69,7 +69,7 @@ function Hero() {
           </div>
 
           <Reveal delay={160} className="hero__figure">
-            <HardwareBoard annotations={BOARD_ANNOTATIONS.slice(0, 4)} />
+            <HardwareBoard annotations={BOARD_ANNOTATIONS.slice(0, 4)} id="board-hero" />
           </Reveal>
         </div>
       </div>
@@ -91,7 +91,7 @@ function HardwareScene() {
           </p>
         </Reveal>
         <Reveal delay={100} className="scene__figure">
-          <HardwareBoard annotations={BOARD_ANNOTATIONS} />
+          <HardwareBoard annotations={BOARD_ANNOTATIONS} id="board-scene" />
         </Reveal>
       </div>
     </section>
