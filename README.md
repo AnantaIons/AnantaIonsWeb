@@ -6,11 +6,17 @@ framework on the critical path.
 
 ```bash
 npm install
-npm run dev          # http://localhost:5173
+npm run dev          # http://localhost:5173  — live, with hot reload
 npm run build        # -> dist/
-npm run serve:dist   # serve the real build on :8125
-npm run qa           # audit the build (needs serve:dist running)
+npm run serve:dist   # serve the real production build on :8125
+npm run qa           # audit that build (needs serve:dist running)
+npm run single       # -> dist-preview/ananta-ions.html
 ```
+
+**Just want to look at it?** `npm run single` bundles the entire site — every
+page, the stylesheet, the typeface and the logo — into one self-contained HTML
+file you can double-click. No server, no network, no build. Navigation moves to
+the hash; everything else behaves exactly as it does in production.
 
 ## What it is
 

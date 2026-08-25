@@ -3,3 +3,5 @@ dist/
 .ssr-tmp/
 *.local
 .DS_Store
+.preview-tmp/
+dist-preview/

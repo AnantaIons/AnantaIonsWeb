@@ -11,7 +11,8 @@
     "serve:dist": "node scripts/serve-dist.mjs",
     "qa": "node scripts/qa.mjs",
     "pages": "node scripts/pages.mjs",
-    "og": "node scripts/og-image.mjs"
+    "og": "node scripts/og-image.mjs",
+    "single": "node scripts/single-file.mjs"
   },
   "dependencies": {
     "preact": "^10.29.8",
