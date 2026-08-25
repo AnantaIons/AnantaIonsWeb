@@ -1,0 +1,28 @@
+{
+  "name": "ananta-ions-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ANANTA IONS \u2014 electronics and embedded product engineering. Static, prerendered marketing site.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/pages.mjs && vite",
+    "build": "node scripts/pages.mjs && vite build && node scripts/prerender.mjs && node scripts/sitemap.mjs",
+    "preview": "vite preview",
+    "serve:dist": "node scripts/serve-dist.mjs",
+    "qa": "node scripts/qa.mjs",
+    "pages": "node scripts/pages.mjs",
+    "og": "node scripts/og-image.mjs"
+  },
+  "dependencies": {
+    "preact": "^10.29.8",
+    "preact-render-to-string": "^6.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "axe-core": "^4.13.0",
+    "playwright": "^1.62.1",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,184 @@
+/* ============================================================================
+   ANANTA IONS — design tokens (single source of truth)
+
+   Two layers:
+     1. PRIMITIVES  raw values. Never referenced by components directly.
+     2. SEMANTICS   meaning. Components reference only these.
+
+   The palette is inherited from the original ANANTA IONS identity and is
+   unchanged: deep black laboratory ground, one saturated gold for signal and
+   activation, warm copper for hardware and physical systems, warm ivory for
+   human-readable emphasis, controlled warm-neutral grays for body text.
+
+   Every text/background pairing used in the UI is verified >= WCAG AA
+   (4.5:1) by `npm run qa`. Do not add a color without running that check.
+   ========================================================================= */
+
+:root {
+  /* ---- 1. PRIMITIVES ---------------------------------------------------- */
+
+  /* Ground — the laboratory. */
+  --ai-black:      #050505;
+  --ai-black-2:    #0a0a0a;
+  --ai-panel:      #0d0f12;
+  --ai-panel-2:    #14171c;
+  --ai-panel-3:    #1b1f26;
+
+  /* Structure. */
+  --ai-line:       #242424;
+  --ai-line-2:     #333b49;
+
+  /* Gold — precision, activation, signal, intelligence, primary interaction. */
+  --ai-gold:       #d4af37;
+  --ai-gold-deep:  #b8860b;
+  --ai-gold-wash:  rgba(212, 175, 55, 0.08);
+
+  /* Copper — hardware, power, physical systems, secondary technical data. */
+  --ai-copper:     #c66a25;
+  --ai-copper-txt: #d47728;
+  --ai-copper-deep:#7e3f13;
+  --ai-copper-wash:rgba(198, 106, 37, 0.10);
+
+  /* Ivory — human-readable emphasis. */
+  --ai-ivory:      #f3e1ad;
+
+  /* Neutral text ramp. */
+  --ai-txt:        #e7e9ed;
+  --ai-txt-2:      #a8afbb;
+  --ai-txt-3:      #7a828e;
+
+  --ai-white:      #ffffff;
+
+  /* Semantic status. */
+  --ai-error:      #ff6b6b;
+  --ai-error-deep: #4a1212;
+  --ai-success:    #6fcf7f;
+
+  /* ---- 2. SEMANTICS ----------------------------------------------------- */
+
+  /* Surfaces, ordered by elevation off the laboratory floor. */
+  --surface-base:      var(--ai-black);
+  --surface-raised:    var(--ai-black-2);
+  --surface-panel:     var(--ai-panel);
+  --surface-panel-2:   var(--ai-panel-2);
+  --surface-panel-3:   var(--ai-panel-3);
+  --surface-inset:     rgba(255, 255, 255, 0.02);
+
+  /* Text. */
+  --text-primary:      var(--ai-txt);
+  --text-strong:       var(--ai-white);
+  --text-secondary:    var(--ai-txt-2);
+  --text-muted:        var(--ai-txt-3);
+  --text-emphasis:     var(--ai-ivory);
+  --text-signal:       var(--ai-gold);
+  --text-hardware:     var(--ai-copper-txt);
+  --text-on-signal:    var(--ai-black);
+
+  /* Borders. */
+  --border-hairline:   var(--ai-line);
+  --border-strong:     var(--ai-line-2);
+  --border-signal:     var(--ai-gold);
+  --border-hardware:   var(--ai-copper);
+
+  /* Interaction. */
+  --accent:            var(--ai-gold);
+  --accent-pressed:    var(--ai-gold-deep);
+  --accent-wash:       var(--ai-gold-wash);
+  --hardware:          var(--ai-copper);
+  --hardware-wash:     var(--ai-copper-wash);
+  --focus-ring:        var(--ai-gold);
+
+  /* ---- TYPE ------------------------------------------------------------- */
+  --font-sans: 'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Arial, Helvetica, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  /* Fluid display scale. Extreme contrast between display and body is the
+     point: headlines carry the art direction, body text stays quiet. */
+  --fs-display-1: clamp(2.50rem, 1.35rem + 5.10vw, 6.00rem);
+  --fs-display-2: clamp(1.90rem, 1.35rem + 2.40vw, 3.25rem);
+  --fs-display-3: clamp(1.50rem, 1.20rem + 1.30vw, 2.25rem);
+  --fs-heading-1: clamp(1.25rem, 1.10rem + 0.70vw, 1.65rem);
+  --fs-heading-2: clamp(1.10rem, 1.03rem + 0.32vw, 1.30rem);
+  --fs-heading-3: 1.125rem;
+  --fs-body-lg:   clamp(1.05rem, 1.00rem + 0.22vw, 1.20rem);
+  --fs-body:      1rem;
+  --fs-body-sm:   0.9375rem;
+  --fs-label:     0.8125rem;
+  --fs-label-sm:  0.6875rem;
+
+  --lh-display: 0.96;
+  --lh-tight:   1.12;
+  --lh-snug:    1.32;
+  --lh-body:    1.62;
+
+  --tracking-display: -0.035em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  0;
+  --tracking-label:   0.16em;
+
+  /* ---- SPACE ------------------------------------------------------------ */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 7rem;
+  --space-scene: clamp(4.5rem, 2.5rem + 8vw, 9rem);
+
+  --container: 78rem;
+  --container-narrow: 54rem;
+  --gutter: clamp(1.25rem, 0.85rem + 1.8vw, 2.5rem);
+
+  /* ---- SHAPE ------------------------------------------------------------ */
+  --radius-none: 0;
+  --radius-xs:   1px;
+  --radius-sm:   2px;
+  --radius-md:   3px;
+  --radius-full: 9999px;
+
+  --border-width: 1px;
+  --trace-width:  1px;
+
+  /* ---- DEPTH ------------------------------------------------------------ */
+  --shadow-none:   none;
+  --shadow-sticky: 0 1px 0 0 var(--ai-line), 0 8px 24px -12px rgba(0, 0, 0, 0.9);
+  --shadow-lift:   0 18px 40px -24px rgba(0, 0, 0, 0.95);
+  --shadow-signal: 0 0 0 1px var(--ai-gold), 0 0 28px -8px rgba(212, 175, 55, 0.45);
+
+  /* ---- MOTION ----------------------------------------------------------- */
+  --ease-out:  cubic-bezier(0.22, 0.61, 0.30, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:  140ms;
+  --dur-base:  260ms;
+  --dur-slow:  620ms;
+  --dur-trace: 1400ms;
+
+  /* ---- LAYERS ----------------------------------------------------------- */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 500;
+  --z-modal:   1000;
+  --z-skip:    2000;
+}
+
+/* Motion tokens collapse rather than being conditionally applied at each
+   call site — one switch, honoured everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:  0ms;
+    --dur-base:  0ms;
+    --dur-slow:  0ms;
+    --dur-trace: 0ms;
+  }
+}
