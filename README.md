@@ -16,6 +16,9 @@ python3 -m http.server 8000   # then visit http://localhost:8000/index.html
 | --- | --- |
 | `index.html` | Home page — composes `Nav`, `Hero`, `Trust`, `EngineeringStack`, `Capabilities`, `Projects`, `CustomEng`, `FinalCTA`, `SiteFooter` |
 | `about.html` | About page — `PageHero`, `Trust`, `EngineeringStack`, `Process`, `Industries`, `Why`, `FinalCTA` |
+| `projects.html` | Project marketplace — the filterable `Projects` grid |
+| `services.html` | Engineering services — `Capabilities`, `Firmware`, `Connectivity`, `Intelligence` |
+| `start.html` | Intake page — hosts `StartProject` inline |
 | `data.jsx` | Content model: stack layers, capabilities, project catalog, industries, process, nav links. **Placeholder copy — clearly marked as such.** |
 | `primitives.jsx` | Shared primitives: `Reveal`, `Mark`, `Wordmark`, `Eyebrow`, `DarkCard`, `GhostLink` |
 | `home-sections.jsx` | `Nav`, `Hero`, `PageHero`, `Trust`, `EngineeringStack`, `Capabilities`, `Projects` |
@@ -23,10 +26,12 @@ python3 -m http.server 8000   # then visit http://localhost:8000/index.html
 | `start-project.jsx` | `StartProject` — the multi-step project-intake form |
 | `site.css` | Site-level theme: dark `--ai-*` palette, layout helpers, reveal/hover animations |
 | `assets/logo.png` | Brand mark (copper ring, ivory ion) |
-| `_ds/ananta-ions-design-system-…/` | Design system: `_ds_bundle.js` (components), `tokens/*.css`, `styles.css`, and `_adherence.oxlintrc.json` (lint rules enforcing token + prop usage) |
+| `_ds/ananta-ions-design-system-…/` | Design system: `_ds_bundle.js` (components), `tokens/*.css`, `styles.css`, `readme.md` (the full spec), and `_adherence.oxlintrc.json` (lint rules enforcing token + prop usage) |
 | `dist/ANANTA_IONS_Homepage_offline.html` | Self-extracting single-file build of the home page — everything inlined, opens offline from `file://` |
-| `vendor/doc-page.js` | `<doc-page>` web component — paged-document shell for printable HTML |
-| `docs/reference/` | Electronics-project reference PDFs |
+| `websiteguide.html` | Internal website guide — structure, editing tasks, pre-launch checklist. Printable via `<doc-page>`. |
+| `doc-page.js` | `<doc-page>` web component — the paged-document shell `websiteguide.html` loads |
+| `docs/design-system-readme.pdf` | Print export of the design system's `readme.md` |
+| `docs/reference/` | Electronics-project and Payhip reference PDFs |
 
 ## Design system
 
@@ -36,8 +41,11 @@ The visual rules: one saturated gold accent (`--color-primary: #d4af37`) carries
 active state, 2px radius everywhere, hairline borders instead of shadows, and hierarchy from
 weight and size rather than color.
 
-## Not in the repo yet
+## Before launch
 
-The nav and footer link to three pages whose sources have not been added:
-`projects.html`, `services.html`, `start.html` (`start.html` is what `StartProject` is built for).
-Until they land, those links 404.
+- `data.jsx` ships **placeholder** projects, specs and pricing — all content lives in that one file.
+- The intake form validates and confirms but does not submit anywhere; wire up the final branch of `next()` in `start-project.jsx`.
+- Footer contact and social links are placeholders (`SiteFooter` in `home-sections2.jsx`).
+- Pages transform JSX in the browser. For production, precompile the `.jsx` files to plain JS.
+
+`websiteguide.html` covers all of this in more detail.

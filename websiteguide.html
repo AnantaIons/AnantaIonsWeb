@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANANTA IONS — Website Guide</title>
+<link rel="stylesheet" href="_ds/ananta-ions-design-system-e44e3fd6-2252-420d-a0b0-95173e2e1aa8/tokens/fonts.css">
+<style>
+doc-page:not(:defined){visibility:hidden}
+:root{--gold:#d4af37;--copper:#c66a25;--ink:#1a1a1a;--mute:#5e5e5e;--line:#cccccc;--soft:#f7f7f7}
+doc-page{font-family:var(--font-family,'Inter',Arial,sans-serif);color:var(--ink);line-height:1.55}
+h1,h2,h3,h4{color:#000;letter-spacing:-.01em;line-height:1.15}
+h1{font-size:34px;margin:0 0 6px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--gold)}
+.lede{font-size:15px;color:var(--mute);max-width:64ch;margin:0 0 4px}
+h2{font-size:20px;margin:34px 0 10px;padding-top:14px;border-top:2px solid var(--gold)}
+h3{font-size:15px;margin:20px 0 6px}
+p,li{font-size:13px;orphans:3;widows:3}
+ul,ol{margin:8px 0;padding-left:20px}
+li{margin:4px 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--soft);border:1px solid var(--line);border-radius:2px;padding:1px 5px;color:#000}
+.brandbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.brandbar .wm{font-size:18px;font-weight:700;letter-spacing:1.5px}
+.brandbar .wm span{color:var(--gold)}
+.note{background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:2px;padding:12px 14px;margin:14px 0;font-size:12.5px}
+table{width:100%;border-collapse:collapse;margin:12px 0;break-inside:auto}
+th,td{text-align:left;font-size:12px;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-weight:700;text-transform:uppercase;letter-spacing:.4px;font-size:10.5px}
+td code{font-size:11px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.kv{break-inside:avoid}
+.foot{font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute)}
+figure{break-inside:avoid;margin:0}
+</style>
+</head>
+<body>
+<doc-page margin="0.7in">
+<div slot="header" class="foot" style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)"><span>ANANTA IONS — Website Guide</span><span>Engineering intelligence between silicon and the real world</span></div>
+<div slot="footer" class="foot" style="display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line)"><span>Internal documentation · Placeholder content</span><span>v1 · 2026</span></div>
+
+<div class="brandbar">
+  <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M76 71.4 A 33 33 0 1 1 76 28.6" fill="none" stroke="var(--copper)" stroke-width="9.5"/><circle cx="70" cy="34" r="10" fill="#d8c07a"/></svg>
+  <span class="wm">ANANTA <span>IONS</span></span>
+</div>
+
+<p class="eyebrow">Website documentation</p>
+<h1>ANANTA IONS — Website Guide</h1>
+<p class="lede">How the ANANTA IONS marketing website is structured, how to maintain it, and how to replace the placeholder content with real details. The site is a multi-page static build — no framework build step, no server — designed to be easy to edit and extend.</p>
+
+<div class="note"><strong>Content status.</strong> The site currently ships with <strong>placeholder content</strong> — project names, specifications and pricing are illustrative and must be replaced before launch. Every placeholder is marked in the UI and lives in one file (<code>data.jsx</code>), so swapping in real details is a single-file edit.</div>
+
+<h2>1 · What the site is</h2>
+<p>A dark, engineering-grade marketing site for ANANTA IONS — a technology company that engineers firmware, embedded systems, connectivity and intelligent electronics, from silicon to production-ready products. The site is built on the bound <strong>Ananta Ions Design System</strong> (gold <code>#d4af37</code> accent, the corner-square motif, 2px angular geometry, Inter type), extended onto deep-black surfaces with a copper accent reserved for technical diagrams.</p>
+<p>It supports three primary visitor journeys:</p>
+<ol>
+<li><strong>Browse ready-made projects</strong> — reference designs filterable by application, each leading to a project request.</li>
+<li><strong>Explore engineering services</strong> — firmware, connectivity and embedded intelligence.</li>
+<li><strong>Start a custom project</strong> — a four-step engineering intake form.</li>
+</ol>
+
+<h2>2 · Page map</h2>
+<table>
+<thead><tr><th>Page</th><th>File</th><th>Purpose</th><th>Key sections</th></tr></thead>
+<tbody>
+<tr><td>Home</td><td><code>index.html</code></td><td>Overview &amp; entry point</td><td>Hero, engineering stack, capabilities, 3 featured projects, custom-engineering CTA</td></tr>
+<tr><td>Projects</td><td><code>projects.html</code></td><td>Project marketplace</td><td>Filterable project grid, request CTA</td></tr>
+<tr><td>Services</td><td><code>services.html</code></td><td>Engineering services</td><td>Capabilities, firmware, connectivity diagram, embedded intelligence</td></tr>
+<tr><td>About</td><td><code>about.html</code></td><td>Company &amp; process</td><td>Positioning, engineering stack, 6-step process, industries, why us</td></tr>
+<tr><td>Start a Project</td><td><code>start.html</code></td><td>Intake / lead capture</td><td>4-step engineering requirement form</td></tr>
+</tbody>
+</table>
+<p>Every page shares the same top navigation and footer, so a link added once appears site-wide.</p>
+
+<h2>3 · File structure</h2>
+<p>The site is deliberately split into small, single-responsibility files so content and layout are easy to find and change.</p>
+<table>
+<thead><tr><th>File</th><th>What lives here</th></tr></thead>
+<tbody>
+<tr><td><code>*.html</code> (5)</td><td>One thin page each. Loads shared scripts, then mounts that page's sections. This is where you set a page's section order.</td></tr>
+<tr><td><code>data.jsx</code></td><td><strong>All content.</strong> Projects, capabilities, firmware/connectivity/intelligence lists, industries, process steps, navigation links. <em>Edit this to add real details.</em></td></tr>
+<tr><td><code>site.css</code></td><td>Shared styling: colour variables, layout helpers (<code>.ai-container</code>, <code>.ai-section</code>), animations, responsive rules.</td></tr>
+<tr><td><code>primitives.jsx</code></td><td>Small shared building blocks: brand mark/wordmark, cards, buttons helpers, scroll-reveal wrapper.</td></tr>
+<tr><td><code>home-sections.jsx</code></td><td>Nav, hero, engineering stack, capabilities, projects grid.</td></tr>
+<tr><td><code>home-sections2.jsx</code></td><td>Custom-engineering CTA, firmware, connectivity, intelligence, industries, process, why, final CTA, footer.</td></tr>
+<tr><td><code>start-project.jsx</code></td><td>The four-step intake form (also usable as a modal).</td></tr>
+<tr><td><code>assets/logo.png</code></td><td>The ANANTA IONS logo (open copper ring with the ivory ion).</td></tr>
+<tr><td><code>_ds/…</code></td><td>The bound Ananta Ions Design System (tokens, components). Do not edit.</td></tr>
+</tbody>
+</table>
+
+<h2>4 · Editing content — common tasks</h2>
+
+<h3>Add or edit a project</h3>
+<p>Open <code>data.jsx</code> and edit the <code>PROJECTS</code> array. Each entry is an object:</p>
+<div class="note"><code>{ name, cat, status, mcu, conn, desc, tags, price }</code> — where <code>cat</code> must match one of the <code>PROJECT_FILTERS</code> values, <code>status</code> is <code>'Available'</code> or <code>'Prototype'</code>, <code>mcu</code> is the platform, and <code>conn</code> is the connectivity. Add a new object to the array and it appears in the grid and filters automatically.</div>
+<p>To add a new category, add its label to the <code>PROJECT_FILTERS</code> array in the same file.</p>
+
+<h3>Edit services, capabilities, industries or process</h3>
+<p>Each is a plainly-named list in <code>data.jsx</code>: <code>CAPABILITIES</code>, <code>FIRMWARE</code>, <code>CONNECTIVITY</code>, <code>INTELLIGENCE</code>, <code>INDUSTRIES</code>, <code>PROCESS</code>, <code>WHY</code>. Edit the text in place; the pages re-render from these lists.</p>
+
+<h3>Change navigation</h3>
+<p>Edit <code>NAV_PAGES</code> in <code>data.jsx</code> — an array of <code>{ label, href }</code>. The footer link columns live in the <code>SiteFooter</code> component in <code>home-sections2.jsx</code>.</p>
+
+<h3>Reorder or remove a section on a page</h3>
+<p>Open that page's <code>.html</code> file and edit the small block near the bottom that lists the sections (e.g. <code>&lt;Hero/&gt;</code>, <code>&lt;Capabilities/&gt;</code>). Add, remove or reorder those lines.</p>
+
+<h2>5 · The intake form</h2>
+<p>The Start-a-Project form (<code>start-project.jsx</code>) collects an engineering requirement across four steps: <strong>Discover</strong> (contact &amp; idea), <strong>Define</strong> (hardware &amp; connectivity), <strong>Engineer</strong> (firmware &amp; intelligence) and <strong>Deliver</strong> (production &amp; delivery). Required fields are validated before advancing.</p>
+<div class="note"><strong>Not yet connected.</strong> The form is a working demo — on submit it shows a confirmation but does not send anywhere. Before launch, wire the submit handler (the <code>next()</code> function's final branch) to an email service, CRM, or form endpoint.</div>
+
+<h2>6 · Design system &amp; brand</h2>
+<div class="grid2">
+<div class="kv">
+<h3>Colour</h3>
+<ul>
+<li>Accent: <strong>Primary Gold</strong> <code>#d4af37</code> — one accent, used for CTAs and active states.</li>
+<li>Surfaces: deep black <code>#050505</code> through panel greys.</li>
+<li>Copper <code>#c66a25</code> — reserved for technical diagram traces and eyebrows.</li>
+</ul>
+</div>
+<div class="kv">
+<h3>Type &amp; shape</h3>
+<ul>
+<li>One family: <strong>Inter</strong> (weights 400/700).</li>
+<li>2px radius everywhere — angular, never pill-shaped.</li>
+<li>The gold corner square marks cards.</li>
+</ul>
+</div>
+</div>
+<p>All tokens come from the bound design system in <code>_ds/</code>. When choosing new colours, use the CSS variables in <code>site.css</code> rather than inventing values.</p>
+
+<h3>Logo</h3>
+<p>The supplied mark — an open copper ring with an ivory ion in the gap — lives at <code>assets/logo.png</code> and is used in the nav and footer. To update it, replace that file (keep it roughly square with a transparent or black background).</p>
+
+<h2>7 · Running &amp; publishing</h2>
+<ul>
+<li><strong>Local:</strong> the site is static HTML — open <code>index.html</code> or serve the folder with any static server.</li>
+<li><strong>Hosting:</strong> upload the whole folder (including <code>_ds/</code> and <code>assets/</code>) to any static host.</li>
+<li><strong>Production note:</strong> pages use an in-browser transformer for convenience. For production, precompile the <code>.jsx</code> files to plain JS to remove the load-time transform and the console warning.</li>
+</ul>
+
+<h2>8 · Pre-launch checklist</h2>
+<ul>
+<li>Replace all placeholder projects, specs and pricing in <code>data.jsx</code>.</li>
+<li>Connect the intake form submit to a real endpoint.</li>
+<li>Add real contact details and social links (footer, in <code>home-sections2.jsx</code>).</li>
+<li>Confirm the logo and any real product imagery.</li>
+<li>Add real page metadata / Open Graph tags per page if needed.</li>
+</ul>
+
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>
