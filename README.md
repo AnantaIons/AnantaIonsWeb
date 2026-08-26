@@ -117,9 +117,27 @@ never shows a confirmation for a submission that did not happen.
 
 ## Deploying
 
-`dist/` is a plain static folder — upload it anywhere. `.github/workflows/deploy.yml`
-builds it, runs the QA gate, and publishes to GitHub Pages; a build that fails
-the audit is never published.
+`dist/` is a plain static folder — upload it anywhere.
+
+**Where it is served from.** `BASE_PATH` is the deploy prefix, default `/`.
+A GitHub Pages *project* site lives at `/<repo>/`, not the domain root, so the
+workflow sets it from the repository name. Point a custom domain at the site
+and you set `BASE_PATH=/` instead. Everything internal — links, the logo, the
+intro, canonicals, Open Graph and the sitemap — resolves through it
+(`src/lib/paths.js`), and `npm run qa` runs against the build served at that
+exact prefix, so CI checks what actually ships.
+
+```bash
+npm run build                      # domain root
+BASE_PATH=/AnantaIonsWeb/ npm run build   # project site
+```
+
+**CI.** `.github/workflows/deploy.yml` builds, runs the QA gate, and publishes
+to Pages only if the audit passes. It installs Chromium first — the audit
+drives a real browser.
+
+**Enabling Pages** is a one-time repository setting: Settings → Pages →
+Source: **GitHub Actions**.
 
 Set the production domain in `src/lib/pages.js` (`ORIGIN`) before the first
 deploy — canonicals, Open Graph URLs and the sitemap all read from it.

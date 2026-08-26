@@ -6,7 +6,7 @@
    The original is kept untouched at public/logo-source.png.
    Run: node scripts/logo-alpha.mjs */
 
-import { chromium } from 'playwright';
+import { launchBrowser } from './browser.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +15,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = resolve(ROOT, 'public/logo-source.png');
 const OUT = resolve(ROOT, 'public/logo.png');
 
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const b = await launchBrowser();
 const page = await b.newPage();
 const dataUri = `data:image/png;base64,${(await readFile(SRC)).toString('base64')}`;
 

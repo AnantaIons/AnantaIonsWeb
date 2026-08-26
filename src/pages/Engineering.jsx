@@ -1,4 +1,5 @@
 import Layout from '../components/Layout.jsx';
+import { path } from '../lib/paths.js';
 import PageHero from '../components/PageHero.jsx';
 import Button from '../components/Button.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -27,8 +28,8 @@ export default function Engineering() {
         title={<>The path between <span className="signal">silicon</span> and a product that <span className="hardware">ships</span>.</>}
         lede="Six layers, one team. This is the work we do at each of them, and the handoffs between them where most products are won or lost."
       >
-        <Button href="/start/" size="lg">Start a project</Button>
-        <Button href="/capabilities/" size="lg" variant="outline">Capabilities</Button>
+        <Button href={path('/start/')} size="lg">Start a project</Button>
+        <Button href={path('/capabilities/')} size="lg" variant="outline">Capabilities</Button>
       </PageHero>
 
       <section className="scene scene--raised scene--edged" aria-labelledby="stack-title" id="stack">
@@ -118,7 +119,7 @@ export default function Engineering() {
             </ol>
           </Reveal>
           <Reveal className="scene__foot">
-            <Button href="/start/" size="lg">Start a project</Button>
+            <Button href={path('/start/')} size="lg">Start a project</Button>
           </Reveal>
         </div>
       </section>

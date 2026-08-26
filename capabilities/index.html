@@ -213,7 +213,7 @@
   var el = document.createElement('div');
   el.className = 'brand-load';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<img src="/logo.png" width="76" height="76" alt="" decoding="sync">';
+  el.innerHTML = '<img src="' + "/logo.png" + '" width="76" height="76" alt="" decoding="sync">';
   document.body.appendChild(el);
   setTimeout(function () {
     el.classList.add('is-out');

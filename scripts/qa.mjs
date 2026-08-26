@@ -16,7 +16,7 @@
    resolve, and the report says so explicitly.
    ========================================================================= */
 
-import { chromium } from 'playwright';
+import { launchBrowser } from './browser.mjs';
 import { readFile, stat, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,7 +28,8 @@ import { contact } from '../src/content/site.js';
 const require = createRequire(import.meta.url);
 const AXE = require.resolve('axe-core/axe.min.js');
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const BASE = process.env.QA_BASE || 'http://localhost:8125';
+const PREFIX = (process.env.BASE_PATH || '/').replace(/\/$/, '');
+const BASE = (process.env.QA_BASE || 'http://localhost:8125') + PREFIX;
 const WIDTHS = [360, 375, 390, 430, 768, 1024, 1280, 1440, 1920];
 const JS_BUDGET_KB = 120;   // gzip-equivalent raw budget for first-load JS
 const CSS_BUDGET_KB = 60;
@@ -44,7 +45,7 @@ const check = (ok, label, detail = '') => {
 };
 
 const axeSource = await readFile(AXE, 'utf8');
-const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const browser = await launchBrowser();
 
 /* ---- 1 + 4 + 5: per-route audit ---------------------------------------- */
 say('ACCESSIBILITY, STRUCTURE & SEO');
@@ -112,7 +113,7 @@ for (const page of pages) {
   check(meta.lang === 'en', 'html lang set');
   check(!!meta.title && meta.title.length <= 70, 'title present and <= 70 chars', `${meta.title.length}`);
   check(meta.desc.length >= 70 && meta.desc.length <= 200, 'meta description 70–200 chars', `${meta.desc.length}`);
-  check(meta.canonical === `${ORIGIN}${page.route}`, 'canonical correct', meta.canonical);
+  check(meta.canonical === `${ORIGIN}${PREFIX}${page.route}`, 'canonical correct', meta.canonical);
   check(meta.og, 'open graph complete');
   check(!!meta.ld && Array.isArray(meta.ld['@graph']) && meta.ld['@graph'].length >= 3,
     'JSON-LD graph present');
@@ -219,8 +220,11 @@ for (const page of pages) {
       .filter((el) => getComputedStyle(el).opacity === '0')
       .filter((el) => !el.closest('[aria-hidden="true"], [role="presentation"]')).length,
   }));
-  check(r.text > 500 && r.hidden === 0, `${page.route} readable without JS`,
-    `${r.text} chars, ${r.hidden} hidden`);
+  /* A 404 is deliberately short, so the bar is "the page is really there",
+     not "the page is long". Nothing hidden is the part that matters on both. */
+  const floor = page.indexable === false ? 200 : 500;
+  check(r.text > floor && r.hidden === 0, `${page.route} readable without JS`,
+    `${r.text} chars (min ${floor}), ${r.hidden} hidden`);
   await p.close();
 }
 await noJsCtx.close();

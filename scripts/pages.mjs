@@ -10,14 +10,20 @@ import { graphFor } from '../src/lib/schema.js';
 import { capabilities } from '../src/content/capabilities.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+/* Must match vite.config.js — these <head> links are written by hand, so Vite
+   does not get a chance to prefix them. */
+const BASE = process.env.BASE_PATH || '/';
+const asset = (p) => `${BASE.replace(/\/$/, '')}${p}`;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const html = (page) => {
-  const url = `${ORIGIN}${page.route}`;
+  const url = `${ORIGIN}${asset(page.route)}`;
   const graph = JSON.stringify(graphFor(page, { capabilities }), null, 2)
     .replace(/</g, '\\u003c');
-  const depth = page.route === '/' ? '' : '../'.repeat(page.route.split('/').filter(Boolean).length);
+  /* Depth of the emitted file, not of the route: 404.html sits at the root
+     even though its route has a segment. */
+  const depth = '../'.repeat(page.file.split('/').length - 1);
   return `<!doctype html>
 <html lang="en" class="no-js" data-page="${page.key}">
 <head>
@@ -25,7 +31,7 @@ const html = (page) => {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
-<link rel="canonical" href="${url}">
+<link rel="canonical" href="${url}">${page.indexable === false ? '\n<meta name="robots" content="noindex">' : ''}
 <meta name="theme-color" content="#050505">
 <meta name="color-scheme" content="dark">
 
@@ -44,10 +50,10 @@ const html = (page) => {
 <meta name="twitter:description" content="${esc(page.description)}">
 <meta name="twitter:image" content="${ORIGIN}/og-image.png">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/logo.png">
+<link rel="icon" href="${asset('/favicon.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="${asset('/logo.png')}">
 
-<link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('/fonts/inter-latin-var.woff2')}" as="font" type="font/woff2" crossorigin>
 
 <script type="application/ld+json">
 ${graph}
@@ -73,7 +79,7 @@ ${graph}
   var el = document.createElement('div');
   el.className = 'brand-load';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<img src="/logo.png" width="76" height="76" alt="" decoding="sync">';
+  el.innerHTML = '<img src="' + ${JSON.stringify(asset('/logo.png'))} + '" width="76" height="76" alt="" decoding="sync">';
   document.body.appendChild(el);
   setTimeout(function () {
     el.classList.add('is-out');

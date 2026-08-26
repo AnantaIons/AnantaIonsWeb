@@ -1,4 +1,5 @@
 import Icon from './Icon.jsx';
+import { path } from '../lib/paths.js';
 import { contact, nav, primaryCta, site } from '../content/site.js';
 import { PlaceholderTag } from './Placeholder.jsx';
 import Button from './Button.jsx';
@@ -26,12 +27,12 @@ export default function SiteFooter() {
       <TraceRail className="footer__rail" />
       <div className="footer__inner container">
         <div className="footer__brand">
-          <a className="wordmark" href="/">
-            <img className="wordmark__mark" src="/logo.png" alt="" width="26" height="26" loading="lazy" decoding="async" />
+          <a className="wordmark" href={path('/')}>
+            <img className="wordmark__mark" src={path('/logo.png')} alt="" width="26" height="26" loading="lazy" decoding="async" />
             <span className="wordmark__text">ANANTA <span className="wordmark__accent">IONS</span></span>
           </a>
           <p className="footer__proposition">{site.proposition}</p>
-          <Button href={primaryCta.href} size="sm">{primaryCta.label}</Button>
+          <Button href={path(primaryCta.href)} size="sm">{primaryCta.label}</Button>
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
@@ -41,7 +42,7 @@ export default function SiteFooter() {
               <ul className="footer__list">
                 {col.links.map((l) => (
                   <li key={l.href + l.label}>
-                    <a className="footer__link" href={l.href}>{l.label}</a>
+                    <a className="footer__link" href={path(l.href)}>{l.label}</a>
                   </li>
                 ))}
               </ul>

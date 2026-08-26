@@ -1,11 +1,14 @@
-# Builds the site and publishes dist/ to GitHub Pages.
-# The QA gate runs first: a build that fails accessibility, responsive,
-# structure, SEO, weight or no-JS checks is never published.
+# Builds the site and publishes it to GitHub Pages.
+#
+# The QA gate runs first, against the built site served at the exact prefix it
+# will be deployed under — so accessibility, responsive, structure, SEO, deep
+# links, weight and no-JS are all checked on what actually ships. A build that
+# fails the audit is never published.
 name: Build and deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, site-v2]
   workflow_dispatch:
 
 permissions:
@@ -17,6 +20,11 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  # A Pages project site is served from /<repo>/, not the domain root.
+  # Set this to "/" if you point a custom domain at the site.
+  BASE_PATH: /${{ github.event.repository.name }}/
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,9 +35,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # QA drives a real browser. Without this the audit cannot run at all.
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - name: Serve the build for the QA pass
+      - name: Serve the build at its deploy prefix
         run: node scripts/serve-dist.mjs & sleep 2
       - name: QA gate
         run: npm run qa

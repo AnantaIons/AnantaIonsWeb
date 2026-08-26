@@ -1,4 +1,5 @@
 import Layout from '../components/Layout.jsx';
+import { path } from '../lib/paths.js';
 import PageHero from '../components/PageHero.jsx';
 import Button from '../components/Button.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -13,7 +14,7 @@ export default function Capabilities() {
         title={<>What we do, how we do it, and <span className="signal">what it fixes</span>.</>}
         lede="Seven disciplines. Each one states the work, the method, and the failure it is meant to prevent — because a capability list that says nothing testable is worth nothing."
       >
-        <Button href="/start/" size="lg">Start a project</Button>
+        <Button href={path('/start/')} size="lg">Start a project</Button>
       </PageHero>
 
       <section className="scene" aria-label="Capabilities in detail">
@@ -59,8 +60,8 @@ export default function Capabilities() {
               first thing we do anyway.
             </p>
             <div className="final__actions">
-              <Button href="/start/" size="lg">Start a project</Button>
-              <Button href="/engineering/" size="lg" variant="outline">See the stack</Button>
+              <Button href={path('/start/')} size="lg">Start a project</Button>
+              <Button href={path('/engineering/')} size="lg" variant="outline">See the stack</Button>
             </div>
           </Reveal>
         </div>

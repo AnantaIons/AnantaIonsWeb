@@ -1,4 +1,5 @@
 import Layout from '../components/Layout.jsx';
+import { path } from '../lib/paths.js';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -51,8 +52,8 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={180} className="hero__actions">
-              <Button href="/start/" size="lg">Start a project</Button>
-              <Button href="/engineering/" size="lg" variant="outline">Explore engineering</Button>
+              <Button href={path('/start/')} size="lg">Start a project</Button>
+              <Button href={path('/engineering/')} size="lg" variant="outline">Explore engineering</Button>
             </Reveal>
 
             <Reveal delay={240}>
@@ -159,7 +160,7 @@ function CapabilitiesScene() {
         </div>
 
         <Reveal className="scene__foot">
-          <Button href="/capabilities/" variant="outline">See how each capability works</Button>
+          <Button href={path('/capabilities/')} variant="outline">See how each capability works</Button>
         </Reveal>
       </div>
     </section>
@@ -184,7 +185,7 @@ function ProofScene() {
         <ul className="proof">
           {featured.map((p, i) => (
             <Reveal as="li" key={p.id} delay={i * 80} className="proof__item">
-              <a className="proof__link" href={`/projects/#${p.id}`}>
+              <a className="proof__link" href={path(`/projects/#${p.id}`)}>
                 <p className="label"><TraceNode /> {p.domain}</p>
                 <h3 className="heading-1 proof__title">{p.title}</h3>
                 <p className="proof__summary">{p.summary}</p>
@@ -210,7 +211,7 @@ function ProofScene() {
         ) : null}
 
         <Reveal className="scene__foot">
-          <Button href="/projects/" variant="outline">All projects</Button>
+          <Button href={path('/projects/')} variant="outline">All projects</Button>
         </Reveal>
       </div>
     </section>
@@ -279,8 +280,8 @@ function FinalScene() {
             ))}
           </ul>
           <div className="final__actions">
-            <Button href="/start/" size="lg">Start a project</Button>
-            <Button href="/projects/" size="lg" variant="outline">See what we have built</Button>
+            <Button href={path('/start/')} size="lg">Start a project</Button>
+            <Button href={path('/projects/')} size="lg" variant="outline">See what we have built</Button>
           </div>
         </Reveal>
       </div>

@@ -1,4 +1,5 @@
 import Layout from '../components/Layout.jsx';
+import { path } from '../lib/paths.js';
 import PageHero from '../components/PageHero.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
@@ -16,7 +17,7 @@ export default function About() {
         title={<>An <span className="signal">engineering partner</span>, not a services desk.</>}
         lede="Bring an idea, a prototype, a hardware platform or a technical requirement. We architect, engineer and validate the embedded layer that makes it a reliable product."
       >
-        <Button href="/start/" size="lg">Work with us</Button>
+        <Button href={path('/start/')} size="lg">Work with us</Button>
       </PageHero>
 
       <section className="scene" aria-labelledby="stance-title">
@@ -94,8 +95,8 @@ export default function About() {
           <Reveal className="final__inner">
             <h2 className="display-2 final__title" id="about-cta">Let’s engineer <span className="signal">what’s next</span>.</h2>
             <div className="final__actions">
-              <Button href="/start/" size="lg">Start a project</Button>
-              <Button href="/engineering/" size="lg" variant="outline">See the stack</Button>
+              <Button href={path('/start/')} size="lg">Start a project</Button>
+              <Button href={path('/engineering/')} size="lg" variant="outline">See the stack</Button>
             </div>
           </Reveal>
         </div>

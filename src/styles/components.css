@@ -819,3 +819,19 @@ code { font-family: var(--font-code); font-size: 0.9em; color: var(--text-emphas
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {
   .cursor-dust { display: none; }
 }
+
+/* --- 404 ------------------------------------------------------------------ */
+.notfound { padding-block: clamp(3rem, 2rem + 6vw, 7rem); }
+.notfound__title { margin: var(--space-md) 0 var(--space-lg); }
+.notfound__routes ul { list-style: none; display: grid; gap: var(--space-2xs); }
+.notfound__routes li {
+  color: var(--text-secondary); font-size: var(--fs-body-sm);
+  border-bottom: var(--border-width) solid var(--border-hairline);
+}
+/* These links are the entire purpose of a 404, so they get real targets
+   rather than the inline-in-a-sentence minimum. */
+.notfound__routes a {
+  display: inline-block; padding-block: var(--space-sm);
+  font-weight: var(--fw-semi);
+}
+.notfound .trace-link { align-items: flex-start; }

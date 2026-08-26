@@ -54,6 +54,16 @@ export const pages = [
       'problem, the hardware, the firmware and intelligence, and how it has to ship.',
     priority: '0.9',
   },
+  {
+    key: 'notfound', route: '/404.html', file: '404.html', component: 'NotFound',
+    title: 'Page not found | ANANTA IONS',
+    description:
+      'That page is not here. Routes back to the ANANTA IONS engineering stack, ' +
+      'capabilities, projects and project intake.',
+    priority: '0.0',
+    // Not a destination: kept out of the sitemap and marked noindex.
+    indexable: false,
+  },
 ];
 
 export const pageByKey = (key) => pages.find((p) => p.key === key);

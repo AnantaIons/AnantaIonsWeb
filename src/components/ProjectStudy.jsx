@@ -1,4 +1,5 @@
 import Icon from './Icon.jsx';
+import { path } from '../lib/paths.js';
 import Button from './Button.jsx';
 import { TraceNode } from './Trace.jsx';
 import { PlaceholderTag } from './Placeholder.jsx';
@@ -115,7 +116,7 @@ export default function ProjectStudy({ project, index }) {
       </ul>
 
       <p className="study__cta">
-        <Button href="/start/" size="sm" variant="quiet">
+        <Button href={path('/start/')} size="sm" variant="quiet">
           Discuss a system like this <Icon name="arrow" size={16} />
         </Button>
       </p>
