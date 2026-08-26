@@ -41,6 +41,17 @@
       "logo": "https://anantaions.com/logo.png",
       "description": "ANANTA IONS engineers electronics, embedded systems, firmware, connectivity and intelligent products — from architecture and prototype to real-world deployment.",
       "slogan": "Engineering intelligence between silicon and the real world.",
+      "email": "ananta.ions@outlook.com",
+      "sameAs": [
+        "https://github.com/AnantaIons"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "ananta.ions@outlook.com",
+        "availableLanguage": "en",
+        "url": "https://anantaions.com/start/"
+      },
       "knowsAbout": [
         "Embedded systems engineering",
         "Firmware development",
@@ -106,6 +117,33 @@
 </script>
 </head>
 <body>
+<script>
+/* Brand intro. Runs before the rest of the body parses, so the mark is on
+   screen immediately rather than after the bundle arrives — a loader that
+   appears late is worse than no loader.
+
+   Deliberately narrow: one rotation, back where it started, then out. It
+   plays once per session (every page here is a real document, so playing it
+   on each navigation would be a tax, not a flourish), never when the visitor
+   asks for reduced motion, and never without JavaScript — the page is
+   prerendered and already readable underneath. */
+(function () {
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('ai-intro')) return;
+    sessionStorage.setItem('ai-intro', '1');
+  } catch (e) { /* storage blocked: play it, it is only a second */ }
+  var el = document.createElement('div');
+  el.className = 'brand-load';
+  el.setAttribute('aria-hidden', 'true');
+  el.innerHTML = '<img src="/logo.png" width="76" height="76" alt="" decoding="sync">';
+  document.body.appendChild(el);
+  setTimeout(function () {
+    el.classList.add('is-out');
+    setTimeout(function () { el.remove(); }, 420);
+  }, 920);
+})();
+</script>
 <div id="root"><!--app--></div>
 <script type="module" src="../src/entries/projects.jsx"></script>
 </body>

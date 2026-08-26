@@ -36,7 +36,8 @@ six; three honest projects are better than six placeholders.
 
 | Field | Status |
 | --- | --- |
-| `contact.email` | `hello@anantaions.com` is an assumption. Confirm it, then set `verified: true` |
+| `contact.email` | **Supplied** — `ananta.ions@outlook.com`. Live in the footer, the contact page, the about page and the Organization schema |
+| `contact.github` | **Supplied** — `github.com/AnantaIons`. In the footer and contact page, and published as `sameAs` in the Organization schema |
 | `contact.phone` | Not supplied. Add it or leave `null` (the UI degrades cleanly) |
 | `contact.location` | Not supplied. Same |
 | `site.origin` and `ORIGIN` in `src/lib/pages.js` | Set to the real production domain — canonicals, Open Graph URLs and the sitemap all derive from it |

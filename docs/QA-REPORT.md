@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-25T10:34:11.527Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-26T05:44:39.451Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -143,12 +143,12 @@ WITHOUT JAVASCRIPT
   PASS  /engineering/ readable without JS  4793 chars, 0 hidden
   PASS  /capabilities/ readable without JS  3504 chars, 0 hidden
   PASS  /projects/ readable without JS  6185 chars, 0 hidden
-  PASS  /about/ readable without JS  1994 chars, 0 hidden
-  PASS  /start/ readable without JS  1279 chars, 0 hidden
+  PASS  /about/ readable without JS  2011 chars, 0 hidden
+  PASS  /start/ readable without JS  1313 chars, 0 hidden
 
 WEIGHT
-  PASS  first-load JS under 120 kB  58.1 kB
-  PASS  CSS under 60 kB  42.3 kB
+  PASS  first-load JS under 120 kB  61.5 kB
+  PASS  CSS under 60 kB  43.1 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
   TODO  project "DLMS/COSEM Protocol Analyzer" is unverified placeholder content
@@ -157,13 +157,12 @@ CONTENT INTEGRITY  (reported, does not fail the build)
   TODO  project "Tamper-Aware Metering Module" is unverified placeholder content
   TODO  project "BLE Sensor Bridge" is unverified placeholder content
   TODO  project "CAN Industrial Controller" is unverified placeholder content
-  TODO  contact email is unconfirmed
   TODO  no phone number supplied
   TODO  no location supplied
   TODO  intake form has no endpoint — submission is disabled and says so
 
 ========================================================================
 All technical checks passed.
-NOT LAUNCH-READY: 10 content item(s) still unverified. See docs/CONTENT-TODO.md.
+NOT LAUNCH-READY: 9 content item(s) still unverified. See docs/CONTENT-TODO.md.
 ========================================================================
 ```

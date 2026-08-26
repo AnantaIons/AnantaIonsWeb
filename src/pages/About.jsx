@@ -82,9 +82,8 @@ export default function About() {
               Company details on this deployment — contact routes, project history, results —
               are marked wherever they are not yet confirmed{' '}
               <PlaceholderTag>like this</PlaceholderTag>. Nothing has been invented to fill a gap.
-              {contact.email.value ? (
-                <> Reach us at <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>.</>
-              ) : null}
+              {' '}Reach us at <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>,
+              or on <a href={contact.github.value} rel="noopener noreferrer me" target="_blank">GitHub</a>.
             </p>
           </Reveal>
         </div>

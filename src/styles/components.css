@@ -777,3 +777,45 @@ code { font-family: var(--font-code); font-size: 0.9em; color: var(--text-emphas
   .web__node--wide { display: none; }
   .web__node--compact { display: block; }
 }
+
+/* --- Brand intro ---------------------------------------------------------- */
+/* The mark turns through exactly one revolution and stops where it began.
+   Injected by an inline script (see scripts/pages.mjs) so it is on screen
+   before the bundle loads, and absent entirely without JavaScript. */
+.brand-load {
+  position: fixed; inset: 0; z-index: var(--z-modal);
+  display: grid; place-items: center;
+  background: var(--surface-base);
+  transition: opacity 400ms var(--ease-out);
+}
+.brand-load.is-out { opacity: 0; pointer-events: none; }
+.brand-load img {
+  width: 76px; height: 76px; object-fit: contain;
+  animation: brand-turn 920ms var(--ease-in-out) both;
+}
+.brand-load::after {
+  content: ''; position: absolute;
+  width: 116px; height: 116px; border-radius: var(--radius-full);
+  border: 1px solid var(--border-hairline);
+  border-top-color: var(--accent);
+  animation: brand-turn 920ms var(--ease-in-out) both;
+}
+@keyframes brand-turn {
+  from { transform: rotate(0turn); }
+  to   { transform: rotate(1turn); }
+}
+@media (prefers-reduced-motion: reduce) { .brand-load { display: none; } }
+
+/* --- Cursor dust ---------------------------------------------------------- */
+/* Sits above the page and below the modal layer, and never takes a pointer
+   event. Painted only by CursorDust.jsx, which does not run on touch or under
+   reduced motion. */
+.cursor-dust {
+  position: fixed; inset: 0;
+  z-index: calc(var(--z-modal) - 1);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .cursor-dust { display: none; }
+}

@@ -21,12 +21,13 @@ export const site = {
   origin: 'https://anantaions.com',
 };
 
-/* Contact details are NOT in the supplied source material. Every field below
-   is unverified and is rendered with a placeholder marker until filled in. */
+/* Contact details. `verified: true` means the value was supplied by ANANTA
+   IONS; anything still false renders with a visible placeholder marker. */
 export const contact = {
-  email:    { value: 'hello@anantaions.com', verified: false },
-  phone:    { value: null,                   verified: false },
-  location: { value: null,                   verified: false },
+  email:    { value: 'ananta.ions@outlook.com',        verified: true },
+  github:   { value: 'https://github.com/AnantaIons',  verified: true },
+  phone:    { value: null,                             verified: false },
+  location: { value: null,                             verified: false },
   /* Where the intake form POSTs. Leave null and the form tells the visitor
      honestly that submission is not connected, and offers the email route —
      it never shows a false confirmation. */

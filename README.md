@@ -52,6 +52,7 @@ scripts/
   sitemap.mjs   sitemap.xml + robots.txt
   qa.mjs        The audit gate
   og-image.mjs  Renders the social card from the site's own tokens
+  logo-alpha.mjs Rebuilds public/logo.png with an alpha channel from the source
   contrast.mjs  WCAG contrast helper for palette work
 docs/
   CONTENT-TODO.md      What must be supplied before launch
@@ -73,6 +74,17 @@ The identity is unchanged from the original: deep black ground, one saturated
 emphasis, controlled warm-neutral grays for body text. Every text/background
 pairing in the UI is verified at WCAG AA or better — `node scripts/contrast.mjs`
 checks the palette, `npm run qa` checks the rendered result.
+
+**The brand intro** turns the mark through exactly one revolution and stops where
+it began, then clears. It is injected by an inline script in the page shell so it
+is on screen before the bundle arrives, plays once per session, and never runs
+under `prefers-reduced-motion` or without JavaScript — the page underneath is
+prerendered and already readable.
+
+**Cursor dust** throws gold off the pointer, denser the faster it moves and
+brighter over anything interactive. Mouse pointers only, off under reduced
+motion, the loop stops when the dust settles, and the canvas never takes a
+pointer event.
 
 **The ANANTA Engineering Trace** is the site's one proprietary motif: a hairline
 conductor carrying signal → power → data → intelligence, terminating in the

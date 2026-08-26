@@ -5,6 +5,7 @@
    furthest. */
 
 import { ORIGIN } from './pages.js';
+import { contact } from '../content/site.js';
 
 const ORG_ID = `${ORIGIN}/#organization`;
 
@@ -19,6 +20,15 @@ export function organizationSchema() {
       'ANANTA IONS engineers electronics, embedded systems, firmware, connectivity and ' +
       'intelligent products — from architecture and prototype to real-world deployment.',
     slogan: 'Engineering intelligence between silicon and the real world.',
+    email: contact.email.value,
+    sameAs: [contact.github.value],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: contact.email.value,
+      availableLanguage: 'en',
+      url: `${ORIGIN}/start/`,
+    },
     knowsAbout: [
       'Embedded systems engineering', 'Firmware development', 'Electronics design',
       'Printed circuit board bring-up', 'Real-time operating systems',

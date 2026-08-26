@@ -1,3 +1,4 @@
+import Icon from './Icon.jsx';
 import { contact, nav, primaryCta, site } from '../content/site.js';
 import { PlaceholderTag } from './Placeholder.jsx';
 import Button from './Button.jsx';
@@ -55,6 +56,18 @@ export default function SiteFooter() {
                   {contact.email.value}
                 </a>
                 {!contact.email.verified ? <PlaceholderTag>Unconfirmed</PlaceholderTag> : null}
+              </li>
+              <li>
+                <a
+                  className="footer__link footer__link--icon"
+                  href={contact.github.value}
+                  rel="noopener noreferrer me"
+                  target="_blank"
+                >
+                  <Icon name="github" size={16} />
+                  GitHub
+                  <span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
               </li>
               {contact.phone.value ? (
                 <li><a className="footer__link" href={`tel:${contact.phone.value}`}>{contact.phone.value}</a></li>

@@ -36,6 +36,13 @@ export default function Start() {
                   <a href={`mailto:${contact.email.value}`}>{contact.email.value}</a>
                   {!contact.email.verified ? <PlaceholderTag>Unconfirmed</PlaceholderTag> : null}
                 </li>
+                <li>
+                  <Icon name="github" size={18} />
+                  <a href={contact.github.value} rel="noopener noreferrer me" target="_blank">
+                    github.com/AnantaIons
+                    <span className="visually-hidden"> (opens in a new tab)</span>
+                  </a>
+                </li>
                 {contact.phone.value ? (
                   <li><Icon name="signal" size={18} /><a href={`tel:${contact.phone.value}`}>{contact.phone.value}</a></li>
                 ) : (

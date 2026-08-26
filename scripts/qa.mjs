@@ -243,6 +243,7 @@ say('\nCONTENT INTEGRITY  (reported, does not fail the build)');
 const unverified = projects.filter((p) => !p.verified);
 for (const p of unverified) warn.push(`project "${p.title}" is unverified placeholder content`);
 if (!contact.email.verified) warn.push('contact email is unconfirmed');
+if (!contact.github?.verified) warn.push('GitHub organisation link is unconfirmed');
 if (!contact.phone.value) warn.push('no phone number supplied');
 if (!contact.location.value) warn.push('no location supplied');
 if (!contact.formEndpoint) warn.push('intake form has no endpoint — submission is disabled and says so');

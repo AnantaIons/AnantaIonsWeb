@@ -54,6 +54,33 @@ ${graph}
 </script>
 </head>
 <body>
+<script>
+/* Brand intro. Runs before the rest of the body parses, so the mark is on
+   screen immediately rather than after the bundle arrives — a loader that
+   appears late is worse than no loader.
+
+   Deliberately narrow: one rotation, back where it started, then out. It
+   plays once per session (every page here is a real document, so playing it
+   on each navigation would be a tax, not a flourish), never when the visitor
+   asks for reduced motion, and never without JavaScript — the page is
+   prerendered and already readable underneath. */
+(function () {
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('ai-intro')) return;
+    sessionStorage.setItem('ai-intro', '1');
+  } catch (e) { /* storage blocked: play it, it is only a second */ }
+  var el = document.createElement('div');
+  el.className = 'brand-load';
+  el.setAttribute('aria-hidden', 'true');
+  el.innerHTML = '<img src="/logo.png" width="76" height="76" alt="" decoding="sync">';
+  document.body.appendChild(el);
+  setTimeout(function () {
+    el.classList.add('is-out');
+    setTimeout(function () { el.remove(); }, 420);
+  }, 920);
+})();
+</script>
 <div id="root"><!--app--></div>
 <script type="module" src="${depth}src/entries/${page.key}.jsx"></script>
 </body>

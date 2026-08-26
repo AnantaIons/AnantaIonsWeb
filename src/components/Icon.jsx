@@ -26,14 +26,29 @@ const P = {
   loader:     'M12 3.5a8.5 8.5 0 1 0 8.5 8.5',
 };
 
+/* The one filled glyph in the set: GitHub's own mark, used to link to the
+   organisation. Drawn filled because that is the only form it is published
+   in — a stroked redraw would be a different logo. */
+const FILLED = {
+  github: 'M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.1.83-.26.83-.58 '
+        + 'l-.02-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 '
+        + '1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 '
+        + '0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0'
+        + 'c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92'
+        + '.43.37.82 1.1.82 2.22l-.01 3.29c0 .32.22.69.83.57C20.57 22.29 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z',
+};
+
 export default function Icon({ name, size = 20, title, className = '', strokeWidth = 1.5 }) {
-  const d = P[name];
+  const filled = FILLED[name];
+  const d = filled || P[name];
   if (!d) return null;
   return (
     <svg
       className={`icon ${className}`.trim()}
       width={size} height={size} viewBox="0 0 24 24"
-      fill="none" stroke="currentColor" strokeWidth={strokeWidth}
+      fill={filled ? 'currentColor' : 'none'}
+      stroke={filled ? 'none' : 'currentColor'}
+      strokeWidth={filled ? undefined : strokeWidth}
       strokeLinecap="square" strokeLinejoin="miter"
       role={title ? 'img' : undefined}
       aria-hidden={title ? undefined : 'true'}

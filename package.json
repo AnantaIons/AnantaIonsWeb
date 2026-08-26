@@ -12,7 +12,8 @@
     "qa": "node scripts/qa.mjs",
     "pages": "node scripts/pages.mjs",
     "og": "node scripts/og-image.mjs",
-    "single": "node scripts/single-file.mjs"
+    "single": "node scripts/single-file.mjs",
+    "logo": "node scripts/logo-alpha.mjs"
   },
   "dependencies": {
     "preact": "^10.29.8",
