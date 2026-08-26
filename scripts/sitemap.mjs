@@ -25,11 +25,18 @@ const xml = [
   '',
 ].join('\n');
 
-const robots = `# ANANTA IONS
+const INDEXABLE = process.env.INDEXABLE === 'true';
+const robots = INDEXABLE
+  ? `# ANANTA IONS
 User-agent: *
 Allow: /
 
 Sitemap: ${at('/sitemap.xml')}
+`
+  : `# ANANTA IONS — preview deployment, not for indexing.
+# Set INDEXABLE=true at build time to open this up for the real launch.
+User-agent: *
+Disallow: /
 `;
 
 await writeFile(resolve(ROOT, 'dist/sitemap.xml'), xml, 'utf8');

@@ -3,7 +3,14 @@
    black — the masthead, the footer, the intro overlay. This lifts the near
    black to transparent and writes a version with an alpha channel.
 
-   The original is kept untouched at public/logo-source.png.
+   The original is kept untouched at brand/logo-source.png — outside public/,
+   so it is a build input rather than 165 kB shipped to every visitor.
+
+   The output is also resized: nothing on the site paints this PNG any more
+   (the mark is drawn geometry), so its only jobs are the apple-touch-icon and
+   the Organization logo in structured data. 512px covers both; the 1024px
+   original was 143 kB for a 180px icon.
+
    Run: node scripts/logo-alpha.mjs */
 
 import { launchBrowser } from './browser.mjs';
@@ -12,7 +19,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const SRC = resolve(ROOT, 'public/logo-source.png');
+const SRC = resolve(ROOT, 'brand/logo-source.png');
 const OUT = resolve(ROOT, 'public/logo.png');
 
 const b = await launchBrowser();
@@ -23,10 +30,12 @@ const out = await page.evaluate(async (uri) => {
   const img = new Image();
   img.src = uri;
   await img.decode();
+  const SIZE = 512;
   const c = document.createElement('canvas');
-  c.width = img.naturalWidth; c.height = img.naturalHeight;
+  c.width = SIZE; c.height = SIZE;
   const g = c.getContext('2d');
-  g.drawImage(img, 0, 0);
+  g.imageSmoothingQuality = 'high';
+  g.drawImage(img, 0, 0, SIZE, SIZE);
   const d = g.getImageData(0, 0, c.width, c.height);
   const px = d.data;
   for (let i = 0; i < px.length; i += 4) {

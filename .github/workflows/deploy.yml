@@ -30,6 +30,13 @@ env:
   # A Pages project site is served from /<repo>/, not the domain root.
   # Set this to "/" if you point a custom domain at the site.
   BASE_PATH: /${{ github.event.repository.name }}/
+  # Preview deployment: reachable by link, but asks search engines to stay out.
+  # Set to 'true' for the real launch — see docs/CONTENT-TODO.md first.
+  INDEXABLE: 'false'
+  # Where this deployment actually lives, so canonicals and Open Graph point at
+  # it rather than at the production domain, which is not live yet.
+  SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
+  VITE_SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
 
 jobs:
   build:

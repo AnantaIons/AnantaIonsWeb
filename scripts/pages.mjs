@@ -13,6 +13,12 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 /* Must match vite.config.js — these <head> links are written by hand, so Vite
    does not get a chance to prefix them. */
 const BASE = process.env.BASE_PATH || '/';
+/* A preview deployment is reachable by anyone with the link — GitHub Pages on
+   a public repo cannot be otherwise — but it should not be discoverable.
+   Until INDEXABLE=true, every page asks search engines to stay away and
+   robots.txt disallows everything. Flip it for the real launch, once the
+   placeholder projects are replaced and the intake form submits. */
+const INDEXABLE = process.env.INDEXABLE === 'true';
 const asset = (p) => `${BASE.replace(/\/$/, '')}${p}`;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -31,7 +37,7 @@ const html = (page) => {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
-<link rel="canonical" href="${url}">${page.indexable === false ? '\n<meta name="robots" content="noindex">' : ''}
+<link rel="canonical" href="${url}">${!INDEXABLE || page.indexable === false ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="theme-color" content="#050505">
 <meta name="color-scheme" content="dark">
 

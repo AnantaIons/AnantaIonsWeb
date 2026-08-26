@@ -2,7 +2,13 @@
    structured data all derive from this list, so a page cannot drift out of
    the sitemap, the nav or its own canonical URL. */
 
-export const ORIGIN = 'https://anantaions.com';
+/* The production domain. SITE_ORIGIN overrides it so a preview deployment
+   (GitHub Pages) emits canonicals, Open Graph URLs and a sitemap that point at
+   where it is actually served, rather than at a domain that is not live yet. */
+export const ORIGIN =
+  (typeof process !== 'undefined' && process.env && process.env.SITE_ORIGIN) ||
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_ORIGIN) ||
+  'https://anantaions.com';
 
 export const pages = [
   {

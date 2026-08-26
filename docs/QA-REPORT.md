@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-26T08:20:48.666Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-26T08:43:03.264Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -16,7 +16,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  56
   PASS  meta description 70–200 chars  160
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/
+  PASS  canonical correct  https://anantaions.com/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -35,7 +35,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  61
   PASS  meta description 70–200 chars  151
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/engineering/
+  PASS  canonical correct  https://anantaions.com/engineering/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -54,7 +54,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  59
   PASS  meta description 70–200 chars  191
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/capabilities/
+  PASS  canonical correct  https://anantaions.com/capabilities/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -73,7 +73,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  54
   PASS  meta description 70–200 chars  142
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/projects/
+  PASS  canonical correct  https://anantaions.com/projects/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -92,7 +92,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  65
   PASS  meta description 70–200 chars  141
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/about/
+  PASS  canonical correct  https://anantaions.com/about/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -111,7 +111,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  50
   PASS  meta description 70–200 chars  156
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/start/
+  PASS  canonical correct  https://anantaions.com/start/
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -130,7 +130,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  28
   PASS  meta description 70–200 chars  115
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/404.html
+  PASS  canonical correct  https://anantaions.com/404.html
   PASS  open graph complete
   PASS  JSON-LD graph present
   PASS  no console errors
@@ -167,8 +167,8 @@ WITHOUT JAVASCRIPT
   PASS  /404.html readable without JS  363 chars (min 200), 0 hidden
 
 WEIGHT
-  PASS  first-load JS under 120 kB  0.0 kB
-  PASS  CSS under 60 kB  0.0 kB
+  PASS  first-load JS under 120 kB  63.0 kB
+  PASS  CSS under 60 kB  49.3 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
   TODO  project "DLMS/COSEM Protocol Analyzer" is unverified placeholder content
