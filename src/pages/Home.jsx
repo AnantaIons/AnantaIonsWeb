@@ -3,7 +3,7 @@ import { path } from '../lib/paths.js';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import Reveal from '../components/Reveal.jsx';
-import SiliconStack from '../components/SiliconStack.jsx';
+import DieStack from '../components/DieStack.jsx';
 import ConnectivityWeb from '../components/ConnectivityWeb.jsx';
 import StackSequence from '../components/StackSequence.jsx';
 import { TraceLink, TraceNode, TraceRail } from '../components/Trace.jsx';
@@ -17,14 +17,6 @@ import { site } from '../content/site.js';
    doing exactly one of: building understanding, building trust, or moving the
    visitor toward starting a project. */
 
-const DIE_LAYERS = [
-  { term: '01 · Substrate',    def: 'Doped silicon. The physics every guarantee above it rests on.' },
-  { term: '02 · Device',       def: 'Transistors built into the crystal — the switches themselves.' },
-  { term: '03 · Interconnect', def: 'Metal levels wiring those switches into something that computes.' },
-  { term: '04 · Logic',        def: 'Core, memory and peripherals: the behaviour the part actually has.' },
-  { term: '05 · Signal',       def: 'Data on the bus and off the die, toward the rest of the system.' },
-  { term: '06 · Firmware',     def: 'Deterministic control written against the datasheet — what it all does.' },
-];
 
 /* SCENE 01 — THE STATEMENT */
 function Hero() {
@@ -69,7 +61,7 @@ function Hero() {
           </div>
 
           <Reveal delay={160} className="hero__figure">
-            <SiliconStack annotations={DIE_LAYERS.slice(0, 4)} id="die-hero" />
+            <DieStack id="die-hero" />
           </Reveal>
         </div>
       </div>
@@ -93,7 +85,7 @@ function HardwareScene() {
           </p>
         </Reveal>
         <Reveal delay={100} className="scene__figure">
-          <SiliconStack annotations={DIE_LAYERS} id="die-scene" />
+          <DieStack id="die-scene" />
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-26T06:59:51.803Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-26T07:29:11.560Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -143,7 +143,7 @@ DEEP LINKS
   PASS  /engineering/#connectivity lands on target  top 96
   PASS  /about/#industries lands on target  top 96
   PASS  /start/#contact lands on target  top 96
-  PASS  /projects/#ble-sensor-bridge lands on target  top 78
+  PASS  /projects/#ble-sensor-bridge lands on target  top 96
   PASS  /#stack lands on target  top 96
 
 RESPONSIVE
@@ -158,7 +158,7 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  9472 chars (min 500), 0 hidden
+  PASS  / readable without JS  9343 chars (min 500), 0 hidden
   PASS  /engineering/ readable without JS  4952 chars (min 500), 0 hidden
   PASS  /capabilities/ readable without JS  3504 chars (min 500), 0 hidden
   PASS  /projects/ readable without JS  6185 chars (min 500), 0 hidden

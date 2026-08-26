@@ -10,11 +10,30 @@
    Text lives in the adjacent list, not the SVG: at 390px an 11px SVG label is
    unreadable, and a screen reader gets nothing from it either. */
 
+/* Each link gets the thing it is usually carrying, drawn in 16 units so it
+   sits inside the node plate: what the protocol connects to says more at a
+   glance than the protocol name alone. */
+const GLYPH = {
+  'BLE':       'M8 1.5v13l4.5-4L5 5.5M8 14.5v-13l4.5 4L5 10.5',
+  'Wi-Fi':     'M2 6.5a9 9 0 0 1 12 0M4.5 9.5a5.5 5.5 0 0 1 7 0M8 12.5v0',
+  'Wi-SUN':    'M8 3.5v9M3.5 6l4.5-2.5L12.5 6M3.5 10l4.5 2.5L12.5 10',
+  'LoRa':      'M8 9.5v5M5 3a5 5 0 0 1 6 0M3 1a8 8 0 0 1 10 0M8 7.5v0',
+  'Sub-GHz':   'M1.5 11h2l2-6 2.5 9 2-6 1.5 3h3',
+  'GSM / LTE': 'M8 2v12M4 5.5v8.5M12 5.5v8.5M1.5 9v5M14.5 9v5',
+  'CAN':       'M2 8h3M11 8h3M5 4.5h6v7H5zM8 2v2.5M8 11.5V14',
+  'RS-485':    'M2 5.5h12M2 10.5h12M5 5.5v5M11 5.5v5',
+  'UART':      'M3 4.5h10v7H3zM5 2.5v2M8 2.5v2M11 2.5v2M5 11.5v2M8 11.5v2M11 11.5v2',
+  'SPI':       'M2.5 3.5h11v9h-11zM4.5 6h7M4.5 8h7M4.5 10h4',
+  'I²C':       'M2 5h12M2 11h12M6 3v4M10 9v4',
+};
+
 const WIRED = ['CAN', 'RS-485', 'UART', 'SPI', 'I²C'];
 const WIRELESS = ['BLE', 'Wi-Fi', 'Wi-SUN', 'LoRa', 'Sub-GHz', 'GSM / LTE'];
 const NODES = [...WIRELESS, ...WIRED];
 
-const CX = 210, CY = 210, R = 146, CORE = 44;
+/* R is set by the widest node plate: eleven of them must sit on the ring
+   without touching, and "GSM / LTE" is the one that decides it. */
+const CX = 240, CY = 240, R = 182, CORE = 46;
 
 export default function ConnectivityWeb() {
   const points = NODES.map((label, i) => {
@@ -30,14 +49,14 @@ export default function ConnectivityWeb() {
     const len = Math.round(R - 16 - CORE);
     // The node is sized to its own label — "I²C" and "GSM / LTE" do not
     // deserve the same box.
-    const w = Math.max(50, label.length * 6.9 + 30);
+    const w = Math.max(62, label.length * 6.6 + 38);
     return { label, x, y, sx, sy, ex, ey, len, w, wireless: i < WIRELESS.length };
   });
 
   return (
     <figure className="web">
       <div className="web__figure">
-        <svg viewBox="0 0 420 420" role="presentation" aria-hidden="true"
+        <svg viewBox="0 0 480 480" role="presentation" aria-hidden="true"
              preserveAspectRatio="xMidYMid meet">
           <defs>
             <radialGradient id="web-core">
@@ -79,10 +98,12 @@ export default function ConnectivityWeb() {
                       fill="var(--ai-panel-2)" stroke="var(--ai-line-2)" />
                 <rect x={p.x - p.w / 2} y={p.y - 15} width="2.5" height="30"
                       fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'} />
-                <circle cx={p.x - p.w / 2 + 11} cy={p.y} r="2.6"
-                        fill={p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)'}
-                        className="web__dot" style={{ animationDelay: `${(i * 0.24).toFixed(2)}s` }} />
-                <text x={p.x - p.w / 2 + 20} y={p.y + 4} textAnchor="start" className="web__label">
+                <g transform={`translate(${p.x - p.w / 2 + 9} ${p.y - 8})`}
+                   className="web__glyph"
+                   style={{ '--glyph-tint': p.wireless ? 'var(--ai-gold)' : 'var(--ai-copper-txt)' }}>
+                  <path d={GLYPH[p.label]} />
+                </g>
+                <text x={p.x - p.w / 2 + 31} y={p.y + 4} textAnchor="start" className="web__label">
                   {p.label}
                 </text>
               </g>
