@@ -4,20 +4,19 @@ import PageHero from '../components/PageHero.jsx';
 import Button from '../components/Button.jsx';
 import Reveal from '../components/Reveal.jsx';
 import StackSequence from '../components/StackSequence.jsx';
-import HardwareBoard from '../components/HardwareBoard.jsx';
+import SiliconStack from '../components/SiliconStack.jsx';
 import ConnectivityWeb from '../components/ConnectivityWeb.jsx';
 import { TraceNode, TraceRail } from '../components/Trace.jsx';
 import { process } from '../content/process.js';
 import { entryPoints } from '../content/about.js';
 
 const ANNOTATIONS = [
-  { term: 'MCU',          def: 'The controller the product’s behaviour is guaranteed on.' },
-  { term: 'Firmware',     def: 'Deterministic low-level software written against the datasheet.' },
-  { term: 'Power',        def: 'Rails budgeted for the real operating envelope.' },
-  { term: 'Sensor',       def: 'Conditioning and calibration on the device.' },
-  { term: 'Connectivity', def: 'A link chosen for range, power and interference.' },
-  { term: 'Display',      def: 'Panel, driver and content pipeline.' },
-  { term: 'Control',      def: 'Bounded response time — the worst case, not the average.' },
+  { term: '01 · Substrate',    def: 'Doped silicon. The physics every guarantee above it rests on.' },
+  { term: '02 · Device',       def: 'Transistors built into the crystal — the switches themselves.' },
+  { term: '03 · Interconnect', def: 'Metal levels wiring those switches into something that computes.' },
+  { term: '04 · Logic',        def: 'Core, memory and peripherals: the behaviour the part actually has.' },
+  { term: '05 · Signal',       def: 'Data on the bus and off the die, toward the rest of the system.' },
+  { term: '06 · Firmware',     def: 'Deterministic control written against the datasheet — what it all does.' },
 ];
 
 export default function Engineering() {
@@ -46,14 +45,14 @@ export default function Engineering() {
         <div className="container">
           <Reveal className="scene__head">
             <p className="label"><TraceNode /> The system</p>
-            <h2 className="display-2" id="board-title">One board, <span className="signal">every layer</span>.</h2>
+            <h2 className="display-2" id="board-title">One part, <span className="signal">every layer</span>.</h2>
             <p className="lede">
-              A representative architecture: the controller at the centre, the physical world on
-              one side, the network and the interface on the other.
+              A controller in cross-section: doped silicon at the bottom, transistors built into
+              it, metal wiring them into logic, and the data that leaves the die at the top.
             </p>
           </Reveal>
           <Reveal delay={80} className="scene__figure">
-            <HardwareBoard annotations={ANNOTATIONS} id="board-eng" />
+            <SiliconStack annotations={ANNOTATIONS} id="die-eng" />
           </Reveal>
         </div>
       </section>

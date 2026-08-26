@@ -76,7 +76,9 @@ pairing in the UI is verified at WCAG AA or better — `node scripts/contrast.mj
 checks the palette, `npm run qa` checks the rendered result.
 
 **The brand intro** turns the mark through exactly one revolution and stops where
-it began, then clears. It is injected by an inline script in the page shell so it
+it began, inside a ring that fills 0 to 100 with a counter to match — one clock
+drives the number, the ring and the rotation, so they always agree. Then it
+clears. It is injected by an inline script in the page shell so it
 is on screen before the bundle arrives, plays once per session, and never runs
 under `prefers-reduced-motion` or without JavaScript — the page underneath is
 prerendered and already readable.
@@ -132,9 +134,12 @@ npm run build                      # domain root
 BASE_PATH=/AnantaIonsWeb/ npm run build   # project site
 ```
 
-**CI.** `.github/workflows/deploy.yml` builds, runs the QA gate, and publishes
-to Pages only if the audit passes. It installs Chromium first — the audit
-drives a real browser.
+**CI.** `.github/workflows/deploy.yml` builds and audits on every push. It
+installs Chromium first — the audit drives a real browser.
+
+**Publishing is manual.** The deploy job runs only on `workflow_dispatch`, so
+nothing reaches the public URL until someone asks for it: Actions → Build and
+deploy → Run workflow. The workflow header says how to make it automatic again.
 
 **Enabling Pages** is a one-time repository setting: Settings → Pages →
 Source: **GitHub Actions**.

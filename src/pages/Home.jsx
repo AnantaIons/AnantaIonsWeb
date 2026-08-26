@@ -3,7 +3,7 @@ import { path } from '../lib/paths.js';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import Reveal from '../components/Reveal.jsx';
-import HardwareBoard from '../components/HardwareBoard.jsx';
+import SiliconStack from '../components/SiliconStack.jsx';
 import ConnectivityWeb from '../components/ConnectivityWeb.jsx';
 import StackSequence from '../components/StackSequence.jsx';
 import { TraceLink, TraceNode, TraceRail } from '../components/Trace.jsx';
@@ -17,14 +17,13 @@ import { site } from '../content/site.js';
    doing exactly one of: building understanding, building trust, or moving the
    visitor toward starting a project. */
 
-const BOARD_ANNOTATIONS = [
-  { term: 'MCU',          def: 'The controller the product’s behaviour is guaranteed on.' },
-  { term: 'Firmware',     def: 'Deterministic low-level software written against the datasheet.' },
-  { term: 'Power',        def: 'Rails budgeted for the real operating envelope, not the typical case.' },
-  { term: 'Sensor',       def: 'Conditioning and calibration on the device, not in post-processing.' },
-  { term: 'Connectivity', def: 'A link chosen for range, power and interference — then made to fail predictably.' },
-  { term: 'Display',      def: 'Panel, driver and content pipeline, legible where it actually runs.' },
-  { term: 'Control',      def: 'Bounded response time. The worst case, not the average one.' },
+const DIE_LAYERS = [
+  { term: '01 · Substrate',    def: 'Doped silicon. The physics every guarantee above it rests on.' },
+  { term: '02 · Device',       def: 'Transistors built into the crystal — the switches themselves.' },
+  { term: '03 · Interconnect', def: 'Metal levels wiring those switches into something that computes.' },
+  { term: '04 · Logic',        def: 'Core, memory and peripherals: the behaviour the part actually has.' },
+  { term: '05 · Signal',       def: 'Data on the bus and off the die, toward the rest of the system.' },
+  { term: '06 · Firmware',     def: 'Deterministic control written against the datasheet — what it all does.' },
 ];
 
 /* SCENE 01 — THE STATEMENT */
@@ -70,7 +69,7 @@ function Hero() {
           </div>
 
           <Reveal delay={160} className="hero__figure">
-            <HardwareBoard annotations={BOARD_ANNOTATIONS.slice(0, 4)} id="board-hero" />
+            <SiliconStack annotations={DIE_LAYERS.slice(0, 4)} id="die-hero" />
           </Reveal>
         </div>
       </div>
@@ -85,14 +84,16 @@ function HardwareScene() {
       <div className="container">
         <Reveal className="scene__head">
           <p className="label"><TraceNode /> Scene 02 · Real systems</p>
-          <h2 className="display-2" id="hardware-title">We build the <span className="signal">whole board</span>, not a slice of it.</h2>
+          <h2 className="display-2" id="hardware-title">We work at <span className="signal">every layer</span>, not a slice of one.</h2>
           <p className="lede">
-            Electronics, firmware, connectivity and intelligence are one system. Engineering them
-            separately is where products fail — so we take responsibility for the path between them.
+            Cut a controller open and the whole argument is there: doped silicon, the transistors
+            built into it, the metal wiring them into logic, the data that logic produces, and the
+            firmware deciding what any of it does. Engineering those layers separately is where
+            products fail — so we take responsibility for the path between them.
           </p>
         </Reveal>
         <Reveal delay={100} className="scene__figure">
-          <HardwareBoard annotations={BOARD_ANNOTATIONS} id="board-scene" />
+          <SiliconStack annotations={DIE_LAYERS} id="die-scene" />
         </Reveal>
       </div>
     </section>

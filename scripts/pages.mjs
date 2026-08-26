@@ -65,8 +65,11 @@ ${graph}
    screen immediately rather than after the bundle arrives — a loader that
    appears late is worse than no loader.
 
-   Deliberately narrow: one rotation, back where it started, then out. It
-   plays once per session (every page here is a real document, so playing it
+   The mark turns through exactly one revolution and stops where it started,
+   inside a ring that fills 0 to 100 with a counter to match. Both are driven
+   from one clock, so the number, the ring and the rotation always agree.
+
+   Plays once per session (every page here is a real document, so replaying it
    on each navigation would be a tax, not a flourish), never when the visitor
    asks for reduced motion, and never without JavaScript — the page is
    prerendered and already readable underneath. */
@@ -76,15 +79,40 @@ ${graph}
     if (sessionStorage.getItem('ai-intro')) return;
     sessionStorage.setItem('ai-intro', '1');
   } catch (e) { /* storage blocked: play it, it is only a second */ }
+
+  var DUR = 1150;
+  var R = 62, C = 2 * Math.PI * R;
   var el = document.createElement('div');
   el.className = 'brand-load';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<img src="' + ${JSON.stringify(asset('/logo.png'))} + '" width="76" height="76" alt="" decoding="sync">';
+  el.innerHTML =
+    '<div class="brand-load__mark">' +
+      '<svg class="brand-load__ring" viewBox="0 0 150 150">' +
+        '<circle cx="75" cy="75" r="' + R + '" class="brand-load__track"/>' +
+        '<circle cx="75" cy="75" r="' + R + '" class="brand-load__arc"' +
+        ' stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/>' +
+      '</svg>' +
+      '<img src="' + ${JSON.stringify(asset('/logo.png'))} + '" width="72" height="72" alt="" decoding="sync">' +
+    '</div>' +
+    '<p class="brand-load__pct">0%</p>';
   document.body.appendChild(el);
-  setTimeout(function () {
-    el.classList.add('is-out');
-    setTimeout(function () { el.remove(); }, 420);
-  }, 920);
+
+  var arc = el.querySelector('.brand-load__arc');
+  var pct = el.querySelector('.brand-load__pct');
+  var t0 = 0;
+  requestAnimationFrame(function step(t) {
+    if (!t0) t0 = t;
+    var p = Math.min(1, (t - t0) / DUR);
+    // Ease the fill so it settles on 100 rather than snapping to it.
+    var e = 1 - Math.pow(1 - p, 3);
+    arc.setAttribute('stroke-dashoffset', String(C * (1 - e)));
+    pct.textContent = Math.round(e * 100) + '%';
+    if (p < 1) requestAnimationFrame(step);
+    else setTimeout(function () {
+      el.classList.add('is-out');
+      setTimeout(function () { el.remove(); }, 420);
+    }, 140);
+  });
 })();
 </script>
 <div id="root"><!--app--></div>

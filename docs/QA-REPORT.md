@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-26T06:45:06.089Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-08-26T06:59:51.803Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -158,8 +158,8 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  9202 chars (min 500), 0 hidden
-  PASS  /engineering/ readable without JS  4793 chars (min 500), 0 hidden
+  PASS  / readable without JS  9472 chars (min 500), 0 hidden
+  PASS  /engineering/ readable without JS  4952 chars (min 500), 0 hidden
   PASS  /capabilities/ readable without JS  3504 chars (min 500), 0 hidden
   PASS  /projects/ readable without JS  6185 chars (min 500), 0 hidden
   PASS  /about/ readable without JS  2011 chars (min 500), 0 hidden
