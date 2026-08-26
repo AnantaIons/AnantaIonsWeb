@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { path } from '../lib/paths.js';
 import Icon from './Icon.jsx';
+import Mark from './Mark.jsx';
 import Button from './Button.jsx';
 import { nav, primaryCta, site } from '../content/site.js';
 
 function Wordmark() {
   return (
     <a className="wordmark" href={path('/')}>
-      <img
-        className="wordmark__mark"
-        src={path('/logo.png')} alt="" width="28" height="28"
-        decoding="async" fetchPriority="high"
-      />
+      <Mark size={28} className="wordmark__mark" />
       <span className="wordmark__text">
         ANANTA <span className="wordmark__accent">IONS</span>
       </span>

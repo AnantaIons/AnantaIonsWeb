@@ -132,7 +132,11 @@
         '<circle cx="75" cy="75" r="' + R + '" class="brand-load__arc"' +
         ' stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/>' +
       '</svg>' +
-      '<img src="' + "/logo.png" + '" width="72" height="72" alt="" decoding="sync">' +
+      '<svg class="brand-load__glyph" viewBox="0 0 100 100" aria-hidden="true">' +
+        '<path d="M60.99 26.44 A26 26 0 1 0 73.56 39.01" fill="none"' +
+        ' stroke="var(--ai-copper)" stroke-width="10"/>' +
+        '<circle cx="68.38" cy="31.62" r="5.6" fill="var(--ai-ivory)"/>' +
+      '</svg>' +
     '</div>' +
     '<p class="brand-load__pct">0%</p>';
   document.body.appendChild(el);

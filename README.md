@@ -28,8 +28,9 @@ the hash; everything else behaves exactly as it does in production.
 | **Framework** | Preact via `preact/compat` — 10.7 kB gzip against React's 49 kB, same API |
 | **First-load JS** | 53 kB raw for the homepage, deferred; the page paints without it |
 | **CSS** | 37 kB, one file, hand-written tokens |
-| **Fonts** | Inter variable, self-hosted, latin subset, preloaded — one 48 kB file, no third party |
+| **Fonts** | Inter variable, self-hosted, latin subset only, preloaded — one 47 kB file, no third party. The latin-ext subset was dropped after checking that no copy on the site needs it. |
 | **Icons** | ~2 kB of inline SVG, drawn for this site. No icon CDN |
+| **Brand mark** | Drawn as geometry (~300 bytes), not shipped as the 143 kB PNG it replaced |
 | **Dependencies** | Two at runtime (`preact`, `preact-render-to-string`) |
 
 Content is in the document, not assembled after load, so a crawler, an AI agent

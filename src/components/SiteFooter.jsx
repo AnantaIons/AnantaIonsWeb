@@ -1,4 +1,5 @@
 import Icon from './Icon.jsx';
+import Mark from './Mark.jsx';
 import { path } from '../lib/paths.js';
 import { contact, nav, primaryCta, site } from '../content/site.js';
 import { PlaceholderTag } from './Placeholder.jsx';
@@ -28,7 +29,7 @@ export default function SiteFooter() {
       <div className="footer__inner container">
         <div className="footer__brand">
           <a className="wordmark" href={path('/')}>
-            <img className="wordmark__mark" src={path('/logo.png')} alt="" width="26" height="26" loading="lazy" decoding="async" />
+            <Mark size={26} className="wordmark__mark" />
             <span className="wordmark__text">ANANTA <span className="wordmark__accent">IONS</span></span>
           </a>
           <p className="footer__proposition">{site.proposition}</p>
@@ -94,7 +95,7 @@ export default function SiteFooter() {
           © {new Date().getFullYear()} {site.name}. {site.discipline}.
         </p>
         <p className="footer__legal footer__legal--note">
-          Contact details and project details are unconfirmed placeholders pending launch content.
+          Project listings are placeholders pending launch content.
         </p>
       </div>
     </footer>
