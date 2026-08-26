@@ -4,11 +4,24 @@
 
 /* The production domain. SITE_ORIGIN overrides it so a preview deployment
    (GitHub Pages) emits canonicals, Open Graph URLs and a sitemap that point at
-   where it is actually served, rather than at a domain that is not live yet. */
-export const ORIGIN =
+   where it is actually served, rather than at a domain that is not live yet.
+
+   The host is lowercased. Hostnames are case-insensitive and every URL parser
+   normalises them, so "https://AnantaIons.github.io" and the lowercase form are
+   the same address — but they are not the same *string*, and a canonical is
+   compared as a string. The GitHub Actions context hands back the account's
+   display casing, so without this a canonical would be emitted mixed-case and
+   read back lowercase from the DOM, which is both sloppy output and a false
+   mismatch. Normalising once here fixes the emitted URL and the comparison. */
+const RAW_ORIGIN =
   (typeof process !== 'undefined' && process.env && process.env.SITE_ORIGIN) ||
   (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_ORIGIN) ||
   'https://anantaions.com';
+
+export const ORIGIN = RAW_ORIGIN.replace(
+  /^([a-zA-Z][a-zA-Z0-9+.-]*:\/\/)([^/?#]+)/,
+  (_, scheme, host) => scheme.toLowerCase() + host.toLowerCase(),
+).replace(/\/$/, '');
 
 export const pages = [
   {

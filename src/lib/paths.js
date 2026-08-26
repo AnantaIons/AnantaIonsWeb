@@ -14,7 +14,17 @@
    emitted stylesheet ("../fonts/…"), which lands correctly at any base
    without needing this. */
 
-const BASE = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+/* Two ways in, because this module is loaded from two kinds of process.
+   Vite defines import.meta.env.BASE_URL in the browser bundle and in the
+   prerender pass. The plain-Node build scripts (pages.mjs, sitemap.mjs) are
+   not processed by Vite at all, so there import.meta.env is undefined and the
+   prefix has to come from BASE_PATH directly — without this, anything those
+   scripts emit into the page shell (the JSON-LD graph) quietly loses the
+   prefix while every link rendered through the bundle keeps it. */
+const BASE =
+  (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) ||
+  (typeof process !== 'undefined' && process.env && process.env.BASE_PATH) ||
+  '/';
 const ROOT = BASE.endsWith('/') ? BASE.slice(0, -1) : BASE;
 
 /** Resolve a root-absolute site path against the deploy base. */

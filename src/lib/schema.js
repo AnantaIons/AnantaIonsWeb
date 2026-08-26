@@ -5,17 +5,24 @@
    furthest. */
 
 import { ORIGIN } from './pages.js';
+import { path } from './paths.js';
 import { contact } from '../content/site.js';
 
-const ORG_ID = `${ORIGIN}/#organization`;
+/* Absolute URL for an internal route, carrying the deploy prefix. Structured
+   data is where a wrong URL travels furthest — it is what search engines and
+   other machines resolve — so these go through the same path() every visible
+   link uses, rather than being pasted onto ORIGIN directly. */
+const at = (route) => `${ORIGIN}${path(route)}`;
+
+const ORG_ID = `${at('/')}#organization`;
 
 export function organizationSchema() {
   return {
     '@type': 'Organization',
     '@id': ORG_ID,
     name: 'ANANTA IONS',
-    url: `${ORIGIN}/`,
-    logo: `${ORIGIN}/logo.png`,
+    url: at('/'),
+    logo: at('/logo.png'),
     description:
       'ANANTA IONS engineers electronics, embedded systems, firmware, connectivity and ' +
       'intelligent products — from architecture and prototype to real-world deployment.',
@@ -27,7 +34,7 @@ export function organizationSchema() {
       contactType: 'sales',
       email: contact.email.value,
       availableLanguage: 'en',
-      url: `${ORIGIN}/start/`,
+      url: at('/start/'),
     },
     knowsAbout: [
       'Embedded systems engineering', 'Firmware development', 'Electronics design',
@@ -42,8 +49,8 @@ export function organizationSchema() {
 export function websiteSchema() {
   return {
     '@type': 'WebSite',
-    '@id': `${ORIGIN}/#website`,
-    url: `${ORIGIN}/`,
+    '@id': `${at('/')}#website`,
+    url: at('/'),
     name: 'ANANTA IONS',
     publisher: { '@id': ORG_ID },
     inLanguage: 'en',
@@ -53,11 +60,11 @@ export function websiteSchema() {
 export function webPageSchema(page) {
   return {
     '@type': 'WebPage',
-    '@id': `${ORIGIN}${page.route}#webpage`,
-    url: `${ORIGIN}${page.route}`,
+    '@id': `${at(page.route)}#webpage`,
+    url: at(page.route),
     name: page.title,
     description: page.description,
-    isPartOf: { '@id': `${ORIGIN}/#website` },
+    isPartOf: { '@id': `${at('/')}#website` },
     about: { '@id': ORG_ID },
     inLanguage: 'en',
   };
@@ -66,7 +73,7 @@ export function webPageSchema(page) {
 export function servicesSchema(capabilities) {
   return capabilities.map((c) => ({
     '@type': 'Service',
-    '@id': `${ORIGIN}/capabilities/#${c.id}`,
+    '@id': `${at('/capabilities/')}#${c.id}`,
     name: c.label,
     serviceType: c.label,
     description: c.what,
@@ -81,8 +88,8 @@ export function breadcrumbSchema(page) {
   return {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` },
-      { '@type': 'ListItem', position: 2, name, item: `${ORIGIN}${page.route}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: at('/') },
+      { '@type': 'ListItem', position: 2, name, item: at(page.route) },
     ],
   };
 }

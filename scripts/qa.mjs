@@ -29,7 +29,10 @@ const require = createRequire(import.meta.url);
 const AXE = require.resolve('axe-core/axe.min.js');
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PREFIX = (process.env.BASE_PATH || '/').replace(/\/$/, '');
-const BASE = (process.env.QA_BASE || 'http://localhost:8125') + PREFIX;
+/* The server root, and the site root under it. Pathnames taken from emitted
+   absolute URLs already carry PREFIX, so those are fetched against BASE_ROOT. */
+const BASE_ROOT = process.env.QA_BASE || 'http://localhost:8125';
+const BASE = BASE_ROOT + PREFIX;
 const WIDTHS = [360, 375, 390, 430, 768, 1024, 1280, 1440, 1920];
 const JS_BUDGET_KB = 120;   // gzip-equivalent raw budget for first-load JS
 const CSS_BUDGET_KB = 60;
@@ -95,6 +98,20 @@ for (const page of pages) {
       canonical: document.querySelector('link[rel=canonical]')?.href || '',
       og: ['og:title', 'og:description', 'og:image', 'og:url']
         .every((k) => !!document.querySelector(`meta[property="${k}"]`)?.content),
+      ogImage: document.querySelector('meta[property="og:image"]')?.content || '',
+      ogUrl: document.querySelector('meta[property="og:url"]')?.content || '',
+      ldUrls: (() => {
+        const el = document.querySelector('script[type="application/ld+json"]');
+        if (!el) return [];
+        const out = [];
+        const walk = (v) => {
+          if (typeof v === 'string') { if (/^https?:\/\//.test(v)) out.push(v); return; }
+          if (Array.isArray(v)) return v.forEach(walk);
+          if (v && typeof v === 'object') return Object.values(v).forEach(walk);
+        };
+        try { walk(JSON.parse(el.textContent)); } catch { /* reported elsewhere */ }
+        return [...new Set(out)];
+      })(),
       ld: (() => {
         const el = document.querySelector('script[type="application/ld+json"]');
         if (!el) return null;
@@ -115,6 +132,24 @@ for (const page of pages) {
   check(meta.desc.length >= 70 && meta.desc.length <= 200, 'meta description 70–200 chars', `${meta.desc.length}`);
   check(meta.canonical === `${ORIGIN}${PREFIX}${page.route}`, 'canonical correct', meta.canonical);
   check(meta.og, 'open graph complete');
+  /* Presence is not correctness. A shipped og:image that 404s looks fine in the
+     markup and is invisible until someone shares a link, so the referenced
+     asset is actually fetched — and every absolute internal URL the page
+     advertises (og:url, and the URLs inside the JSON-LD graph) is resolved back
+     against the server under test. This is what caught og:image and the
+     structured-data URLs losing the deploy prefix. */
+  const advertised = [meta.ogImage, meta.ogUrl, ...meta.ldUrls]
+    .filter((u) => u.startsWith(ORIGIN));
+  const broken = [];
+  for (const u of advertised) {
+    const local = BASE_ROOT + new URL(u).pathname;
+    try {
+      const r = await fetch(local, { redirect: 'follow' });
+      if (!r.ok) broken.push(`${r.status} ${u}`);
+    } catch (e) { broken.push(`unreachable ${u}`); }
+  }
+  check(advertised.length > 0, 'page advertises absolute URLs to verify', `${advertised.length}`);
+  check(broken.length === 0, 'every advertised URL resolves', broken.join(' | '));
   check(!!meta.ld && Array.isArray(meta.ld['@graph']) && meta.ld['@graph'].length >= 3,
     'JSON-LD graph present');
   check(consoleErrors.length === 0, 'no console errors', consoleErrors.join(' | '));
@@ -233,12 +268,21 @@ await browser.close();
 /* ---- 6: weight ---------------------------------------------------------- */
 say('\nWEIGHT');
 const distIndex = await readFile(resolve(ROOT, 'dist/index.html'), 'utf8');
-const assets = [...distIndex.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map((m) => m[1]);
+/* The asset URLs carry the deploy prefix, so this has to match on it rather
+   than on a bare /assets/. It used to be hardcoded, which meant that under
+   BASE_PATH it matched nothing, measured nothing, and reported 0.0 kB as a
+   pass — a budget check that silently stops checking is worse than one that
+   fails, so the count is asserted below before the budgets are read. */
+const assetRe = new RegExp(`(?:src|href)="(${PREFIX}/assets/[^"]+)"`, 'g');
+const assets = [...distIndex.matchAll(assetRe)].map((m) => m[1]);
 let js = 0; let css = 0;
 for (const a of assets) {
-  const size = (await stat(resolve(ROOT, 'dist', a.slice(1)))).size;
+  const onDisk = a.slice(PREFIX.length).replace(/^\//, '');
+  const size = (await stat(resolve(ROOT, 'dist', onDisk))).size;
   if (a.endsWith('.js')) js += size; else if (a.endsWith('.css')) css += size;
 }
+check(assets.length > 0, 'weight budget found assets to measure', `${assets.length} files`);
+check(js > 0 && css > 0, 'both JS and CSS were measured', `js ${js} B, css ${css} B`);
 check(js / 1024 < JS_BUDGET_KB, `first-load JS under ${JS_BUDGET_KB} kB`, `${(js / 1024).toFixed(1)} kB`);
 check(css / 1024 < CSS_BUDGET_KB, `CSS under ${CSS_BUDGET_KB} kB`, `${(css / 1024).toFixed(1)} kB`);
 

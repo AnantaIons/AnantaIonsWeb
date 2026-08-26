@@ -46,7 +46,7 @@ const html = (page) => {
 <meta property="og:title" content="${esc(page.title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${ORIGIN}/og-image.png">
+<meta property="og:image" content="${ORIGIN}${asset('/og-image.png')}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ANANTA IONS — engineering intelligence between silicon and the real world.">
@@ -54,7 +54,7 @@ const html = (page) => {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
 <meta name="twitter:description" content="${esc(page.description)}">
-<meta name="twitter:image" content="${ORIGIN}/og-image.png">
+<meta name="twitter:image" content="${ORIGIN}${asset('/og-image.png')}">
 
 <link rel="icon" href="${asset('/favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${asset('/logo.png')}">
