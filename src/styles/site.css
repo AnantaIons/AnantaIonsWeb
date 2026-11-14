@@ -377,3 +377,80 @@ main:focus { outline: none; }
 
 /* Footer: gold rule above the legal line. */
 .site-footer__grid { border-bottom-color: var(--gold); }
+
+/* ============================================================================
+   SHINY GOLD + YELLOW — added on request.
+   Metallic gold is a gradient (dark bronze → gold → bright highlight → gold),
+   with a slow light sweep across it. Bright yellow is the LED colour and the
+   accent on black. Text placed on the metal stays black (dark enough on even
+   the darkest stop used for backgrounds).
+   ========================================================================= */
+:root {
+  --yellow: #ffd21f;
+  --yellow-hot: #ffe45c;
+  --metal: linear-gradient(115deg, #b8862b 0%, #d9ab3c 18%, #f3d27a 36%, #fff3c4 48%, #f3d27a 58%, #d9ab3c 78%, #c4922f 100%);
+  --metal-text: linear-gradient(100deg, #c9972f 0%, #ffd21f 25%, #fff6cf 45%, #ffd21f 60%, #e0ad3a 80%, #c9972f 100%);
+  --amber: #ffcc00;
+}
+
+/* Light sweep used on every metal surface. */
+@keyframes shine-sweep { 0% { transform: translateX(-120%) skewX(-20deg); } 60%, 100% { transform: translateX(320%) skewX(-20deg); } }
+@keyframes text-shine { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+.metal, .section--gold, .cta-strip, .btn--primary, .card__icon, .step__no, .badge--gold {
+  background: var(--metal) !important;
+  background-size: 100% 100%;
+}
+.section--gold, .cta-strip, .btn--primary { position: relative; overflow: hidden; isolation: isolate; }
+.section--gold::after, .cta-strip::after, .btn--primary::after {
+  content: ''; position: absolute; top: -20%; bottom: -20%; left: 0; width: 22%; z-index: -1;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: translateX(-120%) skewX(-20deg);
+  animation: shine-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.section--gold > .container, .cta-strip > .container { position: relative; z-index: 1; }
+.btn--primary::after { animation-duration: 3.5s; width: 35%; }
+.btn--primary { color: #000 !important; border-color: #b8862b; box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 1px 0 rgba(0,0,0,.25); }
+.btn--primary:hover { filter: brightness(1.08) saturate(1.1); }
+
+/* Shiny gold text on black. */
+.dark .hl, .hero .hl {
+  color: var(--yellow);
+  background: var(--metal-text); background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 7s linear infinite;
+}
+.dark .stat__value, .section--gold .stat__value {
+  color: var(--yellow);
+  background: var(--metal-text); background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 8s linear infinite;
+}
+
+/* Bright yellow accents on black. */
+.dark .eyebrow, .site-footer h2, .roadmap strong { color: var(--yellow); }
+.hero__copy::before, .matrix__meta span:first-child::before { background: var(--metal); }
+.masthead { border-top: 3px solid transparent; border-image: var(--metal) 1; }
+.masthead__link:hover { color: var(--yellow); }
+.masthead__link.is-active { border-bottom-color: var(--yellow); }
+.btn--on-dark:hover { border-color: var(--yellow); color: var(--yellow); }
+.btn--dark { color: var(--yellow); }
+
+/* Metal bars and edges. */
+.section-head .h-1::after, .stat__value::after { background: var(--metal); height: 5px; }
+.corner::before { background: var(--metal); }
+.steps { border-image: var(--metal) 1; }
+.project { border-top: 0; box-shadow: inset 0 5px 0 0 #e0ad3a; }
+
+/* The LED board glows bright yellow. */
+.matrix__on { fill: var(--amber); }
+.matrix svg { filter: drop-shadow(0 0 1.5px rgba(255, 204, 0, .75)) drop-shadow(0 0 6px rgba(255, 190, 0, .35)); }
+.matrix { border-color: #3a2e0a; box-shadow: 0 0 0 1px #000, 0 0 40px -10px rgba(255, 196, 0, .35); }
+
+@media (prefers-reduced-motion: reduce) {
+  .section--gold::after, .cta-strip::after, .btn--primary::after { animation: none; display: none; }
+  .dark .hl, .hero .hl, .dark .stat__value, .section--gold .stat__value { animation: none; }
+}
