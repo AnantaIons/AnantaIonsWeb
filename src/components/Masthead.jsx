@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { path } from '../lib/paths.js';
 import Icon from './Icon.jsx';
+import Mark from './Mark.jsx';
 import Button from './Button.jsx';
 import { nav, primaryCta, site } from '../content/site.js';
 
 function Wordmark() {
   return (
-    <a className="wordmark" href="/">
-      <img
-        className="wordmark__mark"
-        src="/logo.png" alt="" width="28" height="28"
-        decoding="async" fetchPriority="high"
-      />
+    <a className="wordmark" href={path('/')}>
+      <Mark size={28} className="wordmark__mark" />
       <span className="wordmark__text">
         ANANTA <span className="wordmark__accent">IONS</span>
       </span>
@@ -56,7 +54,7 @@ export default function Masthead({ current }) {
                 <li key={item.href}>
                   <a
                     className={`masthead__link${active ? ' is-active' : ''}`}
-                    href={item.href}
+                    href={path(item.href)}
                     aria-current={active ? 'page' : undefined}
                   >
                     {item.label}
@@ -68,7 +66,7 @@ export default function Masthead({ current }) {
         </nav>
 
         <div className="masthead__cta">
-          <Button href={primaryCta.href} size="sm">{primaryCta.label}</Button>
+          <Button href={path(primaryCta.href)} size="sm">{primaryCta.label}</Button>
         </div>
 
         <button
@@ -94,7 +92,7 @@ export default function Masthead({ current }) {
             <li key={item.href}>
               <a
                 className="masthead__panel-link"
-                href={item.href}
+                href={path(item.href)}
                 aria-current={current === item.href ? 'page' : undefined}
               >
                 <span>{item.label}</span>
@@ -103,7 +101,7 @@ export default function Masthead({ current }) {
             </li>
           ))}
           <li className="masthead__panel-cta">
-            <Button href={primaryCta.href} size="md">{primaryCta.label}</Button>
+            <Button href={path(primaryCta.href)} size="md">{primaryCta.label}</Button>
           </li>
         </ul>
       </div>

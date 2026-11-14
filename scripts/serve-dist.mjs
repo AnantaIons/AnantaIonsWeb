@@ -8,6 +8,9 @@ import { extname, join, resolve, normalize } from 'node:path';
 
 const ROOT = resolve(process.argv[2] || 'dist');
 const PORT = Number(process.env.PORT || 8125);
+/* Mirrors BASE_PATH so a subdirectory build can be served, and tested, at the
+   prefix it will actually live under. */
+const PREFIX = (process.env.BASE_PATH || '/').replace(/\/$/, '');
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.json': 'application/json',
@@ -19,6 +22,7 @@ createServer(async (req, res) => {
   try {
     const url = new URL(req.url, 'http://localhost');
     let p = normalize(decodeURIComponent(url.pathname)).replace(/^(\.\.[/\\])+/, '');
+    if (PREFIX && p.startsWith(PREFIX)) p = p.slice(PREFIX.length) || '/';
     let file = join(ROOT, p);
     try {
       if ((await stat(file)).isDirectory()) file = join(file, 'index.html');
@@ -36,4 +40,4 @@ createServer(async (req, res) => {
     res.writeHead(404, { 'content-type': 'text/plain' });
     res.end('404');
   }
-}).listen(PORT, () => console.log(`serving ${ROOT} on http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`serving ${ROOT} on http://localhost:${PORT}${PREFIX}/`));

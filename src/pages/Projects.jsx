@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { path } from '../lib/paths.js';
 import Layout from '../components/Layout.jsx';
 import PageHero from '../components/PageHero.jsx';
 import Button from '../components/Button.jsx';
@@ -23,7 +24,7 @@ export default function Projects() {
         title={<>Systems, and the part that <span className="hardware">was hard</span>.</>}
         lede="Each project below is a real-world problem, the architecture chosen for it, and the engineering that made it work."
       >
-        <Button href="/start/" size="lg">Request a system like these</Button>
+        <Button href={path('/start/')} size="lg">Request a system like these</Button>
       </PageHero>
 
       {unverified > 0 ? (
@@ -73,7 +74,7 @@ export default function Projects() {
           <Reveal className="final__inner">
             <h2 className="display-2 final__title" id="proj-cta">Have a system like this to <span className="signal">build</span>?</h2>
             <div className="final__actions">
-              <Button href="/start/" size="lg">Start a project</Button>
+              <Button href={path('/start/')} size="lg">Start a project</Button>
             </div>
           </Reveal>
         </div>

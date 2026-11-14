@@ -28,8 +28,9 @@ the hash; everything else behaves exactly as it does in production.
 | **Framework** | Preact via `preact/compat` — 10.7 kB gzip against React's 49 kB, same API |
 | **First-load JS** | 53 kB raw for the homepage, deferred; the page paints without it |
 | **CSS** | 37 kB, one file, hand-written tokens |
-| **Fonts** | Inter variable, self-hosted, latin subset, preloaded — one 48 kB file, no third party |
+| **Fonts** | Inter variable, self-hosted, latin subset only, preloaded — one 47 kB file, no third party. The latin-ext subset was dropped after checking that no copy on the site needs it. |
 | **Icons** | ~2 kB of inline SVG, drawn for this site. No icon CDN |
+| **Brand mark** | Drawn as geometry (~300 bytes), not shipped as the 143 kB PNG it replaced |
 | **Dependencies** | Two at runtime (`preact`, `preact-render-to-string`) |
 
 Content is in the document, not assembled after load, so a crawler, an AI agent
@@ -76,7 +77,9 @@ pairing in the UI is verified at WCAG AA or better — `node scripts/contrast.mj
 checks the palette, `npm run qa` checks the rendered result.
 
 **The brand intro** turns the mark through exactly one revolution and stops where
-it began, then clears. It is injected by an inline script in the page shell so it
+it began, inside a ring that fills 0 to 100 with a counter to match — one clock
+drives the number, the ring and the rotation, so they always agree. Then it
+clears. It is injected by an inline script in the page shell so it
 is on screen before the bundle arrives, plays once per session, and never runs
 under `prefers-reduced-motion` or without JavaScript — the page underneath is
 prerendered and already readable.
@@ -117,9 +120,30 @@ never shows a confirmation for a submission that did not happen.
 
 ## Deploying
 
-`dist/` is a plain static folder — upload it anywhere. `.github/workflows/deploy.yml`
-builds it, runs the QA gate, and publishes to GitHub Pages; a build that fails
-the audit is never published.
+`dist/` is a plain static folder — upload it anywhere.
+
+**Where it is served from.** `BASE_PATH` is the deploy prefix, default `/`.
+A GitHub Pages *project* site lives at `/<repo>/`, not the domain root, so the
+workflow sets it from the repository name. Point a custom domain at the site
+and you set `BASE_PATH=/` instead. Everything internal — links, the logo, the
+intro, canonicals, Open Graph and the sitemap — resolves through it
+(`src/lib/paths.js`), and `npm run qa` runs against the build served at that
+exact prefix, so CI checks what actually ships.
+
+```bash
+npm run build                      # domain root
+BASE_PATH=/AnantaIonsWeb/ npm run build   # project site
+```
+
+**CI.** `.github/workflows/deploy.yml` builds and audits on every push. It
+installs Chromium first — the audit drives a real browser.
+
+**Publishing is manual.** The deploy job runs only on `workflow_dispatch`, so
+nothing reaches the public URL until someone asks for it: Actions → Build and
+deploy → Run workflow. The workflow header says how to make it automatic again.
+
+**Enabling Pages** is a one-time repository setting: Settings → Pages →
+Source: **GitHub Actions**.
 
 Set the production domain in `src/lib/pages.js` (`ORIGIN`) before the first
 deploy — canonicals, Open Graph URLs and the sitemap all read from it.

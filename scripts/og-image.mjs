@@ -1,7 +1,7 @@
 /* Renders the 1200x630 Open Graph card from the site's own tokens, so the
    social preview cannot drift from the brand. Run: node scripts/og-image.mjs */
 
-import { chromium } from 'playwright';
+import { launchBrowser } from './browser.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,7 +34,7 @@ h1 em{font-style:normal;color:var(--ai-gold)}
 <h1>Engineering <em>intelligence</em> between silicon and the real world.</h1>
 <div class="foot"><span class="node"></span>Electronics &amp; embedded product engineering<span class="rail"></span></div>`;
 
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const b = await launchBrowser();
 const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
 await p.setContent(html, { waitUntil: 'load' });
 await p.waitForTimeout(400);

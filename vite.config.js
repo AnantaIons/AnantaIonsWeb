@@ -7,8 +7,15 @@ import { pages } from './src/lib/pages.js';
    so metadata and structured data are per-page and the prerender step has a
    file to write into. No client-side router, no runtime transform. */
 
+/* BASE_PATH is the deploy prefix: "/" for a domain root (the default), or
+   "/AnantaIonsWeb/" for a GitHub Pages project site. Vite surfaces it to the
+   app as import.meta.env.BASE_URL, which src/lib/paths.js resolves links
+   against — identically in the browser bundle and the prerender pass. */
+const BASE_PATH = process.env.BASE_PATH || '/';
+
 export default defineConfig({
   appType: 'mpa',
+  base: BASE_PATH,
   /* Preact through the compat layer. The site's interactivity is a disclosure
      menu, a tab list, a filter and a form — that does not justify 49 kB gzip
      of framework. Same API, same hooks, same JSX; roughly a quarter of the

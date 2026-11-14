@@ -10,14 +10,26 @@ import { graphFor } from '../src/lib/schema.js';
 import { capabilities } from '../src/content/capabilities.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+/* Must match vite.config.js — these <head> links are written by hand, so Vite
+   does not get a chance to prefix them. */
+const BASE = process.env.BASE_PATH || '/';
+/* A preview deployment is reachable by anyone with the link — GitHub Pages on
+   a public repo cannot be otherwise — but it should not be discoverable.
+   Until INDEXABLE=true, every page asks search engines to stay away and
+   robots.txt disallows everything. Flip it for the real launch, once the
+   placeholder projects are replaced and the intake form submits. */
+const INDEXABLE = process.env.INDEXABLE === 'true';
+const asset = (p) => `${BASE.replace(/\/$/, '')}${p}`;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const html = (page) => {
-  const url = `${ORIGIN}${page.route}`;
+  const url = `${ORIGIN}${asset(page.route)}`;
   const graph = JSON.stringify(graphFor(page, { capabilities }), null, 2)
     .replace(/</g, '\\u003c');
-  const depth = page.route === '/' ? '' : '../'.repeat(page.route.split('/').filter(Boolean).length);
+  /* Depth of the emitted file, not of the route: 404.html sits at the root
+     even though its route has a segment. */
+  const depth = '../'.repeat(page.file.split('/').length - 1);
   return `<!doctype html>
 <html lang="en" class="no-js" data-page="${page.key}">
 <head>
@@ -25,7 +37,7 @@ const html = (page) => {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
-<link rel="canonical" href="${url}">
+<link rel="canonical" href="${url}">${!INDEXABLE || page.indexable === false ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="theme-color" content="#050505">
 <meta name="color-scheme" content="dark">
 
@@ -34,7 +46,7 @@ const html = (page) => {
 <meta property="og:title" content="${esc(page.title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${ORIGIN}/og-image.png">
+<meta property="og:image" content="${ORIGIN}${asset('/og-image.png')}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ANANTA IONS — engineering intelligence between silicon and the real world.">
@@ -42,12 +54,12 @@ const html = (page) => {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
 <meta name="twitter:description" content="${esc(page.description)}">
-<meta name="twitter:image" content="${ORIGIN}/og-image.png">
+<meta name="twitter:image" content="${ORIGIN}${asset('/og-image.png')}">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/logo.png">
+<link rel="icon" href="${asset('/favicon.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="${asset('/logo.png')}">
 
-<link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('/fonts/inter-latin-var.woff2')}" as="font" type="font/woff2" crossorigin>
 
 <script type="application/ld+json">
 ${graph}
@@ -59,8 +71,11 @@ ${graph}
    screen immediately rather than after the bundle arrives — a loader that
    appears late is worse than no loader.
 
-   Deliberately narrow: one rotation, back where it started, then out. It
-   plays once per session (every page here is a real document, so playing it
+   The mark turns through exactly one revolution and stops where it started,
+   inside a ring that fills 0 to 100 with a counter to match. Both are driven
+   from one clock, so the number, the ring and the rotation always agree.
+
+   Plays once per session (every page here is a real document, so replaying it
    on each navigation would be a tax, not a flourish), never when the visitor
    asks for reduced motion, and never without JavaScript — the page is
    prerendered and already readable underneath. */
@@ -70,15 +85,44 @@ ${graph}
     if (sessionStorage.getItem('ai-intro')) return;
     sessionStorage.setItem('ai-intro', '1');
   } catch (e) { /* storage blocked: play it, it is only a second */ }
+
+  var DUR = 1150;
+  var R = 62, C = 2 * Math.PI * R;
   var el = document.createElement('div');
   el.className = 'brand-load';
   el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<img src="/logo.png" width="76" height="76" alt="" decoding="sync">';
+  el.innerHTML =
+    '<div class="brand-load__mark">' +
+      '<svg class="brand-load__ring" viewBox="0 0 150 150">' +
+        '<circle cx="75" cy="75" r="' + R + '" class="brand-load__track"/>' +
+        '<circle cx="75" cy="75" r="' + R + '" class="brand-load__arc"' +
+        ' stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/>' +
+      '</svg>' +
+      '<svg class="brand-load__glyph" viewBox="0 0 100 100" aria-hidden="true">' +
+        '<path d="M60.99 26.44 A26 26 0 1 0 73.56 39.01" fill="none"' +
+        ' stroke="var(--ai-copper)" stroke-width="10"/>' +
+        '<circle cx="68.38" cy="31.62" r="5.6" fill="var(--ai-ivory)"/>' +
+      '</svg>' +
+    '</div>' +
+    '<p class="brand-load__pct">0%</p>';
   document.body.appendChild(el);
-  setTimeout(function () {
-    el.classList.add('is-out');
-    setTimeout(function () { el.remove(); }, 420);
-  }, 920);
+
+  var arc = el.querySelector('.brand-load__arc');
+  var pct = el.querySelector('.brand-load__pct');
+  var t0 = 0;
+  requestAnimationFrame(function step(t) {
+    if (!t0) t0 = t;
+    var p = Math.min(1, (t - t0) / DUR);
+    // Ease the fill so it settles on 100 rather than snapping to it.
+    var e = 1 - Math.pow(1 - p, 3);
+    arc.setAttribute('stroke-dashoffset', String(C * (1 - e)));
+    pct.textContent = Math.round(e * 100) + '%';
+    if (p < 1) requestAnimationFrame(step);
+    else setTimeout(function () {
+      el.classList.add('is-out');
+      setTimeout(function () { el.remove(); }, 420);
+    }, 140);
+  });
 })();
 </script>
 <div id="root"><!--app--></div>
