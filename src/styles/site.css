@@ -748,3 +748,10 @@ body, .section { background-color: var(--ivory); }
 .btn--on-dark:hover { background: rgba(224, 138, 74, .12); }
 .demo__input { border-color: rgba(224, 138, 74, .6); }
 .demo__input:focus { box-shadow: 0 0 0 3px rgba(242, 165, 106, .25); }
+
+/* LED pixels: true amber (≈ 595 nm panels) instead of yellow. */
+:root { --amber: #ffa000; }
+.matrix__on { fill: var(--amber); }
+.matrix__off { fill: #2b1600; }
+.matrix svg { filter: drop-shadow(0 0 1.5px rgba(255, 150, 0, .8)) drop-shadow(0 0 6px rgba(255, 130, 0, .35)); }
+.matrix { border-color: #3a2208; box-shadow: 0 0 0 1px #000, 0 0 60px -6px rgba(255, 140, 0, .38), 0 30px 60px -30px rgba(0,0,0,.8); }
