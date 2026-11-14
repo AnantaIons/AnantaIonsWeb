@@ -47,7 +47,7 @@ export default function Services() {
         </div>
       </Section>
 
-      <Section soft labelledBy="students-title" id="students">
+      <Section gold labelledBy="students-title" id="students">
         <div className="grid grid--2">
           <div>
             <span className="eyebrow">For students</span>
@@ -67,7 +67,7 @@ export default function Services() {
               ))}
             </div>
             <div className="btn-row" style={{ marginTop: '24px' }}>
-              <Button href={path('/start/')}>Discuss your project</Button>
+              <Button href={path('/start/')} variant="dark">Discuss your project</Button>
             </div>
           </div>
         </div>

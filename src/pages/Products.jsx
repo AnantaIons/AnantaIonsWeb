@@ -13,7 +13,7 @@ export default function Products() {
         <div className="container hero__grid">
           <div className="hero__copy">
             <span className="eyebrow">{product.name} · {product.status}</span>
-            <h1 className="h-display" id="page-title">Update every notice board on campus from one place</h1>
+            <h1 className="h-display" id="page-title">Update <span className="hl">every notice board</span> on campus from one place</h1>
             <p className="lede">
               Type a notice once and it shows on every LED board on campus. No USB sticks, and
               no walking from board to board.
@@ -62,7 +62,7 @@ export default function Products() {
         </div>
       </Section>
 
-      <Section labelledBy="benefits-title">
+      <Section gold labelledBy="benefits-title">
         <h2 className="visually-hidden" id="benefits-title">Benefits</h2>
         <div className="grid grid--3">
           {benefits.map((s) => <Stat key={s.value} {...s} />)}

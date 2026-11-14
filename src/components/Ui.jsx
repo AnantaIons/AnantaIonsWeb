@@ -4,8 +4,8 @@ import { primaryCta } from '../content/site.js';
 
 /* Small composition primitives from the Ananta Ions design system. */
 
-export function Section({ soft, dark, tight, id, labelledBy, children, className = '' }) {
-  const cls = ['section', soft && 'section--soft', dark && 'dark', tight && 'section--tight', className]
+export function Section({ soft, dark, gold, tight, id, labelledBy, children, className = '' }) {
+  const cls = ['section', soft && 'section--soft', gold && 'section--gold', dark && 'dark', tight && 'section--tight', className]
     .filter(Boolean).join(' ');
   return (
     <section className={cls} id={id} aria-labelledby={labelledBy}>
@@ -55,10 +55,10 @@ export function Stat({ value, caption }) {
 
 export function CtaStrip({ title = 'Have a project in mind?', cta = primaryCta }) {
   return (
-    <section className="cta-strip dark" aria-labelledby="cta-title">
+    <section className="cta-strip" aria-labelledby="cta-title">
       <div className="container cta-strip__inner">
         <h2 className="h-1" id="cta-title">{title}</h2>
-        <Button href={path(cta.href)} size="lg">{cta.label}</Button>
+        <Button href={path(cta.href)} variant="dark" size="lg">{cta.label}</Button>
       </div>
     </section>
   );

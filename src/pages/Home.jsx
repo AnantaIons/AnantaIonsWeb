@@ -4,7 +4,6 @@ import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
 import { Section, SectionHead, Stat, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
-import { site } from '../content/site.js';
 import { capabilities } from '../content/capabilities.js';
 import { process } from '../content/process.js';
 import { benefits, product } from '../content/products.js';
@@ -23,7 +22,7 @@ export default function Home() {
         <div className="container hero__grid">
           <div className="hero__copy">
             <span className="eyebrow">Embedded engineering · Jaipur</span>
-            <h1 className="h-display" id="hero-title">{site.proposition}</h1>
+            <h1 className="h-display" id="hero-title">Electronics, firmware and <span className="hl">LED display systems</span>, built in Jaipur.</h1>
             <p className="lede">
               We design circuit boards and write firmware for companies, startups and students.
               We are also building our own product: LED notice boards for schools and colleges
@@ -65,13 +64,13 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section soft labelledBy="product-title" id="product">
+      <Section gold labelledBy="product-title" id="product">
         <SectionHead
           row eyebrow="Our product" id="product-title"
           title="LED notice boards for campuses"
           lede={product.oneLine}
         >
-          <Button href={path('/products/')} variant="outline">Product details</Button>
+          <Button href={path('/products/')} variant="dark">Product details</Button>
         </SectionHead>
         <div className="grid grid--3">
           {benefits.map((s) => <Stat key={s.value} {...s} />)}

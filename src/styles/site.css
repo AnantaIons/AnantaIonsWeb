@@ -318,3 +318,62 @@ main:focus { outline: none; }
 .site-footer li a { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; color: var(--on-dark-mute); text-decoration: none; }
 .site-footer li a:hover { color: var(--on-dark); }
 .site-footer__legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; font-size: 13px; color: var(--on-dark-mute); }
+
+/* ============================================================================
+   MORE GOLD — added on request. Gold is used as a fill (bands, tiles, bars),
+   never as small text on white, so contrast holds: black on gold is 10:1.
+   ========================================================================= */
+
+/* A thin gold line across the very top of every page. */
+.masthead { border-top: 3px solid var(--gold); }
+
+/* Gold highlight inside headlines. */
+.hl { color: var(--gold); }
+.hl-mark { background: linear-gradient(transparent 62%, rgba(212,175,55,.55) 62%); padding: 0 .08em; }
+
+/* Short gold bar under every section title. */
+.section-head .h-1::after { content: ''; display: block; width: 56px; height: 4px; background: var(--gold); margin-top: 18px; }
+
+/* Full gold band. */
+.section--gold { background: var(--gold); color: var(--black); }
+.section--gold .eyebrow { color: var(--black); }
+.section--gold .h-1, .section--gold .h-2, .section--gold .h-3 { color: var(--black); }
+.section--gold .lede, .section--gold p { color: #1a1406; }
+.section--gold .section-head .h-1::after { background: var(--black); }
+.section--gold .stat { background: var(--black); border-color: var(--black); }
+.section--gold .stat__value { color: var(--gold); }
+.section--gold .stat__value::after { background: var(--gold); }
+.section--gold .stat__caption { color: var(--on-dark-mute); }
+.section--gold .checks li::before { background: var(--black); }
+
+/* Dark button, for use on gold. */
+.btn--dark { background: var(--black); color: var(--gold); border-color: var(--black); }
+.btn--dark:hover { background: #1c1c1c; color: #f0d27a; }
+
+/* Gold call-to-action strip. */
+.cta-strip { background: var(--gold); color: var(--black); border-top: 0; }
+.cta-strip .h-1 { color: var(--black); }
+
+/* Icons sit on gold tiles. */
+.card__icon { box-sizing: content-box; padding: 10px; background: var(--gold); color: var(--black) !important; border-radius: var(--radius); }
+
+/* Cards: gold top edge on hover, gold border on linked cards. */
+.card { transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+.card--link:hover, .grid > .card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 0 -3px var(--gold); }
+@media (prefers-reduced-motion: reduce) { .card--link:hover, .grid > .card:hover { transform: none; } }
+
+/* Process: gold rule and gold number tiles. */
+.steps { border-top-color: var(--gold); border-top-width: 4px; }
+.step__no { display: inline-block; padding: 4px 8px; background: var(--gold); color: var(--black); border-radius: var(--radius); }
+
+/* Stats on light: gold value bar thicker, gold left edge. */
+.stat { border-left: 4px solid var(--gold); }
+
+/* Tags pick up a gold edge. */
+.tags li { border-left: 3px solid var(--gold); }
+
+/* Project articles get a gold top bar. */
+.project { border-top: 4px solid var(--gold); }
+
+/* Footer: gold rule above the legal line. */
+.site-footer__grid { border-bottom-color: var(--gold); }
