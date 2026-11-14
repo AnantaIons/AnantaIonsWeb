@@ -33,7 +33,7 @@ export default function Home() {
               <Button href={path('/products/')} variant="on-dark" size="lg">See the display system</Button>
             </div>
           </div>
-          <LedMatrix />
+          <LedMatrix id="hero" />
         </div>
       </section>
 
@@ -70,7 +70,7 @@ export default function Home() {
           title="LED notice boards for campuses"
           lede={product.oneLine}
         >
-          <Button href={path('/products/')} variant="dark">Product details</Button>
+          <Button href={path('/products/#try')} variant="dark">Try the live demo</Button>
         </SectionHead>
         <div className="grid grid--3">
           {benefits.map((s) => <Stat key={s.value} {...s} />)}

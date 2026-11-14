@@ -2,6 +2,7 @@ import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
+import LedDemo from '../components/LedDemo.jsx';
 import { Section, SectionHead, Stat, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { product, benefits, platform, roadmap } from '../content/products.js';
@@ -23,7 +24,7 @@ export default function Products() {
               <Button href="#features" variant="on-dark" size="lg">Features</Button>
             </div>
           </div>
-          <LedMatrix lines={[{ text: 'NOTICE · EXAM HALL 3 OPENS 10 AM · ', scroll: true }, { text: 'TIMETABLE' }, { text: 'ALERTS' }]} />
+          <LedMatrix id="hero" lines={[{ text: 'NOTICE · EXAM HALL 3 OPENS 10 AM · ', scroll: true }, { text: 'TIMETABLE' }, { text: 'ALERTS' }]} />
         </div>
       </section>
 
@@ -45,6 +46,20 @@ export default function Products() {
               it should.
             </p>
           </div>
+        </div>
+      </Section>
+
+      <Section dark labelledBy="demo-title" id="try">
+        <div className="demo-grid">
+          <div>
+            <span className="eyebrow">Try it</span>
+            <h2 className="h-1" id="demo-title">Write a notice, see it on the board</h2>
+            <p className="lede" style={{ marginTop: '16px' }}>
+              This is how a notice looks on a real LED board. Type your own message or pick an
+              example. In the real system, the office types it once and it shows on every board.
+            </p>
+          </div>
+          <LedDemo />
         </div>
       </Section>
 

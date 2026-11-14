@@ -32,6 +32,31 @@ const FONT = {
   1: ['00100','01100','00100','00100','00100','00100','01110'],
   2: ['01110','10001','00001','00010','00100','01000','11111'],
   3: ['11110','00001','00001','01110','00001','00001','11110'],
+  F: ['11111','10000','10000','11110','10000','10000','10000'],
+  G: ['01110','10001','10000','10111','10001','10001','01111'],
+  J: ['00111','00010','00010','00010','00010','10010','01100'],
+  Q: ['01110','10001','10001','10001','10101','10010','01101'],
+  V: ['10001','10001','10001','10001','10001','01010','00100'],
+  Z: ['11111','00001','00010','00100','01000','10000','11111'],
+  4: ['00010','00110','01010','10010','11111','00010','00010'],
+  5: ['11111','10000','11110','00001','00001','10001','01110'],
+  6: ['00110','01000','10000','11110','10001','10001','01110'],
+  7: ['11111','00001','00010','00100','01000','01000','01000'],
+  8: ['01110','10001','10001','01110','10001','10001','01110'],
+  9: ['01110','10001','10001','01111','00001','00010','01100'],
+  '.': ['00000','00000','00000','00000','00000','01100','01100'],
+  ',': ['00000','00000','00000','00000','01100','00100','01000'],
+  '!': ['00100','00100','00100','00100','00100','00000','00100'],
+  '?': ['01110','10001','00001','00010','00100','00000','00100'],
+  ':': ['00000','01100','01100','00000','01100','01100','00000'],
+  "'": ['00100','00100','01000','00000','00000','00000','00000'],
+  '/': ['00001','00010','00010','00100','01000','01000','10000'],
+  '&': ['01100','10010','10100','01000','10101','10010','01101'],
+  '+': ['00000','00100','00100','11111','00100','00100','00000'],
+  '(': ['00010','00100','01000','01000','01000','00100','00010'],
+  ')': ['01000','00100','00010','00010','00010','00100','01000'],
+  '#': ['01010','01010','11111','01010','11111','01010','01010'],
+  '@': ['01110','10001','10111','10101','10111','10000','01110'],
   '-': ['00000','00000','00000','01110','00000','00000','00000'],
   '·': ['00000','00000','00000','00110','00110','00000','00000'],
   ' ': ['00000','00000','00000','00000','00000','00000','00000'],
@@ -44,7 +69,7 @@ const ADVANCE = 6 * SCALE;   // 5 columns + 1 gap
 function glyphPath(text, x0, top) {
   let d = '';
   [...text].forEach((ch, i) => {
-    const g = FONT[ch] || FONT[' '];
+    const g = FONT[ch] || FONT[ch.toUpperCase()] || FONT[' '];
     g.forEach((row, y) => {
       for (let x = 0; x < 5; x++) {
         if (row[x] === '1') d += `M${x0 + i * ADVANCE + x * SCALE} ${top + y * SCALE}h2v2h-2z`;
@@ -63,35 +88,35 @@ const DEFAULT_LINES = [
   { text: 'TIMETABLES' },
 ];
 
-export default function LedMatrix({ lines = DEFAULT_LINES }) {
+export default function LedMatrix({ lines = DEFAULT_LINES, id = 'led' }) {
   const ROWS = lines.length * 16;
   return (
     <figure className="matrix" aria-hidden="true">
       <div className="matrix__frame">
         <svg viewBox={`0 0 ${COLS} ${ROWS}`} preserveAspectRatio="xMidYMid meet" focusable="false">
           <defs>
-            <pattern id="led-off" width="1" height="1" patternUnits="userSpaceOnUse">
+            <pattern id={`${id}-off`} width="1" height="1" patternUnits="userSpaceOnUse">
               <circle cx=".5" cy=".5" r=".36" className="matrix__off" />
             </pattern>
-            <pattern id="led-on" width="1" height="1" patternUnits="userSpaceOnUse">
+            <pattern id={`${id}-on`} width="1" height="1" patternUnits="userSpaceOnUse">
               <circle cx=".5" cy=".5" r=".4" className="matrix__on" />
             </pattern>
           </defs>
-          <rect width={COLS} height={ROWS} fill="url(#led-off)" />
+          <rect width={COLS} height={ROWS} fill={`url(#${id}-off)`} />
           {lines.map((l, i) => {
             const top = i * 16 + 1;
             if (l.scroll) {
               const width = l.text.length * ADVANCE;
               return (
-                <g key={i} className="matrix__scroll"
+                <g key={`${i}-${l.text}`} className="matrix__scroll"
                   style={{ '--shift': `-${width}px`, '--steps': width, '--dur': `${(width / 24).toFixed(1)}s` }}>
-                  <path d={glyphPath(l.text, 0, top) + glyphPath(l.text, width, top)} fill="url(#led-on)" />
+                  <path d={glyphPath(l.text, 0, top) + glyphPath(l.text, width, top)} fill={`url(#${id}-on)`} />
                 </g>
               );
             }
             const w = l.text.length * ADVANCE - SCALE;
             const x0 = Math.floor((COLS - w) / 2);
-            return <path key={i} d={glyphPath(l.text, x0, top)} fill="url(#led-on)" />;
+            return <path key={i} d={glyphPath(l.text, x0, top)} fill={`url(#${id}-on)`} />;
           })}
         </svg>
       </div>
