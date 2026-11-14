@@ -16,7 +16,7 @@ export default function Projects() {
           <article className="project corner" key={p.id} id={p.id} aria-labelledby={`${p.id}-t`}>
             <div className="project__head">
               <div className="project__meta">
-                <span className="badge badge--gold">{p.status}</span>
+                <span className={`badge badge--gold${p.status === 'In development' ? ' badge--live' : ''}`}>{p.status}</span>
                 <span className="badge">{p.domain}</span>
               </div>
               <h3 className="h-1" id={`${p.id}-t`}>{p.title}</h3>

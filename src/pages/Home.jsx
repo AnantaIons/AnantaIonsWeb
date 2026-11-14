@@ -21,7 +21,7 @@ export default function Home() {
       <section className="hero dark" aria-labelledby="hero-title">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <span className="eyebrow">Embedded engineering · Jaipur</span>
+            <span className="eyebrow">Embedded engineering · <Icon name="pin" size={14} className="pin" />Jaipur, Rajasthan</span>
             <h1 className="h-display" id="hero-title">Electronics, firmware and <span className="hl">LED display systems</span>, built in Jaipur.</h1>
             <p className="lede">
               We design circuit boards and write firmware for companies, startups and students.
@@ -41,7 +41,7 @@ export default function Home() {
         <SectionHead eyebrow="What we do" id="what-title" title="Three ways to work with us" />
         <div className="grid grid--3">
           <a className="card card--link corner" href={path('/products/')}>
-            <span className="badge badge--gold">{product.status}</span>
+            <span className="badge badge--gold badge--live">{product.status}</span>
             <Icon name="display" size={26} className="card__icon" />
             <h3 className="h-2">Campus display network</h3>
             <p>LED notice boards for campuses, all updated from one dashboard. Currently in development.</p>
@@ -105,7 +105,7 @@ export default function Home() {
         <div className="grid grid--3">
           {projects.map((p) => (
             <a className="card card--link" key={p.id} href={path(`/projects/#${p.id}`)}>
-              <span className="badge">{p.status}</span>
+              <span className={p.status === 'In development' ? 'badge badge--gold badge--live' : 'badge'}>{p.status}</span>
               <h3 className="h-2">{p.title}</h3>
               <p>{p.summary}</p>
               <span className="card__foot text-link">Read more</span>

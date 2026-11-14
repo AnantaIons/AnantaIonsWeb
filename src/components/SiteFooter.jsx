@@ -32,12 +32,12 @@ export default function SiteFooter() {
               </ul>
             </div>
           ))}
-          <div>
+          <div className="contact-col">
             <h2>Contact</h2>
             <ul>
-              <li><a href={`tel:${contact.phone.value.replace(/\s/g, '')}`}><Icon name="phone" size={16} />{contact.phone.value}</a></li>
-              <li><a href={`https://wa.me/${contact.whatsapp.value}`} rel="noopener noreferrer" target="_blank"><Icon name="whatsapp" size={16} />WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a></li>
-              <li><a href={`mailto:${contact.email.value}`}><Icon name="mail" size={16} />{contact.email.value}</a></li>
+              <li><a href={`tel:${contact.phone.value.replace(/\s/g, '')}`}><Icon name="phone" size={18} />{contact.phone.value}</a></li>
+              <li><a href={`https://wa.me/${contact.whatsapp.value}`} rel="noopener noreferrer" target="_blank"><Icon name="whatsapp" size={18} />WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a></li>
+              <li><a href={`mailto:${contact.email.value}`}><Icon name="mail" size={18} />{contact.email.value}</a></li>
               <li><a href={contact.github.value} rel="noopener noreferrer me" target="_blank"><Icon name="github" size={16} />GitHub<span className="visually-hidden"> (opens in a new tab)</span></a></li>
             </ul>
           </div>

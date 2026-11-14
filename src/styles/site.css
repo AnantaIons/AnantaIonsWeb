@@ -454,3 +454,110 @@ main:focus { outline: none; }
   .section--gold::after, .cta-strip::after, .btn--primary::after { animation: none; display: none; }
   .dark .hl, .hero .hl, .dark .stat__value, .section--gold .stat__value { animation: none; }
 }
+
+/* ============================================================================
+   REVIEW PASS — restraint, depth, hierarchy.
+   Full metal is kept for: primary buttons, gold bands, the CTA strip and the
+   LED board. Everything else returns to flat gold. Softer corners, warmer
+   blacks, more vertical rhythm, consistent hover states.
+   ========================================================================= */
+:root {
+  --radius: 6px;
+  --radius-card: 8px;
+  --black: #0b0a08;
+  --elevated: #171512;
+  --section: clamp(64px, 9vw, 112px);
+}
+
+/* Warm near-black on every dark surface. */
+.dark, .masthead, .masthead__panel, .site-footer { background-color: var(--black); }
+body { line-height: 1.6; }
+.h-display { letter-spacing: -0.028em; line-height: 1.05; }
+
+/* Softer corners. */
+.card, .stat, .project, .form, .aside, .matrix, .tags li { border-radius: var(--radius-card); }
+.btn, .field input, .field select, .field textarea, .masthead__toggle, .badge { border-radius: var(--radius); }
+
+/* Metal only where it earns it; flat gold elsewhere. */
+.card__icon, .step__no, .badge--gold { background: var(--gold) !important; }
+.corner::before { background: var(--gold); border-radius: 2px; }
+.section-head .h-1::after { background: var(--gold); width: 56px; }
+.section--gold .section-head .h-1::after { background: var(--black); }
+.stat__value::after { background: var(--gold); }
+.hero__copy::before { background: var(--gold); border-radius: 2px; }
+.masthead { border-image: none; border-top-color: var(--gold); }
+.steps { border-image: none; }
+
+/* Hero: atmosphere behind the LED board. */
+.hero.dark {
+  background:
+    radial-gradient(60% 70% at 78% 50%, rgba(255, 190, 0, .13), transparent 70%),
+    radial-gradient(80% 60% at 10% 0%, rgba(255, 255, 255, .04), transparent 60%),
+    var(--black);
+}
+.hero__grid { grid-template-columns: 1fr 1.05fr; }
+.matrix { padding: 18px; background: #050403; box-shadow: 0 0 0 1px #000, 0 0 60px -6px rgba(255, 190, 0, .38), 0 30px 60px -30px rgba(0,0,0,.8); }
+@media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } .matrix { margin: 0 calc(var(--gutter) * -0.5); } }
+
+/* Location in the hero eyebrow gets a pin. */
+.eyebrow .pin { display: inline-block; vertical-align: -2px; margin-right: 4px; }
+
+/* Secondary button on dark: visible gold outline. */
+.btn--on-dark { border-color: rgba(212, 175, 55, .75); color: #fff; }
+.btn--on-dark:hover { background: rgba(212, 175, 55, .1); }
+
+/* Gentle hairline between white and gold bands. */
+.section--gold { box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(0,0,0,.15); }
+
+/* Cards: lift, soft shadow, gold left edge, solid link underline. */
+.card, .project { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.card--link:hover, .grid > .card:hover {
+  transform: translateY(-4px);
+  border-color: var(--hairline);
+  box-shadow: inset 4px 0 0 var(--gold), 0 14px 30px -18px rgba(0,0,0,.35);
+}
+.dark .card--link:hover, .dark .grid > .card:hover { box-shadow: inset 4px 0 0 var(--gold), 0 14px 30px -18px rgba(0,0,0,.8); }
+.card--link .text-link { text-decoration-thickness: 1px; transition: text-decoration-thickness .15s; }
+.card--link:hover .text-link { text-decoration-thickness: 3px; }
+.card--link:hover .card__icon, .grid > .card:hover .card__icon { background: var(--metal) !important; }
+.grid > .card:nth-child(3n+2) .card__icon { padding: 12px; }
+
+/* "In development": pulsing dot. */
+.badge--gold { gap: 6px; }
+.badge--live::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; background: #000;
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes live-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+
+/* More breathing room in cards and steps. */
+.card { padding: 32px; gap: 14px; }
+.grid { gap: 28px; }
+.step { padding: 24px 24px 12px 0; }
+.section-head { margin-bottom: 48px; }
+
+/* Process: gold line fills as the steps scroll into view. */
+.steps { position: relative; border-top: 4px solid #e8e2d0; }
+.steps::before {
+  content: ''; position: absolute; left: 0; top: -4px; height: 4px; width: 100%;
+  background: var(--metal); transform-origin: left; transform: scaleX(1);
+}
+@supports (animation-timeline: view()) {
+  .steps::before { animation: fill-line linear both; animation-timeline: view(); animation-range: entry 20% cover 55%; }
+}
+@keyframes fill-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Hover everywhere: logo and footer. */
+.wordmark { transition: opacity .15s; }
+.wordmark:hover .wordmark__accent { color: var(--yellow); }
+.wordmark:hover svg { transform: rotate(-20deg); }
+.wordmark svg { transition: transform .3s ease; }
+.site-footer li a { transition: color .15s, transform .15s; }
+.site-footer li a:hover { color: var(--yellow); transform: translateX(3px); }
+.site-footer .contact-col a { font-size: 16px; color: var(--on-dark); }
+.site-footer .contact-col svg { color: var(--gold); width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .badge--live::before, .steps::before { animation: none; }
+  .card--link:hover, .grid > .card:hover, .site-footer li a:hover, .wordmark:hover svg { transform: none; }
+}
