@@ -6,12 +6,9 @@
 # fails the audit is never published.
 name: Build and deploy
 
-# Every push builds and audits. PUBLISHING IS MANUAL: the deploy job runs only
-# on workflow_dispatch, so nothing reaches the public URL until someone asks
-# for it. To go live: Actions -> Build and deploy -> Run workflow.
-# To publish automatically on every push to a branch again, add
-#   if: github.event_name == 'workflow_dispatch' || github.ref_name == 'main'
-# to the deploy job, or simply delete the `if:` line below.
+# Every push builds and audits. Pushes to main also publish (if the audit
+# passes); other branches only build and audit. Manual run: Actions -> Build
+# and deploy -> Run workflow.
 on:
   push:
     branches: [main, site-v2]
@@ -61,8 +58,8 @@ jobs:
 
   deploy:
     needs: build
-    # Manual only — see the note at the top of this file.
-    if: github.event_name == 'workflow_dispatch'
+    # Publishes on every push to main, or manually from the Actions tab.
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == 'main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

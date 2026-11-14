@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-08-26T08:56:19.200Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-14T05:59:36.568Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -16,7 +16,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  56
   PASS  meta description 70–200 chars  160
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
   PASS  every advertised URL resolves
@@ -37,7 +37,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  61
   PASS  meta description 70–200 chars  151
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/engineering/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/engineering/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -58,7 +58,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  59
   PASS  meta description 70–200 chars  191
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/capabilities/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/capabilities/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  16
   PASS  every advertised URL resolves
@@ -79,7 +79,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  54
   PASS  meta description 70–200 chars  142
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/projects/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/projects/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -100,7 +100,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  65
   PASS  meta description 70–200 chars  141
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/about/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/about/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -121,7 +121,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  50
   PASS  meta description 70–200 chars  156
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/start/
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/start/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
   PASS  every advertised URL resolves
@@ -142,7 +142,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  html lang set
   PASS  title present and <= 70 chars  28
   PASS  meta description 70–200 chars  115
-  PASS  canonical correct  https://anantaions.github.io/AnantaIonsWeb/404.html
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/404.html
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
