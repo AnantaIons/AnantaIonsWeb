@@ -1,0 +1,65 @@
+/* Ananta Ions — color tokens. Single-accent system: one saturated gold carries every CTA, active state, and decorative motif. Everything else is monochrome black/white/gray. */
+:root {
+  /* Brand & accent */
+  --color-primary: #d4af37;
+  --color-on-primary: #000000;
+  --color-primary-dark: #b8860b;
+
+  /* Surface */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f7f7;
+  --color-surface-dark: #000000;
+  --color-surface-elevated: #1a1a1a;
+
+  /* Hairlines / dividers */
+  --color-hairline: #cccccc;
+  --color-hairline-strong: #5e5e5e;
+
+  /* Text on light */
+  --color-ink: #000000;
+  --color-body: #1a1a1a;
+  --color-mute: #757575;
+  --color-stone: #898989;
+  --color-ash: #a7a7a7;
+
+  /* Text on dark */
+  --color-on-dark: #ffffff;
+  --color-on-dark-mute: rgba(255, 255, 255, 0.7);
+
+  /* Semantic */
+  --color-error: #e52020;
+  --color-error-deep: #650b0b;
+  --color-warning: #df6500;
+  --color-warning-bright: #ef9100;
+  --color-success-deep: #3f8500;
+  --color-link: #ffbf00;
+
+  /* Editorial accents — long-form only, never chrome */
+  --color-accent-brass: #8c7853;
+  --color-accent-copper: #b87333;
+  --color-accent-copper-deep: #cd7f32;
+  --color-accent-copper-pale: #b76e79;
+  --color-accent-champagne: #f7e7ce;
+
+  /* ---- Semantic aliases ---- */
+  --text-heading: var(--color-ink);
+  --text-body: var(--color-body);
+  --text-mute: var(--color-mute);
+  --text-disabled: var(--color-stone);
+  --text-on-dark: var(--color-on-dark);
+  --text-on-dark-mute: var(--color-on-dark-mute);
+  --text-link: var(--color-link);
+
+  --surface-page: var(--color-canvas);
+  --surface-soft: var(--color-surface-soft);
+  --surface-dark: var(--color-surface-dark);
+  --surface-elevated: var(--color-surface-elevated);
+  --surface-card: var(--color-canvas);
+
+  --border-hairline: var(--color-hairline);
+  --border-hairline-strong: var(--color-hairline-strong);
+  --border-focus: var(--color-primary);
+
+  --accent: var(--color-primary);
+  --accent-pressed: var(--color-primary-dark);
+}

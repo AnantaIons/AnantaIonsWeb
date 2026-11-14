@@ -1,0 +1,16 @@
+<!-- @dsCard group="Brand" viewport="700x150" name="Radius Scale" subtitle="Aggressively angular — 2px everywhere, full only for avatars" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;font-family:var(--font-family);background:var(--color-canvas);padding:24px}
+.row{display:flex;gap:32px}
+.item{text-align:center}
+.box{width:80px;height:64px;background:var(--color-surface-soft);border:1px solid var(--color-hairline)}
+.n{font-size:12px;color:var(--color-ink);font-weight:700;margin-top:8px}
+.v{font-size:11px;color:var(--color-mute)}
+</style></head><body>
+<div class="row">
+<div class="item"><div class="box" style="border-radius:0"></div><div class="n">none</div><div class="v">0px</div></div>
+<div class="item"><div class="box" style="border-radius:1px"></div><div class="n">xs</div><div class="v">1px</div></div>
+<div class="item"><div class="box" style="border-radius:2px"></div><div class="n">sm</div><div class="v">2px — default</div></div>
+<div class="item"><div class="box" style="border-radius:9999px;width:64px"></div><div class="n">full</div><div class="v">avatars only</div></div>
+</div>
+</body></html>
