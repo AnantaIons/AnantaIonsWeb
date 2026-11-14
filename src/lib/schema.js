@@ -28,6 +28,8 @@ export function organizationSchema() {
       'intelligent products — from architecture and prototype to real-world deployment.',
     slogan: 'Engineering intelligence between silicon and the real world.',
     email: contact.email.value,
+    telephone: contact.phone.value,
+    address: { '@type': 'PostalAddress', addressLocality: 'Jaipur', addressRegion: 'Rajasthan', addressCountry: 'IN' },
     sameAs: [contact.github.value],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -73,7 +75,7 @@ export function webPageSchema(page) {
 export function servicesSchema(capabilities) {
   return capabilities.map((c) => ({
     '@type': 'Service',
-    '@id': `${at('/capabilities/')}#${c.id}`,
+    '@id': `${at('/services/')}#${c.id}`,
     name: c.label,
     serviceType: c.label,
     description: c.what,
@@ -99,6 +101,6 @@ export function graphFor(page, { capabilities } = {}) {
   const graph = [organizationSchema(), websiteSchema(), webPageSchema(page)];
   const crumbs = breadcrumbSchema(page);
   if (crumbs) graph.push(crumbs);
-  if (page.key === 'capabilities' && capabilities) graph.push(...servicesSchema(capabilities));
+  if (page.key === 'services' && capabilities) graph.push(...servicesSchema(capabilities));
   return { '@context': 'https://schema.org', '@graph': graph };
 }

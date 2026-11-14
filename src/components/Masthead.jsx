@@ -8,7 +8,7 @@ import { nav, primaryCta, site } from '../content/site.js';
 function Wordmark() {
   return (
     <a className="wordmark" href={path('/')}>
-      <Mark size={28} className="wordmark__mark" />
+      <Mark size={30} className="wordmark__mark" />
       <span className="wordmark__text">
         ANANTA <span className="wordmark__accent">IONS</span>
       </span>
@@ -101,7 +101,7 @@ export default function Masthead({ current }) {
             </li>
           ))}
           <li className="masthead__panel-cta">
-            <Button href={path(primaryCta.href)} size="md">{primaryCta.label}</Button>
+            <Button href={path(primaryCta.href)} size="lg">{primaryCta.label}</Button>
           </li>
         </ul>
       </div>

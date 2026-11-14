@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-14T06:25:53.162Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-14T06:39:04.024Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -26,7 +26,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  no illegible SVG type
   PASS  skip link is focusable
 
- /engineering/
+ /products/
   PASS  axe (desktop)
   PASS  axe (390px)
   PASS  exactly one h1  found 1
@@ -35,9 +35,9 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  61
-  PASS  meta description 70–200 chars  151
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/engineering/
+  PASS  title present and <= 70 chars  50
+  PASS  meta description 70–200 chars  163
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/products/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -47,7 +47,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  no illegible SVG type
   PASS  skip link is focusable
 
- /capabilities/
+ /services/
   PASS  axe (desktop)
   PASS  axe (390px)
   PASS  exactly one h1  found 1
@@ -56,9 +56,9 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  59
-  PASS  meta description 70–200 chars  191
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/capabilities/
+  PASS  title present and <= 70 chars  69
+  PASS  meta description 70–200 chars  163
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/services/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  16
   PASS  every advertised URL resolves
@@ -77,8 +77,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  54
-  PASS  meta description 70–200 chars  142
+  PASS  title present and <= 70 chars  55
+  PASS  meta description 70–200 chars  166
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/projects/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -98,8 +98,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  65
-  PASS  meta description 70–200 chars  141
+  PASS  title present and <= 70 chars  54
+  PASS  meta description 70–200 chars  146
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/about/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -119,8 +119,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  50
-  PASS  meta description 70–200 chars  156
+  PASS  title present and <= 70 chars  39
+  PASS  meta description 70–200 chars  157
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/start/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
@@ -141,7 +141,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link present
   PASS  html lang set
   PASS  title present and <= 70 chars  28
-  PASS  meta description 70–200 chars  115
+  PASS  meta description 70–200 chars  106
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/404.html
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -153,12 +153,13 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link is focusable
 
 DEEP LINKS
-  PASS  /engineering/#process lands on target  top 96
-  PASS  /engineering/#connectivity lands on target  top 96
-  PASS  /about/#industries lands on target  top 96
-  PASS  /start/#contact lands on target  top 96
-  PASS  /projects/#ble-sensor-bridge lands on target  top 78
-  PASS  /#stack lands on target  top 96
+  PASS  /products/#hardware lands on target  top 80
+  PASS  /services/#students lands on target  top 80
+  PASS  /services/#connectivity lands on target  top 80
+  PASS  /about/#principles lands on target  top 80
+  PASS  /start/#contact lands on target  top 80
+  PASS  /projects/#gsm-remote-controller lands on target  top 80
+  PASS  /#process lands on target  top 80
 
 RESPONSIVE
   PASS  360px
@@ -172,33 +173,24 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  9343 chars (min 500), 0 hidden
-  PASS  /engineering/ readable without JS  4952 chars (min 500), 0 hidden
-  PASS  /capabilities/ readable without JS  3504 chars (min 500), 0 hidden
-  PASS  /projects/ readable without JS  6185 chars (min 500), 0 hidden
-  PASS  /about/ readable without JS  2011 chars (min 500), 0 hidden
-  PASS  /start/ readable without JS  1313 chars (min 500), 0 hidden
-  PASS  /404.html readable without JS  363 chars (min 200), 0 hidden
+  PASS  / readable without JS  3250 chars (min 500), 0 hidden
+  PASS  /products/ readable without JS  2594 chars (min 500), 0 hidden
+  PASS  /services/ readable without JS  4194 chars (min 500), 0 hidden
+  PASS  /projects/ readable without JS  2305 chars (min 500), 0 hidden
+  PASS  /about/ readable without JS  1988 chars (min 500), 0 hidden
+  PASS  /start/ readable without JS  897 chars (min 500), 0 hidden
+  PASS  /404.html readable without JS  273 chars (min 200), 0 hidden
 
 WEIGHT
-  PASS  weight budget found assets to measure  6 files
-  PASS  both JS and CSS were measured  js 64557 B, css 50432 B
-  PASS  first-load JS under 120 kB  63.0 kB
-  PASS  CSS under 60 kB  49.3 kB
+  PASS  weight budget found assets to measure  8 files
+  PASS  both JS and CSS were measured  js 46164 B, css 14733 B
+  PASS  first-load JS under 120 kB  45.1 kB
+  PASS  CSS under 60 kB  14.4 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
-  TODO  project "DLMS/COSEM Protocol Analyzer" is unverified placeholder content
-  TODO  project "Environment Monitoring Node" is unverified placeholder content
-  TODO  project "Sub-GHz Telemetry Gateway" is unverified placeholder content
-  TODO  project "Tamper-Aware Metering Module" is unverified placeholder content
-  TODO  project "BLE Sensor Bridge" is unverified placeholder content
-  TODO  project "CAN Industrial Controller" is unverified placeholder content
-  TODO  no phone number supplied
-  TODO  no location supplied
-  TODO  intake form has no endpoint — submission is disabled and says so
 
 ========================================================================
 All technical checks passed.
-NOT LAUNCH-READY: 9 content item(s) still unverified. See docs/CONTENT-TODO.md.
+Content: every item verified.
 ========================================================================
 ```

@@ -26,8 +26,9 @@ export const site = {
 export const contact = {
   email:    { value: 'ananta.ions@outlook.com',        verified: true },
   github:   { value: 'https://github.com/AnantaIons',  verified: true },
-  phone:    { value: null,                             verified: false },
-  location: { value: null,                             verified: false },
+  phone:    { value: '+91 78911 47275',                verified: true },
+  whatsapp: { value: '917891147275',                   verified: true },
+  location: { value: 'Jaipur, Rajasthan, India',       verified: true },
   /* Where the intake form POSTs. Leave null and the form tells the visitor
      honestly that submission is not connected, and offers the email route —
      it never shows a false confirmation. */
@@ -35,8 +36,8 @@ export const contact = {
 };
 
 export const nav = [
-  { label: 'Engineering',  href: '/engineering/'  },
-  { label: 'Capabilities', href: '/capabilities/' },
+  { label: 'Products',     href: '/products/'     },
+  { label: 'Services',     href: '/services/'     },
   { label: 'Projects',     href: '/projects/'     },
   { label: 'About',        href: '/about/'        },
   { label: 'Contact',      href: '/start/'        },

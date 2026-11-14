@@ -1,166 +1,74 @@
 /* ============================================================================
-   PROJECTS — the credibility engine of the site.
+   PROJECTS — real ANANTA IONS work only.
 
-   *** EVERY ENTRY BELOW IS UNVERIFIED PLACEHOLDER MATERIAL. ***
-
-   The supplied ANANTA IONS source material marks its project catalogue as
-   illustrative ("project names, specifications and pricing are illustrative
-   and to be replaced with real listings"). No customer, deployment, result or
-   performance figure has been invented here, and none may be added without a
-   verified source.
-
-   Each entry carries `verified: false`, which makes the UI render a
-   PLACEHOLDER marker on the card and the case study, and makes `npm run qa`
-   report the site as not launch-ready. Set `verified: true` only when every
-   field in that entry is true of a real ANANTA IONS project.
-
-   Fields, per the required case-study structure:
-     problem      the real-world problem the system addresses
-     approach     the engineering approach taken
-     architecture the system shape
-     technology   platform / connectivity / interface facts
-     engineering  what the hard part actually was
-     result       the outcome  — MUST be verified before use
-     status       lifecycle state
+   Each entry is a system ANANTA IONS has designed or built. `status` is the
+   true lifecycle state. No customer, installation count or outcome is claimed
+   beyond what is stated here; add a `result` only when it is a verified fact.
+   `verified: true` means every field in the entry is true.
    ========================================================================= */
 
 export const projects = [
   {
-    id: 'dlms-protocol-analyzer',
-    verified: false,
-    title: 'DLMS/COSEM Protocol Analyzer',
-    domain: 'Smart Energy',
-    status: 'Reference design',
+    id: 'p10-display-controller',
+    verified: true,
+    title: 'P10 Display Network Controller',
+    domain: 'Displays',
+    status: 'In development',
     summary:
-      'Metering-grade protocol capture and decode for DLMS/COSEM smart-energy networks.',
+      'A Wi-Fi managed controller that drives up to eight chains of P10 LED panels, built ' +
+      'for campus notice and information displays.',
     problem:
-      'Field faults on metering networks are hard to diagnose because the protocol traffic ' +
-      'is not observable with general-purpose tools.',
+      'Campus LED boards are updated by hand, one board at a time, with a USB stick or a ' +
+      'phone app on the same network. Notices go stale and urgent messages arrive late.',
     approach:
-      'A dedicated capture front-end that decodes DLMS/COSEM frames in real time rather ' +
-      'than logging raw bytes for later analysis.',
-    architecture: 'Capture front-end → frame decoder → session reconstruction → export.',
-    technology: { platform: 'ARM Cortex-M4', connectivity: 'RS-485 · Wi-SUN', interface: 'Host tooling' },
+      'Put every board on Wi-Fi and move the content, schedule and alerts to a server, so ' +
+      'one person can run every display on site from a browser.',
+    technology: ['ESP32-S3-WROOM-1-N16R8', 'HUB12 · P10 · 1/4 scan', '74AHCT245 level shifting', 'Wi-Fi'],
     engineering:
-      'Sustaining line-rate decode inside a constrained memory budget while preserving ' +
-      'framing across a lossy bus.',
+      'Eight output ports with 33 Ω series termination, 3.3 V to 5 V level shifting, and ' +
+      'a refresh path that must stay steady while the radio is busy.',
     result: null,
-    tags: ['Metrology', 'RS-485', 'DLMS/COSEM'],
   },
   {
-    id: 'environment-monitoring-node',
-    verified: false,
-    title: 'Environment Monitoring Node',
-    domain: 'Environmental',
-    status: 'Reference design',
+    id: 'gsm-sms-notice-board',
+    verified: true,
+    title: 'GSM SMS Notice Board',
+    domain: 'Displays · Connectivity',
+    status: 'Built',
     summary:
-      'Multi-sensor edge node measuring air quality, temperature and humidity with local buffering.',
+      'An LED notice board that is updated by sending it a text message — no Wi-Fi, no app.',
     problem:
-      'Distributed environmental sensing loses data whenever the uplink is unavailable, ' +
-      'which is exactly when the readings matter.',
+      'Notice boards in places without reliable internet still need to be updated quickly ' +
+      'and from anywhere.',
     approach:
-      'Buffer and timestamp locally, reconcile on reconnect, and calibrate sensors on the ' +
-      'device instead of in post-processing.',
-    architecture: 'Sensor array → conditioning & calibration → local store → BLE/Wi-Fi uplink.',
-    technology: { platform: 'ESP32-S3', connectivity: 'BLE · Wi-Fi', interface: 'Gateway / phone' },
+      'A GSM modem receives the SMS, the controller parses it, and the new message is ' +
+      'rendered straight onto a P10 LED matrix.',
+    technology: ['ESP32 / Arduino Mega', 'SIM800 GSM', 'P10 LED matrix'],
     engineering:
-      'Holding calibration across temperature drift while staying inside the power budget ' +
-      'a battery node allows.',
+      'Reliable AT-command handling for the GSM modem and clean text rendering on the ' +
+      'LED matrix.',
     result: null,
-    tags: ['Sensors', 'Edge', 'BLE'],
   },
   {
-    id: 'sub-ghz-telemetry-gateway',
-    verified: false,
-    title: 'Sub-GHz Telemetry Gateway',
-    domain: 'Industrial IoT',
-    status: 'Prototype',
+    id: 'gsm-remote-controller',
+    verified: true,
+    title: 'GSM Remote Controller on an ATtiny85',
+    domain: 'Automation · Connectivity',
+    status: 'Firmware complete',
     summary:
-      'Long-range telemetry concentrator bridging field sensors to an industrial backhaul.',
+      'Switch equipment on and off from any phone — by calling it or by sending an SMS — ' +
+      'on an 8-pin microcontroller.',
     problem:
-      'Field assets are distributed past the reach of short-range radio and past the ' +
-      'economics of running cable.',
+      'Pumps, lights and machines in remote places need to be switched without an ' +
+      'internet connection, and only by the people allowed to.',
     approach:
-      'A sub-GHz concentrator that aggregates many low-rate field nodes onto one ' +
-      'industrial backhaul, with store-and-forward across outages.',
-    architecture: 'Field nodes → sub-GHz concentrator → store & forward → backhaul.',
-    technology: { platform: 'STM32WL', connectivity: 'LoRa · Sub-GHz', interface: 'Industrial backhaul' },
+      'Two rings from an authorised number toggles the system. The SMS commands ' +
+      '"SYSTEM ON" and "SYSTEM OFF" set it directly, and every change is confirmed by SMS.',
+    technology: ['ATtiny85 @ 8 MHz', 'SIM800 / SIM900 GSM', 'SoftwareSerial · 4800 baud', 'Relay outputs'],
     engineering:
-      'Scheduling many nodes on a shared band without collapsing throughput as the ' +
-      'population grows.',
+      'Everything fits in 6.3 KB of the 8 KB flash and 360 of the 512 bytes of RAM: the ' +
+      'four authorised numbers live in flash, sprintf was removed, and the serial link ' +
+      'runs at 4800 baud so the 8 MHz software UART keeps its timing.',
     result: null,
-    tags: ['LoRa', 'Gateway', 'Telemetry'],
-  },
-  {
-    id: 'tamper-aware-metering-module',
-    verified: false,
-    title: 'Tamper-Aware Metering Module',
-    domain: 'Smart Energy',
-    status: 'Reference design',
-    summary:
-      'Energy metrology front-end with hardware and firmware tamper-detection.',
-    problem:
-      'Revenue metering has to stay accurate and prove that it has not been interfered with.',
-    approach:
-      'Detection split deliberately across hardware and firmware so that defeating one ' +
-      'layer does not defeat the measurement.',
-    architecture: 'Metrology front-end → tamper detection → event log → RS-485 reporting.',
-    technology: { platform: 'Renesas RX', connectivity: 'RS-485', interface: 'Utility head-end' },
-    engineering:
-      'Separating genuine tamper events from ordinary electrical noise without ' +
-      'accumulating false positives in the field.',
-    result: null,
-    tags: ['Metrology', 'Tamper detection', 'Renesas'],
-  },
-  {
-    id: 'ble-sensor-bridge',
-    verified: false,
-    title: 'BLE Sensor Bridge',
-    domain: 'Connected Devices',
-    status: 'Reference design',
-    summary:
-      'Bridges analog and digital sensors to a phone or gateway over BLE.',
-    problem:
-      'Existing instrumentation is often analog, and has no path to a modern application ' +
-      'without replacing the sensor itself.',
-    approach:
-      'A bridge that conditions the existing signal and exposes it as a standard BLE ' +
-      'service, leaving the installed sensor in place.',
-    architecture: 'Analog/digital sensors → conditioning → BLE GATT services → host app.',
-    technology: { platform: 'nRF52840', connectivity: 'BLE 5.x', interface: 'Phone / gateway' },
-    engineering:
-      'Keeping the radio duty cycle low enough for a coin cell while staying responsive ' +
-      'enough to feel live.',
-    result: null,
-    tags: ['BLE', 'Sensors', 'Reference design'],
-  },
-  {
-    id: 'can-industrial-controller',
-    verified: false,
-    title: 'CAN Industrial Controller',
-    domain: 'Automation',
-    status: 'Prototype',
-    summary:
-      'Deterministic control node for machine automation with a CAN control plane.',
-    problem:
-      'Machine control needs a bounded, predictable response time — average latency is ' +
-      'not a useful guarantee.',
-    approach:
-      'A hard real-time control loop with the CAN control plane kept separate from ' +
-      'diagnostics traffic.',
-    architecture: 'Control loop → CAN control plane → RS-485 diagnostics → supervisory host.',
-    technology: { platform: 'ARM Cortex-M7', connectivity: 'CAN · RS-485', interface: 'Supervisory host' },
-    engineering:
-      'Guaranteeing the worst-case path, not the average one, with diagnostics running ' +
-      'alongside control.',
-    result: null,
-    tags: ['CAN', 'Real-time', 'Control'],
   },
 ];
-
-export const projectDomains = [
-  'All', 'Smart Energy', 'Industrial IoT', 'Environmental', 'Connected Devices', 'Automation',
-];
-
-/** Everything on the site that is not yet verified, for the QA report. */
-export const unverifiedProjects = () => projects.filter(p => !p.verified);

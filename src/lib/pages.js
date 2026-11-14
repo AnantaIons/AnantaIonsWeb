@@ -33,52 +33,51 @@ export const pages = [
     priority: '1.0',
   },
   {
-    key: 'engineering', route: '/engineering/', file: 'engineering/index.html', component: 'Engineering',
-    title: 'Engineering — the stack from silicon to product | ANANTA IONS',
+    key: 'products', route: '/products/', file: 'products/index.html', component: 'Products',
+    title: 'P10 LED display network for campuses | ANANTA IONS',
     description:
-      'The six layers ANANTA IONS engineers across: silicon, hardware, firmware, ' +
-      'connectivity, on-device intelligence and production. Plus how a project runs.',
-    priority: '0.9',
+      'A Wi-Fi managed P10 LED display controller built on the ESP32-S3, with a cloud ' +
+      'content system for schools, colleges and institutions. Now in development in Jaipur.',
+    priority: '1.0',
   },
   {
-    key: 'capabilities', route: '/capabilities/', file: 'capabilities/index.html', component: 'Capabilities',
-    title: 'Capabilities — electronics, firmware, edge AI | ANANTA IONS',
+    key: 'services', route: '/services/', file: 'services/index.html', component: 'Services',
+    title: 'Services — firmware, electronics, IoT, student projects | ANANTA IONS',
     description:
-      'Seven engineering disciplines: electronics, embedded systems, firmware, ' +
-      'connectivity, intelligent systems, displays and product engineering — what each ' +
-      'does, how, and the failure it prevents.',
+      'Embedded firmware, electronics design, connectivity, display systems, edge ' +
+      'intelligence and engineering projects for students — what each covers and what it fixes.',
     priority: '0.9',
   },
   {
     key: 'projects', route: '/projects/', file: 'projects/index.html', component: 'Projects',
-    title: 'Projects — embedded systems case studies | ANANTA IONS',
+    title: 'Projects — embedded systems we have built | ANANTA IONS',
     description:
-      'Embedded and electronics systems engineered by ANANTA IONS: the problem, the ' +
-      'architecture, the technology and the engineering behind each one.',
+      'Embedded systems engineered by ANANTA IONS: the P10 display controller, a GSM SMS ' +
+      'notice board and a GSM remote controller on an ATtiny85 — problem, build and status.',
     priority: '0.8',
   },
   {
     key: 'about', route: '/about/', file: 'about/index.html', component: 'About',
-    title: 'About — an engineering partner, not a services desk | ANANTA IONS',
+    title: 'About — embedded engineering from Jaipur | ANANTA IONS',
     description:
-      'How ANANTA IONS works: engineering-first decisions, low-level expertise, hardware ' +
-      'and firmware together, and the industries the work runs in.',
+      'ANANTA IONS is a hardware and embedded systems company in Jaipur: how it works, ' +
+      'what it believes about engineering, and the sectors it builds for.',
     priority: '0.7',
   },
   {
     key: 'start', route: '/start/', file: 'start/index.html', component: 'Start',
-    title: 'Start a project — engineering intake | ANANTA IONS',
+    title: 'Contact — start a project | ANANTA IONS',
     description:
-      'Tell ANANTA IONS what has to work. A four-step engineering intake covering the ' +
-      'problem, the hardware, the firmware and intelligence, and how it has to ship.',
+      'Tell ANANTA IONS what has to work. Send the brief on WhatsApp or by email, or call. ' +
+      'Display systems, firmware, electronics and student projects, from Jaipur.',
     priority: '0.9',
   },
   {
     key: 'notfound', route: '/404.html', file: '404.html', component: 'NotFound',
     title: 'Page not found | ANANTA IONS',
     description:
-      'That page is not here. Routes back to the ANANTA IONS engineering stack, ' +
-      'capabilities, projects and project intake.',
+      'That page is not here. Routes back to the ANANTA IONS display system, ' +
+      'services, projects and contact page.',
     priority: '0.0',
     // Not a destination: kept out of the sitemap and marked noindex.
     indexable: false,

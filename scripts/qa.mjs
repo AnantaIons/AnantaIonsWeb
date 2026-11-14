@@ -195,9 +195,10 @@ for (const page of pages) {
    moves the page in response — which used to land fragment links hundreds of
    pixels from their target. */
 say('\nDEEP LINKS');
-for (const [route, frag] of [['/engineering/', 'process'], ['/engineering/', 'connectivity'],
-                             ['/about/', 'industries'], ['/start/', 'contact'],
-                             ['/projects/', 'ble-sensor-bridge'], ['/', 'stack']]) {
+for (const [route, frag] of [['/products/', 'hardware'], ['/services/', 'students'],
+                             ['/services/', 'connectivity'], ['/about/', 'principles'],
+                             ['/start/', 'contact'], ['/projects/', 'gsm-remote-controller'],
+                             ['/', 'process']]) {
   const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await p.goto(`${BASE}${route}#${frag}`, { waitUntil: 'networkidle' });
   await p.waitForTimeout(1400);
@@ -294,7 +295,7 @@ if (!contact.email.verified) warn.push('contact email is unconfirmed');
 if (!contact.github?.verified) warn.push('GitHub organisation link is unconfirmed');
 if (!contact.phone.value) warn.push('no phone number supplied');
 if (!contact.location.value) warn.push('no location supplied');
-if (!contact.formEndpoint) warn.push('intake form has no endpoint — submission is disabled and says so');
+if (!contact.formEndpoint && !contact.whatsapp?.value) warn.push('intake form has no endpoint — submission is disabled and says so');
 for (const w of warn) say(`  TODO  ${w}`);
 
 /* ---- verdict ------------------------------------------------------------ */

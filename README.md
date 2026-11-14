@@ -22,7 +22,7 @@ the hash; everything else behaves exactly as it does in production.
 
 | | |
 | --- | --- |
-| **Pages** | `/`, `/engineering/`, `/capabilities/`, `/projects/`, `/about/`, `/start/` |
+| **Pages** | `/`, `/products/`, `/services/`, `/projects/`, `/about/`, `/start/` |
 | **Build** | Vite, multi-page. Every route is a real HTML document with its own `<head>` |
 | **Rendering** | Prerendered to static HTML at build time, then hydrated |
 | **Framework** | Preact via `preact/compat` — 10.7 kB gzip against React's 49 kB, same API |

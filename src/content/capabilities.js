@@ -68,3 +68,20 @@ export const capabilities = [
     tags: ['Production firmware', 'Documentation', 'Field validation', 'Handover'],
   },
 ];
+
+/* Engineering projects for students — a stated ANANTA IONS programme. */
+export const studentProgram = {
+  title: 'Final-year and research projects',
+  body:
+    'Engineering projects for students, built the way a product is built: a working ' +
+    'prototype, firmware you can read, and documentation you can defend in a viva.',
+  points: [
+    'Embedded, IoT, robotics and display projects',
+    'Firmware help and debugging for projects already underway',
+    'Research paper guidance',
+  ],
+  offers: [
+    ['10%', 'discount for students'],
+    ['10%', 'referral commission when you bring in a new client'],
+  ],
+};

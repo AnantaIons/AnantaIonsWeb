@@ -2,8 +2,8 @@ import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import '../styles/index.css';
 import Home from '../pages/Home.jsx';
-import Engineering from '../pages/Engineering.jsx';
-import Capabilities from '../pages/Capabilities.jsx';
+import Products from '../pages/Products.jsx';
+import Services from '../pages/Services.jsx';
 import Projects from '../pages/Projects.jsx';
 import About from '../pages/About.jsx';
 import Start from '../pages/Start.jsx';
@@ -17,8 +17,8 @@ import Start from '../pages/Start.jsx';
 
 const ROUTES = {
   '/': Home,
-  '/engineering/': Engineering,
-  '/capabilities/': Capabilities,
+  '/products/': Products,
+  '/services/': Services,
   '/projects/': Projects,
   '/about/': About,
   '/start/': Start,
