@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-14T06:39:04.024Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-14T06:55:50.473Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -15,7 +15,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link present
   PASS  html lang set
   PASS  title present and <= 70 chars  56
-  PASS  meta description 70–200 chars  160
+  PASS  meta description 70–200 chars  140
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
@@ -35,8 +35,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  50
-  PASS  meta description 70–200 chars  163
+  PASS  title present and <= 70 chars  56
+  PASS  meta description 70–200 chars  145
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/products/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -57,7 +57,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link present
   PASS  html lang set
   PASS  title present and <= 70 chars  69
-  PASS  meta description 70–200 chars  163
+  PASS  meta description 70–200 chars  115
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/services/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  16
@@ -77,8 +77,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  55
-  PASS  meta description 70–200 chars  166
+  PASS  title present and <= 70 chars  22
+  PASS  meta description 70–200 chars  144
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/projects/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -98,8 +98,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  54
-  PASS  meta description 70–200 chars  146
+  PASS  title present and <= 70 chars  19
+  PASS  meta description 70–200 chars  133
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/about/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -119,8 +119,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  39
-  PASS  meta description 70–200 chars  157
+  PASS  title present and <= 70 chars  21
+  PASS  meta description 70–200 chars  120
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/start/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
@@ -153,7 +153,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link is focusable
 
 DEEP LINKS
-  PASS  /products/#hardware lands on target  top 80
+  PASS  /products/#features lands on target  top 80
   PASS  /services/#students lands on target  top 80
   PASS  /services/#connectivity lands on target  top 80
   PASS  /about/#principles lands on target  top 80
@@ -173,18 +173,18 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  3250 chars (min 500), 0 hidden
-  PASS  /products/ readable without JS  2594 chars (min 500), 0 hidden
-  PASS  /services/ readable without JS  4194 chars (min 500), 0 hidden
-  PASS  /projects/ readable without JS  2305 chars (min 500), 0 hidden
-  PASS  /about/ readable without JS  1988 chars (min 500), 0 hidden
-  PASS  /start/ readable without JS  897 chars (min 500), 0 hidden
+  PASS  / readable without JS  2868 chars (min 500), 0 hidden
+  PASS  /products/ readable without JS  1772 chars (min 500), 0 hidden
+  PASS  /services/ readable without JS  3447 chars (min 500), 0 hidden
+  PASS  /projects/ readable without JS  1362 chars (min 500), 0 hidden
+  PASS  /about/ readable without JS  1955 chars (min 500), 0 hidden
+  PASS  /start/ readable without JS  713 chars (min 500), 0 hidden
   PASS  /404.html readable without JS  273 chars (min 200), 0 hidden
 
 WEIGHT
   PASS  weight budget found assets to measure  8 files
-  PASS  both JS and CSS were measured  js 46164 B, css 14733 B
-  PASS  first-load JS under 120 kB  45.1 kB
+  PASS  both JS and CSS were measured  js 43534 B, css 14733 B
+  PASS  first-load JS under 120 kB  42.5 kB
   PASS  CSS under 60 kB  14.4 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)

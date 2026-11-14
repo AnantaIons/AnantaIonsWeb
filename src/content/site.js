@@ -11,11 +11,11 @@
 export const site = {
   name: 'ANANTA IONS',
   // The core brand idea, supplied in the brief.
-  proposition: 'Engineering intelligence between silicon and the real world.',
+  proposition: 'Electronics, firmware and LED display systems, designed and built in Jaipur.',
   discipline: 'Electronics & Embedded Product Engineering',
   description:
-    'ANANTA IONS engineers electronics, embedded systems, firmware, connectivity ' +
-    'and intelligent products — from architecture and prototype to real-world deployment.',
+    'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
+    'Jaipur, and is building LED notice boards for campuses.',
   // Replace with the production origin before launch. Used for canonical URLs,
   // Open Graph and sitemap generation.
   origin: 'https://anantaions.com',

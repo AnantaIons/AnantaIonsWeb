@@ -24,9 +24,9 @@ export function organizationSchema() {
     url: at('/'),
     logo: at('/logo.png'),
     description:
-      'ANANTA IONS engineers electronics, embedded systems, firmware, connectivity and ' +
-      'intelligent products — from architecture and prototype to real-world deployment.',
-    slogan: 'Engineering intelligence between silicon and the real world.',
+      'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
+      'Jaipur, and is building LED notice boards for campuses.',
+    slogan: 'Electronics, firmware and LED display systems, designed and built in Jaipur.',
     email: contact.email.value,
     telephone: contact.phone.value,
     address: { '@type': 'PostalAddress', addressLocality: 'Jaipur', addressRegion: 'Rajasthan', addressCountry: 'IN' },

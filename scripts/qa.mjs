@@ -195,7 +195,7 @@ for (const page of pages) {
    moves the page in response — which used to land fragment links hundreds of
    pixels from their target. */
 say('\nDEEP LINKS');
-for (const [route, frag] of [['/products/', 'hardware'], ['/services/', 'students'],
+for (const [route, frag] of [['/products/', 'features'], ['/services/', 'students'],
                              ['/services/', 'connectivity'], ['/about/', 'principles'],
                              ['/start/', 'contact'], ['/projects/', 'gsm-remote-controller'],
                              ['/', 'process']]) {

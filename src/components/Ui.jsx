@@ -53,7 +53,7 @@ export function Stat({ value, caption }) {
   );
 }
 
-export function CtaStrip({ title = 'Have something that has to work?', cta = primaryCta }) {
+export function CtaStrip({ title = 'Have a project in mind?', cta = primaryCta }) {
   return (
     <section className="cta-strip dark" aria-labelledby="cta-title">
       <div className="container cta-strip__inner">

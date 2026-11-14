@@ -3,18 +3,18 @@
    about customers, deployments or results. */
 
 export const principles = [
-  ['Engineering-first thinking',
-   'Decisions are driven by system behaviour and physics, not by trends.'],
-  ['Low-level expertise',
-   'Comfortable at the register, the bus and the datasheet.'],
+  ['We read the datasheet',
+   'Most field bugs come from a timing diagram or an errata note someone skipped. We check them first.'],
   ['Hardware and firmware together',
-   'We understand both sides of the pin, so nothing falls between them.'],
-  ['Production-oriented',
-   'Built to ship, to be manufactured and to be maintained — not to demo.'],
-  ['Documentation discipline',
-   'Every system leaves with the documentation needed to own and extend it.'],
-  ['System-level view',
-   'We engineer the whole path from silicon to the real world.'],
+   'The same people look at the schematic and write the code, so problems at the pins get caught early.'],
+  ['Built to be manufactured',
+   'We pick parts you can actually buy in India, and design boards that can be assembled and tested in volume.'],
+  ['Updates planned from day one',
+   'Every product we design has a way to update its firmware after it is installed.'],
+  ['Documentation you can use',
+   'You get schematics, source code and notes that let your own team maintain the product.'],
+  ['Honest about status',
+   'If something is a prototype, we call it a prototype. If a job is not right for us, we say so.'],
 ];
 
 export const industries = [

@@ -10,8 +10,8 @@ export default function Start() {
     <Layout current="/start/">
       <PageHero
         eyebrow="Contact"
-        title="Tell us what has to work"
-        lede="A paragraph about the problem is enough to start. Specifications can come later. Display systems, firmware, electronics and student projects."
+        title="Contact us"
+        lede="Tell us about your project in a few lines.."
       />
 
       <Section tight labelledBy="form-title">
@@ -33,9 +33,9 @@ export default function Start() {
             </ul>
             <h3 className="h-3">What happens next</h3>
             <ol className="checks" style={{ marginTop: '12px' }}>
-              <li>An engineer reads your message — not a sales inbox.</li>
-              <li>We come back with questions, or with a first architecture sketch.</li>
-              <li>If it is not work we should take, we say so.</li>
+              <li>We read your message and reply.</li>
+              <li>We ask any questions and suggest how to approach it.</li>
+              <li>If it is not something we can do well, we tell you.</li>
             </ol>
           </aside>
         </div>

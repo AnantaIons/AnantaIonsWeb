@@ -1,4 +1,4 @@
-/* A P10 LED board, drawn — the product itself as the hero image.
+/* An LED notice board, drawn — the product itself as the hero image.
 
    Four P10 panels side by side: 128 × 16 LEDs. The unlit grid is one rect
    filled with a dot pattern; the message is one path of 2 × 2 blocks filled
@@ -59,11 +59,11 @@ function glyphPath(text, x0, top) {
    real build: a 4 × 3 board, 12 panels. */
 const DEFAULT_LINES = [
   { text: 'ANANTA IONS · CAMPUS DISPLAY NETWORK · ', scroll: true },
-  { text: 'P10 · HUB12' },
-  { text: 'ESP32-S3' },
+  { text: 'NOTICES' },
+  { text: 'TIMETABLES' },
 ];
 
-export default function LedMatrix({ lines = DEFAULT_LINES, label = '4 × 3 P10 · 128 × 48 LEDs' }) {
+export default function LedMatrix({ lines = DEFAULT_LINES }) {
   const ROWS = lines.length * 16;
   return (
     <figure className="matrix" aria-hidden="true">
@@ -95,10 +95,6 @@ export default function LedMatrix({ lines = DEFAULT_LINES, label = '4 × 3 P10 �
           })}
         </svg>
       </div>
-      <figcaption className="matrix__meta">
-        <span>{label}</span>
-        <span>Wi-Fi managed</span>
-      </figcaption>
     </figure>
   );
 }

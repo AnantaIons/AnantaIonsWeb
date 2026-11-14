@@ -28,48 +28,48 @@ export const pages = [
     key: 'home', route: '/', file: 'index.html', component: 'Home',
     title: 'ANANTA IONS | Electronics & Embedded Product Engineering',
     description:
-      'ANANTA IONS engineers electronics, embedded systems, firmware, connectivity and ' +
-      'intelligent products — from architecture and prototype to real-world deployment.',
+      'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
+      'Jaipur, and is building LED notice boards for campuses.',
     priority: '1.0',
   },
   {
     key: 'products', route: '/products/', file: 'products/index.html', component: 'Products',
-    title: 'P10 LED display network for campuses | ANANTA IONS',
+    title: 'LED notice boards for schools and colleges | ANANTA IONS',
     description:
-      'A Wi-Fi managed P10 LED display controller built on the ESP32-S3, with a cloud ' +
-      'content system for schools, colleges and institutions. Now in development in Jaipur.',
+      'LED notice boards for campuses that can all be updated from one dashboard, with ' +
+      'scheduled notices and emergency alerts. In development in Jaipur.',
     priority: '1.0',
   },
   {
     key: 'services', route: '/services/', file: 'services/index.html', component: 'Services',
     title: 'Services — firmware, electronics, IoT, student projects | ANANTA IONS',
     description:
-      'Embedded firmware, electronics design, connectivity, display systems, edge ' +
-      'intelligence and engineering projects for students — what each covers and what it fixes.',
+      'Firmware, circuit design, IoT, LED displays and help with engineering student ' +
+      'projects, from ANANTA IONS in Jaipur.',
     priority: '0.9',
   },
   {
     key: 'projects', route: '/projects/', file: 'projects/index.html', component: 'Projects',
-    title: 'Projects — embedded systems we have built | ANANTA IONS',
+    title: 'Projects | ANANTA IONS',
     description:
-      'Embedded systems engineered by ANANTA IONS: the P10 display controller, a GSM SMS ' +
-      'notice board and a GSM remote controller on an ATtiny85 — problem, build and status.',
+      'Projects by ANANTA IONS: a campus LED display network, an SMS-controlled notice ' +
+      'board and a GSM remote switch, with the problem each one solves.',
     priority: '0.8',
   },
   {
     key: 'about', route: '/about/', file: 'about/index.html', component: 'About',
-    title: 'About — embedded engineering from Jaipur | ANANTA IONS',
+    title: 'About | ANANTA IONS',
     description:
-      'ANANTA IONS is a hardware and embedded systems company in Jaipur: how it works, ' +
-      'what it believes about engineering, and the sectors it builds for.',
+      'ANANTA IONS is a small electronics and embedded engineering company in Jaipur. ' +
+      'Who we are, what we care about and how a project runs.',
     priority: '0.7',
   },
   {
     key: 'start', route: '/start/', file: 'start/index.html', component: 'Start',
-    title: 'Contact — start a project | ANANTA IONS',
+    title: 'Contact | ANANTA IONS',
     description:
-      'Tell ANANTA IONS what has to work. Send the brief on WhatsApp or by email, or call. ' +
-      'Display systems, firmware, electronics and student projects, from Jaipur.',
+      'Contact ANANTA IONS in Jaipur by WhatsApp, phone or email about LED displays, ' +
+      'firmware, electronics or student projects.',
     priority: '0.9',
   },
   {

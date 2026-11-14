@@ -11,64 +11,52 @@ export const projects = [
   {
     id: 'p10-display-controller',
     verified: true,
-    title: 'P10 Display Network Controller',
-    domain: 'Displays',
+    title: 'Campus Display Network',
+    domain: 'LED displays',
     status: 'In development',
     summary:
-      'A Wi-Fi managed controller that drives up to eight chains of P10 LED panels, built ' +
-      'for campus notice and information displays.',
+      'Our own controller for campus LED notice boards, updated over Wi-Fi from one ' +
+      'dashboard.',
     problem:
-      'Campus LED boards are updated by hand, one board at a time, with a USB stick or a ' +
-      'phone app on the same network. Notices go stale and urgent messages arrive late.',
+      'Most campus LED boards are updated one at a time with a USB stick or a phone app. ' +
+      'Old notices stay up and urgent ones go up late.',
     approach:
-      'Put every board on Wi-Fi and move the content, schedule and alerts to a server, so ' +
-      'one person can run every display on site from a browser.',
-    technology: ['ESP32-S3-WROOM-1-N16R8', 'HUB12 · P10 · 1/4 scan', '74AHCT245 level shifting', 'Wi-Fi'],
-    engineering:
-      'Eight output ports with 33 Ω series termination, 3.3 V to 5 V level shifting, and ' +
-      'a refresh path that must stay steady while the radio is busy.',
+      'Each board connects to Wi-Fi and gets its content from a server. One person can ' +
+      'update every board on campus from a browser.',
     result: null,
   },
   {
     id: 'gsm-sms-notice-board',
     verified: true,
     title: 'GSM SMS Notice Board',
-    domain: 'Displays · Connectivity',
+    domain: 'LED displays',
     status: 'Built',
     summary:
-      'An LED notice board that is updated by sending it a text message — no Wi-Fi, no app.',
+      'An LED notice board that you update by sending it an SMS. No Wi-Fi or app needed.',
     problem:
-      'Notice boards in places without reliable internet still need to be updated quickly ' +
-      'and from anywhere.',
+      'Places without reliable internet still need notice boards that can be changed ' +
+      'quickly, from anywhere.',
     approach:
-      'A GSM modem receives the SMS, the controller parses it, and the new message is ' +
-      'rendered straight onto a P10 LED matrix.',
-    technology: ['ESP32 / Arduino Mega', 'SIM800 GSM', 'P10 LED matrix'],
-    engineering:
-      'Reliable AT-command handling for the GSM modem and clean text rendering on the ' +
-      'LED matrix.',
+      'The board has its own SIM card. Send it an SMS and the new message appears on ' +
+      'the display.',
     result: null,
   },
   {
     id: 'gsm-remote-controller',
     verified: true,
-    title: 'GSM Remote Controller on an ATtiny85',
-    domain: 'Automation · Connectivity',
-    status: 'Firmware complete',
+    title: 'GSM Remote Switch',
+    domain: 'Automation',
+    status: 'Complete',
     summary:
-      'Switch equipment on and off from any phone — by calling it or by sending an SMS — ' +
-      'on an 8-pin microcontroller.',
+      'Turn a pump, light or machine on or off from any phone, by calling or sending an ' +
+      'SMS. No internet needed.',
     problem:
-      'Pumps, lights and machines in remote places need to be switched without an ' +
-      'internet connection, and only by the people allowed to.',
+      'Equipment in remote places, like farm pumps, needs to be switched on and off ' +
+      'without internet, and only by approved people.',
     approach:
-      'Two rings from an authorised number toggles the system. The SMS commands ' +
-      '"SYSTEM ON" and "SYSTEM OFF" set it directly, and every change is confirmed by SMS.',
-    technology: ['ATtiny85 @ 8 MHz', 'SIM800 / SIM900 GSM', 'SoftwareSerial · 4800 baud', 'Relay outputs'],
-    engineering:
-      'Everything fits in 6.3 KB of the 8 KB flash and 360 of the 512 bytes of RAM: the ' +
-      'four authorised numbers live in flash, sprintf was removed, and the serial link ' +
-      'runs at 4800 baud so the 8 MHz software UART keeps its timing.',
+      'Calling from an approved number and letting it ring twice switches the output. ' +
+      'Sending "SYSTEM ON" or "SYSTEM OFF" by SMS also works, and the device replies by ' +
+      'SMS to confirm.',
     result: null,
   },
 ];

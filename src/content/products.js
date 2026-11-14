@@ -8,52 +8,43 @@ export const product = {
   name: 'ANANTA IONS Display Network',
   status: 'In development',
   oneLine:
-    'Wi-Fi managed P10 LED displays for campuses — one controller per board, one ' +
-    'dashboard for every board on site.',
+    'P10 LED boards connected over Wi-Fi, so every board on a campus can be updated ' +
+    'from one dashboard.',
   audience: 'Schools, colleges and institutions',
 };
 
-/* Design facts for the Rev A controller. */
-export const specs = [
-  { value: 'ESP32-S3', caption: 'dual-core Wi-Fi MCU, 16 MB flash and 8 MB PSRAM (WROOM-1-N16R8)' },
-  { value: '8', caption: 'HUB12 output ports per controller, each series-terminated' },
-  { value: '4×3', caption: 'P10 panels on the first build — a 12-panel board' },
-];
-
-export const hardware = [
-  ['Controller', 'ESP32-S3-WROOM-1-N16R8 — dual-core, Wi-Fi, 16 MB flash, 8 MB PSRAM.'],
-  ['Panel interface', 'HUB12, single-colour P10 modules, 1/4 scan.'],
-  ['Level shifting', '74AHCT245 buffers lift the 3.3 V logic to the 5 V the panels expect.'],
-  ['Signal integrity', '33 Ω series termination on every output line across all eight ports.'],
-  ['Power', 'Dedicated SMPS supply sized for the panel load, separate from logic power.'],
+/* What a campus gets. */
+export const benefits = [
+  { value: 'One', caption: 'dashboard to update every board on campus' },
+  { value: 'Instant', caption: 'emergency messages on all boards at once' },
+  { value: 'Scheduled', caption: 'notices that change automatically through the day' },
 ];
 
 /* The content platform. Features listed are the ones in development. */
 export const platform = [
   {
     icon: 'layers', title: 'Playlists and scheduling',
-    body: 'Content is scheduled on the server. Morning assembly, class changes and exam ' +
-          'days each get their own playlist, and the board follows the clock.',
+    body: 'Set what each board shows and when. For example, assembly notices in the ' +
+          'morning and exam timings on exam days.',
   },
   {
     icon: 'alert', title: 'Emergency override',
-    body: 'One action replaces every board on campus with an alert, and returns them to ' +
-          'their schedule when it is cleared.',
+    body: 'Show an urgent message on every board at once. When it is cleared, the boards ' +
+          'go back to their normal schedule.',
   },
   {
     icon: 'network', title: 'Content from existing systems',
-    body: 'Timetables, notices and results pulled from the systems a school already uses, ' +
-          'so nobody retypes a notice for the board.',
+    body: 'Show timetables and notices from the software the school already uses, ' +
+          'without typing them again.',
   },
   {
     icon: 'display', title: 'Animation library',
-    body: 'Built-in transitions and effects designed for a single-colour matrix, ready to ' +
-          'apply without drawing anything.',
+    body: 'Ready-made scrolling and transition effects for single-colour boards.',
   },
 ];
 
 export const roadmap = [
-  ['Now', 'First 12-panel board built on the Rev A controller design.'],
+  ['Now', 'Building and testing the first full-size board.'],
   ['Next', 'Pilot installations at schools and colleges in Jaipur.'],
-  ['Then', 'Over-the-air updates and synchronised playback across boards.'],
+  ['Then', 'Wider rollout, with all boards on a campus showing content in sync.'],
 ];

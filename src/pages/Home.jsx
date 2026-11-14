@@ -7,7 +7,7 @@ import { path } from '../lib/paths.js';
 import { site } from '../content/site.js';
 import { capabilities } from '../content/capabilities.js';
 import { process } from '../content/process.js';
-import { specs, product } from '../content/products.js';
+import { benefits, product } from '../content/products.js';
 import { projects } from '../content/projects.js';
 
 const ICONS = {
@@ -22,11 +22,12 @@ export default function Home() {
       <section className="hero dark" aria-labelledby="hero-title">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <span className="eyebrow">Electronics & embedded engineering · Jaipur</span>
+            <span className="eyebrow">Embedded engineering · Jaipur</span>
             <h1 className="h-display" id="hero-title">{site.proposition}</h1>
             <p className="lede">
-              ANANTA IONS designs electronics, firmware and connected products — and builds its
-              own: a Wi-Fi managed LED display network for campuses.
+              We design circuit boards and write firmware for companies, startups and students.
+              We are also building our own product: LED notice boards for schools and colleges
+              that can be updated from one dashboard.
             </p>
             <div className="btn-row">
               <Button href={path('/start/')} size="lg">Start a project</Button>
@@ -44,21 +45,21 @@ export default function Home() {
             <span className="badge badge--gold">{product.status}</span>
             <Icon name="display" size={26} className="card__icon" />
             <h3 className="h-2">Campus display network</h3>
-            <p>Our own product: P10 LED boards on Wi-Fi, run from one dashboard, with emergency override across campus.</p>
+            <p>LED notice boards for campuses, all updated from one dashboard. Currently in development.</p>
             <span className="card__foot text-link">The display system</span>
           </a>
           <a className="card card--link corner" href={path('/services/')}>
             <span className="badge">Services</span>
             <Icon name="chip" size={26} className="card__icon" />
             <h3 className="h-2">Embedded engineering</h3>
-            <p>Firmware, electronics, connectivity and edge intelligence — from a first idea to a board you can ship.</p>
+            <p>Circuit design, firmware and IoT for your product, from the first prototype to production.</p>
             <span className="card__foot text-link">What we engineer</span>
           </a>
           <a className="card card--link corner" href={path('/services/#students')}>
             <span className="badge">10% student discount</span>
             <Icon name="book" size={26} className="card__icon" />
             <h3 className="h-2">Student & research projects</h3>
-            <p>Final-year projects built like products, firmware help when you are stuck, and guidance on research papers.</p>
+            <p>Help with final-year projects, code and debugging, and research papers.</p>
             <span className="card__foot text-link">Student projects</span>
           </a>
         </div>
@@ -67,20 +68,20 @@ export default function Home() {
       <Section soft labelledBy="product-title" id="product">
         <SectionHead
           row eyebrow="Our product" id="product-title"
-          title="A display network built for campuses"
+          title="LED notice boards for campuses"
           lede={product.oneLine}
         >
           <Button href={path('/products/')} variant="outline">Product details</Button>
         </SectionHead>
         <div className="grid grid--3">
-          {specs.map((s) => <Stat key={s.value} {...s} />)}
+          {benefits.map((s) => <Stat key={s.value} {...s} />)}
         </div>
       </Section>
 
       <Section labelledBy="services-title">
         <SectionHead
           row eyebrow="Services" id="services-title"
-          title="Engineering from silicon to shipped product"
+          title="What we can build for you"
         >
           <Button href={path('/services/')} variant="outline">All services</Button>
         </SectionHead>
@@ -108,14 +109,14 @@ export default function Home() {
               <span className="badge">{p.status}</span>
               <h3 className="h-2">{p.title}</h3>
               <p>{p.summary}</p>
-              <span className="card__foot text-link">Read the build</span>
+              <span className="card__foot text-link">Read more</span>
             </a>
           ))}
         </div>
       </Section>
 
       <Section labelledBy="process-title" id="process">
-        <SectionHead eyebrow="How we work" id="process-title" title="Five steps, every project" />
+        <SectionHead eyebrow="How we work" id="process-title" title="How a project runs" />
         <ol className="steps">
           {process.map((s) => (
             <li className="step" key={s.no}>

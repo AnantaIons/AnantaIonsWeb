@@ -1,5 +1,4 @@
 import Layout from '../components/Layout.jsx';
-import Mark from '../components/Mark.jsx';
 import { Section, SectionHead, PageHero, CtaStrip } from '../components/Ui.jsx';
 import { principles } from '../content/about.js';
 import { process } from '../content/process.js';
@@ -9,36 +8,33 @@ export default function About() {
     <Layout current="/about/">
       <PageHero
         eyebrow="About"
-        title="A hardware company from Jaipur, built for the long run"
-        lede="ANANTA IONS designs electronics and embedded systems for others, and builds its own products — starting with a display network for Indian campuses."
+        title="About ANANTA IONS"
+        lede="We are a small electronics and embedded engineering company based in Jaipur."
       />
 
-      <Section labelledBy="name-title">
-        <div className="grid grid--2" style={{ alignItems: 'center' }}>
+      <Section labelledBy="who-title">
+        <div className="grid grid--2">
           <div>
-            <span className="eyebrow">The name and the mark</span>
-            <h2 className="h-1" id="name-title">Anant — the path that never closes</h2>
-            <div className="prose" style={{ marginTop: '16px' }}>
-              <p className="lede">
-                <em>Anant</em> means the infinite. The mark is an open ring with a single
-                ion resting in its gap: a shell with a charge at its boundary, a circuit with
-                a gap and the element that bridges it.
-              </p>
-              <p>
-                The opening faces up and to the right. It is a reminder of what the company is
-                for — closing the gap between silicon and the real world, one working system at
-                a time.
-              </p>
-            </div>
+            <span className="eyebrow">Who we are</span>
+            <h2 className="h-1" id="who-title">Electronics and firmware, done properly</h2>
           </div>
-          <div className="dark corner" style={{ padding: 'clamp(40px, 8vw, 88px)', display: 'grid', placeItems: 'center', borderRadius: '2px' }}>
-            <Mark size={220} />
+          <div className="prose">
+            <p className="lede">
+              We design circuit boards, write firmware and build connected devices. Our clients
+              include businesses with a product idea, startups that need a working prototype,
+              and engineering students working on projects.
+            </p>
+            <p>
+              We are also building our own product, an LED notice board system for schools and
+              colleges. Working on our own hardware keeps us close to the real problems of
+              manufacturing, installation and support.
+            </p>
           </div>
         </div>
       </Section>
 
       <Section soft labelledBy="principles-title" id="principles">
-        <SectionHead eyebrow="How we think" id="principles-title" title="Six engineering principles" />
+        <SectionHead eyebrow="How we think" id="principles-title" title="What we care about" />
         <div className="grid grid--3">
           {principles.map(([t, b]) => (
             <div className="card corner" key={t}>
@@ -50,7 +46,7 @@ export default function About() {
       </Section>
 
       <Section labelledBy="process-title" id="process">
-        <SectionHead eyebrow="How a project runs" id="process-title" title="Discover to deploy" />
+        <SectionHead eyebrow="How a project runs" id="process-title" title="From idea to finished product" />
         <ol className="steps">
           {process.map((s) => (
             <li className="step" key={s.no}>

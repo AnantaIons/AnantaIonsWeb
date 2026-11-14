@@ -17,8 +17,8 @@ export default function Services() {
     <Layout current="/services/">
       <PageHero
         eyebrow="Services"
-        title="Engineering for products that have to work in the field"
-        lede="Seven disciplines, one team that understands both sides of the pin. Each one below says what we do, how, and the failure it prevents."
+        title="Our services"
+        lede="We take on electronics and firmware work for companies, startups and students. Here is what we do and the problems it solves."
       >
         <div className="btn-row">
           <Button href={path('/start/')} size="lg">Start a project</Button>
@@ -38,7 +38,7 @@ export default function Services() {
               <h3 className="h-2" id={`${c.id}-t`}>{c.label}</h3>
               <p><strong>What.</strong> {c.what}</p>
               <p><strong>How.</strong> {c.how}</p>
-              <p><strong>Prevents.</strong> {c.solves}</p>
+              <p><strong>Fixes.</strong> {c.solves}</p>
               <ul className="tags card__foot">
                 {c.tags.map((t) => <li key={t}>{t}</li>)}
               </ul>
@@ -74,7 +74,7 @@ export default function Services() {
       </Section>
 
       <Section labelledBy="ind-title" id="industries">
-        <SectionHead eyebrow="Sectors" id="ind-title" title="Where the work runs" />
+        <SectionHead eyebrow="Industries" id="ind-title" title="Industries we work with" />
         <div className="grid grid--3">
           {industries.map(([icon, name, body]) => (
             <div className="card" key={name}>

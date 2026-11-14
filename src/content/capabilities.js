@@ -5,67 +5,53 @@
 
 export const capabilities = [
   {
-    no: '01', id: 'electronics', label: 'Electronics', span: 'wide',
-    what: 'Analog and digital circuit design, from sensing front-end to power stage.',
-    how:  'Schematic capture and review, component selection against real operating ' +
-          'envelopes, power-rail budgeting, and layout review for signal integrity.',
-    solves: 'Boards that measure accurately, power cleanly and stay debuggable once they ' +
-            'leave the bench.',
-    tags: ['Analog front-ends', 'Power architecture', 'Schematic review', 'Signal integrity'],
+    no: '01', id: 'electronics', label: 'Electronics',
+    what: 'Circuit design for sensors, power supplies and control boards.',
+    how:  'Schematic design and review, part selection, power budgeting and layout review.',
+    solves: 'Boards that read wrong values, run hot or are hard to debug once assembled.',
+    tags: ['Schematic design', 'Power supplies', 'Sensor circuits', 'Layout review'],
   },
   {
-    no: '02', id: 'embedded-systems', label: 'Embedded Systems', span: 'tall',
-    what: 'MCU and MPU system architecture across ARM, Renesas and ESP32-class parts.',
-    how:  'Partitioning behaviour across silicon, hardware and firmware before code is ' +
-          'written, then carrying the architecture through bring-up to production.',
-    solves: 'Prototypes that stall on the way to production because nothing was ' +
-            'architected for manufacture, update or field service.',
-    tags: ['ARM Cortex-M / -A', 'Renesas', 'ESP32-class', 'Bring-up', 'Architecture'],
+    no: '02', id: 'embedded-systems', label: 'Embedded Systems',
+    what: 'Microcontroller-based products on ESP32, ARM Cortex-M and Renesas chips.',
+    how:  'We pick the right chip for the job and plan how hardware and firmware split the work.',
+    solves: 'Prototypes that work on the desk but cannot be produced, updated or serviced.',
+    tags: ['ESP32 / ESP32-S3', 'ARM Cortex-M', 'Renesas', 'Board bring-up'],
   },
   {
     no: '03', id: 'firmware', label: 'Firmware',
-    what: 'Deterministic low-level software: drivers, RTOS task design, bootloaders, BSP.',
-    how:  'Bare-metal C/C++ written against the datasheet, with an update and recovery ' +
-          'path designed in from the first commit rather than bolted on.',
-    solves: 'Timing that drifts, watchdogs that fire in the field, and devices that cannot ' +
-            'be safely updated once deployed.',
-    tags: ['Bare-metal C / C++', 'FreeRTOS', 'Bootloaders', 'Drivers & BSP', 'Hard-fault forensics'],
+    what: 'Drivers, RTOS applications, bootloaders and over-the-air updates.',
+    how:  'Bare-metal C and C++, or FreeRTOS where it helps, written against the chip datasheet.',
+    solves: 'Devices that hang, reset at random, or cannot be updated after installation.',
+    tags: ['Embedded C / C++', 'FreeRTOS', 'Bootloaders', 'OTA updates', 'Debugging'],
   },
   {
     no: '04', id: 'connectivity', label: 'Connectivity',
-    what: 'Wired and wireless communication engineered for industrial reliability.',
-    how:  'Link selection against range, power budget and interference, then protocol ' +
-          'work that handles loss, retry and back-off explicitly.',
-    solves: 'Links that pass on the bench and fail across a plant floor, a basement meter ' +
-            'room or a city-scale mesh.',
-    tags: ['BLE', 'Wi-SUN', 'LoRa · Sub-GHz', 'Wi-Fi', 'CAN', 'RS-485'],
+    what: 'Wi-Fi, BLE, GSM, LoRa, CAN and RS-485 links for devices in the field.',
+    how:  'We choose the link based on range, power and site conditions, then handle dropouts and retries in firmware.',
+    solves: 'Devices that lose connection and never recover, or drain the battery trying.',
+    tags: ['Wi-Fi', 'BLE', 'GSM / SIM800', 'LoRa', 'CAN', 'RS-485'],
   },
   {
-    no: '05', id: 'intelligent-systems', label: 'Intelligent Systems', span: 'wide',
-    what: 'On-device signal processing, edge algorithms and compact inference.',
-    how:  'Filtering and feature extraction on live sensor streams, models sized to the ' +
-          'MCU and its power budget, decisions taken in microseconds on the device.',
-    solves: 'Round-trips to a server for decisions that have to be made locally — and the ' +
-            'bandwidth, latency and privacy cost that comes with them.',
-    tags: ['DSP', 'Edge AI · TinyML', 'Anomaly detection', 'Metrology', 'Real-time control'],
+    no: '05', id: 'intelligent-systems', label: 'Signal Processing & Edge AI',
+    what: 'Filtering, measurement algorithms and small ML models that run on the device.',
+    how:  'We process sensor data on the microcontroller, sized to fit its memory and power.',
+    solves: 'Products that need the cloud for every decision, or give noisy readings.',
+    tags: ['DSP', 'TinyML', 'Anomaly detection', 'Metering'],
   },
   {
-    no: '06', id: 'displays', label: 'Displays',
-    what: 'Embedded display systems and the controller and content pipeline behind them.',
-    how:  'Panel and driver integration, refresh and brightness control, multi-script ' +
-          'text rendering, and remote content update paths.',
-    solves: 'Display products that are readable, updatable and legible in the script and ' +
-            'lighting conditions where they actually run.',
-    tags: ['LED matrix', 'Panel drivers', 'Multi-script rendering', 'Remote content'],
+    no: '06', id: 'displays', label: 'LED Displays',
+    what: 'P10 LED boards and controllers, from a single panel to a networked campus system.',
+    how:  'Panel driving, brightness control, Hindi and English text, and remote updates over Wi-Fi or GSM.',
+    solves: 'Boards that flicker, show garbled text, or have to be updated by hand.',
+    tags: ['P10 / HUB12', 'Controllers', 'Hindi + English text', 'Remote updates'],
   },
   {
-    no: '07', id: 'product-engineering', label: 'Product Engineering', span: 'wide',
-    what: 'Taking a working system to something that can be built, shipped and maintained.',
-    how:  'Production firmware, design documentation, field validation and structured ' +
-          'handover — including the knowledge transfer that makes the system yours.',
-    solves: 'Engineering that only its author can maintain, and products that cannot be ' +
-            'manufactured or supported at volume.',
-    tags: ['Production firmware', 'Documentation', 'Field validation', 'Handover'],
+    no: '07', id: 'product-engineering', label: 'Product Development',
+    what: 'Taking a working prototype to a product you can sell and support.',
+    how:  'Production firmware, testing, documentation and handover to your team.',
+    solves: 'Products only one person understands, or that cannot be built in quantity.',
+    tags: ['Production firmware', 'Testing', 'Documentation', 'Support'],
   },
 ];
 
@@ -73,12 +59,13 @@ export const capabilities = [
 export const studentProgram = {
   title: 'Final-year and research projects',
   body:
-    'Engineering projects for students, built the way a product is built: a working ' +
-    'prototype, firmware you can read, and documentation you can defend in a viva.',
+    'We help engineering students build their final-year and mini projects. You get a ' +
+    'working prototype, source code and a clear explanation of how it works, so you can ' +
+    'answer questions in your viva.',
   points: [
-    'Embedded, IoT, robotics and display projects',
-    'Firmware help and debugging for projects already underway',
-    'Research paper guidance',
+    'Embedded, IoT, robotics and LED display projects',
+    'Help with code and debugging if your project is already started',
+    'Guidance on writing your research paper',
   ],
   offers: [
     ['10%', 'discount for students'],

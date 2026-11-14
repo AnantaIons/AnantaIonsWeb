@@ -48,7 +48,7 @@ export default function ContactForm() {
 
   return (
     <form className="form corner" onSubmit={send('whatsapp')} noValidate aria-labelledby="form-title">
-      <h2 className="h-2" id="form-title">Send us the brief</h2>
+      <h2 className="h-2" id="form-title">Send a message</h2>
       <div className="form__row">
         <div className="field">
           <label htmlFor="f-name">Your name</label>
@@ -66,10 +66,10 @@ export default function ContactForm() {
         </select>
       </div>
       <div className="field">
-        <label htmlFor="f-msg">What has to work?</label>
+        <label htmlFor="f-msg">Your message</label>
         <textarea id="f-msg" name="message" required value={v.message} onInput={set('message')}
           aria-describedby="f-msg-hint" />
-        <span className="field__hint" id="f-msg-hint">The problem, the hardware you have, and when you need it. A paragraph is enough.</span>
+        <span className="field__hint" id="f-msg-hint">What you need and by when. A few lines is enough.</span>
       </div>
       {error ? <p className="form__error" role="alert">{error}</p> : null}
       <div className="btn-row">
@@ -80,7 +80,7 @@ export default function ContactForm() {
           <Icon name="mail" size={18} /> Send by email
         </button>
       </div>
-      <p className="form__note">Opens WhatsApp or your email app with the message filled in — you press send.</p>
+      <p className="form__note">This opens WhatsApp or your email app with your message ready to send.</p>
     </form>
   );
 }

@@ -49,7 +49,7 @@ const html = (page) => {
 <meta property="og:image" content="${ORIGIN}${asset('/og-image.png')}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ANANTA IONS — engineering intelligence between silicon and the real world.">
+<meta property="og:image:alt" content="ANANTA IONS — electronics, firmware and LED display systems from Jaipur.">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
