@@ -4,8 +4,8 @@ import { primaryCta } from '../content/site.js';
 
 /* Small composition primitives from the Ananta Ions design system. */
 
-export function Section({ soft, dark, gold, tight, id, labelledBy, children, className = '' }) {
-  const cls = ['section', soft && 'section--soft', gold && 'section--gold', dark && 'dark', tight && 'section--tight', className]
+export function Section({ soft, dark, gold, copper, tight, id, labelledBy, children, className = '' }) {
+  const cls = ['section', soft && 'section--soft', gold && 'section--gold', copper && 'section--copper', dark && 'dark', tight && 'section--tight', className]
     .filter(Boolean).join(' ');
   return (
     <section className={cls} id={id} aria-labelledby={labelledBy}>

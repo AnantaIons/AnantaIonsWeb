@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section soft labelledBy="work-title">
+      <Section copper labelledBy="work-title">
         <SectionHead
           row eyebrow="Projects" id="work-title"
           title="Systems we have built"

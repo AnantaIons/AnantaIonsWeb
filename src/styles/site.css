@@ -561,3 +561,91 @@ body { line-height: 1.6; }
   .badge--live::before, .steps::before { animation: none; }
   .card--link:hover, .grid > .card:hover, .site-footer li a:hover, .wordmark:hover svg { transform: none; }
 }
+
+/* ============================================================================
+   WARM WHITE + COPPER — added on request.
+   Light sections move from stark white/grey to warm ivory and parchment, with
+   warm-brown body text. Copper — the colour of the Anant Node ring — joins
+   gold as a second metal: gold for the product and primary actions, copper
+   for the engineering side (services, process, projects) and for eyebrows
+   and rules on light surfaces. Copper text uses a deeper ink (#8f4a1c,
+   5.7:1+) so it stays readable; bright copper is fills and borders only.
+   ========================================================================= */
+:root {
+  --ivory: #fbf8f1;
+  --parchment: #f4eee1;
+  --card: #fffdf8;
+  --copper: #c87531;
+  --copper-bright: #e08a4a;
+  --copper-ink: #8f4a1c;
+  --copper-metal: linear-gradient(115deg, #7a3a14 0%, #a85a26 20%, #d98a4c 40%, #f6c39a 50%, #d98a4c 60%, #a85a26 80%, #8a4419 100%);
+  --body: #2b2419;
+  --mute: #5c5346;
+  --hairline: #e3d9c4;
+}
+
+/* Warm light surfaces. */
+body, .section { background-color: var(--ivory); }
+.section--soft { background-color: var(--parchment); }
+.card, .stat, .project, .form, .section--soft .card { background-color: var(--card); }
+.aside { background-color: var(--parchment); }
+.tags li { background: var(--parchment); }
+.field input, .field select, .field textarea { background: var(--card); border-color: #a99b80; }
+.h-1, .h-2, .h-3, .stat__value, .spec-list strong, .project dd { color: #17120a; }
+.card p, .step p, .project dd, .lede, .stat__caption { color: var(--body); }
+
+/* Copper eyebrows and labels on light; gold stays on dark and on the product. */
+.eyebrow { color: var(--copper-ink); }
+.dark .eyebrow { color: var(--yellow); }
+.section--gold .eyebrow { color: #000; }
+.project dt { color: var(--copper-ink); }
+
+/* Title rule: copper fading into gold. */
+.section-head .h-1::after { background: linear-gradient(90deg, var(--copper) 0%, var(--gold) 100%); width: 72px; }
+.section--gold .section-head .h-1::after { background: #000; }
+
+/* Copper for the engineering side: service icons, process, projects. */
+.grid--4 .card__icon, .grid--2 .card__icon, .grid--3 .card:not(.card--link) .card__icon { background: var(--copper) !important; color: #fff !important; }
+.grid--4 .card:hover .card__icon, .grid--2 .card:hover .card__icon { background: var(--copper-metal) !important; }
+.step__no { background: var(--copper) !important; color: #fff; }
+.steps::before { background: linear-gradient(90deg, var(--copper), var(--gold)); }
+.steps { border-top-color: var(--hairline); }
+.project { box-shadow: inset 0 5px 0 0 var(--copper); }
+.project .badge--gold { background: var(--copper-metal) !important; color: #fff; border-color: #8a4419; }
+.project .badge--gold.badge--live::before { background: #fff; }
+.tags li { border-left-color: var(--copper); }
+.grid > .card:hover, .card--link:hover { box-shadow: inset 4px 0 0 var(--copper), 0 14px 30px -18px rgba(60, 30, 5, .35); }
+.card--link:hover .card__icon { background: var(--metal) !important; }
+.prose a, .text-link { text-decoration-color: var(--copper); }
+.corner::before { background: linear-gradient(135deg, var(--copper) 0 50%, var(--gold) 50% 100%); }
+.checks li::before { background: var(--copper); }
+.stat { border-left-color: var(--copper); }
+.section--gold .stat { border-left-color: #000; }
+
+/* Copper on dark: hero corner, footer rule, logo accent. */
+.hero__copy::before { background: linear-gradient(135deg, var(--copper) 0 50%, var(--gold) 50% 100%); }
+.site-footer__grid { border-bottom-color: var(--copper); }
+.site-footer h2 { color: var(--copper-bright); }
+.masthead { border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--copper), var(--gold), var(--yellow), var(--gold), var(--copper)) 1; }
+.wordmark__accent { color: var(--copper-bright); }
+.wordmark:hover .wordmark__accent { color: var(--gold); }
+
+/* A copper-lit band: the projects section on Home sits on dark copper glow. */
+.section--copper { background: radial-gradient(70% 90% at 85% 10%, rgba(200, 117, 49, .35), transparent 65%), #17100a; color: var(--on-dark); }
+.section--copper .eyebrow { color: var(--copper-bright); }
+.section--copper .h-1, .section--copper .h-2, .section--copper .h-3 { color: #fff; }
+.section--copper .card { background: rgba(255, 255, 255, .04); border-color: rgba(224, 138, 74, .35); }
+.section--copper .card p { color: rgba(255, 255, 255, .78); }
+.section--copper .card .text-link { color: #fff; text-decoration-color: var(--copper-bright); }
+.section--copper .badge { border-color: rgba(255,255,255,.6); color: #fff; }
+.section--copper .badge--gold { color: #000; border-color: var(--gold); }
+.section--copper .btn--outline { color: #fff; border-color: var(--copper-bright); }
+.section--copper .btn--outline:hover { background: var(--copper); color: #fff; }
+.section--copper .section-head .h-1::after { background: linear-gradient(90deg, var(--copper-bright), var(--gold)); }
+.section--copper .card--link:hover { box-shadow: inset 4px 0 0 var(--copper-bright), 0 14px 30px -18px rgba(0,0,0,.8); border-color: rgba(224,138,74,.6); }
+
+/* Fixes: dark sections keep their dark ground; copper number tiles use a
+   deeper copper so white numerals pass contrast (5.5:1). */
+.section.dark { background-color: var(--black); }
+.step__no { background: #9a5222 !important; }
+.grid--4 .card__icon, .grid--2 .card__icon, .grid--3 .card:not(.card--link) .card__icon { background: #a85a26 !important; }
