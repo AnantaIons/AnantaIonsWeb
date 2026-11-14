@@ -692,3 +692,59 @@ body, .section { background-color: var(--ivory); }
 @keyframes panel-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 @keyframes item-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .masthead__panel:not([hidden]), .masthead__panel-list li { animation: none; } }
+
+/* ============================================================================
+   METAL SWAP (review) — copper becomes the primary metal, gold the second.
+   Copper now carries the product, primary buttons, bands and highlights;
+   gold carries the engineering side (services, process, projects). The LED
+   board stays amber because that is what a real P10 panel looks like.
+   ========================================================================= */
+:root {
+  /* Primary metal → copper */
+  --gold: #c87531;
+  --gold-pressed: #9a5222;
+  --gold-ink: #8f4a1c;
+  --metal: linear-gradient(115deg, #c06a2c 0%, #d9844a 18%, #f2b27c 36%, #ffe3c9 48%, #f2b27c 58%, #d9844a 78%, #c46d2f 100%);
+  --metal-text: linear-gradient(100deg, #d9844a 0%, #f2a56a 25%, #ffe2c8 45%, #f2a56a 60%, #e08a4a 80%, #d9844a 100%);
+  --yellow: #f2a56a;
+  --yellow-hot: #ffc89a;
+
+  /* Second metal → gold */
+  --copper: #d4af37;
+  --copper-bright: #e6c35a;
+  --copper-ink: #7a6012;
+  --copper-metal: linear-gradient(115deg, #b8862b 0%, #d9ab3c 20%, #f3d27a 40%, #fff3c4 50%, #f3d27a 60%, #d9ab3c 80%, #c4922f 100%);
+}
+
+/* Hard-coded tones that need swapping by hand. */
+.btn--primary { border-color: #9a5222; }
+.btn--primary:hover { background: var(--metal) !important; }
+.btn--dark { color: var(--yellow); }
+.section--gold .lede, .section--gold p { color: #1c0f05; }
+.section--gold { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.18); }
+
+/* Engineering side in gold: dark text on gold tiles. */
+.step__no { background: #d4af37 !important; color: #000; }
+.grid--4 .card__icon, .grid--2 .card__icon, .grid--3 .card:not(.card--link) .card__icon { background: #d4af37 !important; color: #000 !important; }
+.grid--4 .card:hover .card__icon, .grid--2 .card:hover .card__icon { background: var(--copper-metal) !important; }
+.project .badge--gold { color: #000; border-color: #b8862b; }
+.project .badge--gold.badge--live::before { background: #000; }
+
+/* Primary tiles in copper: dark text. */
+.card__icon, .badge--gold { color: #000 !important; }
+
+/* Glows follow the swap. */
+.hero.dark {
+  background:
+    radial-gradient(60% 70% at 78% 50%, rgba(224, 138, 74, .16), transparent 70%),
+    radial-gradient(80% 60% at 10% 0%, rgba(255, 255, 255, .04), transparent 60%),
+    var(--black);
+}
+.section--copper { background: radial-gradient(70% 90% at 85% 10%, rgba(212, 175, 55, .28), transparent 65%), #14110a; }
+.section--copper .card { border-color: rgba(212, 175, 55, .35); }
+.section--copper .card--link:hover { border-color: rgba(212, 175, 55, .6); }
+.section--copper .btn--outline:hover { background: #d4af37; color: #000; }
+.btn--on-dark { border-color: rgba(224, 138, 74, .8); }
+.btn--on-dark:hover { background: rgba(224, 138, 74, .12); }
+.demo__input { border-color: rgba(224, 138, 74, .6); }
+.demo__input:focus { box-shadow: 0 0 0 3px rgba(242, 165, 106, .25); }
