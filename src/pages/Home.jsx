@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
 import LedDemo from '../components/LedDemo.jsx';
+import LedTicker from '../components/LedTicker.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
@@ -31,6 +32,7 @@ export default function Home() {
           <LedMatrix id="hero" />
         </div>
       </section>
+      <LedTicker items={['LED NOTICE BOARDS', 'SCROLLING DISPLAYS', 'WEBSITES', 'COLLEGE PROJECTS', 'ELECTRONIC COMPONENTS', 'JAIPUR']} />
 
       <Section labelledBy="what-title">
         <SectionHead eyebrow="What we do" id="what-title" title="Four things, done well" />

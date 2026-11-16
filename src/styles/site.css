@@ -825,3 +825,70 @@ body, .section { background-color: var(--ivory); }
 .section--copper .stat { background: rgba(255,255,255,.05); border-color: rgba(212,175,55,.35); border-left-color: #d4af37; }
 .section--copper .stat__value { color: #f2a56a; background: var(--metal-text); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .section--copper .stat__caption { color: rgba(255,255,255,.78); }
+
+/* ============================================================================
+   ENHANCEMENTS — ticker, size calculator, shop search, reveal, header shrink.
+   ========================================================================= */
+
+/* LED ticker strip: bold text masked into a dot grid. */
+.ticker { position: relative; overflow: hidden; background: #050403; border-top: 1px solid #2a1a08; border-bottom: 1px solid #2a1a08; padding: 14px 0; }
+.ticker::before, .ticker::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 1; pointer-events: none; }
+.ticker::before { left: 0; background: linear-gradient(90deg, #050403, transparent); }
+.ticker::after { right: 0; background: linear-gradient(-90deg, #050403, transparent); }
+.ticker__track { display: flex; width: max-content; }
+.ticker__track span {
+  white-space: pre; font-family: var(--mono); font-weight: 900; font-size: 30px; line-height: 1; letter-spacing: .06em;
+  color: var(--amber);
+  -webkit-mask-image: radial-gradient(circle at center, #000 1.4px, transparent 1.9px);
+  -webkit-mask-size: 4px 4px;
+  mask-image: radial-gradient(circle at center, #000 1.4px, transparent 1.9px);
+  mask-size: 4px 4px;
+  filter: drop-shadow(0 0 3px rgba(255, 150, 0, .7));
+}
+.js .ticker__track { animation: ticker 38s linear infinite; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .js .ticker__track { animation: none; } }
+
+/* Size calculator. */
+.calc { display: grid; gap: 20px; padding: 28px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--radius-card); }
+.calc__inputs { display: grid; grid-template-columns: 1fr auto 1fr 1fr; gap: 14px; align-items: end; }
+.calc__x { padding-bottom: 12px; font-size: 22px; color: var(--mute); }
+@media (max-width: 520px) { .calc__inputs { grid-template-columns: 1fr 1fr; } .calc__x { display: none; } }
+.calc__result { display: grid; gap: 18px; }
+.calc__preview {
+  display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 2px; max-height: 220px; width: 100%; padding: 8px; background: #050403; border-radius: var(--radius);
+  box-shadow: 0 0 30px -8px rgba(255, 140, 0, .35);
+}
+.calc__preview span { border-radius: 1px; background: radial-gradient(circle, rgba(255,160,0,.9) 0 18%, transparent 22%) 0 0 / 6px 6px, #2b1600; }
+.calc__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 520px) { .calc__stats { grid-template-columns: 1fr; } }
+.calc__stats div { padding: 12px 14px; background: var(--parchment); border-radius: var(--radius); }
+.calc__stats dt { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--copper-ink); }
+.calc__stats dd { margin-top: 4px; font-weight: 600; color: #17120a; }
+.calc__stats strong { font-size: 20px; }
+.calc__result .btn { justify-self: start; }
+.calc__note { font-size: 13px; color: var(--mute); }
+
+/* Shop search bar. */
+.shop-bar { display: grid; gap: 16px; margin-bottom: 40px; }
+.shop-bar .shop-tabs { margin-bottom: 0; }
+.shop-search { position: relative; max-width: 560px; }
+.shop-search__icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--mute); pointer-events: none; }
+.shop-search input {
+  width: 100%; min-height: 52px; padding: 12px 16px 12px 46px; font: inherit; font-size: 16px;
+  color: #17120a; background: var(--card); border: 1px solid #a99b80; border-radius: 999px;
+}
+.shop-search input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200, 117, 49, .2); }
+.shop-empty { padding: 24px; background: var(--parchment); border-radius: var(--radius-card); font-weight: 600; }
+
+/* Reveal on scroll (added by script only to below-the-fold elements). */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease var(--d, 0ms), transform .6s ease var(--d, 0ms); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* Header shrinks after scrolling. */
+.masthead__inner { transition: min-height .2s ease; }
+.masthead.is-scrolled .masthead__inner { min-height: 54px; }
+.masthead.is-scrolled { background: rgba(11, 10, 8, .92); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+
+.calc__inputs input, .calc__inputs select { height: 48px; min-height: 48px; }

@@ -25,6 +25,31 @@ function restoreFragment() {
   target.scrollIntoView({ behavior: 'instant', block: 'start' });
 }
 
+/* Gentle reveal as sections scroll in. Only elements still below the fold
+   are hidden, and only after hydration, so nothing a visitor can already see
+   ever blinks out; without JavaScript, or with reduced motion, everything is
+   simply visible. */
+function revealOnScroll() {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els = document.querySelectorAll(
+    '.section .section-head, .section .grid > *, .section .steps > li, .section .project, ' +
+    '.section .shop-mini, .section .demo, .section .calc, .shop-cat, .shop-ask, .cta-strip .container'
+  );
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  const fold = window.innerHeight;
+  els.forEach((el, i) => {
+    if (el.getBoundingClientRect().top < fold) return;
+    el.classList.add('reveal');
+    el.style.setProperty('--d', `${(i % 4) * 70}ms`);
+    io.observe(el);
+  });
+}
+
 export default function mount(Page) {
   document.documentElement.classList.add('js');
   document.documentElement.classList.remove('no-js');
@@ -37,4 +62,5 @@ export default function mount(Page) {
   if (window.location.hash) {
     requestAnimationFrame(() => requestAnimationFrame(restoreFragment));
   }
+  requestAnimationFrame(() => requestAnimationFrame(revealOnScroll));
 }

@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
 import LedDemo from '../components/LedDemo.jsx';
+import SizeCalculator from '../components/SizeCalculator.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { displayTypes, displayUses } from '../content/capabilities.js';
@@ -31,7 +32,7 @@ export default function Displays() {
             </p>
             <div className="btn-row">
               <Button href={path('/start/')} size="lg">Get a quote</Button>
-              <Button href="#try" variant="on-dark" size="lg">Try the demo</Button>
+              <Button href="#size" variant="on-dark" size="lg">Size calculator</Button>
             </div>
           </div>
           <LedMatrix id="hero" lines={[{ text: 'NOTICE · EXAM HALL 3 OPENS 10 AM · ', scroll: true }, { text: 'TIMETABLE' }, { text: 'ALERTS' }]} />
@@ -62,6 +63,20 @@ export default function Displays() {
             </p>
           </div>
           <LedDemo />
+        </div>
+      </Section>
+
+      <Section soft labelledBy="calc-title" id="size">
+        <div className="demo-grid">
+          <div>
+            <span className="eyebrow">Size calculator</span>
+            <h2 className="h-1" id="calc-title">How big a board do you need?</h2>
+            <p className="lede" style={{ marginTop: '16px' }}>
+              Enter the space you have. We work out how many P10 panels fit, and you can send the
+              size straight to us for a quote.
+            </p>
+          </div>
+          <SizeCalculator />
         </div>
       </Section>
 
