@@ -6,6 +6,7 @@ import Displays from '../pages/Displays.jsx';
 import Websites from '../pages/Websites.jsx';
 import CollegeProjects from '../pages/CollegeProjects.jsx';
 import Shop from '../pages/Shop.jsx';
+import BoardGallery from '../pages/BoardGallery.jsx';
 import Start from '../pages/Start.jsx';
 
 /* Single-file preview build.
@@ -21,6 +22,7 @@ const ROUTES = {
   '/websites/': Websites,
   '/college-projects/': CollegeProjects,
   '/shop/': Shop,
+  '/displays/templates/': BoardGallery,
   '/start/': Start,
 };
 

@@ -37,6 +37,7 @@ export const contact = {
 
 export const nav = [
   { label: 'LED Displays',     href: '/displays/'         },
+  { label: 'Board Gallery',    href: '/displays/templates/' },
   { label: 'Websites',         href: '/websites/'         },
   { label: 'College Projects', href: '/college-projects/' },
   { label: 'Shop',             href: '/shop/'             },

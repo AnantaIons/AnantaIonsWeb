@@ -41,6 +41,14 @@ export const pages = [
     priority: '1.0',
   },
   {
+    key: 'led-templates', route: '/displays/templates/', file: 'displays/templates/index.html', component: 'BoardGallery',
+    title: 'LED board gallery — sizes and ad templates | ANANTA IONS',
+    description:
+      'Shop signs, sale offers, token displays, school notices and temple timings on real ' +
+      'P10 board sizes, in four LED colours and four text sizes.',
+    priority: '0.9',
+  },
+  {
     key: 'websites', route: '/websites/', file: 'websites/index.html', component: 'Websites',
     title: 'Websites for shops, schools and small businesses | ANANTA IONS',
     description:

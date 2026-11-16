@@ -7,7 +7,7 @@
    is in the prerendered HTML, so it shows without JavaScript; with JavaScript
    the message scrolls one LED column per step, never between LEDs. */
 
-const FONT = {
+export const FONT = {
   A: ['01110','10001','10001','11111','10001','10001','10001'],
   B: ['11110','10001','10001','11110','10001','10001','11110'],
   H: ['10001','10001','10001','11111','10001','10001','10001'],
@@ -60,7 +60,29 @@ const FONT = {
   '-': ['00000','00000','00000','01110','00000','00000','00000'],
   '·': ['00000','00000','00000','00110','00110','00000','00000'],
   ' ': ['00000','00000','00000','00000','00000','00000','00000'],
+  '%': ['11001','11010','00010','00100','01000','01011','10011'],
+  '₹': ['11111','00010','11111','00100','01000','00110','00011'],
+  '*': ['00000','10101','01110','11111','01110','10101','00000'],
+  '=': ['00000','00000','11111','00000','11111','00000','00000'],
+  '"': ['01010','01010','00000','00000','00000','00000','00000'],
 };
+
+/* Glyph path at any scale: each font pixel becomes a scale × scale block of
+   LEDs. Exported for the gallery boards. */
+export function textPath(text, x0, top, scale = 1) {
+  const adv = 6 * scale;
+  let d = '';
+  [...text].forEach((ch, i) => {
+    const g = FONT[ch] || FONT[ch.toUpperCase()] || FONT[' '];
+    g.forEach((row, y) => {
+      for (let x = 0; x < 5; x++) {
+        if (row[x] === '1') d += `M${x0 + i * adv + x * scale} ${top + y * scale}h${scale}v${scale}h-${scale}z`;
+      }
+    });
+  });
+  return d;
+}
+export const textWidth = (text, scale = 1) => [...text].length * 6 * scale - scale;
 
 const COLS = 128;            // four P10 panels wide
 const SCALE = 2;             // each glyph pixel = 2 × 2 LEDs

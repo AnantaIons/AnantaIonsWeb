@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-16T12:44:31.579Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-16T13:04:07.641Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -38,6 +38,27 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  title present and <= 70 chars  58
   PASS  meta description 70–200 chars  133
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/displays/
+  PASS  open graph complete
+  PASS  page advertises absolute URLs to verify  9
+  PASS  every advertised URL resolves
+  PASS  JSON-LD graph present
+  PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
+  PASS  skip link is focusable
+
+ /displays/templates/
+  PASS  axe (desktop)
+  PASS  axe (390px)
+  PASS  exactly one h1  found 1
+  PASS  heading levels never skip
+  PASS  landmarks present
+  PASS  every image has alt  0 missing
+  PASS  skip link present
+  PASS  html lang set
+  PASS  title present and <= 70 chars  56
+  PASS  meta description 70–200 chars  140
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/displays/templates/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -173,8 +194,9 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  3385 chars (min 500), 0 hidden
-  PASS  /displays/ readable without JS  3561 chars (min 500), 0 hidden
+  PASS  / readable without JS  3399 chars (min 500), 0 hidden
+  PASS  /displays/ readable without JS  3583 chars (min 500), 0 hidden
+  PASS  /displays/templates/ readable without JS  2935 chars (min 500), 0 hidden
   PASS  /websites/ readable without JS  1465 chars (min 500), 0 hidden
   PASS  /college-projects/ readable without JS  2179 chars (min 500), 0 hidden
   PASS  /shop/ readable without JS  1470 chars (min 500), 0 hidden
@@ -182,10 +204,10 @@ WITHOUT JAVASCRIPT
   PASS  /404.html readable without JS  302 chars (min 200), 0 hidden
 
 WEIGHT
-  PASS  weight budget found assets to measure  7 files
-  PASS  both JS and CSS were measured  js 45890 B, css 27622 B
-  PASS  first-load JS under 120 kB  44.8 kB
-  PASS  CSS under 60 kB  27.0 kB
+  PASS  weight budget found assets to measure  8 files
+  PASS  both JS and CSS were measured  js 50358 B, css 33097 B
+  PASS  first-load JS under 120 kB  49.2 kB
+  PASS  CSS under 60 kB  32.3 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 

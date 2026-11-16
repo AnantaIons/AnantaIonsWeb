@@ -4,10 +4,11 @@ import Displays from './pages/Displays.jsx';
 import Websites from './pages/Websites.jsx';
 import CollegeProjects from './pages/CollegeProjects.jsx';
 import Shop from './pages/Shop.jsx';
+import BoardGallery from './pages/BoardGallery.jsx';
 import Start from './pages/Start.jsx';
 import NotFound from './pages/NotFound.jsx';
 
-const PAGES = { Home, Displays, Websites, CollegeProjects, Shop, Start, NotFound };
+const PAGES = { Home, Displays, BoardGallery, Websites, CollegeProjects, Shop, Start, NotFound };
 
 /** Render one page to static HTML for the prerender step. */
 export function render(componentName) {

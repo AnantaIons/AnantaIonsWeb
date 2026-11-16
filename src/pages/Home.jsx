@@ -2,6 +2,7 @@ import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
+import HeroCircuit from '../components/HeroCircuit.jsx';
 import LedDemo from '../components/LedDemo.jsx';
 import LedTicker from '../components/LedTicker.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <Layout current="/">
       <section className="hero dark" aria-labelledby="hero-title">
+        <HeroCircuit />
         <div className="container hero__grid">
           <div className="hero__copy">
             <span className="eyebrow">LED display specialists · <Icon name="pin" size={14} className="pin" />Jaipur, Rajasthan</span>
@@ -58,6 +60,7 @@ export default function Home() {
               This is how your message looks on one of our boards. Type anything, or pick an example.
             </p>
             <div className="btn-row" style={{ marginTop: '28px' }}>
+              <Button href={path('/displays/templates/')}>Board gallery</Button>
               <Button href={path('/displays/')} variant="on-dark">LED display options</Button>
             </div>
           </div>
