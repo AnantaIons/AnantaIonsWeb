@@ -44,7 +44,7 @@ export default function Displays() {
         <div className="grid grid--4">
           {displayTypes.map((d) => (
             <div className="card corner" key={d.title}>
-              <span className={`badge${d.status === 'In development' ? ' badge--gold badge--live' : ''}`}>{d.status}</span>
+              <span className={`badge ${d.status === 'In development' ? 'badge--gold badge--live' : 'badge--ok'}`}>{d.status}</span>
               <Icon name={d.icon} size={24} className="card__icon" />
               <h3 className="h-3">{d.title}</h3>
               <p>{d.body}</p>
@@ -98,7 +98,7 @@ export default function Displays() {
           <article className="project corner" key={p.id} id={p.id} aria-labelledby={`${p.id}-t`}>
             <div className="project__head">
               <div className="project__meta">
-                <span className={`badge badge--gold${p.status === 'In development' ? ' badge--live' : ''}`}>{p.status}</span>
+                <span className={`badge ${p.status === 'In development' ? 'badge--gold badge--live' : 'badge--ok'}`}>{p.status}</span>
               </div>
               <h3 className="h-1" id={`${p.id}-t`}>{p.title}</h3>
               <p className="lede">{p.summary}</p>

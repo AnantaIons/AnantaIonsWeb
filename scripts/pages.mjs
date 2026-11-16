@@ -59,7 +59,7 @@ const html = (page) => {
 <link rel="icon" href="${asset('/favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${asset('/logo.png')}">
 
-<link rel="preload" href="${asset('/fonts/inter-latin-var.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('/fonts/manrope-latin-var.woff2')}" as="font" type="font/woff2" crossorigin>
 
 <script type="application/ld+json">
 ${graph}

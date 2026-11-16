@@ -66,7 +66,7 @@ export default function CollegeProjects() {
         {examples.map((p) => (
           <article className="project corner" key={p.id} id={p.id} aria-labelledby={`${p.id}-t`}>
             <div className="project__head">
-              <div className="project__meta"><span className="badge badge--gold">{p.status}</span></div>
+              <div className="project__meta"><span className={`badge ${p.status === 'In development' ? 'badge--gold badge--live' : 'badge--ok'}`}>{p.status}</span></div>
               <h3 className="h-1" id={`${p.id}-t`}>{p.title}</h3>
               <p className="lede">{p.summary}</p>
             </div>

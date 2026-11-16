@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-16T12:04:44.261Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-16T12:44:31.579Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -153,13 +153,13 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link is focusable
 
 DEEP LINKS
-  PASS  /displays/#try lands on target  top 80
-  PASS  /displays/#order lands on target  top 80
-  PASS  /college-projects/#offer lands on target  top 80
-  PASS  /shop/#catalogue lands on target  top 80
-  PASS  /start/#contact lands on target  top 80
-  PASS  /college-projects/#gsm-remote-controller lands on target  top 80
-  PASS  /#try lands on target  top 80
+  PASS  /displays/#try lands on target  top 88
+  PASS  /displays/#order lands on target  top 88
+  PASS  /college-projects/#offer lands on target  top 88
+  PASS  /shop/#catalogue lands on target  top 88
+  PASS  /start/#contact lands on target  top 88
+  PASS  /college-projects/#gsm-remote-controller lands on target  top 88
+  PASS  /#try lands on target  top 88
 
 RESPONSIVE
   PASS  360px
@@ -183,9 +183,9 @@ WITHOUT JAVASCRIPT
 
 WEIGHT
   PASS  weight budget found assets to measure  7 files
-  PASS  both JS and CSS were measured  js 45890 B, css 38149 B
+  PASS  both JS and CSS were measured  js 45890 B, css 27622 B
   PASS  first-load JS under 120 kB  44.8 kB
-  PASS  CSS under 60 kB  37.3 kB
+  PASS  CSS under 60 kB  27.0 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 
