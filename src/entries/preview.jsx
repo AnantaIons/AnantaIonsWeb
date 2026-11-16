@@ -2,10 +2,10 @@ import { render } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import '../styles/index.css';
 import Home from '../pages/Home.jsx';
-import Products from '../pages/Products.jsx';
-import Services from '../pages/Services.jsx';
-import Projects from '../pages/Projects.jsx';
-import About from '../pages/About.jsx';
+import Displays from '../pages/Displays.jsx';
+import Websites from '../pages/Websites.jsx';
+import CollegeProjects from '../pages/CollegeProjects.jsx';
+import Shop from '../pages/Shop.jsx';
 import Start from '../pages/Start.jsx';
 
 /* Single-file preview build.
@@ -17,10 +17,10 @@ import Start from '../pages/Start.jsx';
 
 const ROUTES = {
   '/': Home,
-  '/products/': Products,
-  '/services/': Services,
-  '/projects/': Projects,
-  '/about/': About,
+  '/displays/': Displays,
+  '/websites/': Websites,
+  '/college-projects/': CollegeProjects,
+  '/shop/': Shop,
   '/start/': Start,
 };
 

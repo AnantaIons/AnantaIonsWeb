@@ -75,12 +75,13 @@ export function webPageSchema(page) {
 export function servicesSchema(capabilities) {
   return capabilities.map((c) => ({
     '@type': 'Service',
-    '@id': `${at('/services/')}#${c.id}`,
+    '@id': `${at(c.route)}#service`,
+    url: at(c.route),
     name: c.label,
     serviceType: c.label,
     description: c.what,
     provider: { '@id': ORG_ID },
-    areaServed: 'Worldwide',
+    areaServed: 'Jaipur, Rajasthan, India',
   }));
 }
 
@@ -101,6 +102,6 @@ export function graphFor(page, { capabilities } = {}) {
   const graph = [organizationSchema(), websiteSchema(), webPageSchema(page)];
   const crumbs = breadcrumbSchema(page);
   if (crumbs) graph.push(crumbs);
-  if (page.key === 'services' && capabilities) graph.push(...servicesSchema(capabilities));
+  if (page.key === 'home' && capabilities) graph.push(...servicesSchema(capabilities));
   return { '@context': 'https://schema.org', '@graph': graph };
 }

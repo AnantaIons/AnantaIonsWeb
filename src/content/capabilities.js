@@ -1,69 +1,102 @@
-/* Capabilities. Each entry answers the three questions the brief requires:
-   what we do, how we do it, what problem it solves. No claim here asserts a
-   deployment, customer or measured result — those live in projects.js and
-   must be verified before launch. */
+/* ============================================================================
+   What ANANTA IONS offers — four areas, LED displays first.
+   Each entry drives a home-page card, a nav item, and a schema.org Service.
+   ========================================================================= */
 
 export const capabilities = [
   {
-    no: '01', id: 'electronics', label: 'Electronics',
-    what: 'Circuit design for sensors, power supplies and control boards.',
-    how:  'Schematic design and review, part selection, power budgeting and layout review.',
-    solves: 'Boards that read wrong values, run hot or are hard to debug once assembled.',
-    tags: ['Schematic design', 'Power supplies', 'Sensor circuits', 'Layout review'],
+    id: 'displays', route: '/displays/', icon: 'display', label: 'LED Display Systems',
+    short: 'LED displays',
+    what: 'Custom LED notice boards and scrolling displays for schools, colleges, shops and offices — updated over Wi-Fi or by SMS.',
   },
   {
-    no: '02', id: 'embedded-systems', label: 'Embedded Systems',
-    what: 'Microcontroller-based products on ESP32, ARM Cortex-M and Renesas chips.',
-    how:  'We pick the right chip for the job and plan how hardware and firmware split the work.',
-    solves: 'Prototypes that work on the desk but cannot be produced, updated or serviced.',
-    tags: ['ESP32 / ESP32-S3', 'ARM Cortex-M', 'Renesas', 'Board bring-up'],
+    id: 'websites', route: '/websites/', icon: 'layers', label: 'Websites',
+    short: 'Websites',
+    what: 'Fast, mobile-friendly websites for shops, schools, coaching centres and small businesses, with a WhatsApp button built in.',
   },
   {
-    no: '03', id: 'firmware', label: 'Firmware',
-    what: 'Drivers, RTOS applications, bootloaders and over-the-air updates.',
-    how:  'Bare-metal C and C++, or FreeRTOS where it helps, written against the chip datasheet.',
-    solves: 'Devices that hang, reset at random, or cannot be updated after installation.',
-    tags: ['Embedded C / C++', 'FreeRTOS', 'Bootloaders', 'OTA updates', 'Debugging'],
+    id: 'college-projects', route: '/college-projects/', icon: 'book', label: 'College Projects',
+    short: 'College projects',
+    what: 'Final-year and mini projects in electronics, embedded, IoT and LED displays — working hardware, code and viva support.',
   },
   {
-    no: '04', id: 'connectivity', label: 'Connectivity',
-    what: 'Wi-Fi, BLE, GSM, LoRa, CAN and RS-485 links for devices in the field.',
-    how:  'We choose the link based on range, power and site conditions, then handle dropouts and retries in firmware.',
-    solves: 'Devices that lose connection and never recover, or drain the battery trying.',
-    tags: ['Wi-Fi', 'BLE', 'GSM / SIM800', 'LoRa', 'CAN', 'RS-485'],
-  },
-  {
-    no: '05', id: 'intelligent-systems', label: 'Signal Processing & Edge AI',
-    what: 'Filtering, measurement algorithms and small ML models that run on the device.',
-    how:  'We process sensor data on the microcontroller, sized to fit its memory and power.',
-    solves: 'Products that need the cloud for every decision, or give noisy readings.',
-    tags: ['DSP', 'TinyML', 'Anomaly detection', 'Metering'],
-  },
-  {
-    no: '06', id: 'displays', label: 'LED Displays',
-    what: 'P10 LED boards and controllers, from a single panel to a networked campus system.',
-    how:  'Panel driving, brightness control, Hindi and English text, and remote updates over Wi-Fi or GSM.',
-    solves: 'Boards that flicker, show garbled text, or have to be updated by hand.',
-    tags: ['P10 / HUB12', 'Controllers', 'Hindi + English text', 'Remote updates'],
-  },
-  {
-    no: '07', id: 'product-engineering', label: 'Product Development',
-    what: 'Taking a working prototype to a product you can sell and support.',
-    how:  'Production firmware, testing, documentation and handover to your team.',
-    solves: 'Products only one person understands, or that cannot be built in quantity.',
-    tags: ['Production firmware', 'Testing', 'Documentation', 'Support'],
+    id: 'shop', route: '/shop/', icon: 'chip', label: 'Electronic Components',
+    short: 'Components',
+    what: 'P10 LED modules, power supplies, microcontroller boards and modules. Order on WhatsApp, collect in Jaipur.',
   },
 ];
 
-/* Engineering projects for students — a stated ANANTA IONS programme. */
+/* ---------------------------------------------------------------------------
+   LED displays — what we make. Statuses are real; nothing here claims
+   installations or customers.
+   ------------------------------------------------------------------------- */
+export const displayTypes = [
+  {
+    icon: 'display', title: 'Custom LED notice boards',
+    body: 'Single-colour LED boards made to the size you need, from a single panel to a full wall.',
+    status: 'Made to order',
+  },
+  {
+    icon: 'broadcast', title: 'SMS-updated boards',
+    body: 'Change the message by sending an SMS from an approved number. Works where there is no Wi-Fi.',
+    status: 'Built',
+  },
+  {
+    icon: 'network', title: 'Wi-Fi boards',
+    body: 'Update the board from your phone or computer over Wi-Fi. No USB stick, no ladder.',
+    status: 'In development',
+  },
+  {
+    icon: 'layers', title: 'Campus display network',
+    body: 'Every board on a campus run from one dashboard, with schedules and emergency alerts.',
+    status: 'In development',
+  },
+];
+
+export const displayUses = [
+  ['Schools & colleges', 'Notices, timetables, exam halls, gates'],
+  ['Shops & showrooms', 'Offers, timings, scrolling shop name'],
+  ['Offices & hospitals', 'Token numbers, directions, announcements'],
+  ['Temples & events', 'Aarti timings, event schedules, welcome messages'],
+];
+
+/* ---------------------------------------------------------------------------
+   Websites.
+   ------------------------------------------------------------------------- */
+export const websiteKinds = [
+  { icon: 'chip', title: 'Shop & business websites', body: 'Your products, services, timings and location on one clean site, with a WhatsApp button so customers can message you directly.' },
+  { icon: 'book', title: 'School & coaching websites', body: 'Courses, faculty, notices, results and admissions enquiries — easy for parents to find on a phone.' },
+  { icon: 'signal', title: 'Landing pages', body: 'A single focused page for a launch, an event or an ad campaign.' },
+];
+
+export const websiteIncludes = [
+  'Works on every phone, tablet and computer',
+  'Loads fast, even on slow mobile data',
+  'WhatsApp and call buttons on every page',
+  'Set up for Google search and Google Maps',
+  'Hosting and your own domain name set up for you',
+  'Simple to update later — or we update it for you',
+];
+
+/* ---------------------------------------------------------------------------
+   College projects — a stated programme.
+   ------------------------------------------------------------------------- */
 export const studentProgram = {
-  title: 'Final-year and research projects',
+  title: 'Final-year and mini projects',
   body:
-    'We help engineering students build their final-year and mini projects. You get a ' +
-    'working prototype, source code and a clear explanation of how it works, so you can ' +
-    'answer questions in your viva.',
+    'We help engineering and diploma students build projects that actually work. You get ' +
+    'working hardware, the source code and a clear explanation, so you can answer ' +
+    'questions confidently in your viva.',
+  areas: [
+    ['display', 'LED display projects', 'Scrolling notice boards, SMS boards, Wi-Fi boards'],
+    ['broadcast', 'GSM & IoT projects', 'Control and monitor devices by SMS, call or app'],
+    ['chip', 'Embedded projects', 'Arduino, ESP32 and microcontroller-based systems'],
+    ['power', 'Electronics projects', 'Sensors, power circuits and automation'],
+  ],
   points: [
-    'Embedded, IoT, robotics and LED display projects',
+    'Working project with source code',
+    'Circuit diagram and report support',
+    'Explanation so you can answer viva questions',
     'Help with code and debugging if your project is already started',
     'Guidance on writing your research paper',
   ],

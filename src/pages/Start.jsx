@@ -11,7 +11,7 @@ export default function Start() {
       <PageHero
         eyebrow="Contact"
         title="Contact us"
-        lede="Tell us about your project in a few lines.."
+        lede="LED display boards, websites, college projects or components — tell us what you need in a few lines."
       />
 
       <Section tight labelledBy="form-title">

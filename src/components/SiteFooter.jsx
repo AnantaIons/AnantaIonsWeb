@@ -1,11 +1,12 @@
 import Mark from './Mark.jsx';
 import Icon from './Icon.jsx';
+import WhatsAppFab from './WhatsAppFab.jsx';
 import { path } from '../lib/paths.js';
 import { site, contact } from '../content/site.js';
 
 const COLS = [
-  { heading: 'Company', links: [['Products', '/products/'], ['Services', '/services/'], ['Projects', '/projects/'], ['About', '/about/']] },
-  { heading: 'Work with us', links: [['Start a project', '/start/'], ['Student projects', '/services/#students'], ['Display pilots', '/products/#pilot']] },
+  { heading: 'What we do', links: [['LED Displays', '/displays/'], ['Websites', '/websites/'], ['College Projects', '/college-projects/'], ['Shop', '/shop/']] },
+  { heading: 'Quick links', links: [['Try the LED demo', '/displays/#try'], ['Student discount', '/college-projects/#offer'], ['Component list', '/shop/#catalogue'], ['Contact', '/start/']] },
 ];
 
 export default function SiteFooter() {
@@ -47,6 +48,7 @@ export default function SiteFooter() {
           <span>{site.discipline}</span>
         </div>
       </div>
+      <WhatsAppFab />
     </footer>
   );
 }

@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-14T12:52:42.011Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-16T11:58:56.904Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -14,51 +14,9 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  56
-  PASS  meta description 70–200 chars  140
+  PASS  title present and <= 70 chars  63
+  PASS  meta description 70–200 chars  137
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/
-  PASS  open graph complete
-  PASS  page advertises absolute URLs to verify  8
-  PASS  every advertised URL resolves
-  PASS  JSON-LD graph present
-  PASS  no console errors
-  PASS  no duplicate ids
-  PASS  no illegible SVG type
-  PASS  skip link is focusable
-
- /products/
-  PASS  axe (desktop)
-  PASS  axe (390px)
-  PASS  exactly one h1  found 1
-  PASS  heading levels never skip
-  PASS  landmarks present
-  PASS  every image has alt  0 missing
-  PASS  skip link present
-  PASS  html lang set
-  PASS  title present and <= 70 chars  56
-  PASS  meta description 70–200 chars  145
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/products/
-  PASS  open graph complete
-  PASS  page advertises absolute URLs to verify  9
-  PASS  every advertised URL resolves
-  PASS  JSON-LD graph present
-  PASS  no console errors
-  PASS  no duplicate ids
-  PASS  no illegible SVG type
-  PASS  skip link is focusable
-
- /services/
-  PASS  axe (desktop)
-  PASS  axe (390px)
-  PASS  exactly one h1  found 1
-  PASS  heading levels never skip
-  PASS  landmarks present
-  PASS  every image has alt  0 missing
-  PASS  skip link present
-  PASS  html lang set
-  PASS  title present and <= 70 chars  69
-  PASS  meta description 70–200 chars  115
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/services/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  16
   PASS  every advertised URL resolves
@@ -68,7 +26,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  no illegible SVG type
   PASS  skip link is focusable
 
- /projects/
+ /displays/
   PASS  axe (desktop)
   PASS  axe (390px)
   PASS  exactly one h1  found 1
@@ -77,9 +35,9 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  22
-  PASS  meta description 70–200 chars  144
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/projects/
+  PASS  title present and <= 70 chars  58
+  PASS  meta description 70–200 chars  133
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/displays/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -89,7 +47,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  no illegible SVG type
   PASS  skip link is focusable
 
- /about/
+ /websites/
   PASS  axe (desktop)
   PASS  axe (390px)
   PASS  exactly one h1  found 1
@@ -98,9 +56,51 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  19
-  PASS  meta description 70–200 chars  133
-  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/about/
+  PASS  title present and <= 70 chars  62
+  PASS  meta description 70–200 chars  121
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/websites/
+  PASS  open graph complete
+  PASS  page advertises absolute URLs to verify  9
+  PASS  every advertised URL resolves
+  PASS  JSON-LD graph present
+  PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
+  PASS  skip link is focusable
+
+ /college-projects/
+  PASS  axe (desktop)
+  PASS  axe (390px)
+  PASS  exactly one h1  found 1
+  PASS  heading levels never skip
+  PASS  landmarks present
+  PASS  every image has alt  0 missing
+  PASS  skip link present
+  PASS  html lang set
+  PASS  title present and <= 70 chars  63
+  PASS  meta description 70–200 chars  122
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/college-projects/
+  PASS  open graph complete
+  PASS  page advertises absolute URLs to verify  9
+  PASS  every advertised URL resolves
+  PASS  JSON-LD graph present
+  PASS  no console errors
+  PASS  no duplicate ids
+  PASS  no illegible SVG type
+  PASS  skip link is focusable
+
+ /shop/
+  PASS  axe (desktop)
+  PASS  axe (390px)
+  PASS  exactly one h1  found 1
+  PASS  heading levels never skip
+  PASS  landmarks present
+  PASS  every image has alt  0 missing
+  PASS  skip link present
+  PASS  html lang set
+  PASS  title present and <= 70 chars  58
+  PASS  meta description 70–200 chars  115
+  PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/shop/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
   PASS  every advertised URL resolves
@@ -120,7 +120,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link present
   PASS  html lang set
   PASS  title present and <= 70 chars  21
-  PASS  meta description 70–200 chars  120
+  PASS  meta description 70–200 chars  119
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/start/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  8
@@ -141,7 +141,7 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link present
   PASS  html lang set
   PASS  title present and <= 70 chars  28
-  PASS  meta description 70–200 chars  106
+  PASS  meta description 70–200 chars  118
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/404.html
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -153,13 +153,13 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link is focusable
 
 DEEP LINKS
-  PASS  /products/#try lands on target  top 80
-  PASS  /services/#students lands on target  top 80
-  PASS  /services/#connectivity lands on target  top 80
-  PASS  /about/#principles lands on target  top 80
+  PASS  /displays/#try lands on target  top 80
+  PASS  /displays/#order lands on target  top 80
+  PASS  /college-projects/#offer lands on target  top 80
+  PASS  /shop/#catalogue lands on target  top 80
   PASS  /start/#contact lands on target  top 80
-  PASS  /projects/#gsm-remote-controller lands on target  top 80
-  PASS  /#process lands on target  top 80
+  PASS  /college-projects/#gsm-remote-controller lands on target  top 80
+  PASS  /#try lands on target  top 80
 
 RESPONSIVE
   PASS  360px
@@ -173,19 +173,19 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  2868 chars (min 500), 0 hidden
-  PASS  /products/ readable without JS  2128 chars (min 500), 0 hidden
-  PASS  /services/ readable without JS  3447 chars (min 500), 0 hidden
-  PASS  /projects/ readable without JS  1362 chars (min 500), 0 hidden
-  PASS  /about/ readable without JS  1955 chars (min 500), 0 hidden
-  PASS  /start/ readable without JS  713 chars (min 500), 0 hidden
-  PASS  /404.html readable without JS  273 chars (min 200), 0 hidden
+  PASS  / readable without JS  3151 chars (min 500), 0 hidden
+  PASS  /displays/ readable without JS  3133 chars (min 500), 0 hidden
+  PASS  /websites/ readable without JS  1465 chars (min 500), 0 hidden
+  PASS  /college-projects/ readable without JS  2179 chars (min 500), 0 hidden
+  PASS  /shop/ readable without JS  1451 chars (min 500), 0 hidden
+  PASS  /start/ readable without JS  716 chars (min 500), 0 hidden
+  PASS  /404.html readable without JS  302 chars (min 200), 0 hidden
 
 WEIGHT
-  PASS  weight budget found assets to measure  8 files
-  PASS  both JS and CSS were measured  js 45421 B, css 30812 B
-  PASS  first-load JS under 120 kB  44.4 kB
-  PASS  CSS under 60 kB  30.1 kB
+  PASS  weight budget found assets to measure  7 files
+  PASS  both JS and CSS were measured  js 44774 B, css 34716 B
+  PASS  first-load JS under 120 kB  43.7 kB
+  PASS  CSS under 60 kB  33.9 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 

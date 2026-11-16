@@ -1,13 +1,13 @@
 import { renderToString } from 'preact-render-to-string';
 import Home from './pages/Home.jsx';
-import Products from './pages/Products.jsx';
-import Services from './pages/Services.jsx';
-import Projects from './pages/Projects.jsx';
-import About from './pages/About.jsx';
+import Displays from './pages/Displays.jsx';
+import Websites from './pages/Websites.jsx';
+import CollegeProjects from './pages/CollegeProjects.jsx';
+import Shop from './pages/Shop.jsx';
 import Start from './pages/Start.jsx';
 import NotFound from './pages/NotFound.jsx';
 
-const PAGES = { Home, Products, Services, Projects, About, Start, NotFound };
+const PAGES = { Home, Displays, Websites, CollegeProjects, Shop, Start, NotFound };
 
 /** Render one page to static HTML for the prerender step. */
 export function render(componentName) {

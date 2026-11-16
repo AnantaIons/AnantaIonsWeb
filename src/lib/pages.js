@@ -26,58 +26,58 @@ export const ORIGIN = RAW_ORIGIN.replace(
 export const pages = [
   {
     key: 'home', route: '/', file: 'index.html', component: 'Home',
-    title: 'ANANTA IONS | Electronics & Embedded Product Engineering',
+    title: 'ANANTA IONS | LED Displays, Websites & College Projects, Jaipur',
     description:
-      'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
-      'Jaipur, and is building LED notice boards for campuses.',
+      'LED display boards made to order, websites for local businesses, college projects ' +
+      'and electronic components — from ANANTA IONS in Jaipur.',
     priority: '1.0',
   },
   {
-    key: 'products', route: '/products/', file: 'products/index.html', component: 'Products',
-    title: 'LED notice boards for schools and colleges | ANANTA IONS',
+    key: 'displays', route: '/displays/', file: 'displays/index.html', component: 'Displays',
+    title: 'LED display boards in Jaipur — made to order | ANANTA IONS',
     description:
-      'LED notice boards for campuses that can all be updated from one dashboard, with ' +
-      'scheduled notices and emergency alerts. In development in Jaipur.',
+      'Custom LED notice boards and scrolling displays for schools, colleges, shops and ' +
+      'offices, updated by SMS or Wi-Fi. Try the live demo.',
     priority: '1.0',
   },
   {
-    key: 'services', route: '/services/', file: 'services/index.html', component: 'Services',
-    title: 'Services — firmware, electronics, IoT, student projects | ANANTA IONS',
+    key: 'websites', route: '/websites/', file: 'websites/index.html', component: 'Websites',
+    title: 'Websites for shops, schools and small businesses | ANANTA IONS',
     description:
-      'Firmware, circuit design, IoT, LED displays and help with engineering student ' +
-      'projects, from ANANTA IONS in Jaipur.',
+      'Fast, mobile-friendly websites with WhatsApp and call buttons, set up on your own ' +
+      'domain. Built in Jaipur by ANANTA IONS.',
     priority: '0.9',
   },
   {
-    key: 'projects', route: '/projects/', file: 'projects/index.html', component: 'Projects',
-    title: 'Projects | ANANTA IONS',
+    key: 'college-projects', route: '/college-projects/', file: 'college-projects/index.html', component: 'CollegeProjects',
+    title: 'College projects — electronics, IoT, LED displays | ANANTA IONS',
     description:
-      'Projects by ANANTA IONS: a campus LED display network, an SMS-controlled notice ' +
-      'board and a GSM remote switch, with the problem each one solves.',
-    priority: '0.8',
+      'Final-year and mini projects that work: hardware, source code and viva support. ' +
+      '10% student discount. ANANTA IONS, Jaipur.',
+    priority: '0.9',
   },
   {
-    key: 'about', route: '/about/', file: 'about/index.html', component: 'About',
-    title: 'About | ANANTA IONS',
+    key: 'shop', route: '/shop/', file: 'shop/index.html', component: 'Shop',
+    title: 'Components — P10 LED modules, ESP32, Arduino | ANANTA IONS',
     description:
-      'ANANTA IONS is a small electronics and embedded engineering company in Jaipur. ' +
-      'Who we are, what we care about and how a project runs.',
-    priority: '0.7',
+      'P10 LED modules, LED power supplies, ESP32 and Arduino boards and GSM modules. ' +
+      'Order on WhatsApp, pickup in Jaipur.',
+    priority: '0.9',
   },
   {
     key: 'start', route: '/start/', file: 'start/index.html', component: 'Start',
     title: 'Contact | ANANTA IONS',
     description:
       'Contact ANANTA IONS in Jaipur by WhatsApp, phone or email about LED displays, ' +
-      'firmware, electronics or student projects.',
-    priority: '0.9',
+      'websites, college projects or components.',
+    priority: '0.8',
   },
   {
     key: 'notfound', route: '/404.html', file: '404.html', component: 'NotFound',
     title: 'Page not found | ANANTA IONS',
     description:
-      'That page is not here. Routes back to the ANANTA IONS display system, ' +
-      'services, projects and contact page.',
+      'That page is not here. Routes back to the ANANTA IONS LED displays, websites, ' +
+      'college projects, shop and contact page.',
     priority: '0.0',
     // Not a destination: kept out of the sitemap and marked noindex.
     indexable: false,

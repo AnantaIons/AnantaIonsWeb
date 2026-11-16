@@ -11,8 +11,8 @@
 export const site = {
   name: 'ANANTA IONS',
   // The core brand idea, supplied in the brief.
-  proposition: 'Electronics, firmware and LED display systems, designed and built in Jaipur.',
-  discipline: 'Electronics & Embedded Product Engineering',
+  proposition: 'LED display systems, websites, college projects and electronic components — from Jaipur.',
+  discipline: 'LED Displays · Websites · College Projects · Components',
   description:
     'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
     'Jaipur, and is building LED notice boards for campuses.',
@@ -36,11 +36,10 @@ export const contact = {
 };
 
 export const nav = [
-  { label: 'Products',     href: '/products/'     },
-  { label: 'Services',     href: '/services/'     },
-  { label: 'Projects',     href: '/projects/'     },
-  { label: 'About',        href: '/about/'        },
-  { label: 'Contact',      href: '/start/'        },
+  { label: 'LED Displays',     href: '/displays/'         },
+  { label: 'Websites',         href: '/websites/'         },
+  { label: 'College Projects', href: '/college-projects/' },
+  { label: 'Shop',             href: '/shop/'             },
 ];
 
-export const primaryCta = { label: 'Start a project', href: '/start/' };
+export const primaryCta = { label: 'Contact us', href: '/start/' };

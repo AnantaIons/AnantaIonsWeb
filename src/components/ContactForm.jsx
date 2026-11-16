@@ -7,11 +7,10 @@ import { contact } from '../content/site.js';
    there is no confirmation screen that could lie about delivery. */
 
 const TOPICS = [
-  'Campus LED display system',
-  'Embedded firmware',
-  'Electronics / PCB',
-  'IoT and connectivity',
-  'Student or research project',
+  'LED display board',
+  'Website',
+  'College project',
+  'Buy components',
   'Something else',
 ];
 
