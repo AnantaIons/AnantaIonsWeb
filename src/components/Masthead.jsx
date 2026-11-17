@@ -3,6 +3,7 @@ import { path } from '../lib/paths.js';
 import Icon from './Icon.jsx';
 import Mark from './Mark.jsx';
 import Button from './Button.jsx';
+import QuoteBasket from './QuoteBasket.jsx';
 import { nav, primaryCta, site } from '../content/site.js';
 
 function Wordmark() {
@@ -16,6 +17,8 @@ function Wordmark() {
     </a>
   );
 }
+
+const isActive = (current, href) => !!current && (current === href || (href !== '/' && current.startsWith(href)));
 
 export default function Masthead({ current }) {
   const [open, setOpen] = useState(false);
@@ -49,7 +52,7 @@ export default function Masthead({ current }) {
         <nav className="masthead__nav" aria-label="Primary">
           <ul className="masthead__list">
             {nav.map((item) => {
-              const active = current === item.href;
+              const active = isActive(current, item.href);
               return (
                 <li key={item.href}>
                   <a
@@ -65,8 +68,11 @@ export default function Masthead({ current }) {
           </ul>
         </nav>
 
-        <div className="masthead__cta">
-          <Button href={path(primaryCta.href)} size="sm">{primaryCta.label}</Button>
+        <div className="masthead__tools">
+          <QuoteBasket />
+          <div className="masthead__cta">
+            <Button href={path(primaryCta.href)} size="sm">{primaryCta.label}</Button>
+          </div>
         </div>
 
         <button
@@ -93,7 +99,7 @@ export default function Masthead({ current }) {
               <a
                 className="masthead__panel-link"
                 href={path(item.href)}
-                aria-current={current === item.href ? 'page' : undefined}
+                aria-current={isActive(current, item.href) ? 'page' : undefined}
               >
                 <span>{item.label}</span>
                 <Icon name="arrow" size={18} />

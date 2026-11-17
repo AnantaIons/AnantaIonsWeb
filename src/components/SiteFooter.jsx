@@ -5,8 +5,8 @@ import { path } from '../lib/paths.js';
 import { site, contact } from '../content/site.js';
 
 const COLS = [
-  { heading: 'What we do', links: [['LED Displays', '/displays/'], ['Board Gallery', '/displays/templates/'], ['Websites', '/websites/'], ['College Projects', '/college-projects/'], ['Shop', '/shop/']] },
-  { heading: 'Quick links', links: [['Try the LED demo', '/displays/#try'], ['Student discount', '/college-projects/#offer'], ['Component list', '/shop/#catalogue'], ['Contact', '/start/']] },
+  { heading: 'What we do', links: [['LED Displays', '/displays/'], ['Board Gallery', '/displays/templates/'], ['Engineering', '/engineering/'], ['Websites', '/websites/'], ['College Projects', '/college-projects/'], ['Shop', '/shop/']] },
+  { heading: 'Quick links', links: [['Try the LED demo', '/displays/#try'], ['Journal', '/journal/'], ['Student discount', '/college-projects/#offer'], ['Component list', '/shop/#catalogue'], ['Contact', '/start/']] },
 ];
 
 export default function SiteFooter() {

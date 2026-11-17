@@ -23,6 +23,9 @@ export const ORIGIN = RAW_ORIGIN.replace(
   (_, scheme, host) => scheme.toLowerCase() + host.toLowerCase(),
 ).replace(/\/$/, '');
 
+import { products } from '../content/catalogue.js';
+import { articles } from '../content/journal.js';
+
 export const pages = [
   {
     key: 'home', route: '/', file: 'index.html', component: 'Home',
@@ -47,6 +50,22 @@ export const pages = [
       'Shop signs, sale offers, token displays, school notices and temple timings on real ' +
       'P10 board sizes, in four LED colours and four text sizes.',
     priority: '0.9',
+  },
+  {
+    key: 'engineering', route: '/engineering/', file: 'engineering/index.html', component: 'Engineering',
+    title: 'Embedded engineering — firmware, IoT, electronics | ANANTA IONS',
+    description:
+      'Embedded firmware, IoT connectivity, electronics and product development from Jaipur. ' +
+      'Explore an interactive circuit board and the systems we have built.',
+    priority: '0.9',
+  },
+  {
+    key: 'journal', route: '/journal/', file: 'journal/index.html', component: 'Journal',
+    title: 'Ananta Journal — LED displays, electronics and websites | ANANTA IONS',
+    description:
+      'Practical guides on LED board sizes, choosing between ESP32 and Arduino, and what a ' +
+      'small-business website really needs.',
+    priority: '0.7',
   },
   {
     key: 'websites', route: '/websites/', file: 'websites/index.html', component: 'Websites',
@@ -90,6 +109,20 @@ export const pages = [
     // Not a destination: kept out of the sitemap and marked noindex.
     indexable: false,
   },
+  ...products.map((p) => ({
+    key: `product-${p.id}`, entry: 'product', route: `/shop/${p.id}/`, file: `shop/${p.id}/index.html`,
+    component: 'Product', props: { id: p.id },
+    title: `${p.name} | Ananta Components`.slice(0, 70),
+    description: `${p.short} Specifications, documents and quote on WhatsApp — ANANTA IONS, Jaipur.`.slice(0, 160),
+    priority: '0.6',
+  })),
+  ...articles.map((a) => ({
+    key: `article-${a.slug}`, entry: 'article', route: `/journal/${a.slug}/`, file: `journal/${a.slug}/index.html`,
+    component: 'Article', props: { slug: a.slug },
+    title: `${a.title} | Ananta Journal`.slice(0, 70),
+    description: a.dek.slice(0, 160),
+    priority: '0.6',
+  })),
 ];
 
 export const pageByKey = (key) => pages.find((p) => p.key === key);

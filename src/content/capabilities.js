@@ -15,6 +15,11 @@ export const capabilities = [
     what: 'Fast, mobile-friendly websites for shops, schools, coaching centres and small businesses, with a WhatsApp button built in.',
   },
   {
+    id: 'engineering', route: '/engineering/', icon: 'cpu', label: 'Embedded Engineering',
+    short: 'Engineering',
+    what: 'Firmware, IoT connectivity, electronics and product development for businesses and startups.',
+  },
+  {
     id: 'college-projects', route: '/college-projects/', icon: 'book', label: 'College Projects',
     short: 'College projects',
     what: 'Final-year and mini projects in electronics, embedded, IoT and LED displays — working hardware, code and viva support.',

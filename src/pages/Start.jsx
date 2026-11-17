@@ -1,6 +1,6 @@
 import Layout from '../components/Layout.jsx';
 import Icon from '../components/Icon.jsx';
-import ContactForm from '../components/ContactForm.jsx';
+import EnquiryWizard from '../components/EnquiryWizard.jsx';
 import { Section, PageHero } from '../components/Ui.jsx';
 import { contact } from '../content/site.js';
 
@@ -10,13 +10,13 @@ export default function Start() {
     <Layout current="/start/">
       <PageHero
         eyebrow="Contact"
-        title="Contact us"
-        lede="LED display boards, websites, college projects or components — tell us what you need in a few lines."
+        title="Tell us what you want to build"
+        lede="Five quick steps — or skip the form and call or WhatsApp us directly."
       />
 
       <Section tight labelledBy="form-title">
         <div className="contact-grid">
-          <ContactForm />
+          <EnquiryWizard />
 
           <aside className="aside corner" id="contact" aria-labelledby="direct-title">
             <h2 className="h-2" id="direct-title">Or reach us directly</h2>

@@ -31,7 +31,7 @@ const html = (page) => {
      even though its route has a segment. */
   const depth = '../'.repeat(page.file.split('/').length - 1);
   return `<!doctype html>
-<html lang="en" class="no-js" data-page="${page.key}">
+<html lang="en" class="no-js" data-page="${page.key}"${page.props ? ` data-props='${JSON.stringify(page.props).replace(/'/g, "&#39;")}'` : ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +67,7 @@ ${graph}
 </head>
 <body>
 <div id="root"><!--app--></div>
-<script type="module" src="${depth}src/entries/${page.key}.jsx"></script>
+<script type="module" src="${depth}src/entries/${page.entry || page.key}.jsx"></script>
 </body>
 </html>
 `;

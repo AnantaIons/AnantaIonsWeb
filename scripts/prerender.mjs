@@ -37,7 +37,7 @@ for (const page of pages) {
   if (!shell.includes('<!--app-->')) {
     throw new Error(`prerender: no <!--app--> marker in ${page.file}`);
   }
-  const markup = render(page.component);
+  const markup = render(page.component, page.props || {});
   await writeFile(file, shell.replace('<!--app-->', markup), 'utf8');
   injected += 1;
   console.log(`prerender: ${page.file}  ${(markup.length / 1024).toFixed(1)} kB of HTML`);

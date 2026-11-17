@@ -56,8 +56,10 @@ export default function mount(Page) {
   const root = document.getElementById('root');
   if (!root) return;
   // Prerendered markup is hydrated; an empty root (dev server) is rendered.
-  if (root.firstElementChild) hydrate(<Page />, root);
-  else render(<Page />, root);
+  let props = {};
+  try { props = JSON.parse(document.documentElement.dataset.props || '{}'); } catch { props = {}; }
+  if (root.firstElementChild) hydrate(<Page {...props} />, root);
+  else render(<Page {...props} />, root);
 
   if (window.location.hash) {
     requestAnimationFrame(() => requestAnimationFrame(restoreFragment));
