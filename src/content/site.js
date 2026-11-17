@@ -11,7 +11,7 @@
 export const site = {
   name: 'ANANTA IONS',
   // The core brand idea, supplied in the brief.
-  proposition: 'LED display systems, websites, college projects and electronic components — from Jaipur.',
+  proposition: 'LED displays, websites, embedded engineering and electronic components — from Jaipur.',
   discipline: 'Displays · Websites · Engineering · Components',
   description:
     'ANANTA IONS designs electronics and firmware for companies, startups and students in ' +
