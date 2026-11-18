@@ -3,6 +3,7 @@
    Runs before `vite build`. */
 
 import { mkdir, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pages, ORIGIN } from '../src/lib/pages.js';
@@ -19,6 +20,9 @@ const BASE = process.env.BASE_PATH || '/';
    robots.txt disallows everything. Flip it for the real launch, once the
    placeholder projects are replaced and the intake form submits. */
 const INDEXABLE = process.env.INDEXABLE === 'true';
+/* Time-of-day and season colour script, inlined so it runs before first paint. */
+const SKY = readFileSync(resolve(ROOT, 'scripts/sky.js'), 'utf8')
+  .replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|\s)\/\/.*$/gm, '').replace(/\n\s*/g, ' ').trim();
 const asset = (p) => `${BASE.replace(/\/$/, '')}${p}`;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -39,7 +43,8 @@ const html = (page) => {
 <meta name="description" content="${esc(page.description)}">
 <link rel="canonical" href="${url}">${!INDEXABLE || page.indexable === false ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light dark">
+<script>${SKY}</script>
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ANANTA IONS">

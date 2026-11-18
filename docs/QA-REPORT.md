@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-18T02:44:31.567Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-18T06:39:12.383Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -535,9 +535,9 @@ WITHOUT JAVASCRIPT
 
 WEIGHT
   PASS  weight budget found assets to measure  9 files
-  PASS  both JS and CSS were measured  js 76616 B, css 72399 B
+  PASS  both JS and CSS were measured  js 76616 B, css 75897 B
   PASS  first-load JS under 120 kB  74.8 kB
-  PASS  CSS under 80 kB  70.7 kB
+  PASS  CSS under 80 kB  74.1 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 

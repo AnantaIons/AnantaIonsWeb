@@ -1355,3 +1355,54 @@ body { font-family: var(--font-ui); letter-spacing: -0.003em; font-feature-setti
 .badge, .spec-chips li, .chip { color: #515154; }
 .dark .badge, .dark .spec-chips li, .tile--dark .badge { color: #D2D2D7; }
 .product-card h3 a, .product-card__title a, .card h3 a { display: inline-block; min-height: 24px; }
+
+/* ============================================================================
+   v4 — SKY CYCLE (owner request 2026-11-18: background follows the time of
+   day — warm at dawn, white at noon, warm at sunset, night blue after dark).
+   A tiny script in <head> sets --sky-0 / --sky-1 from the visitor's clock and
+   html[data-sky="day|night"]. Defaults below are noon, so without JS the site
+   is the plain light design.
+   Contrast (worst case of each mode): #636368 on #FBEDE2 5.2:1, copper on
+   #FBEDE2 4.9:1 · night #AEB6C6 on #1B2546 7.4:1, #E0915A 6.0:1.
+   ========================================================================= */
+:root { --sky-0: #FFFFFF; --sky-1: #F5F5F7; --sky-card: #FFFFFF; --sky-glass: rgba(255, 255, 255, .78); --sky-edge: rgba(0, 0, 0, .08);
+  --ink: #1D1D1F; --ink-2: #636368; --ink-accent: #A0522D; --text-secondary: #636368; --text-muted: #636368; }
+body, .section:not(.dark):not(.section--copper):not(.section--soft):not(.section--gold), .hero-v3, .hero--page.dark { background: var(--sky-0); }
+.section--soft, .section--gold, .cta-strip, .site-footer, .article-tip, .tile:not(.tile--dark),
+.section:not(.section--soft):not(.section--gold):not(.dark) :is(.card, .stat, .project, .calc, .wizard, .product-card, .gallery-card, .journal-lead, .division, .cat-tile, .showcase__tab, .pdp__buy, .shop-ask, .aside, .form) { background: var(--sky-1); }
+.masthead { background: var(--sky-glass); border-bottom-color: var(--sky-edge); }
+.masthead__panel { background: var(--sky-0); }
+.section--gold, .masthead, .site-footer, .cta-strip, .hero--page.dark { --text-secondary: var(--ink-2); --text-muted: var(--ink-2); }
+.site-footer li a, .site-footer .contact-col svg { color: var(--ink-2); }
+html, body, .section, .hero-v3, .hero--page, .masthead, .site-footer, .cta-strip, .tile, .card { transition: background-color 1.2s ease, color .6s ease; }
+
+/* Night: deep blue page, light ink. LED stages and dark bands stay near-black. */
+html[data-sky='night'] { color-scheme: dark; --sky-card: #1A2440; --sky-glass: rgba(10, 18, 34, .72); --sky-edge: rgba(255, 255, 255, .08); --ink: #F5F5F7; --ink-2: #AEB6C6; --ink-accent: #E0915A; }
+html[data-sky='night'],
+html[data-sky='night'] :is(.section--gold, .masthead, .site-footer, .cta-strip, .hero--page.dark, .tile:not(.tile--dark), .masthead__panel) {
+  color-scheme: dark;
+  --bg-canvas: var(--sky-0); --bg-surface: var(--sky-card); --bg-raised: var(--sky-card); --bg-hover: #243052;
+  --text-primary: #F5F5F7; --text-secondary: #AEB6C6; --text-muted: #AEB6C6;
+  --border: rgba(255, 255, 255, .1); --border-strong: rgba(255, 255, 255, .22);
+  --gold: #E0915A; --gold-hover: #F0A877; --gold-text: #E0915A;
+  --copper: #E0915A; --copper-text: #E0915A; --copper-soft: rgba(224, 145, 90, .12);
+  --tech: #AEB6C6; --tech-soft: #1A2440;
+  --gradient-aurum: linear-gradient(90deg, #E0915A, #E7C27A);
+  --btn-primary-bg: #F5F5F7; --btn-primary-fg: #0A1222;
+  color: #F5F5F7;
+}
+html[data-sky='night'] body { color: #F5F5F7; }
+html[data-sky='night'] :is(.masthead__link:hover, .masthead__link.is-active, .cta-strip .h-1, .site-footer h2, .site-footer .contact-col a, .site-footer li a:hover, .tile) { color: #F5F5F7; }
+html[data-sky='night'] .masthead__link.is-active::after { background: #F5F5F7; }
+html[data-sky='night'] .masthead__panel-link { border-bottom-color: rgba(255, 255, 255, .08); }
+html[data-sky='night'] :is(.badge, .spec-chips li, .chip) { background: rgba(255, 255, 255, .09); color: #D2D8E3; }
+html[data-sky='night'] .badge--gold { background: rgba(224, 145, 90, .14); color: #E0915A; }
+html[data-sky='night'] .badge--ok { background: rgba(111, 207, 151, .12); color: #6FCF97; }
+html[data-sky='night'] .point__no { color: #AEB6C6 !important; }
+html[data-sky='night'] :is(.field input, .field select, .field textarea, .shop-search input) { background: #101A2E; border-color: rgba(255, 255, 255, .18); color: #F5F5F7; }
+html[data-sky='night'] .section--soft :is(.card, .stat, .project, .calc, .wizard, .product-card, .gallery-card, .journal-lead, .division, .cat-tile, .aside, .form) { background: var(--sky-card); }
+html[data-sky='night'] :is(.section.dark, .stage, .hero:not(.hero--page), .tile--dark) { background: #05080F; }
+html[data-sky='night'] .dark :is(.card, .stat, .project, .calc, .pcb__panel, .product-card, .gallery-card, .division, .showcase__tab) { background: #0F1626 !important; }
+html[data-sky='night'] .mark-logo, html[data-sky='night'] .brand { color: #F5F5F7; }
+html[data-sky='night'] .masthead__link { color: rgba(245, 245, 247, .82); }
+html[data-sky='night'] .masthead__link:hover, html[data-sky='night'] .masthead__link.is-active { color: #F5F5F7; }
