@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design your LED board — ANANTA IONS</title>
 <link rel="icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+Devanagari:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script>/* ?show=1 : showcase mode used on the home page — one board, random layouts, no controls */
+if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('show');</script>
 <style>
+  @font-face { font-family:"Archivo Black"; src:url("fonts/archivo-black-latin.woff2") format("woff2"); font-weight:400; font-display:swap; }
+  @font-face { font-family:"Noto Sans Devanagari"; src:url("fonts/noto-sans-devanagari-700.woff2") format("woff2"); font-weight:700; font-display:swap; unicode-range:U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+  @font-face { font-family:"Noto Sans Devanagari"; src:url("fonts/noto-sans-devanagari-latin-700.woff2") format("woff2"); font-weight:700; font-display:swap; unicode-range:U+0000-00FF; }
   @font-face { font-family:"Inter var"; src:url("fonts/inter-latin-var.woff2") format("woff2"); font-weight:100 900; font-display:swap; }
   :root { --bg:#F5F5F7; --card:#FFFFFF; --line:#D2D2D7; --text:#1D1D1F; --muted:#6E6E73; --acc:#1D1D1F; --copper:#A0522D; }
   * { box-sizing:border-box; }
@@ -54,6 +56,16 @@
   .note { color:var(--muted); font-size:14px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px; }
   .msg { font-size:13px; color:var(--muted); }
   :focus-visible { outline:2px solid #0071E3; outline-offset:2px; }
+  /* showcase mode (home page) */
+  html.show, html.show body { margin:0; background:#050505; overflow:hidden; }
+  html.show .top, html.show .eyebrow, html.show h1, html.show .lede, html.show .fine, html.show .panel, html.show .note { display:none !important; }
+  html.show .wrap { max-width:none; padding:0; }
+  html.show .grid { display:block; }
+  html.show .card { display:none; padding:0; background:none; border-radius:0; }
+  html.show .card.shown { display:block; }
+  html.show .frame { padding:0; border-radius:0; background:none; }
+  html.show canvas.led { border-radius:0; }
+  html.show .row, html.show .msg, html.show .png { display:none !important; }
 </style>
 </head>
 <body>
@@ -141,6 +153,9 @@ const FH = '"Noto Sans Devanagari", sans-serif';
 const WHITE = '#ffffff', AMBER = '#ffc400', GREEN = '#00d84a', RED = '#e3191c', CYAN = '#22c8ff';
 const fields = ['name','hindi','tag','timing','phone','offer','offer2','hline','big','bigsub','services','ticker'];
 const HINDI = { hindi: true, hline: true };
+const QS = new URLSearchParams(location.search);
+const SHOW = QS.has('show');
+let SHOWN = null;
 let W = 320, H = 304;
 
 /* ---------- icons ---------- */
@@ -300,6 +315,26 @@ function iconDiamond(g, cx, cy, s, p) {
   seg([[-0.13,-0.1],[0,-0.36],[0.13,-0.1]]);
 }
 
+function iconShoe(g, cx, cy, s, p) {
+  const o = Math.max(2, s * 0.04);
+  outlineFill(g, () => {
+    g.beginPath();
+    g.moveTo(cx - s * 0.46, cy - s * 0.28); g.lineTo(cx - s * 0.16, cy - s * 0.28);
+    g.lineTo(cx - s * 0.08, cy - s * 0.06); g.quadraticCurveTo(cx + s * 0.2, cy + s * 0.02, cx + s * 0.4, cy + s * 0.1);
+    g.quadraticCurveTo(cx + s * 0.5, cy + s * 0.16, cx + s * 0.48, cy + s * 0.3);
+    g.lineTo(cx - s * 0.46, cy + s * 0.3); g.closePath();
+  }, p.icon, o);
+  g.fillStyle = WHITE; g.fillRect(cx - s * 0.46, cy + s * 0.22, s * 0.94, s * 0.08);
+  g.strokeStyle = WHITE; g.lineWidth = s * 0.035;
+  for (let i = 0; i < 3; i++) { g.beginPath(); g.moveTo(cx - s * 0.1 + i * s * 0.09, cy - s * 0.02 + i * s * 0.02); g.lineTo(cx - s * 0.02 + i * s * 0.09, cy - s * 0.1 + i * s * 0.02); g.stroke(); }
+}
+
+function iconBook(g, cx, cy, s, p) {
+  const o = Math.max(2, s * 0.04);
+  outlineFill(g, () => { g.beginPath(); g.moveTo(cx, cy - s * 0.3); g.lineTo(cx - s * 0.46, cy - s * 0.4); g.lineTo(cx - s * 0.46, cy + s * 0.32); g.lineTo(cx, cy + s * 0.42); g.closePath(); }, p.icon, o);
+  outlineFill(g, () => { g.beginPath(); g.moveTo(cx, cy - s * 0.3); g.lineTo(cx + s * 0.46, cy - s * 0.4); g.lineTo(cx + s * 0.46, cy + s * 0.32); g.lineTo(cx, cy + s * 0.42); g.closePath(); }, p.alt, o);
+}
+
 /* ---------- businesses ---------- */
 const BIZ = {
   medical: { label: 'Medical', icon: iconCross, pal: { icon: GREEN, acc: GREEN, band: '#0b3d1c', alt: CYAN, call: RED },
@@ -350,6 +385,18 @@ const BIZ = {
     d: { name: 'SONI JEWELLERS', hindi: 'सोनी ज्वेलर्स', tag: 'GOLD - SILVER - DIAMOND', timing: '10 AM - 8 PM', phone: '98XXXXXXXX',
          offer: 'LOW MAKING', offer2: 'CHARGES ON GOLD', hline: 'हॉलमार्क गहने', big: 'HALLMARK', bigsub: 'BIS CERTIFIED GOLD',
          services: 'GOLD JEWELLERY, SILVER, DIAMOND, BRIDAL SETS' } },
+  footwear: { label: 'Footwear', icon: iconShoe, pal: { icon: '#ff6a1a', acc: '#ff6a1a', band: '#4a1a06', alt: AMBER, call: '#c44a00' },
+    d: { name: 'STEP STYLE FOOTWEAR', hindi: 'स्टेप स्टाइल फुटवियर', tag: 'SHOES - SANDALS - SLIPPERS', timing: '10 AM - 9 PM', phone: '98XXXXXXXX',
+         offer: 'FLAT 30% OFF', offer2: 'ON SPORTS SHOES', hline: 'नया स्टॉक आ गया है', big: 'NEW ARRIVALS', bigsub: 'FESTIVE COLLECTION',
+         services: 'SPORTS SHOES, FORMAL SHOES, SANDALS, KIDS FOOTWEAR' } },
+  hospital: { label: 'Hospital', icon: iconCross, pal: { icon: RED, acc: RED, band: '#4a0606', alt: CYAN, call: RED },
+    d: { name: 'CITY CARE HOSPITAL', hindi: 'सिटी केयर हॉस्पिटल', tag: 'MULTI-SPECIALITY HOSPITAL', timing: 'OPD 9 AM - 2 PM', phone: '98XXXXXXXX',
+         offer: 'FREE CHECK-UP', offer2: 'EVERY SUNDAY', hline: 'आपातकालीन सेवा 24 घंटे', big: 'EMERGENCY', bigsub: 'OPEN 24 x 7',
+         services: 'EMERGENCY, OPD, PATHOLOGY, PHARMACY' } },
+  school: { label: 'School', icon: iconBook, pal: { icon: '#2f7bff', acc: '#2f7bff', band: '#0a1f4a', alt: AMBER, call: '#1f5fd6' },
+    d: { name: 'SARASWATI PUBLIC SCHOOL', hindi: 'सरस्वती पब्लिक स्कूल', tag: 'NURSERY TO CLASS 12', timing: '7:30 AM - 1:30 PM', phone: '98XXXXXXXX',
+         offer: 'ADMISSIONS OPEN', offer2: 'SESSION 2026-27', hline: 'प्रवेश प्रारंभ', big: 'ADMISSIONS', bigsub: 'NURSERY TO CLASS 12',
+         services: 'SMART CLASSES, SCIENCE LABS, SPORTS, TRANSPORT' } },
 };
 let current = 'medical';
 
@@ -714,6 +761,7 @@ const cards = templates.map(t => {
 
 function store() { try { return JSON.parse(localStorage.getItem('ledTplAll') || '{}'); } catch (e) { return {}; } }
 function persist() {
+  if (SHOW) return;
   try {
     const all = store();
     all[current] = Object.fromEntries(fields.map(f => [f, document.getElementById(f).value]));
@@ -753,6 +801,7 @@ function toLed(src, out) {
 function drawAll() {
   const d = getData(), b = BIZ[current];
   cards.forEach(c => {
+    if (SHOW && c !== SHOWN) return;
     renderFrame(c.src.getContext('2d'), c.t, d, b, FRAME, MOTION);
     toLed(c.src, c.led);
   });
@@ -903,10 +952,32 @@ function motionChanged() {
 motionEl.addEventListener('change', motionChanged);
 speedEl.addEventListener('change', motionChanged);
 
+if (SHOW) {
+  /* Showcase: a fixed board size from the URL, random business + layout every few seconds. */
+  pwEl.value = Math.max(1, Math.min(40, +QS.get('pw') || 10));
+  phEl.value = Math.max(1, Math.min(40, +QS.get('ph') || 6));
+  DIV = 'lines'; MOTION = QS.get('motion') || 'shine'; SPEED = 2;
+  const keys = QS.get('biz') && BIZ[QS.get('biz')] ? [QS.get('biz')] : Object.keys(BIZ);
+  const fixedTpl = cards.find(x => x.t.id === QS.get('tpl'));
+  const pick = () => {
+    const k = keys[Math.floor(Math.random() * keys.length)];
+    let c = SHOWN; if (fixedTpl) c = fixedTpl; else while (c === SHOWN) c = cards[Math.floor(Math.random() * cards.length)];
+    cards.forEach(x => x.card.classList.toggle('shown', x === c));
+    SHOWN = c; selectBiz(k, false); FRAME = 0; drawAll();
+    try { parent.postMessage({ ledShow: { biz: BIZ[k].label, layout: c.t.title } }, '*'); } catch (e) {}
+  };
+  SHOWN = cards[0]; cards[0].card.classList.add('shown');
+  applySize(false);
+  setMotion();
+  pick();
+  if (QS.get('every') !== '0') setInterval(pick, +QS.get('every') || 6000);
+  window.ledShowReady = true;
+} else {
 selectBiz(BIZ[store()._biz] ? store()._biz : 'medical', false);
 try { const sz = JSON.parse(localStorage.getItem('ledTplSize') || 'null'); if (sz) { pwEl.value = sz[0]; phEl.value = sz[1]; } } catch (e) {}
 applySize(false);
 setMotion();
+}
 Promise.all([
   document.fonts.load(`40px "Archivo Black"`),
   document.fonts.load(`700 40px "Noto Sans Devanagari"`, 'मेडिकल'),

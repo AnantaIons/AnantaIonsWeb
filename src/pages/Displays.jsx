@@ -5,6 +5,7 @@ import LedMatrix from '../components/LedMatrix.jsx';
 import LedDemo from '../components/LedDemo.jsx';
 import SizeCalculator from '../components/SizeCalculator.jsx';
 import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
+import AppScenes from '../components/AppScenes.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { displayTypes, displayUses } from '../content/capabilities.js';
@@ -96,6 +97,7 @@ export default function Displays() {
 
       <Section gold labelledBy="uses-title">
         <SectionHead eyebrow="Where they work" id="uses-title" title="Boards for every kind of place" />
+        <AppScenes />
         <div className="grid grid--4">
           {displayUses.map(([t, b]) => (
             <div className="stat" key={t}>

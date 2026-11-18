@@ -2,18 +2,16 @@ import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import HeroBoard from '../components/HeroBoard.jsx';
+import HeroScenes from '../components/HeroScenes.jsx';
 import LedDemo from '../components/LedDemo.jsx';
-import LedBoard from '../components/LedBoard.jsx';
 import ProductArt from '../components/ProductArt.jsx';
 import { Section } from '../components/Ui.jsx';
 import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
-import { templates } from '../content/templates.js';
 import { articles } from '../content/journal.js';
 
 
-const PICKS = ['sale', 'restaurant', 'token'].map((id) => templates.find((t) => t.id === id));
 
 export default function Home() {
   return (
@@ -25,15 +23,14 @@ export default function Home() {
           <p className="lede">LED display boards made to your size in Jaipur — and the websites, engineering and parts to go with them.</p>
           <div className="btn-row">
             <Button href={path('/start/?service=display')} size="lg">Get a quote</Button>
-            <a className="link-more" href="#experience">Try it yourself</a>
+            <a className="link-more" href="#studio">Design your board</a>
           </div>
         </div>
       </section>
 
       <section className="stage" aria-label="Product view">
         <div className="container">
-          <div className="board-real__mount" aria-hidden="true"><span /><span /></div>
-          <HeroBoard />
+          <HeroScenes />
         </div>
       </section>
 
@@ -54,23 +51,14 @@ export default function Home() {
         <div className="experience"><LedDemo /></div>
       </Section>
 
-      <Section soft labelledBy="tpl-title">
+      <Section dark labelledBy="tpl-title" id="studio">
         <div className="section-head center">
+          <p className="eyebrow">Live from our design studio</p>
           <h2 className="h-1" id="tpl-title">One display. Many ideas.</h2>
-          <p className="lede">Offers, menus, token numbers, notices — ready-made layouts on real board sizes, or design your own and download it for the controller.</p>
+          <p className="lede">Pick your business, type your shop name and offer, and get a full-colour design for your board size — ready for the controller.</p>
         </div>
-        <div className="tpl-row" aria-hidden="true">
-          {PICKS.map((t) => (
-            <figure className="tpl" key={t.id}>
-              <LedBoard id={`h-${t.id}`} panels={t.panels} items={t.items} colour={t.colour} />
-              <figcaption>{t.title}</figcaption>
-            </figure>
-          ))}
-        </div>
-        <div className="btn-row center-row">
-          <Button href={path('/displays/templates/')}>Browse the gallery</Button>
-          <a className="link-more" href={path('/display-designer.html')}>Design your own</a>
-        </div>
+        <div className="board-real__mount" aria-hidden="true"><span /><span /></div>
+        <HeroBoard />
       </Section>
 
       <Section labelledBy="price-title" id="pricing">

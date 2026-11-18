@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 
 /* A faint layer of small electronic parts — ICs, resistors, capacitors, an
    LED, a transistor, a crystal, a header and copper traces, each with its
-   reference and value (U1, R12 10k, C4 100nF …) — revealed in a soft circle
+   reference and value (U1, R12 10k, C4 100nF …), numbers, engineering
+   symbols and the ANANTA IONS mark — revealed in a soft circle
    around the mouse cursor, behind the page content.
 
    The drawing is used as a MASK, so its colour comes from CSS
@@ -26,12 +27,13 @@ const TILE = `
     <text x='100' y='176'>+5V</text><text x='4' y='160'>GND</text>
     <text x='4' y='100'>1010 0110</text><text x='150' y='96'>0x3F</text><text x='92' y='232'>3.3V</text>
     <text x='214' y='196'>2.4GHz</text><text x='120' y='126'>V = IR</text><text x='4' y='236'>f = 1/T</text>
-    <text x='84' y='150'>π</text><text x='174' y='174'>±5%</text><text x='224' y='70'>λ</text>
+    <text x='84' y='150'>π</text><text x='174' y='174'>±5%</text><text x='122' y='96'>λ</text>
   </g>
   <g font-family='Georgia,serif' font-size='11' fill='#000' stroke='none'>
     <text x='122' y='22'>Ω</text><text x='90' y='98'>Σ</text><text x='6' y='60'>∫</text><text x='176' y='112'>√2</text>
     <text x='30' y='176'>Δt</text><text x='140' y='206'>∞</text><text x='226' y='150'>µ</text><text x='218' y='236'>θ</text>
   </g>
+  <g transform='translate(212 74) scale(.24)'><path d='M60.99 26.44 A26 26 0 1 0 73.56 39.01' stroke-width='10' stroke-linecap='butt'/><circle cx='68.38' cy='31.62' r='5.6' fill='#000' stroke='none'/></g>
   <rect x='24' y='26' width='46' height='30' rx='2'/>
   <path d='M42 26a5 5 0 0 0 10 0'/>
   <path d='M30 26v-6M39 26v-6M48 26v-6M57 26v-6M66 26v-6M30 56v6M39 56v6M48 56v6M57 56v6M66 56v6'/>
