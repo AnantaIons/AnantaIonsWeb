@@ -99,14 +99,15 @@ export default function Home() {
             <p className="eyebrow">Ananta Digital</p>
             <h3 id="t-web">Websites that work on every phone.</h3>
             <div className="tile__links">
-              <a className="link-more" href={path('/websites/')}>Learn more</a>
-              <a className="link-more" href={path('/websites/#experience')}>See demos</a>
+              <a className="link-more" href={path('/websites/#work')}>See our work</a>
+              <a className="link-more" href={path('/websites/#experience')}>Templates</a>
             </div>
-            <div className="tile__art" aria-hidden="true">
+            <div className="tile__art tile__art--web" aria-hidden="true">
               <div className="device device--desktop">
-                <div className="device__bar"><i /><i /><i /><span>Demo store</span></div>
-                <div className="device__screen"><iframe src={path('/demos/commerce/')} title="Demo website preview" tabIndex={-1} /></div>
+                <div className="device__bar"><i /><i /><i /><span>kotaquantumvalley.in</span></div>
+                <img src={path('/work/kqv-home.webp')} alt="" width="1600" height="1000" loading="lazy" />
               </div>
+              <img className="tile__phone" src={path('/work/kqv-mobile.webp')} alt="" width="600" height="1299" loading="lazy" />
             </div>
           </article>
 
@@ -117,7 +118,19 @@ export default function Home() {
               <a className="link-more" href={path('/engineering/')}>Learn more</a>
               <a className="link-more" href={path('/engineering/#board')}>Explore a board</a>
             </div>
-            <div className="tile__art" aria-hidden="true"><ProductArt id="esp32-devkit" /></div>
+            <div className="tile__art tile__art--eng" aria-hidden="true">
+              <pre className="code-card"><code>
+                <span className="c-k">void</span> <span className="c-f">app_main</span>(<span className="c-k">void</span>) {'{'}{'\n'}
+                {'  '}<span className="c-f">sensor_init</span>();{'\n'}
+                {'  '}<span className="c-k">while</span> (<span className="c-n">1</span>) {'{'}{'\n'}
+                {'    '}<span className="c-k">float</span> t = <span className="c-f">sensor_read</span>();{'\n'}
+                {'    '}<span className="c-k">if</span> (t &gt; LIMIT) <span className="c-f">alarm_on</span>();{'\n'}
+                {'    '}<span className="c-f">sleep_ms</span>(<span className="c-n">500</span>);{'\n'}
+                {'  }'}{'\n'}
+                {'}'}
+              </code></pre>
+              <div className="eng-board"><ProductArt id="esp32-devkit" /></div>
+            </div>
           </article>
 
           <article className="tile tile--dark" aria-labelledby="t-cmp">
@@ -127,7 +140,11 @@ export default function Home() {
               <a className="link-more" href={path('/shop/')}>Shop parts</a>
               <a className="link-more" href={path('/shop/#kits')}>Project kits</a>
             </div>
-            <div className="tile__art" aria-hidden="true"><ProductArt id="p10-led-module" /></div>
+            <ul className="tile__art shelf" aria-label="Some of the parts we stock">
+              {[['p10-led-module', 'P10 LED module'], ['arduino-uno', 'Arduino Uno'], ['sim800-gsm', 'SIM800 GSM'], ['relay-module', 'Relay module']].map(([id, n]) => (
+                <li key={id}><a href={path(`/shop/${id}/`)}><span className="shelf__art" aria-hidden="true"><ProductArt id={id} /></span><span className="shelf__name">{n}</span></a></li>
+              ))}
+            </ul>
           </article>
 
           <article className="tile" aria-labelledby="t-col">
@@ -140,6 +157,9 @@ export default function Home() {
             <div className="tile__art tile__art--offer">
               <p className="tile__big">10%</p>
               <p>student discount, plus 10% referral commission</p>
+              <ul className="kit-chips" aria-label="Ready project kits">
+                <li>SMS notice board</li><li>Wi-Fi LED board</li><li>GSM remote switch</li><li>Wi-Fi smart switch</li>
+              </ul>
             </div>
           </article>
         </div>

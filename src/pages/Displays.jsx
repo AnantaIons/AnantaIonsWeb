@@ -2,7 +2,6 @@ import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
-import HeroCircuit from '../components/HeroCircuit.jsx';
 import LedDemo from '../components/LedDemo.jsx';
 import SizeCalculator from '../components/SizeCalculator.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
@@ -23,7 +22,6 @@ export default function Displays() {
   return (
     <Layout current="/displays/">
       <section className="hero dark" aria-labelledby="page-title">
-        <HeroCircuit />
         <div className="container hero__grid">
           <div className="hero__copy">
             <span className="eyebrow">LED display systems · Jaipur</span>

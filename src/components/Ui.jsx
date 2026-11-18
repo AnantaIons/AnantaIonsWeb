@@ -1,5 +1,4 @@
 import Button from './Button.jsx';
-import HeroCircuit from './HeroCircuit.jsx';
 import { path } from '../lib/paths.js';
 import { primaryCta } from '../content/site.js';
 
@@ -31,7 +30,6 @@ export function SectionHead({ eyebrow, title, id, lede, children, row }) {
 export function PageHero({ eyebrow, title, lede, children }) {
   return (
     <section className="hero hero--page dark" aria-labelledby="page-title">
-      <HeroCircuit />
       <div className="container">
         <div className="hero__grid">
           <div className="hero__copy">

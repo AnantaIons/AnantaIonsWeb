@@ -1,7 +1,6 @@
 import Layout from '../components/Layout.jsx';
 import Icon from '../components/Icon.jsx';
 import { Section, CtaStrip } from '../components/Ui.jsx';
-import HeroCircuit from '../components/HeroCircuit.jsx';
 import { path } from '../lib/paths.js';
 import { articleBySlug, articles } from '../content/journal.js';
 
@@ -32,7 +31,6 @@ export default function Article({ slug }) {
   return (
     <Layout current="/journal/">
       <section className="hero hero--page hero--article dark" aria-labelledby="page-title">
-        <HeroCircuit />
         <div className="container">
           <div className="hero__copy">
             <nav className="crumbs crumbs--dark" aria-label="Breadcrumb">

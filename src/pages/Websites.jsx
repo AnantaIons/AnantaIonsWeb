@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
-import HeroCircuit from '../components/HeroCircuit.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { websiteKinds, websiteIncludes } from '../content/capabilities.js';
@@ -11,7 +10,48 @@ const DEMOS = [
   { id: 'commerce', name: 'Luxury commerce', brand: 'Kesar & Clay', note: 'A calm, premium online shop: filters, product cards and a working bag.', style: 'Serif · cream & forest green' },
   { id: 'business', name: 'Modern business', brand: 'Suryansh Solar', note: 'A service company site: clear services, a live savings calculator, FAQ and enquiry form.', style: 'Sans · white & electric blue' },
   { id: 'portfolio', name: 'Digital portfolio', brand: 'Studio Ira', note: 'An editorial portfolio: masonry gallery, filters and a full-screen viewer.', style: 'Editorial · black & vermilion' },
+  { id: 'coaching', name: 'Coaching institute', brand: 'Lakshya Classes', note: 'A Kota-style coaching site: course filters, today’s timetable and a demo-class booking form.', style: 'Sans · navy & saffron' },
+  { id: 'restaurant', name: 'Restaurant', brand: 'Haveli Rasoi', note: 'A warm restaurant site: menu tabs, opening hours and table reservations.', style: 'Serif · maroon & marigold' },
+  { id: 'clinic', name: 'Clinic', brand: 'Arogya Dental', note: 'A calm clinic site: treatments, an appointment picker with live slots, and FAQs.', style: 'Rounded · white & teal' },
 ];
+
+const KQV_FACTS = [
+  ['English + हिन्दी', 'Every page has a Hindi version, one tap away.'],
+  ['Four courses', 'Quantum basics, mathematics, programming and operating systems.'],
+  ['Built-in tools', 'A quantum lab in the browser, site-wide search and a chat button.'],
+  ['Light and dark', 'Readers choose the theme that suits their eyes.'],
+];
+
+function OurWork() {
+  const img = (n) => path(`/work/${n}.webp`);
+  return (
+    <div className="work">
+      <div className="work__shots">
+        <div className="device device--desktop work__main">
+          <div className="device__bar"><i /><i /><i /><span>kotaquantumvalley.in</span></div>
+          <img src={img('kqv-home')} alt="Kota Quantum Valley home page: Think. Build. Explore." width="1600" height="1000" loading="lazy" />
+        </div>
+        <div className="work__phone"><img src={img('kqv-mobile')} alt="Kota Quantum Valley on a phone" width="600" height="1299" loading="lazy" /></div>
+      </div>
+      <div className="work__info">
+        <span className="eyebrow">An Ananta Ions initiative</span>
+        <h3 className="h-1">Kota Quantum Valley</h3>
+        <p className="lede">A free quantum-computing learning website from Kota, for students from Class 8 upwards. Designed, written and built by us.</p>
+        <dl className="work__facts">
+          {KQV_FACTS.map(([t, b]) => <div key={t}><dt>{t}</dt><dd>{b}</dd></div>)}
+        </dl>
+        <div className="btn-row">
+          <a className="btn btn--primary" href="https://kotaquantumvalley.in" target="_blank" rel="noopener">Visit the website<span className="visually-hidden"> (opens in a new tab)</span></a>
+        </div>
+      </div>
+      <div className="work__strip">
+        <figure><img src={img('kqv-courses')} alt="Courses page" width="1600" height="1000" loading="lazy" /><figcaption>Courses</figcaption></figure>
+        <figure><img src={img('kqv-hi')} alt="Hindi home page" width="1600" height="1000" loading="lazy" /><figcaption>हिन्दी version</figcaption></figure>
+        <figure><img src={img('kqv-greatminds')} alt="Great minds page" width="1600" height="1000" loading="lazy" /><figcaption>Great minds</figcaption></figure>
+      </div>
+    </div>
+  );
+}
 
 const STACK = [
   ['Fast by default', 'Pages are prerendered, so they open quickly even on slow mobile data.'],
@@ -83,23 +123,27 @@ export default function Websites() {
   return (
     <Layout current="/websites/">
       <section className="hero hero--page dark" aria-labelledby="page-title">
-        <HeroCircuit />
         <div className="container">
           <div className="hero__copy">
             <span className="eyebrow">Ananta Digital</span>
-            <h1 className="h-display" id="page-title">Websites that <span className="hl">work as hard as you do</span></h1>
+            <h1 className="h-display" id="page-title">Websites that <span className="hl">work as hard as you do.</span></h1>
             <p className="lede">For shops, schools, coaching centres and growing businesses. You are looking at our work right now — this site, its LED demos, calculator and shop were all designed and built by us.</p>
             <div className="btn-row">
-              <Button href="#experience" size="lg">Experience what we create</Button>
+              <Button href="#work" size="lg">See our work</Button>
               <Button href={path('/start/?service=website')} variant="on-dark" size="lg">Get a website quote</Button>
             </div>
           </div>
         </div>
       </section>
 
+      <Section labelledBy="work-title" id="work">
+        <SectionHead eyebrow="Our work" id="work-title" title="Real, live and in use." />
+        <OurWork />
+      </Section>
+
       <Section dark labelledBy="exp-title" id="experience" className="section--showcase">
-        <SectionHead eyebrow="Experience what we create" id="exp-title" title="Three websites, three different personalities"
-          lede="Every business deserves its own design, not a template. Try these working demos — on desktop and on a phone." />
+        <SectionHead eyebrow="Templates to start from" id="exp-title" title="Six websites, six different personalities"
+          lede="Pick a starting point and we make it yours: your name, colours, photos and content. Try each working demo on desktop and on a phone." />
         <Showcase />
       </Section>
 

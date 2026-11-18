@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Arogya Dental Care — Demo clinic site by ANANTA IONS</title>
+<script src="../demo-bar.js"></script>
+<style>
+  :root { --teal:#0E6F6A; --teal-d:#0A524E; --mint:#E6F4F2; --ink:#10302E; --mute:#4B6462; --line:#D8E8E6; --coral:#F07A5A; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 24px; }
+  header { position:sticky; top:0; z-index:5; background:rgba(255,255,255,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .bar { height:70px; display:flex; align-items:center; justify-content:space-between; }
+  .logo { font-weight:800; font-size:19px; display:flex; align-items:center; gap:10px; }
+  .logo svg { width:30px; height:30px; }
+  nav { display:flex; gap:22px; align-items:center; }
+  nav a { color:var(--mute); text-decoration:none; font-weight:600; font-size:15px; }
+  .btn { display:inline-flex; padding:13px 22px; border-radius:14px; font-weight:700; text-decoration:none; border:0; cursor:pointer; font-size:15px; }
+  .btn--teal { background:var(--teal); color:#fff; }
+  .btn--soft { background:var(--mint); color:var(--teal-d); }
+  @media (max-width:760px) { nav a:not(.btn) { display:none; } }
+  .hero { padding:64px 0; background:linear-gradient(180deg,var(--mint),#fff); }
+  .hero .wrap { display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; }
+  @media (max-width:860px) { .hero .wrap { grid-template-columns:1fr; } }
+  .pill { display:inline-flex; gap:8px; align-items:center; background:#fff; border-radius:999px; padding:6px 14px; font-size:13px; font-weight:700; color:var(--teal-d); box-shadow:0 4px 14px -8px rgba(14,111,106,.5); }
+  .pill::before { content:''; width:8px; height:8px; border-radius:50%; background:#1FA36B; }
+  h1 { font-size:clamp(38px,5.2vw,60px); line-height:1.05; letter-spacing:-.03em; margin:18px 0; }
+  h1 span { color:var(--teal); }
+  .lead { font-size:19px; color:var(--mute); max-width:44ch; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+  .visual { aspect-ratio:1; border-radius:36px; background:radial-gradient(circle at 50% 45%, #fff 0 32%, transparent 33%), linear-gradient(140deg,#BFE6E1,#E6F4F2); display:grid; place-items:center; position:relative; }
+  .visual svg { width:46%; }
+  .chip { position:absolute; background:#fff; border-radius:16px; padding:12px 16px; font-size:14px; font-weight:700; box-shadow:0 14px 30px -18px rgba(16,48,46,.5); }
+  .chip small { display:block; font-weight:500; color:var(--mute); }
+  .c1 { left:-4%; top:16%; } .c2 { right:-2%; bottom:14%; }
+  section { padding:80px 0; }
+  h2 { font-size:clamp(28px,3.6vw,42px); letter-spacing:-.03em; margin:0 0 10px; }
+  .sub { color:var(--mute); font-size:18px; margin:0 0 30px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
+  .svc { border:1px solid var(--line); border-radius:20px; padding:22px; }
+  .svc i { display:grid; place-items:center; width:44px; height:44px; border-radius:12px; background:var(--mint); color:var(--teal); font-style:normal; font-weight:800; margin-bottom:12px; }
+  .svc b { font-size:18px; display:block; } .svc p { margin:4px 0 0; color:var(--mute); font-size:15px; }
+  .book { background:var(--mint); }
+  .card { background:#fff; border-radius:24px; padding:28px; display:grid; gap:18px; }
+  .days, .slots { display:flex; gap:8px; flex-wrap:wrap; }
+  .days button, .slots button { border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:10px 14px; font:600 15px system-ui; color:var(--ink); cursor:pointer; min-width:64px; }
+  .days button small { display:block; font-weight:500; color:var(--mute); font-size:12px; }
+  .days button[aria-pressed=true], .slots button[aria-pressed=true] { background:var(--teal); border-color:var(--teal); color:#fff; }
+  .days button[aria-pressed=true] small { color:#D7F0EC; }
+  .slots button:disabled { opacity:.4; text-decoration:line-through; cursor:not-allowed; }
+  .ok { display:none; margin:0; color:#1B6E45; font-weight:700; }
+  details { border-bottom:1px solid var(--line); padding:16px 0; }
+  summary { font-weight:700; font-size:17px; cursor:pointer; }
+  details p { color:var(--mute); margin:8px 0 0; }
+  footer { background:var(--ink); color:#C5DAD7; padding:40px 0 90px; font-size:14px; }
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0E6F6A"/><path d="M10 9c2-1 4 0 6 1 2-1 4-2 6-1 2 1 2 4 1 7l-2 7c-1 2-3 1-3-1l-1-4c0-1-2-1-2 0l-1 4c0 2-2 3-3 1l-2-7c-1-3-1-6 1-7z" fill="#fff"/></svg>Arogya Dental Care</div>
+  <nav><a href="#services">Treatments</a><a href="#faq">FAQ</a><a class="btn btn--teal" href="#book">Book appointment</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="pill">Open today · 10 AM – 8 PM</span>
+    <h1>Gentle dental care for the <span>whole family.</span></h1>
+    <p class="lead">Check-ups, cleaning, fillings, braces and root canals — explained clearly before we begin, with the cost written down.</p>
+    <div class="row"><a class="btn btn--teal" href="#book">Book an appointment</a><a class="btn btn--soft" href="#services">See treatments</a></div>
+  </div>
+  <div class="visual" aria-hidden="true">
+    <svg viewBox="0 0 32 32"><path d="M10 9c2-1 4 0 6 1 2-1 4-2 6-1 2 1 2 4 1 7l-2 7c-1 2-3 1-3-1l-1-4c0-1-2-1-2 0l-1 4c0 2-2 3-3 1l-2-7c-1-3-1-6 1-7z" fill="#0E6F6A"/></svg>
+    <div class="chip c1">Same-day slots<small>Book in 30 seconds</small></div>
+    <div class="chip c2">Clear pricing<small>Written before treatment</small></div>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <h2>Treatments</h2>
+  <p class="sub">Everything most families need, under one roof.</p>
+  <div class="grid">
+    <div class="svc"><i>1</i><b>Check-up &amp; cleaning</b><p>Every six months, to catch problems early.</p></div>
+    <div class="svc"><i>2</i><b>Fillings</b><p>Tooth-coloured fillings that match your smile.</p></div>
+    <div class="svc"><i>3</i><b>Root canal</b><p>Done in comfort, usually in one or two visits.</p></div>
+    <div class="svc"><i>4</i><b>Braces &amp; aligners</b><p>Straighter teeth for children and adults.</p></div>
+  </div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+  <h2>Book an appointment</h2>
+  <p class="sub">Pick a day and a time. We'll confirm by SMS.</p>
+  <div class="card">
+    <div><strong>Day</strong><div class="days" id="days" style="margin-top:10px"></div></div>
+    <div><strong>Time</strong><div class="slots" id="slots" style="margin-top:10px"></div></div>
+    <div><button class="btn btn--teal" id="go" type="button">Confirm booking</button></div>
+    <p class="ok" id="ok" role="status"></p>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>Questions</h2>
+  <details><summary>Does a root canal hurt?</summary><p>The area is numbed first, so most people feel pressure rather than pain.</p></details>
+  <details><summary>Do you treat children?</summary><p>Yes — from their first tooth onwards, with extra time to help them feel calm.</p></details>
+  <details><summary>Can I pay by UPI?</summary><p>Yes, UPI, cards and cash are all accepted.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">Arogya Dental Care · Fictional clinic · Demo website</div></footer>
+<script>
+  var days = document.getElementById('days'), slots = document.getElementById('slots'), pick = {};
+  var names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  for (var i = 0; i < 6; i++) {
+    var d = new Date(); d.setDate(d.getDate() + i);
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-pressed', i === 0);
+    b.innerHTML = (i === 0 ? 'Today' : names[d.getDay()]) + '<small>' + d.getDate() + '/' + (d.getMonth() + 1) + '</small>';
+    b.dataset.label = (i === 0 ? 'today' : names[d.getDay()] + ' ' + d.getDate() + '/' + (d.getMonth() + 1));
+    days.appendChild(b);
+  }
+  ['10:00','11:30','1:00','4:00','5:30','7:00'].forEach(function (t, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('aria-pressed', 'false');
+    if (i === 1) b.disabled = true; slots.appendChild(b);
+  });
+  function group(el) { el.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b || b.disabled) return;
+    el.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); }); }
+  group(days); group(slots);
+  document.getElementById('go').addEventListener('click', function () {
+    var d = days.querySelector('[aria-pressed=true]'), s = slots.querySelector('[aria-pressed=true]'), ok = document.getElementById('ok');
+    ok.style.display = 'block';
+    ok.textContent = s ? 'Booked for ' + d.dataset.label + ' at ' + s.textContent + ' (demo — nothing was sent).' : 'Please pick a time.';
+  });
+</script>
+</body>
+</html>
