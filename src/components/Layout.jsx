@@ -1,3 +1,4 @@
+import CircuitSpotlight from './CircuitSpotlight.jsx';
 import Masthead from './Masthead.jsx';
 import SiteFooter from './SiteFooter.jsx';
 
@@ -7,7 +8,7 @@ export default function Layout({ current, children }) {
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <Masthead current={current} />
-      <main id="main" tabIndex={-1}>{children}</main>
+      <main id="main" tabIndex={-1}>{children}<CircuitSpotlight /></main>
       <SiteFooter />
     </>
   );

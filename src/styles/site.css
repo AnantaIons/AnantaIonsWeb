@@ -1470,3 +1470,29 @@ html[data-sky='night'] .kit-chips li { background: rgba(255, 255, 255, .08); col
 @media (max-width: 760px) { .code-card { width: 86%; font-size: 13px; } .eng-board { width: 40%; } }
 @keyframes current-flow { to { stroke-dashoffset: 0; } }
 .hero-v3, .hero--page.dark { overflow: hidden; }
+
+/* v6 — circuit spotlight (owner request 2026-11-18): small parts with their
+   reference numbers, revealed around the cursor, BEHIND the content.
+   Plain light sections are see-through over the page colour so the parts
+   show in the gaps; cards, LED stages and dark bands stay solid on top. */
+.circuit-spot {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: var(--circuit-ink, rgba(150, 73, 31, .5));
+  --mx: -999px; --my: -999px;
+  -webkit-mask-image: radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0, 0, 0, .55) 45%, transparent 75%), var(--circuit-tile);
+  mask-image: radial-gradient(200px circle at var(--mx) var(--my), #000, rgba(0, 0, 0, .55) 45%, transparent 75%), var(--circuit-tile);
+  -webkit-mask-size: auto, 240px 240px; mask-size: auto, 240px 240px;
+  -webkit-mask-repeat: no-repeat, repeat; mask-repeat: no-repeat, repeat;
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+  opacity: 0; transition: opacity 400ms ease-out;
+}
+.circuit-spot.is-on { opacity: 1; }
+:root { --circuit-ink: rgba(150, 73, 31, .75); }
+html[data-sky="night"] { --circuit-ink: rgba(224, 145, 90, .8); }
+main > :not(.circuit-spot) { position: relative; z-index: 1; }
+body { background: var(--sky-0); }
+.section:not(.dark):not(.section--soft):not(.section--gold):not(.section--copper):not(.ready) { background: transparent !important; }
+.section--soft, .section--gold { background: color-mix(in srgb, var(--sky-1) 82%, transparent) !important; }
+.hero-v3, .hero--page.dark { background: linear-gradient(180deg, color-mix(in srgb, var(--sky-glow) 62%, transparent) 0%, transparent 92%) !important; }
+.ready { background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--sky-glow) 90%, transparent) 100%) !important; }
+@media (prefers-reduced-motion: reduce), (hover: none) { .circuit-spot { display: none; } }
