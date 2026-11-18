@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop LED Display Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+Devanagari:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0f1110; --card:#181b19; --line:#2a2f2c; --text:#e8ece9; --muted:#9aa39d; --acc:#d5bd84; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, sans-serif; line-height:1.5; }
+  .wrap { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:22px; font-weight:500; margin:0 0 4px; }
+  h2 { font-size:13px; font-weight:500; color:var(--muted); margin:0 0 8px; text-transform:uppercase; letter-spacing:.06em; }
+  .sub { color:var(--muted); font-size:14px; margin:0 0 18px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+  .biz { display:flex; flex-wrap:wrap; gap:8px; }
+  .biz button { background:#0b0d0c; color:var(--text); border:1px solid var(--line); }
+  .biz button.on { background:var(--acc); color:#0a0a0a; border-color:var(--acc); }
+  .size { display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; align-items:end; }
+  @media (max-width:560px) { .size { grid-template-columns:1fr 1fr; } .size > :first-child { grid-column:1/-1; } }
+  .info { margin-top:10px; font-size:13px; color:var(--muted); }
+  .info b { color:var(--text); font-weight:500; }
+  .form { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:24px; }
+  label { font-size:12px; color:var(--muted); display:block; margin-bottom:4px; }
+  input, select { width:100%; background:#0b0d0c; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:9px 10px; font:inherit; font-size:15px; }
+  input:focus, select:focus { outline:none; border-color:var(--acc); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; }
+  .grid.wide { grid-template-columns:1fr; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; }
+  .frame { background:#2b2b2b; padding:6px; border-radius:6px; }
+  canvas.led { width:100%; display:block; background:#050505; }
+  .row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; }
+  .name { font-size:15px; font-weight:500; }
+  button { background:var(--acc); color:#0a0a0a; border:0; border-radius:8px; padding:8px 12px; font:inherit; font-size:14px; font-weight:500; cursor:pointer; }
+  button:hover { filter:brightness(1.1); }
+  .reset { background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .png { display:none; margin-top:10px; }
+  .png img { width:100%; image-rendering:pixelated; border:1px solid var(--line); }
+  .png p { font-size:12px; color:var(--muted); margin:6px 0 0; }
+  .note { color:var(--muted); font-size:13px; margin-top:28px; border-top:1px solid var(--line); padding-top:14px; }
+  .msg { font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p><a href="./" style="color:#d5bd84;text-decoration:none">← ANANTA IONS</a></p>
+  <p class="sub">Illustrative preview. Actual display appearance and controller compatibility may vary.</p>
+  <h1>Shop LED display templates</h1>
+  <p class="sub">Pick a business and screen size, edit the details, and download any design as an exact-resolution PNG, or as an animated GIF with scrolling text, for your controller software. Built for P10 panels (32 × 16 px, 32 × 16 cm each).</p>
+
+  <div class="panel">
+    <h2>Business</h2>
+    <div class="biz" id="biz"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Screen size</h2>
+    <div class="size">
+      <div><label>Preset</label>
+        <select id="preset">
+          <option value="3x1">3 × 1 panels — small strip (~3 × 0.5 ft)</option>
+          <option value="4x1">4 × 1 panels — shop strip (~4 × 0.5 ft)</option>
+          <option value="6x1">6 × 1 panels — long strip (~6 × 0.5 ft)</option>
+          <option value="4x2">4 × 2 panels (~4 × 1 ft)</option>
+          <option value="6x2">6 × 2 panels (~6 × 1 ft)</option>
+          <option value="6x3">6 × 3 panels (~6 × 1.5 ft)</option>
+          <option value="8x4">8 × 4 panels (~8.5 × 2 ft)</option>
+          <option value="10x6">10 × 6 panels (~10.5 × 3 ft)</option>
+          <option value="6x10">6 × 10 panels — portrait (~6.3 × 5.2 ft)</option>
+          <option value="10x10">10 × 10 panels (~10.5 × 5.2 ft)</option>
+          <option value="10x19">10 × 19 panels — square (~10 × 10 ft)</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div><label>Panels across</label><input id="pw" type="number" min="1" max="40" value="10"></div>
+      <div><label>Panels down</label><input id="ph" type="number" min="1" max="40" value="19"></div>
+    </div>
+    <div class="info" id="info"></div>
+    <div class="size" style="margin-top:12px">
+      <div><label>Divider lines</label>
+        <select id="div">
+          <option value="off">Off</option>
+          <option value="lines" selected>Lines between text rows</option>
+          <option value="frame">Lines + outer frame</option>
+        </select></div>
+      <div><label>Motion</label>
+        <select id="motion">
+          <option value="off">Off (still)</option>
+          <option value="ticker" selected>Scrolling ticker</option>
+          <option value="shine">Ticker + shine</option>
+        </select></div>
+      <div><label>Scroll speed</label>
+        <select id="speed">
+          <option value="1">Slow</option>
+          <option value="2" selected>Normal</option>
+          <option value="3">Fast</option>
+        </select></div>
+    </div>
+  </div>
+
+  <div class="panel form" id="form">
+    <div><label>Shop name</label><input id="name"></div>
+    <div><label>Shop name (Hindi)</label><input id="hindi"></div>
+    <div><label>Tagline</label><input id="tag"></div>
+    <div><label>Timing</label><input id="timing"></div>
+    <div><label>Phone</label><input id="phone"></div>
+    <div><label>Offer (big text)</label><input id="offer"></div>
+    <div><label>Offer line 2</label><input id="offer2"></div>
+    <div><label>Hindi line</label><input id="hline"></div>
+    <div><label>Highlight (big text)</label><input id="big"></div>
+    <div><label>Highlight line 2</label><input id="bigsub"></div>
+    <div style="grid-column:1/-1"><label>Items / services (comma separated, up to 4)</label><input id="services"></div>
+    <div style="grid-column:1/-1"><label>Scrolling text (leave blank to scroll name, tagline, timing and phone)</label><input id="ticker" placeholder="e.g. DIWALI OFFER - 20% OFF ON ALL ITEMS"></div>
+    <div style="grid-column:1/-1"><button type="button" class="reset" id="reset">Reset to sample text</button></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <p class="note">Tip: load the PNG into your controller's software (HD2020 / NovaLCT / LED Art) as an image program at the same resolution shown above, and add scrolling text or transitions there. On 1–2 row strips, put each design in its own program and let the controller rotate them.</p>
+</div>
+
+<script>
+const F = '"Archivo Black", Arial Black, Arial, sans-serif';
+const FH = '"Noto Sans Devanagari", sans-serif';
+const WHITE = '#ffffff', AMBER = '#ffc400', GREEN = '#00d84a', RED = '#e3191c', CYAN = '#22c8ff';
+const fields = ['name','hindi','tag','timing','phone','offer','offer2','hline','big','bigsub','services','ticker'];
+const HINDI = { hindi: true, hline: true };
+let W = 320, H = 304;
+
+/* ---------- icons ---------- */
+function outlineFill(g, path, fill, o) {
+  g.lineJoin = 'round';
+  g.strokeStyle = WHITE; g.lineWidth = o * 2; path(); g.stroke();
+  g.fillStyle = fill; path(); g.fill();
+}
+
+function iconCross(g, cx, cy, s, p) {
+  const arm = s * 0.36, o = Math.max(3, Math.round(s * 0.05));
+  g.fillStyle = WHITE;
+  g.fillRect(cx - arm/2 - o, cy - s/2 - o, arm + 2*o, s + 2*o);
+  g.fillRect(cx - s/2 - o, cy - arm/2 - o, s + 2*o, arm + 2*o);
+  g.fillStyle = p.icon;
+  g.fillRect(cx - arm/2, cy - s/2, arm, s);
+  g.fillRect(cx - s/2, cy - arm/2, s, arm);
+}
+
+function iconBag(g, cx, cy, s, p) {
+  const o = Math.max(2, s * 0.04);
+  g.strokeStyle = WHITE; g.lineWidth = s * 0.09; g.lineCap = 'round';
+  g.beginPath(); g.arc(cx, cy - s * 0.18, s * 0.2, Math.PI, 2 * Math.PI); g.stroke();
+  outlineFill(g, () => {
+    g.beginPath();
+    g.moveTo(cx - s * 0.4, cy - s * 0.18); g.lineTo(cx + s * 0.4, cy - s * 0.18);
+    g.lineTo(cx + s * 0.46, cy + s * 0.48); g.lineTo(cx - s * 0.46, cy + s * 0.48); g.closePath();
+  }, p.icon, o);
+  g.fillStyle = GREEN;
+  g.beginPath(); g.ellipse(cx, cy + s * 0.15, s * 0.1, s * 0.2, Math.PI / 4, 0, 2 * Math.PI); g.fill();
+}
+
+function iconFood(g, cx, cy, s, p) {
+  g.strokeStyle = p.icon; g.lineWidth = s * 0.08;
+  g.beginPath(); g.arc(cx, cy, s * 0.27, 0, 2 * Math.PI); g.stroke();
+  g.fillStyle = p.icon; g.beginPath(); g.arc(cx, cy, s * 0.14, 0, 2 * Math.PI); g.fill();
+  g.fillStyle = WHITE;
+  const fx = cx - s * 0.46, t = s * 0.045;
+  for (let i = -1; i <= 1; i++) g.fillRect(fx + i * s * 0.065 - t / 2, cy - s * 0.48, t, s * 0.2);
+  g.fillRect(fx - s * 0.09, cy - s * 0.3, s * 0.18, s * 0.06);
+  g.fillRect(fx - t, cy - s * 0.3, t * 2, s * 0.78);
+  const kx = cx + s * 0.46;
+  g.beginPath(); g.moveTo(kx - s * 0.05, cy - s * 0.48);
+  g.quadraticCurveTo(kx + s * 0.1, cy - s * 0.3, kx + s * 0.05, cy);
+  g.lineTo(kx - s * 0.05, cy); g.closePath(); g.fill();
+  g.fillRect(kx - t, cy, t * 2, s * 0.48);
+}
+
+function star(g, cx, cy, r, col) {
+  g.fillStyle = col; g.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r;
+    g.lineTo(cx + rr * Math.cos(a), cy + rr * Math.sin(a));
+  }
+  g.closePath(); g.fill();
+}
+
+function iconBed(g, cx, cy, s, p) {
+  for (let i = -1; i <= 1; i++) star(g, cx + i * s * 0.28, cy - s * 0.36 + (i === 0 ? -s * 0.06 : 0), s * 0.12, AMBER);
+  const x0 = cx - s * 0.5, y0 = cy - s * 0.12;
+  g.fillStyle = WHITE;
+  g.fillRect(x0, y0, s * 0.1, s * 0.6);
+  g.fillRect(x0, cy + s * 0.22, s, s * 0.12);
+  g.fillRect(x0 + s * 0.9, cy + s * 0.05, s * 0.1, s * 0.43);
+  g.fillRect(x0 + s * 0.14, cy - s * 0.02, s * 0.24, s * 0.14);
+  g.fillStyle = p.icon;
+  g.fillRect(x0 + s * 0.4, cy - s * 0.02, s * 0.5, s * 0.24);
+  g.fillRect(x0 + s * 0.1, cy + s * 0.12, s * 0.8, s * 0.1);
+}
+
+function iconShirt(g, cx, cy, s, p) {
+  const pts = [[-0.14,-0.44],[-0.5,-0.26],[-0.38,-0.02],[-0.27,-0.1],[-0.27,0.46],[0.27,0.46],[0.27,-0.1],[0.38,-0.02],[0.5,-0.26],[0.14,-0.44]];
+  outlineFill(g, () => {
+    g.beginPath();
+    pts.forEach(([x, y], i) => i ? g.lineTo(cx + x * s, cy + y * s) : g.moveTo(cx + x * s, cy + y * s));
+    g.quadraticCurveTo(cx, cy - s * 0.24, cx - 0.14 * s, cy - 0.44 * s);
+    g.closePath();
+  }, p.icon, Math.max(2, s * 0.04));
+  g.fillStyle = AMBER;
+  for (let i = 0; i < 3; i++) g.fillRect(cx - s * 0.03, cy - s * 0.12 + i * s * 0.17, s * 0.06, s * 0.06);
+}
+
+function rr(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); g.fill(); }
+
+function iconPhone(g, cx, cy, s, p) {
+  const w = s * 0.58, h = s * 0.96, o = Math.max(2, s * 0.04);
+  g.fillStyle = WHITE; rr(g, cx - w / 2 - o, cy - h / 2 - o, w + 2 * o, h + 2 * o, s * 0.12);
+  g.fillStyle = '#000'; rr(g, cx - w / 2, cy - h / 2, w, h, s * 0.09);
+  g.fillStyle = p.icon; g.fillRect(cx - w / 2 + s * 0.05, cy - h / 2 + s * 0.11, w - s * 0.1, h - s * 0.27);
+  g.fillStyle = WHITE; g.fillRect(cx - s * 0.08, cy - h / 2 + s * 0.045, s * 0.16, s * 0.035);
+  g.beginPath(); g.arc(cx, cy + h / 2 - s * 0.075, s * 0.045, 0, 2 * Math.PI); g.fill();
+}
+
+function iconWrench(g, cx, cy, s, p) {
+  const o = Math.max(2, s * 0.045);
+  g.save(); g.translate(cx, cy); g.rotate(-Math.PI / 4);
+  const r = s * 0.22, hy = -s * 0.22;
+  g.fillStyle = WHITE;
+  g.beginPath(); g.arc(0, hy, r + o, 0, 2 * Math.PI); g.fill();
+  rr(g, -s * 0.09 - o, hy, s * 0.18 + 2 * o, s * 0.72 + o, s * 0.09);
+  g.fillStyle = p.icon;
+  g.beginPath(); g.arc(0, hy, r, 0, 2 * Math.PI); g.fill();
+  rr(g, -s * 0.09, hy, s * 0.18, s * 0.72, s * 0.08);
+  g.fillStyle = '#000';
+  g.fillRect(-s * 0.08, hy - r - o - 1, s * 0.16, r + o * 0.6);
+  g.beginPath(); g.arc(0, s * 0.4, s * 0.04, 0, 2 * Math.PI); g.fill();
+  g.restore();
+}
+
+function iconWasher(g, cx, cy, s, p) {
+  const x = cx - s * 0.4, y = cy - s * 0.48, w = s * 0.8, h = s * 0.96;
+  g.fillStyle = WHITE; rr(g, x, y, w, h, s * 0.08);
+  g.fillStyle = '#000'; g.fillRect(x, y + s * 0.18, w, s * 0.03);
+  g.fillStyle = p.icon;
+  [0.14, 0.27].forEach(k => { g.beginPath(); g.arc(x + s * k, y + s * 0.09, s * 0.045, 0, 2 * Math.PI); g.fill(); });
+  g.fillRect(x + w - s * 0.3, y + s * 0.065, s * 0.2, s * 0.05);
+  g.fillStyle = '#000'; g.beginPath(); g.arc(cx, cy + s * 0.12, s * 0.27, 0, 2 * Math.PI); g.fill();
+  g.fillStyle = p.icon; g.beginPath(); g.arc(cx, cy + s * 0.12, s * 0.21, 0, 2 * Math.PI); g.fill();
+  g.fillStyle = WHITE; g.beginPath(); g.arc(cx - s * 0.07, cy + s * 0.05, s * 0.05, 0, 2 * Math.PI); g.fill();
+}
+
+function iconScissors(g, cx, cy, s, p) {
+  g.lineCap = 'round';
+  g.strokeStyle = WHITE; g.lineWidth = s * 0.09;
+  g.beginPath(); g.moveTo(cx - s * 0.12, cy + s * 0.2); g.lineTo(cx + s * 0.26, cy - s * 0.46); g.stroke();
+  g.beginPath(); g.moveTo(cx + s * 0.12, cy + s * 0.2); g.lineTo(cx - s * 0.26, cy - s * 0.46); g.stroke();
+  g.strokeStyle = p.icon; g.lineWidth = s * 0.075;
+  [-1, 1].forEach(k => { g.beginPath(); g.arc(cx + k * s * 0.2, cy + s * 0.31, s * 0.13, 0, 2 * Math.PI); g.stroke(); });
+  g.fillStyle = p.icon; g.beginPath(); g.arc(cx, cy - s * 0.01, s * 0.055, 0, 2 * Math.PI); g.fill();
+  g.lineCap = 'butt';
+}
+
+function iconCake(g, cx, cy, s, p) {
+  g.fillStyle = WHITE; g.fillRect(cx - s * 0.48, cy + s * 0.42, s * 0.96, s * 0.06);
+  g.fillStyle = p.icon; g.fillRect(cx - s * 0.42, cy + s * 0.04, s * 0.84, s * 0.38);
+  g.fillStyle = WHITE; g.fillRect(cx - s * 0.42, cy, s * 0.84, s * 0.08);
+  [-0.3, -0.05, 0.2].forEach(k => g.fillRect(cx + k * s, cy + s * 0.06, s * 0.08, s * 0.08));
+  g.fillStyle = p.alt; g.fillRect(cx - s * 0.28, cy - s * 0.2, s * 0.56, s * 0.2);
+  g.fillStyle = WHITE; g.fillRect(cx - s * 0.28, cy - s * 0.24, s * 0.56, s * 0.06);
+  g.fillRect(cx - s * 0.03, cy - s * 0.4, s * 0.06, s * 0.16);
+  g.fillStyle = AMBER; g.beginPath(); g.ellipse(cx, cy - s * 0.46, s * 0.05, s * 0.075, 0, 0, 2 * Math.PI); g.fill();
+}
+
+function iconBolt(g, cx, cy, s, p) {
+  const pts = [[0.1,-0.5],[-0.3,0.07],[-0.03,0.07],[-0.12,0.5],[0.3,-0.09],[0.03,-0.09]];
+  outlineFill(g, () => { g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(cx + x * s, cy + y * s) : g.moveTo(cx + x * s, cy + y * s)); g.closePath(); }, p.icon, Math.max(2, s * 0.045));
+}
+
+function iconDiamond(g, cx, cy, s, p) {
+  const P = (x, y) => [cx + x * s, cy + y * s];
+  const pts = [[-0.46,-0.1],[-0.26,-0.36],[0.26,-0.36],[0.46,-0.1],[0,0.44]];
+  outlineFill(g, () => { g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(...P(x, y)) : g.moveTo(...P(x, y))); g.closePath(); }, p.icon, Math.max(2, s * 0.04));
+  g.strokeStyle = WHITE; g.lineWidth = Math.max(1, s * 0.03);
+  const seg = a => { g.beginPath(); a.forEach(([x, y], i) => i ? g.lineTo(...P(x, y)) : g.moveTo(...P(x, y))); g.stroke(); };
+  seg([[-0.46,-0.1],[0.46,-0.1]]);
+  seg([[-0.26,-0.36],[-0.13,-0.1],[0,0.44],[0.13,-0.1],[0.26,-0.36]]);
+  seg([[-0.13,-0.1],[0,-0.36],[0.13,-0.1]]);
+}
+
+/* ---------- businesses ---------- */
+const BIZ = {
+  medical: { label: 'Medical', icon: iconCross, pal: { icon: GREEN, acc: GREEN, band: '#0b3d1c', alt: CYAN, call: RED },
+    d: { name: 'SHARMA MEDICAL STORE', hindi: 'शर्मा मेडिकल स्टोर', tag: 'ALL MEDICINES AVAILABLE', timing: 'OPEN 24 x 7', phone: '98XXXXXXXX',
+         offer: 'FLAT 10% OFF', offer2: 'ON ALL MEDICINES', hline: 'होम डिलीवरी उपलब्ध', big: '24 x 7', bigsub: 'EMERGENCY MEDICINES',
+         services: 'BP CHECK, SUGAR TEST, HOME DELIVERY, GENERIC MEDICINES' } },
+  kirana: { label: 'Kirana', icon: iconBag, pal: { icon: '#ff8a00', acc: '#ff8a00', band: '#4a2600', alt: GREEN, call: '#d45a00' },
+    d: { name: 'GUPTA KIRANA STORE', hindi: 'गुप्ता किराना स्टोर', tag: 'DAILY NEEDS & GROCERY', timing: '7 AM - 10 PM', phone: '98XXXXXXXX',
+         offer: 'BUY 2 GET 1', offer2: 'ON SELECTED ITEMS', hline: 'घर तक मुफ्त डिलीवरी', big: 'FRESH STOCK', bigsub: 'DAILY ESSENTIALS',
+         services: 'ATTA DAL RICE, OIL & GHEE, SNACKS & DRINKS, FREE HOME DELIVERY' } },
+  restaurant: { label: 'Restaurant', icon: iconFood, pal: { icon: '#ff4b1f', acc: '#ff4b1f', band: '#4a0d06', alt: AMBER, call: RED },
+    d: { name: 'SHREE RESTAURANT', hindi: 'श्री रेस्टोरेंट', tag: 'FAMILY RESTAURANT', timing: '11 AM - 11 PM', phone: '98XXXXXXXX',
+         offer: '20% OFF', offer2: 'ON ALL THALIS', hline: 'शुद्ध शाकाहारी भोजन', big: 'PURE VEG', bigsub: 'FAMILY DINING',
+         services: 'NORTH INDIAN, SOUTH INDIAN, CHINESE, PARTY ORDERS' } },
+  hotel: { label: 'Hotel', icon: iconBed, pal: { icon: CYAN, acc: CYAN, band: '#08324a', alt: AMBER, call: '#0a6fd6' },
+    d: { name: 'HOTEL RAJ PALACE', hindi: 'होटल राज पैलेस', tag: 'AC ROOMS - FREE WIFI', timing: 'CHECK-IN 24 x 7', phone: '98XXXXXXXX',
+         offer: 'ROOMS FROM RS 999', offer2: 'PER NIGHT', hline: 'आपका स्वागत है', big: 'WELCOME', bigsub: 'ROOMS AVAILABLE',
+         services: 'AC / NON-AC ROOMS, FREE WIFI, RESTAURANT, PARKING' } },
+  clothes: { label: 'Clothes', icon: iconShirt, pal: { icon: '#ff2fa0', acc: '#ff2fa0', band: '#4a0a2e', alt: AMBER, call: '#c4167a' },
+    d: { name: 'NEW FASHION HUB', hindi: 'न्यू फैशन हब', tag: 'MEN - WOMEN - KIDS', timing: '10 AM - 9 PM', phone: '98XXXXXXXX',
+         offer: 'SALE 50% OFF', offer2: 'ON ALL BRANDS', hline: 'नया स्टॉक आ गया है', big: 'NEW ARRIVALS', bigsub: 'FESTIVE COLLECTION',
+         services: "MEN'S WEAR, LADIES WEAR, KIDS WEAR, WEDDING COLLECTION" } },
+  mobile: { label: 'Mobile shop', icon: iconPhone, pal: { icon: '#3d8bff', acc: '#3d8bff', band: '#0b1f4a', alt: CYAN, call: '#1f5fd6' },
+    d: { name: 'JAIN MOBILE POINT', hindi: 'जैन मोबाइल पॉइंट', tag: 'NEW PHONES & ACCESSORIES', timing: '10 AM - 9 PM', phone: '98XXXXXXXX',
+         offer: 'EASY EMI', offer2: 'ON ALL SMARTPHONES', hline: 'मोबाइल रिपेयरिंग की जाती है', big: 'REPAIR', bigsub: 'ALL BRANDS',
+         services: 'NEW PHONES, SCREEN REPAIR, RECHARGE, ACCESSORIES' } },
+  mechanic: { label: 'Mechanic', icon: iconWrench, pal: { icon: '#ff3a2a', acc: '#ff3a2a', band: '#3a0a06', alt: AMBER, call: '#c41a1a' },
+    d: { name: 'RAJU AUTO GARAGE', hindi: 'राजू ऑटो गैराज', tag: 'BIKE & CAR REPAIR', timing: '9 AM - 8 PM', phone: '98XXXXXXXX',
+         offer: 'FREE CHECK-UP', offer2: 'WITH EVERY SERVICE', hline: 'सभी गाड़ियों की रिपेयरिंग', big: 'SERVICE', bigsub: 'BIKE - SCOOTY - CAR',
+         services: 'GENERAL SERVICE, PUNCTURE REPAIR, OIL CHANGE, DENTING PAINTING' } },
+  laundry: { label: 'Laundry', icon: iconWasher, pal: { icon: '#4fb3ff', acc: '#4fb3ff', band: '#0a2a40', alt: GREEN, call: '#1678c8' },
+    d: { name: 'FRESH LAUNDRY & DRY CLEAN', hindi: 'फ्रेश लॉन्ड्री', tag: 'WASH - IRON - DRY CLEAN', timing: '8 AM - 8 PM', phone: '98XXXXXXXX',
+         offer: 'RS 10 / CLOTH', offer2: 'STEAM IRON PRESS', hline: 'पिकअप और डिलीवरी फ्री', big: 'DRY CLEAN', bigsub: 'SAME DAY SERVICE',
+         services: 'WASH & FOLD, STEAM IRON, DRY CLEANING, FREE PICKUP' } },
+  salon: { label: 'Salon', icon: iconScissors, pal: { icon: '#c45cff', acc: '#c45cff', band: '#2e0b45', alt: AMBER, call: '#8a2fc4' },
+    d: { name: 'STYLE ZONE SALON', hindi: 'स्टाइल ज़ोन सैलून', tag: 'UNISEX SALON', timing: '9 AM - 9 PM', phone: '98XXXXXXXX',
+         offer: 'HAIRCUT RS 99', offer2: 'FESTIVE OFFER', hline: 'दूल्हा-दुल्हन मेकअप उपलब्ध', big: 'NEW LOOK', bigsub: 'BRIDAL MAKEUP',
+         services: 'HAIR CUT, FACIAL, HAIR COLOUR, BRIDAL MAKEUP' } },
+  sweets: { label: 'Sweets / bakery', icon: iconCake, pal: { icon: '#ff9e3d', acc: '#ff9e3d', band: '#4a2a0a', alt: '#ff5f8a', call: '#c45a00' },
+    d: { name: 'AGARWAL SWEETS & BAKERY', hindi: 'अग्रवाल मिष्ठान भंडार', tag: 'PURE DESI GHEE SWEETS', timing: '8 AM - 10 PM', phone: '98XXXXXXXX',
+         offer: 'FRESH CAKES', offer2: 'ORDER FOR BIRTHDAYS', hline: 'शुद्ध देसी घी की मिठाई', big: 'FRESH DAILY', bigsub: 'SWEETS - NAMKEEN - CAKES',
+         services: 'SWEETS, NAMKEEN, BIRTHDAY CAKES, PARTY ORDERS' } },
+  electrical: { label: 'Electricals', icon: iconBolt, pal: { icon: '#ffe100', acc: '#ffe100', band: '#3d3600', alt: CYAN, call: '#a89200' },
+    d: { name: 'SHIV ELECTRICALS', hindi: 'शिव इलेक्ट्रिकल्स', tag: 'WIRING - FANS - LIGHTS', timing: '9 AM - 9 PM', phone: '98XXXXXXXX',
+         offer: 'LED BULB RS 49', offer2: 'ALL BRANDS AVAILABLE', hline: 'बिजली का सारा सामान', big: 'REPAIR', bigsub: 'FAN - COOLER - MOTOR',
+         services: 'HOUSE WIRING, FAN & COOLER, LED LIGHTS, INVERTER' } },
+  jewellery: { label: 'Jewellers', icon: iconDiamond, pal: { icon: '#ffd24a', acc: '#ffd24a', band: '#3d2f00', alt: CYAN, call: '#a87a00' },
+    d: { name: 'SONI JEWELLERS', hindi: 'सोनी ज्वेलर्स', tag: 'GOLD - SILVER - DIAMOND', timing: '10 AM - 8 PM', phone: '98XXXXXXXX',
+         offer: 'LOW MAKING', offer2: 'CHARGES ON GOLD', hline: 'हॉलमार्क गहने', big: 'HALLMARK', bigsub: 'BIS CERTIFIED GOLD',
+         services: 'GOLD JEWELLERY, SILVER, DIAMOND, BRIDAL SETS' } },
+};
+let current = 'medical';
+
+/* ---------- text helpers ---------- */
+function setFont(g, size, hindi) { g.font = hindi ? `700 ${size}px ${FH}` : `${size}px ${F}`; }
+
+function fit(g, text, x, y, size, color, maxW, opts = {}) {
+  if (!text) return;
+  setFont(g, size, opts.hindi);
+  g.fillStyle = color; g.textBaseline = 'middle'; g.textAlign = opts.align || 'center';
+  const w = g.measureText(text).width;
+  const s = Math.min(1, maxW / w);
+  g.save(); g.translate(x, y); g.scale(s, 1); g.fillText(text, 0, 0); g.restore();
+}
+
+function block(g, text, x, y, size, color, maxW, opts = {}) {
+  if (!text) return;
+  setFont(g, size, opts.hindi);
+  const words = text.split(/\s+/);
+  if (g.measureText(text).width <= maxW || words.length < 2) { fit(g, text, x, y, size, color, maxW, opts); return; }
+  let best = 1, bestW = Infinity;
+  for (let i = 1; i < words.length; i++) {
+    const a = g.measureText(words.slice(0, i).join(' ')).width;
+    const b = g.measureText(words.slice(i).join(' ')).width;
+    if (Math.max(a, b) < bestW) { bestW = Math.max(a, b); best = i; }
+  }
+  const gap = size * 0.56;
+  fit(g, words.slice(0, best).join(' '), x, y - gap, size, color, maxW, opts);
+  fit(g, words.slice(best).join(' '), x, y + gap, size, color, maxW, opts);
+}
+
+function frameBorder(g, w, h, t, col) {
+  g.fillStyle = col; g.fillRect(0, 0, w, t); g.fillRect(0, h - t, w, t); g.fillRect(0, 0, t, h); g.fillRect(w - t, 0, t, h);
+}
+
+let DIV = 'lines', S = 1;
+function sep(g, x1, x2, y, col, t = 2) {
+  if (DIV === 'off') return;
+  const th = Math.max(t, 1 / S);
+  g.fillStyle = col; g.fillRect(x1, y - th / 2, x2 - x1, th);
+}
+
+function items(d) { return d.services.split(',').map(s => s.trim()).filter(Boolean).slice(0, 4); }
+
+/* ---------- layouts ----------
+   sq   : design space 320 x 304 (square / tall screens)
+   wide : design space 320 x 120 (wide boards)
+   strip: drawn natively for 1-3 row strips (lines of text)            */
+const DESIGN = { sq: [320, 304], wide: [320, 120] };
+
+const templates = [
+  { id: 'classic', title: 'Classic',
+    sq(g, d, b) { const p = b.pal;
+      b.icon(g, 160, 64, 104, p);
+      sep(g, 20, 300, 128, p.acc);
+      block(g, d.name, 160, 176, 38, WHITE, 300);
+      g.fillStyle = p.acc; g.fillRect(20, 226, 280, 3);
+      fit(g, d.timing, 160, 250, 24, AMBER, 290);
+      sep(g, 60, 260, 267, p.acc);
+      fit(g, d.phone, 160, 284, 26, p.acc, 290); },
+    wide(g, d, b) { const p = b.pal;
+      b.icon(g, 52, 60, 84, p);
+      block(g, d.name, 208, 40, 28, WHITE, 216);
+      g.fillStyle = p.acc; g.fillRect(104, 74, 208, 2);
+      fit(g, d.timing, 208, 90, 16, AMBER, 208);
+      sep(g, 130, 286, 99.5, p.acc, 1);
+      fit(g, d.phone, 208, 109, 17, p.acc, 208); },
+    strip: d => [[d.name, WHITE], [d.timing + '   ' + d.phone, AMBER]] },
+
+  { id: 'side', title: 'Side icon',
+    sq(g, d, b) { const p = b.pal;
+      g.fillStyle = p.band; g.fillRect(0, 0, 118, 232);
+      b.icon(g, 59, 116, 92, p);
+      block(g, d.name, 220, 70, 28, WHITE, 186);
+      sep(g, 128, 312, 118, p.acc);
+      fit(g, d.tag, 220, 140, 15, p.alt, 186);
+      sep(g, 128, 312, 164, p.acc);
+      fit(g, d.timing, 220, 186, 20, AMBER, 186);
+      g.fillStyle = p.call; g.fillRect(0, 236, 320, 68);
+      fit(g, 'CALL ' + d.phone, 160, 271, 30, WHITE, 296); },
+    wide(g, d, b) { const p = b.pal;
+      g.fillStyle = p.band; g.fillRect(0, 0, 100, 120);
+      b.icon(g, 50, 60, 76, p);
+      block(g, d.name, 210, 32, 24, WHITE, 200);
+      sep(g, 110, 310, 59, p.acc, 1.5);
+      fit(g, d.tag, 210, 70, 13, p.alt, 200);
+      g.fillStyle = p.call; g.fillRect(100, 86, 220, 34);
+      fit(g, 'CALL ' + d.phone, 210, 104, 18, WHITE, 206); },
+    strip: d => [[d.name, WHITE], ['CALL ' + d.phone, AMBER]] },
+
+  { id: 'hindi', title: 'Hindi + English',
+    sq(g, d, b) { const p = b.pal;
+      fit(g, d.hindi, 160, 64, 52, AMBER, 300, { hindi: true });
+      b.icon(g, 42, 160, 56, p); b.icon(g, 278, 160, 56, p);
+      sep(g, 20, 300, 112, p.acc);
+      block(g, d.name, 160, 160, 26, WHITE, 172);
+      sep(g, 20, 300, 206, p.acc);
+      fit(g, d.hline, 160, 236, 30, p.acc, 296, { hindi: true });
+      sep(g, 60, 260, 263, p.acc);
+      fit(g, d.phone, 160, 284, 26, WHITE, 290); },
+    wide(g, d, b) { const p = b.pal;
+      b.icon(g, 32, 56, 46, p); b.icon(g, 288, 56, 46, p);
+      fit(g, d.hindi, 160, 34, 34, AMBER, 220, { hindi: true });
+      sep(g, 64, 256, 62, p.acc, 1.5);
+      fit(g, d.name, 160, 72, 16, WHITE, 220);
+      sep(g, 30, 290, 86, p.acc, 1.5);
+      fit(g, d.hline, 160, 102, 20, p.acc, 300, { hindi: true }); },
+    strip: d => [[d.hindi, AMBER, true], [d.hline, WHITE, true]] },
+
+  { id: 'offer', title: 'Offer / sale',
+    sq(g, d, b) { const p = b.pal;
+      g.fillStyle = p.band; g.fillRect(0, 0, 320, 62);
+      b.icon(g, 30, 31, 40, p); b.icon(g, 290, 31, 40, p);
+      fit(g, d.name, 160, 32, 24, WHITE, 208);
+      block(g, d.offer, 160, 138, 62, AMBER, 300);
+      sep(g, 40, 280, 204, p.acc);
+      fit(g, d.offer2, 160, 226, 24, WHITE, 296);
+      g.fillStyle = p.acc; g.fillRect(40, 252, 240, 2);
+      fit(g, d.phone, 160, 282, 26, p.acc, 290); },
+    wide(g, d, b) { const p = b.pal;
+      g.fillStyle = p.band; g.fillRect(0, 0, 320, 28);
+      b.icon(g, 16, 14, 20, p); b.icon(g, 304, 14, 20, p);
+      fit(g, d.name, 160, 15, 16, WHITE, 260);
+      fit(g, d.offer, 160, 58, 40, AMBER, 304);
+      sep(g, 40, 280, 78, p.acc, 1.5);
+      fit(g, d.offer2, 160, 89, 16, WHITE, 300);
+      sep(g, 90, 230, 99.5, p.acc, 1);
+      fit(g, d.phone, 160, 109, 14, p.acc, 300); },
+    strip: d => [[d.offer, AMBER], [d.offer2, WHITE]] },
+
+  { id: 'highlight', title: 'Highlight',
+    sq(g, d, b) { const p = b.pal;
+      frameBorder(g, 320, 304, 6, p.acc);
+      b.icon(g, 160, 58, 72, p);
+      setFont(g, 72);
+      if (g.measureText(d.big).width > 296 && /\s/.test(d.big)) block(g, d.big, 160, 148, 46, WHITE, 296);
+      else fit(g, d.big, 160, 146, 72, WHITE, 296);
+      fit(g, d.bigsub, 160, 210, 22, AMBER, 290);
+      sep(g, 30, 290, 226, p.acc);
+      fit(g, d.name, 160, 242, 20, p.alt, 290);
+      sep(g, 30, 290, 259, p.acc);
+      fit(g, d.phone, 160, 278, 28, p.acc, 290); },
+    wide(g, d, b) { const p = b.pal;
+      frameBorder(g, 320, 120, 4, p.acc);
+      b.icon(g, 48, 60, 64, p);
+      fit(g, d.big, 204, 44, 42, WHITE, 216);
+      sep(g, 104, 304, 67, p.acc, 1.5);
+      fit(g, d.bigsub, 204, 80, 16, AMBER, 216);
+      sep(g, 130, 278, 91, p.acc, 1);
+      fit(g, d.phone, 204, 102, 16, p.acc, 216); },
+    strip: d => [[d.big, WHITE], [d.bigsub, AMBER]] },
+
+  { id: 'list', title: 'Items list',
+    sq(g, d, b) { const p = b.pal;
+      b.icon(g, 38, 40, 52, p);
+      block(g, d.name, 188, 40, 26, WHITE, 236);
+      g.fillStyle = p.acc; g.fillRect(12, 82, 296, 3);
+      items(d).forEach((s, i) => {
+        const y = 114 + i * 40;
+        g.fillStyle = p.acc; g.fillRect(16, y - 7, 14, 14);
+        fit(g, s, 44, y, 22, WHITE, 264, { align: 'left' });
+        if (i < 3) sep(g, 14, 306, y + 20, p.acc, 1.5);
+      });
+      sep(g, 14, 306, 262, p.acc);
+      fit(g, d.phone, 160, 284, 26, AMBER, 290); },
+    wide(g, d, b) { const p = b.pal;
+      b.icon(g, 18, 16, 24, p);
+      fit(g, d.name, 172, 16, 18, WHITE, 280);
+      g.fillStyle = p.acc; g.fillRect(6, 33, 308, 2);
+      items(d).forEach((s, i) => {
+        const x = i % 2 ? 166 : 8, y = 54 + Math.floor(i / 2) * 28;
+        g.fillStyle = p.acc; g.fillRect(x, y - 4, 8, 8);
+        fit(g, s, x + 14, y, 14, WHITE, 136, { align: 'left' });
+      });
+      sep(g, 6, 314, 68, p.acc, 1);
+      if (DIV !== 'off') { g.fillStyle = p.acc; g.fillRect(160 - Math.max(0.5, 0.5 / S), 40, Math.max(1, 1 / S), 52); }
+      sep(g, 6, 314, 97, p.acc, 1);
+      fit(g, d.phone, 160, 110, 13, AMBER, 300); },
+    strip: d => { const it = items(d); return [[it.slice(0, 2).join('  *  '), WHITE], [it.slice(2, 4).join('  *  ') || d.phone, AMBER]]; } },
+];
+
+/* ---------- screen size ---------- */
+let mode = 'sq';
+function pickMode() {
+  const a = W / H;
+  if (H <= 48 || a >= 4.5) return 'strip';
+  if (a >= 1.6) return 'wide';
+  return 'sq';
+}
+
+/* ---------- motion ---------- */
+let MOTION = 'off', SPEED = 2, FRAME = 0;
+const FPS = 20;
+
+function tickerText(d) {
+  if (d.ticker) return d.ticker + '      ';
+  return [d.name, d.tag, d.timing, d.phone ? 'CALL ' + d.phone : ''].filter(Boolean).join('   •   ') + '   •   ';
+}
+
+function tickerBandH() {
+  const k = mode === 'sq' ? 0.1 : 0.2;
+  return 16 * Math.max(1, Math.round(H * k / 16));
+}
+
+function drawTicker(g, text, x0, y0, w, h, size, color, frame, v) {
+  setFont(g, size);
+  const tw = g.measureText(text).width;
+  const span = tw + w;
+  const n = Math.max(1, Math.round(span / v));
+  const off = (frame % n) * (span / n);
+  g.save(); g.beginPath(); g.rect(x0, y0, w, h); g.clip();
+  g.fillStyle = color; g.textBaseline = 'middle'; g.textAlign = 'left';
+  g.fillText(text, x0 + w - off, y0 + h / 2 + 0.5);
+  g.restore();
+  return n;
+}
+
+function shine(g, frame, ah) {
+  const period = 60, ph = (frame % period) / period;
+  const band = Math.max(8, W * 0.08), pos = -band - H + ph * (W + H + 2 * band) * 1.6;
+  if (pos > W + H) return;
+  const img = g.getImageData(0, 0, W, ah), a = img.data;
+  for (let y = 0; y < ah; y++) for (let x = 0; x < W; x++) {
+    const dd = Math.abs(x + y * 0.6 - pos);
+    if (dd > band) continue;
+    const k = (y * W + x) * 4;
+    if (a[k] + a[k+1] + a[k+2] < 120) continue;
+    const m = 0.7 * (1 - dd / band);
+    a[k] += (255 - a[k]) * m; a[k+1] += (255 - a[k+1]) * m; a[k+2] += (255 - a[k+2]) * m;
+  }
+  g.putImageData(img, 0, 0);
+}
+
+/* Draws one frame. Returns the loop length in frames (1 when static). */
+function renderFrame(g, t, d, b, frame, motion) {
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+  g.lineCap = 'butt';
+  let loop = 1;
+  if (mode === 'strip') {
+    S = 1;
+    loop = drawStrip(g, t, d, b, motion === 'off' ? null : { frame, text: tickerText(d) });
+    if (DIV === 'frame') frameBorder(g, W, H, 1, b.pal.acc);
+    return loop;
+  }
+  const th = motion === 'off' ? 0 : tickerBandH();
+  const AH = H - th;
+  const [dw, dh] = DESIGN[mode];
+  const s = Math.min(W / dw, AH / dh); S = s;
+  g.setTransform(s, 0, 0, s, (W - dw * s) / 2, (AH - dh * s) / 2);
+  t[mode](g, d, b);
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  if (motion === 'shine') shine(g, frame, AH);
+  if (th) {
+    g.fillStyle = b.pal.call; g.fillRect(0, AH, W, th);
+    g.fillStyle = b.pal.acc; g.fillRect(0, AH, W, 1);
+    loop = drawTicker(g, tickerText(d), 0, AH + 1, W, th - 1, (th - 1) * 0.78, WHITE, frame, SPEED);
+  }
+  if (DIV === 'frame') frameBorder(g, W, H, Math.max(1, Math.round(2 * s)), b.pal.acc);
+  return loop;
+}
+
+function drawStrip(g, t, d, b, anim) {
+  const lines = t.strip(d);
+  const n = H >= 32 ? 2 : 1;
+  const iconS = Math.min(H, 48) * 0.82;
+  b.icon(g, iconS / 2 + 2, H / 2, iconS, b.pal);
+  const x0 = iconS + 6, w = W - x0 - 2, cx = x0 + w / 2;
+  let loop = 1;
+  if (n === 1) {
+    if (anim) loop = drawTicker(g, anim.text, x0, 0, w, H, H, WHITE, anim.frame, SPEED);
+    else { const [txt, col, hi] = lines[0]; fit(g, txt, cx, H / 2 + 0.5, H, col, w, { hindi: hi }); }
+  } else {
+    const lh = H / 2, gap = DIV === 'off' ? 0 : 1;
+    const y0 = lh / 2 - gap * 0.5 + 0.5;
+    const [t0, c0, h0] = lines[0];
+    fit(g, t0, cx, y0, lh - gap, c0, w, { hindi: h0 });
+    if (anim) loop = drawTicker(g, anim.text, x0, lh + gap, w, lh - gap, lh - gap, AMBER, anim.frame, SPEED);
+    else { const [t1, c1, h1] = lines[1]; fit(g, t1, cx, lh + lh / 2 + gap * 0.5 + 0.5, lh - gap, c1, w, { hindi: h1 }); }
+    if (gap) { g.fillStyle = b.pal.acc; g.fillRect(x0, Math.floor(lh) - (H >= 48 ? 1 : 0), w, H >= 48 ? 2 : 1); }
+  }
+  return loop;
+}
+
+function ft(m) { return (m / 0.3048).toFixed(1); }
+
+const presetEl = document.getElementById('preset'), pwEl = document.getElementById('pw'), phEl = document.getElementById('ph');
+let MASK = null;
+
+function ledPitch() { return Math.max(1, Math.min(12, Math.floor(Math.min(1000 / W, 1000 / H)))); }
+
+function buildMask() {
+  const P = ledPitch(), dot = P >= 3 ? P - 1 : P;
+  const m = document.createElement('canvas'); m.width = W * P; m.height = H * P;
+  const o = m.getContext('2d');
+  if (dot < P) {
+    o.fillStyle = '#050505'; o.fillRect(0, 0, m.width, m.height);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) o.clearRect(x * P, y * P, dot, dot);
+  }
+  if (P >= 2) {
+    o.strokeStyle = 'rgba(90,90,90,0.45)'; o.lineWidth = 1;
+    for (let i = 32; i < W; i += 32) { o.beginPath(); o.moveTo(i * P - 0.5, 0); o.lineTo(i * P - 0.5, m.height); o.stroke(); }
+    for (let j = 16; j < H; j += 16) { o.beginPath(); o.moveTo(0, j * P - 0.5); o.lineTo(m.width, j * P - 0.5); o.stroke(); }
+  }
+  MASK = m;
+}
+
+function applySize(save = true) {
+  const pw = Math.max(1, Math.min(40, parseInt(pwEl.value) || 1));
+  const ph = Math.max(1, Math.min(40, parseInt(phEl.value) || 1));
+  W = pw * 32; H = ph * 16;
+  mode = pickMode();
+  const match = [...presetEl.options].find(o => o.value === `${pw}x${ph}`);
+  presetEl.value = match ? match.value : 'custom';
+  const label = { sq: 'Square / tall', wide: 'Wide board', strip: 'Strip' }[mode];
+  document.getElementById('info').innerHTML =
+    `<b>${pw * ph} panels</b> · <b>${W} × ${H} px</b> · about <b>${ft(pw * 0.32)} × ${ft(ph * 0.16)} ft</b> (${(pw * 0.32).toFixed(2)} × ${(ph * 0.16).toFixed(2)} m) · layout: <b>${label}</b>`;
+  document.getElementById('grid').classList.toggle('wide', W / H >= 3);
+  const P = ledPitch();
+  cards.forEach(c => {
+    c.src.width = W; c.src.height = H;
+    c.led.width = W * P; c.led.height = H * P;
+    c.png.querySelector('p').textContent = `Long-press or right-click the image to save it (${W} × ${H} px).`;
+  });
+  buildMask();
+  if (save) try { localStorage.setItem('ledTplSize', JSON.stringify([pw, ph])); } catch (e) {}
+  renderAll();
+}
+
+presetEl.addEventListener('change', () => {
+  if (presetEl.value === 'custom') return;
+  const [a, b] = presetEl.value.split('x');
+  pwEl.value = a; phEl.value = b; applySize();
+});
+pwEl.addEventListener('input', () => applySize());
+phEl.addEventListener('input', () => applySize());
+
+/* ---------- UI ---------- */
+const bizEl = document.getElementById('biz');
+Object.entries(BIZ).forEach(([k, b]) => {
+  const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = b.label; btn.dataset.k = k;
+  btn.addEventListener('click', () => selectBiz(k));
+  bizEl.appendChild(btn);
+});
+
+const grid = document.getElementById('grid');
+const cards = templates.map(t => {
+  const card = document.createElement('div'); card.className = 'card';
+  card.innerHTML = `<div class="frame"><canvas class="led"></canvas></div>
+    <div class="row"><span class="name">${t.title}</span>
+      <span style="display:flex;gap:6px"><button type="button" class="gif" style="display:none">Download GIF</button><button type="button" class="pngb">Download PNG</button></span></div>
+    <div class="msg"></div>
+    <div class="png"><img alt="${t.title} image"><p></p></div>`;
+  grid.appendChild(card);
+  const src = document.createElement('canvas');
+  const c = { t, card, src, led: card.querySelector('canvas'), png: card.querySelector('.png'), msg: card.querySelector('.msg'),
+              pngBtn: card.querySelector('.pngb'), gifBtn: card.querySelector('.gif') };
+  c.pngBtn.addEventListener('click', () => savePng(c));
+  c.gifBtn.addEventListener('click', () => saveGif(c));
+  return c;
+});
+
+function store() { try { return JSON.parse(localStorage.getItem('ledTplAll') || '{}'); } catch (e) { return {}; } }
+function persist() {
+  try {
+    const all = store();
+    all[current] = Object.fromEntries(fields.map(f => [f, document.getElementById(f).value]));
+    all._biz = current;
+    localStorage.setItem('ledTplAll', JSON.stringify(all));
+  } catch (e) {}
+}
+
+function fillForm(values) { fields.forEach(f => { document.getElementById(f).value = values[f] ?? ''; }); }
+
+function selectBiz(k, render = true) {
+  current = k;
+  [...bizEl.children].forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  document.documentElement.style.setProperty('--acc', BIZ[k].pal.acc);
+  fillForm(Object.assign({}, BIZ[k].d, store()[k] || {}));
+  cards.forEach(c => { c.png.style.display = 'none'; c.msg.textContent = ''; });
+  if (render) renderAll();
+}
+
+function getData() {
+  const d = {};
+  fields.forEach(f => { const v = document.getElementById(f).value.trim(); d[f] = HINDI[f] ? v : v.toUpperCase(); });
+  return d;
+}
+
+function toLed(src, out) {
+  const o = out.getContext('2d');
+  o.globalCompositeOperation = 'source-over';
+  o.fillStyle = '#161616'; o.fillRect(0, 0, out.width, out.height);
+  o.globalCompositeOperation = 'lighten';
+  o.imageSmoothingEnabled = false;
+  o.drawImage(src, 0, 0, out.width, out.height);
+  o.globalCompositeOperation = 'source-over';
+  if (MASK) o.drawImage(MASK, 0, 0);
+}
+
+function drawAll() {
+  const d = getData(), b = BIZ[current];
+  cards.forEach(c => {
+    renderFrame(c.src.getContext('2d'), c.t, d, b, FRAME, MOTION);
+    toLed(c.src, c.led);
+  });
+}
+
+function renderAll() {
+  persist();
+  drawAll();
+  cards.forEach(c => { if (c.png.style.display === 'block' && c.png.dataset.kind === 'png') showPng(c); });
+}
+
+let timer = null;
+function setMotion() {
+  if (timer) { clearInterval(timer); timer = null; }
+  cards.forEach(c => { c.gifBtn.style.display = MOTION === 'off' ? 'none' : ''; });
+  if (MOTION !== 'off') timer = setInterval(() => { FRAME++; drawAll(); }, 1000 / FPS);
+  FRAME = 0; renderAll();
+}
+
+let downloads = null;
+if (window.claude && typeof window.claude.use === 'function') {
+  window.claude.use('downloads').then(x => { downloads = x; }).catch(() => {});
+}
+
+function fileName(c, ext) {
+  const n = (document.getElementById('name').value || current).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return `${n}-${c.t.id}-${W}x${H}.${ext}`;
+}
+
+function staticCanvas(c) {
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  renderFrame(cv.getContext('2d'), c.t, getData(), BIZ[current], 0, 'off');
+  return cv;
+}
+
+function showPng(c) {
+  c.png.querySelector('img').src = staticCanvas(c).toDataURL('image/png');
+  c.png.dataset.kind = 'png'; c.png.style.display = 'block';
+}
+
+function showBlob(c, blob) {
+  const img = c.png.querySelector('img');
+  if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
+  img.dataset.url = URL.createObjectURL(blob); img.src = img.dataset.url;
+  c.png.dataset.kind = 'gif'; c.png.style.display = 'block';
+}
+
+async function offer(c, blob, name) {
+  if (!downloads) return false;
+  try { await downloads.save({ filename: name, data: blob }); c.msg.textContent = 'Saved ' + name; return true; }
+  catch (e) { return false; }
+}
+
+async function savePng(c) {
+  c.msg.textContent = '';
+  const blob = await new Promise(r => staticCanvas(c).toBlob(r, 'image/png'));
+  if (!(await offer(c, blob, fileName(c, 'png')))) { showPng(c); c.msg.textContent = downloads ? 'Download not completed — showing the image instead.' : ''; }
+}
+
+/* ---------- GIF encoder (6x7x6 colour cube, LZW) ---------- */
+const PAL = (() => { const p = new Uint8Array(768); let i = 0;
+  for (let r = 0; r < 6; r++) for (let g = 0; g < 7; g++) for (let b = 0; b < 6; b++) { p[i++] = r * 51; p[i++] = Math.round(g * 42.5); p[i++] = b * 51; }
+  return p; })();
+
+class Bytes {
+  constructor() { this.a = new Uint8Array(1 << 20); this.n = 0; }
+  push(b) { if (this.n >= this.a.length) { const x = new Uint8Array(this.a.length * 2); x.set(this.a); this.a = x; } this.a[this.n++] = b; }
+  str(s) { for (const ch of s) this.push(ch.charCodeAt(0)); }
+  u16(v) { this.push(v & 255); this.push((v >> 8) & 255); }
+  out() { return this.a.subarray(0, this.n); }
+}
+
+function indexFrame(rgba, n) {
+  const idx = new Uint8Array(n);
+  for (let i = 0, k = 0; i < n; i++, k += 4)
+    idx[i] = Math.round(rgba[k] / 51) * 42 + Math.round(rgba[k+1] / 42.5) * 6 + Math.round(rgba[k+2] / 51);
+  return idx;
+}
+
+function lzw(out, idx) {
+  const MIN = 8, CLEAR = 256, EOI = 257;
+  out.push(MIN);
+  let size = MIN + 1, next = EOI + 1, table = new Map();
+  let cur = 0, bits = 0; const block = [];
+  const flushByte = b => { block.push(b); if (block.length === 255) { out.push(255); block.forEach(x => out.push(x)); block.length = 0; } };
+  const emit = code => { cur |= code << bits; bits += size; while (bits >= 8) { flushByte(cur & 255); cur >>>= 8; bits -= 8; } };
+  emit(CLEAR);
+  let prefix = idx[0];
+  for (let i = 1; i < idx.length; i++) {
+    const k = idx[i], key = (prefix << 8) | k, v = table.get(key);
+    if (v !== undefined) { prefix = v; continue; }
+    emit(prefix);
+    if (next === 4096) { emit(CLEAR); next = EOI + 1; size = MIN + 1; table = new Map(); }
+    else { if (next >= (1 << size)) size++; table.set(key, next++); }
+    prefix = k;
+  }
+  emit(prefix); emit(EOI);
+  if (bits > 0) flushByte(cur & 255);
+  if (block.length) { out.push(block.length); block.forEach(x => out.push(x)); }
+  out.push(0);
+}
+
+async function saveGif(c) {
+  if (c.busy) return; c.busy = true;
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d', { willReadFrequently: true });
+  const d = getData(), b = BIZ[current];
+  let frames = renderFrame(g, c.t, d, b, 0, MOTION);
+  if (MOTION === 'shine') frames = Math.max(frames, 60);
+  frames = Math.min(frames, 900);
+  const out = new Bytes();
+  out.str('GIF89a'); out.u16(W); out.u16(H); out.push(0xF7); out.push(0); out.push(0);
+  for (let i = 0; i < 768; i++) out.push(i < 756 ? PAL[i] : 0);
+  out.push(0x21); out.push(0xFF); out.push(11); out.str('NETSCAPE2.0'); out.push(3); out.push(1); out.u16(0); out.push(0);
+  const delay = Math.round(100 / FPS);
+  for (let f = 0; f < frames; f++) {
+    renderFrame(g, c.t, d, b, f, MOTION);
+    const idx = indexFrame(g.getImageData(0, 0, W, H).data, W * H);
+    out.push(0x21); out.push(0xF9); out.push(4); out.push(0); out.u16(delay); out.push(0); out.push(0);
+    out.push(0x2C); out.u16(0); out.u16(0); out.u16(W); out.u16(H); out.push(0);
+    lzw(out, idx);
+    if (f % 10 === 0) { c.msg.textContent = `Making GIF… ${Math.round(f / frames * 100)}%`; await new Promise(r => setTimeout(r, 0)); }
+  }
+  out.push(0x3B);
+  const blob = new Blob([out.out()], { type: 'image/gif' });
+  c.msg.textContent = `GIF ready (${frames} frames, ${(blob.size / 1048576).toFixed(1)} MB).`;
+  const ok = await offer(c, blob, fileName(c, 'gif'));
+  if (!ok) { showBlob(c, blob); c.png.querySelector('p').textContent = `Long-press or right-click the animation to save it (${W} × ${H} px GIF).`; }
+  c.busy = false;
+}
+
+/* ---------- wiring ---------- */
+document.getElementById('form').addEventListener('input', renderAll);
+document.getElementById('reset').addEventListener('click', () => { fillForm(BIZ[current].d); renderAll(); });
+
+const divEl = document.getElementById('div'), motionEl = document.getElementById('motion'), speedEl = document.getElementById('speed');
+try {
+  const dv = localStorage.getItem('ledTplDiv'); if (dv) divEl.value = dv;
+  const mv = JSON.parse(localStorage.getItem('ledTplMotion') || 'null'); if (mv) { motionEl.value = mv[0]; speedEl.value = mv[1]; }
+} catch (e) {}
+DIV = divEl.value; MOTION = motionEl.value; SPEED = +speedEl.value;
+divEl.addEventListener('change', () => { DIV = divEl.value; try { localStorage.setItem('ledTplDiv', DIV); } catch (e) {} renderAll(); });
+function motionChanged() {
+  MOTION = motionEl.value; SPEED = +speedEl.value;
+  try { localStorage.setItem('ledTplMotion', JSON.stringify([MOTION, SPEED])); } catch (e) {}
+  setMotion();
+}
+motionEl.addEventListener('change', motionChanged);
+speedEl.addEventListener('change', motionChanged);
+
+selectBiz(BIZ[store()._biz] ? store()._biz : 'medical', false);
+try { const sz = JSON.parse(localStorage.getItem('ledTplSize') || 'null'); if (sz) { pwEl.value = sz[0]; phEl.value = sz[1]; } } catch (e) {}
+applySize(false);
+setMotion();
+Promise.all([
+  document.fonts.load(`40px "Archivo Black"`),
+  document.fonts.load(`700 40px "Noto Sans Devanagari"`, 'मेडिकल'),
+]).then(renderAll).catch(renderAll);
+document.fonts.ready.then(renderAll);
+</script>
+</body>
+</html>

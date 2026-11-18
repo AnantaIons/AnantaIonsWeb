@@ -68,7 +68,8 @@ export default function Home() {
             <h2 className="h-1" id="disp-title">Type a message. See it on a real LED board.</h2>
             <p className="lede" style={{ marginTop: '16px' }}>Our boards are made to your size and updated from your phone or by SMS. Try the board, then browse ten real layouts in the gallery.</p>
             <div className="btn-row" style={{ marginTop: '28px' }}>
-              <Button href={path('/displays/templates/')}>Board gallery</Button>
+              <Button href={path('/display-designer.html')}>Try the template designer</Button>
+              <Button href={path('/displays/templates/')} variant="on-dark">Board gallery</Button>
               <Button href={path('/displays/#size')} variant="on-dark">Size calculator</Button>
             </div>
           </div>
