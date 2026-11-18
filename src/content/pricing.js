@@ -9,7 +9,7 @@ export const PRICES = {
     body: 'Every colour, with logos and pictures. Made for shop fronts and advertising.' },
 };
 
-/* Battery-backup version: keeps the board running through power cuts.
+/* Rechargeable lithium battery backup version: keeps the board running through power cuts.
    Owner-set at 3 × the standard price. */
 export const BACKUP_FACTOR = 3;
 
@@ -22,7 +22,14 @@ export const INCLUDED = [
   'Help on call and WhatsApp after installation',
 ];
 
-export const PRICE_NOTE = 'Starting prices per square foot of finished board, GST extra. Battery backup versions are 3 × the standard price. The final price depends on size, mounting and location, and we confirm it in writing before we build.';
+export const FEATURES = [
+  ['Auto-brightness', 'Full brightness in sunlight, softer at night — easy on the eyes and saves power.'],
+  ['Set up your way', 'Wi-Fi, over the internet from anywhere, USB, Bluetooth (BLE) or SMS.'],
+  ['Full software support', 'Easy app and software to change messages, plus updates and help from us.'],
+  ['Battery option', 'Rechargeable lithium battery backup for places with power cuts.'],
+];
+
+export const PRICE_NOTE = 'Starting prices per square foot of finished board, GST extra. Versions with a built-in rechargeable lithium battery are 3 × the standard price. The final price depends on size, mounting and location, and we confirm it in writing before we build.';
 
 export const PILLARS = [
   ['Quality you can see', 'Bright, even panels, a strong frame and neat wiring. Every board runs a full test before it leaves our workshop.'],

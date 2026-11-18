@@ -40,7 +40,7 @@ export default function SizeCalculator() {
     `Space: ${w} × ${h} ${LABEL[unit]}\n` +
     `Board: ${across} × ${down} P10 panels (${total} total), ` +
     `${fmt(across * PANEL_W, unit)} × ${fmt(down * PANEL_H, unit)}\n` +
-    `Type: ${PRICES[kind].name}${backup ? ' with battery backup' : ''} (about ${sqft.toFixed(1)} sq ft, from ${inr(estimate)} + GST)\n` +
+    `Type: ${PRICES[kind].name}${backup ? ' with lithium battery backup' : ''} (about ${sqft.toFixed(1)} sq ft, from ${inr(estimate)} + GST)\n` +
     `Message to show: `;
 
   return (
@@ -76,7 +76,7 @@ export default function SizeCalculator() {
         ))}
         <label className="calc__backup">
           <input type="checkbox" checked={backup} onChange={(e) => setBackup(e.target.checked)} />
-          Battery backup <span>(3 × price)</span>
+          Lithium battery backup <span>(3 × price)</span>
         </label>
       </div>
 
