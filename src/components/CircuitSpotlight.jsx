@@ -24,6 +24,13 @@ const TILE = `
     <text x='168' y='232'>Y1 16MHz</text>
     <text x='196' y='120'>J1</text>
     <text x='100' y='176'>+5V</text><text x='4' y='160'>GND</text>
+    <text x='4' y='100'>1010 0110</text><text x='150' y='96'>0x3F</text><text x='92' y='232'>3.3V</text>
+    <text x='214' y='196'>2.4GHz</text><text x='120' y='126'>V = IR</text><text x='4' y='236'>f = 1/T</text>
+    <text x='84' y='150'>π</text><text x='174' y='174'>±5%</text><text x='224' y='70'>λ</text>
+  </g>
+  <g font-family='Georgia,serif' font-size='11' fill='#000' stroke='none'>
+    <text x='122' y='22'>Ω</text><text x='90' y='98'>Σ</text><text x='6' y='60'>∫</text><text x='176' y='112'>√2</text>
+    <text x='30' y='176'>Δt</text><text x='140' y='206'>∞</text><text x='226' y='150'>µ</text><text x='218' y='236'>θ</text>
   </g>
   <rect x='24' y='26' width='46' height='30' rx='2'/>
   <path d='M42 26a5 5 0 0 0 10 0'/>
