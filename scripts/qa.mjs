@@ -195,10 +195,10 @@ for (const page of pages) {
    moves the page in response — which used to land fragment links hundreds of
    pixels from their target. */
 say('\nDEEP LINKS');
-for (const [route, frag] of [['/displays/', 'try'], ['/displays/', 'order'],
+for (const [route, frag] of [['/displays/templates/', 'try'], ['/displays/templates/', 'studio'], ['/displays/', 'order'], ['/displays/', 'pricing'],
                              ['/college-projects/', 'offer'], ['/shop/', 'catalogue'],
                              ['/start/', 'contact'], ['/college-projects/', 'gsm-remote-controller'],
-                             ['/', 'experience']]) {
+                             ['/', 'studio']]) {
   const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await p.goto(`${BASE}${route}#${frag}`, { waitUntil: 'networkidle' });
   await p.waitForTimeout(1400);

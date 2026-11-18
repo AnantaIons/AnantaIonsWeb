@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
@@ -6,12 +6,29 @@ import LedBoard, { LED_COLOURS } from '../components/LedBoard.jsx';
 import { Section, SectionHead, PageHero, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
+import LedDemo from '../components/LedDemo.jsx';
 import { templates, sizeGuide } from '../content/templates.js';
 
 const sizeLabel = ([a, d]) => {
   const cm = (n, u) => (n * u) / 100;
   return `${a} × ${d} panels · ${(a * 32)} × ${(d * 16)} LEDs · ${cm(a, 32).toFixed(2).replace(/\.?0+$/, '')} × ${cm(d, 16).toFixed(2).replace(/\.?0+$/, '')} m`;
 };
+
+/* The full-colour designer (public/display-designer.html) runs inside this
+   page in embed mode and reports its height, so it reads as part of the page. */
+function StudioFrame() {
+  const ref = useRef(null);
+  const [h, setH] = useState(1400);
+  useEffect(() => {
+    const on = (e) => { if (e.data && e.data.ledEmbedH && e.source === ref.current?.contentWindow) setH(Math.ceil(e.data.ledEmbedH) + 4); };
+    window.addEventListener('message', on);
+    return () => window.removeEventListener('message', on);
+  }, []);
+  return (
+    <iframe ref={ref} className="studio-frame" src={path('/display-designer.html?embed=1')} style={{ height: `${h}px` }}
+      title="Full-colour LED board designer" loading="lazy" />
+  );
+}
 
 const USES = ['All', ...Array.from(new Set(templates.map((t) => t.use)))];
 
@@ -22,18 +39,26 @@ export default function BoardGallery() {
   return (
     <Layout current="/displays/templates/">
       <PageHero
-        eyebrow="Board gallery"
-        title={<>Real board sizes, <span className="hl">real advertisements</span></>}
-        lede="Layouts we can put on your LED board — from a two-panel shop sign to a wide temple board. Pick one you like and we will make it in your size and colour."
+        eyebrow="Design studio"
+        title={<>Design your LED board <span className="hl">in minutes</span></>}
+        lede="Everything in one place: a full-colour designer for big boards, ready single-colour layouts, and a quick notice preview. Pick what fits, then send it to us on WhatsApp."
       >
-        <div className="btn-row">
-          <Button href="#gallery" size="lg">Browse templates</Button>
-          <Button href={path('/displays/#size')} variant="on-dark" size="lg">Size calculator</Button>
-        </div>
+        <nav className="studio-jump" aria-label="On this page">
+          <a href="#studio"><strong>Full-colour designer</strong><span>Your shop name, offer and icon on any board size</span></a>
+          <a href="#gallery"><strong>Single-colour layouts</strong><span>Notices, offers, tokens and timings</span></a>
+          <a href="#try"><strong>Quick notice preview</strong><span>Type a message, see it scroll</span></a>
+        </nav>
       </PageHero>
 
+      <Section labelledBy="studio-title" id="studio">
+        <SectionHead eyebrow="Full colour" id="studio-title" title="Full-colour designer"
+          lede="Choose your business, set the board size in panels, type your text — and download a PNG or GIF for your controller. Your text is saved on this device only." />
+        <StudioFrame />
+        <p className="studio-note">Prefer a bigger screen? <a href={path('/display-designer.html')}>Open the designer on its own page</a>.</p>
+      </Section>
+
       <Section labelledBy="gallery-title" id="gallery">
-        <SectionHead eyebrow="Templates" id="gallery-title" title="Pick a layout"
+        <SectionHead eyebrow="Single colour" id="gallery-title" title="Single-colour layouts"
           lede="Every board below is drawn at its true LED resolution, so text sizes are exactly what you would see." />
         <div className="gallery-filter" role="group" aria-label="Filter by use">
           {USES.map((u) => (
@@ -98,6 +123,18 @@ export default function BoardGallery() {
               <h3 className="h-3">{c.label}</h3>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section dark labelledBy="try-title" id="try">
+        <div className="demo-grid">
+          <div>
+            <span className="eyebrow">Quick preview</span>
+            <h2 className="h-1" id="try-title">Write a notice, see it on the board</h2>
+            <p className="lede" style={{ marginTop: '16px' }}>Type your own message or pick an example, and choose the LED colour.</p>
+            <p style={{ marginTop: '16px' }}><a className="link-more" href={path('/displays/#size')}>Work out your board size and price</a></p>
+          </div>
+          <LedDemo />
         </div>
       </Section>
 

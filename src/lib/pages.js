@@ -45,10 +45,10 @@ export const pages = [
   },
   {
     key: 'led-templates', route: '/displays/templates/', file: 'displays/templates/index.html', component: 'BoardGallery',
-    title: 'LED board gallery — sizes and ad templates | ANANTA IONS',
+    title: 'LED design studio — designer and board layouts | ANANTA IONS',
     description:
-      'Shop signs, sale offers, token displays, school notices and temple timings on real ' +
-      'P10 board sizes, in four LED colours and four text sizes.',
+      'Design your LED board: a full-colour designer for any board size, single-colour layouts ' +
+      'for notices, offers and tokens, and a quick notice preview.',
     priority: '0.9',
   },
   {

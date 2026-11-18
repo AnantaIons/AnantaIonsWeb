@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-18T11:36:10.346Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-18T12:05:22.367Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -56,8 +56,8 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  every image has alt  0 missing
   PASS  skip link present
   PASS  html lang set
-  PASS  title present and <= 70 chars  56
-  PASS  meta description 70–200 chars  140
+  PASS  title present and <= 70 chars  60
+  PASS  meta description 70–200 chars  147
   PASS  canonical correct  https://anantaions.com/AnantaIonsWeb/displays/templates/
   PASS  open graph complete
   PASS  page advertises absolute URLs to verify  9
@@ -489,13 +489,15 @@ ACCESSIBILITY, STRUCTURE & SEO
   PASS  skip link is focusable
 
 DEEP LINKS
-  PASS  /displays/#try lands on target  top 72
+  PASS  /displays/templates/#try lands on target  top 72
+  PASS  /displays/templates/#studio lands on target  top 72
   PASS  /displays/#order lands on target  top 72
+  PASS  /displays/#pricing lands on target  top 72
   PASS  /college-projects/#offer lands on target  top 72
   PASS  /shop/#catalogue lands on target  top 72
   PASS  /start/#contact lands on target  top 72
   PASS  /college-projects/#gsm-remote-controller lands on target  top 72
-  PASS  /#experience lands on target  top 72
+  PASS  /#studio lands on target  top 72
 
 RESPONSIVE
   PASS  360px
@@ -509,9 +511,9 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  4879 chars (min 500), 0 hidden
-  PASS  /displays/ readable without JS  6896 chars (min 500), 0 hidden
-  PASS  /displays/templates/ readable without JS  2935 chars (min 500), 0 hidden
+  PASS  / readable without JS  4504 chars (min 500), 0 hidden
+  PASS  /displays/ readable without JS  6967 chars (min 500), 0 hidden
+  PASS  /displays/templates/ readable without JS  3756 chars (min 500), 0 hidden
   PASS  /engineering/ readable without JS  3290 chars (min 500), 0 hidden
   PASS  /journal/ readable without JS  761 chars (min 500), 0 hidden
   PASS  /websites/ readable without JS  3019 chars (min 500), 0 hidden
@@ -534,10 +536,10 @@ WITHOUT JAVASCRIPT
   PASS  /journal/small-business-website-checklist/ readable without JS  1588 chars (min 500), 0 hidden
 
 WEIGHT
-  PASS  weight budget found assets to measure  8 files
-  PASS  both JS and CSS were measured  js 94450 B, css 86828 B
-  PASS  first-load JS under 120 kB  92.2 kB
-  PASS  CSS under 90 kB  84.8 kB
+  PASS  weight budget found assets to measure  7 files
+  PASS  both JS and CSS were measured  js 86018 B, css 89710 B
+  PASS  first-load JS under 120 kB  84.0 kB
+  PASS  CSS under 90 kB  87.6 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 

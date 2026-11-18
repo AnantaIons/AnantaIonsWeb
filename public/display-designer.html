@@ -6,7 +6,8 @@
 <title>Design your LED board — ANANTA IONS</title>
 <link rel="icon" href="favicon.svg">
 <script>/* ?show=1 : showcase mode used on the home page — one board, random layouts, no controls */
-if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('show');</script>
+if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('show');
+if (/[?&]embed=/.test(location.search)) document.documentElement.classList.add('embed');</script>
 <style>
   @font-face { font-family:"Archivo Black"; src:url("fonts/archivo-black-latin.woff2") format("woff2"); font-weight:400; font-display:swap; }
   @font-face { font-family:"Noto Sans Devanagari"; src:url("fonts/noto-sans-devanagari-700.woff2") format("woff2"); font-weight:700; font-display:swap; unicode-range:U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
@@ -56,6 +57,10 @@ if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('s
   .note { color:var(--muted); font-size:14px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px; }
   .msg { font-size:13px; color:var(--muted); }
   :focus-visible { outline:2px solid #0071E3; outline-offset:2px; }
+  /* embed mode (inside the site's Design studio page) */
+  html.embed body { background:transparent; }
+  html.embed .top, html.embed .eyebrow, html.embed h1, html.embed .lede, html.embed .fine { display:none !important; }
+  html.embed .wrap { padding:0 0 8px; max-width:none; }
   /* showcase mode (home page) */
   html.show, html.show body { margin:0; background:#050505; overflow:hidden; }
   html.show .top, html.show .eyebrow, html.show h1, html.show .lede, html.show .fine, html.show .panel, html.show .note { display:none !important; }
@@ -69,7 +74,7 @@ if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('s
 </style>
 </head>
 <body>
-<header class="top"><div class="top__in"><a href="./">ANANTA IONS</a><a class="cta" href="start/?service=display">Get a quote</a></div></header>
+<header class="top"><div class="top__in"><a href="displays/templates/">← Design studio</a><a class="cta" href="start/?service=display">Get a quote</a></div></header>
 <main class="wrap">
   <p class="eyebrow">Display designer</p>
   <h1>Design your board.</h1>
@@ -101,7 +106,7 @@ if (/[?&]show=/.test(location.search)) document.documentElement.classList.add('s
         </select>
       </div>
       <div><label>Panels across</label><input id="pw" type="number" min="1" max="40" value="10"></div>
-      <div><label>Panels down</label><input id="ph" type="number" min="1" max="40" value="19"></div>
+      <div><label>Panels down</label><input id="ph" type="number" min="1" max="40" value="10"></div>
     </div>
     <div class="info" id="info"></div>
     <div class="size" style="margin-top:12px">
@@ -686,18 +691,18 @@ function ft(m) { return (m / 0.3048).toFixed(1); }
 const presetEl = document.getElementById('preset'), pwEl = document.getElementById('pw'), phEl = document.getElementById('ph');
 let MASK = null;
 
-function ledPitch() { return Math.max(1, Math.min(12, Math.floor(Math.min(1000 / W, 1000 / H)))); }
+function ledPitch() { return Math.max(2, Math.min(12, Math.floor(Math.min(1400 / W, 1400 / H)))); }
 
 function buildMask() {
   const P = ledPitch(), dot = P >= 3 ? P - 1 : P;
   const m = document.createElement('canvas'); m.width = W * P; m.height = H * P;
   const o = m.getContext('2d');
   if (dot < P) {
-    o.fillStyle = '#050505'; o.fillRect(0, 0, m.width, m.height);
+    o.fillStyle = 'rgba(5,5,5,0.5)'; o.fillRect(0, 0, m.width, m.height);
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) o.clearRect(x * P, y * P, dot, dot);
   }
   if (P >= 2) {
-    o.strokeStyle = 'rgba(90,90,90,0.45)'; o.lineWidth = 1;
+    o.strokeStyle = 'rgba(90,90,90,0.22)'; o.lineWidth = 1;
     for (let i = 32; i < W; i += 32) { o.beginPath(); o.moveTo(i * P - 0.5, 0); o.lineTo(i * P - 0.5, m.height); o.stroke(); }
     for (let j = 16; j < H; j += 16) { o.beginPath(); o.moveTo(0, j * P - 0.5); o.lineTo(m.width, j * P - 0.5); o.stroke(); }
   }
@@ -983,6 +988,12 @@ Promise.all([
   document.fonts.load(`700 40px "Noto Sans Devanagari"`, 'मेडिकल'),
 ]).then(renderAll).catch(renderAll);
 document.fonts.ready.then(renderAll);
+/* embed: tell the parent page our height so the frame never scrolls */
+if (/[?&]embed=/.test(location.search) && window.parent !== window) {
+  const post = () => parent.postMessage({ ledEmbedH: document.documentElement.scrollHeight }, '*');
+  if ('ResizeObserver' in window) new ResizeObserver(post).observe(document.body);
+  window.addEventListener('load', post); post();
+}
 </script>
 </body>
 </html>

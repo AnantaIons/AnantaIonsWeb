@@ -10,8 +10,9 @@ import { useEffect, useRef } from 'react';
    (--circuit-ink) and follows the time of day: copper by day, warm amber at
    night.
 
-   Pointer devices only (hover: hover). Touch screens and reduced-motion users
-   never see it, and it never takes pointer events. */
+   Mouse: follows the cursor. Touch: shows under the finger while scrolling,
+   then fades. It sits above the page (so it shows over dark sections too) but
+   is faint and never takes pointer events. Off for reduced-motion users. */
 
 const TILE = `
 <svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240' fill='none' stroke='#000' stroke-width='1.1' stroke-linecap='round' stroke-linejoin='round'>
@@ -55,7 +56,15 @@ const TILE = `
   <circle cx='104' cy='200' r='1.8'/><circle cx='111' cy='200' r='1.8'/><circle cx='118' cy='200' r='1.8'/><circle cx='125' cy='200' r='1.8'/>
 </svg>`;
 
-const circuitTile = `url("data:image/svg+xml,${encodeURIComponent(TILE.replace(/<!--.*?-->/g, '').replace(/\s+/g, ' ').trim())}")`;
+/* The tile is drawn in its final colour (copper by day, amber at night) and
+   shown as a plain background — no mask-composite, which some browsers
+   (older Safari, Samsung Internet, in-app browsers) do not support. Only the
+   single radial "torch" mask is applied to the wrapper. */
+const tile = (colour) => `url("data:image/svg+xml,${encodeURIComponent(
+  TILE.replace(/<!--.*?-->/g, '').replace(/\s+/g, ' ').trim().replace(/#000/g, colour),
+)}")`;
+const TILE_DAY = tile('#A0522D');
+const TILE_NIGHT = tile('#E0915A');
 
 export default function CircuitSpotlight() {
   const ref = useRef(null);
@@ -63,26 +72,38 @@ export default function CircuitSpotlight() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return undefined;
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!canHover || still) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
-    let raf = 0; let x = -999; let y = -999;
+    let raf = 0; let x = -999; let y = -999; let hide = 0;
     const paint = () => { raf = 0; el.style.setProperty('--mx', `${x}px`); el.style.setProperty('--my', `${y}px`); };
-    const move = (e) => {
-      x = e.clientX; y = e.clientY;
+    const show = (cx, cy, touch) => {
+      x = cx; y = cy;
       el.classList.add('is-on');
       if (!raf) raf = requestAnimationFrame(paint);
+      // Touch screens have no hover: reveal under the finger, then fade out.
+      if (touch) { clearTimeout(hide); hide = setTimeout(() => el.classList.remove('is-on'), 1400); }
     };
+    const move = (e) => show(e.clientX, e.clientY, e.pointerType !== 'mouse');
+    const touch = (e) => { const t = e.touches && e.touches[0]; if (t) show(t.clientX, t.clientY, true); };
     const leave = () => el.classList.remove('is-on');
     window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerdown', move, { passive: true });
+    window.addEventListener('touchmove', touch, { passive: true });
     document.documentElement.addEventListener('pointerleave', leave);
     return () => {
       window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerdown', move);
+      window.removeEventListener('touchmove', touch);
       document.documentElement.removeEventListener('pointerleave', leave);
+      clearTimeout(hide);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
-  return <div ref={ref} className="circuit-spot" aria-hidden="true" style={{ '--circuit-tile': circuitTile }} />;
+  return (
+    <div ref={ref} className="circuit-spot" aria-hidden="true">
+      <div className="circuit-spot__tile circuit-spot__tile--day" style={{ backgroundImage: TILE_DAY }} />
+      <div className="circuit-spot__tile circuit-spot__tile--night" style={{ backgroundImage: TILE_NIGHT }} />
+    </div>
+  );
 }

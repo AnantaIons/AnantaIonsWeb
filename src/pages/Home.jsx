@@ -3,7 +3,6 @@ import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
 import HeroBoard from '../components/HeroBoard.jsx';
 import HeroScenes from '../components/HeroScenes.jsx';
-import LedDemo from '../components/LedDemo.jsx';
 import ProductArt from '../components/ProductArt.jsx';
 import { Section } from '../components/Ui.jsx';
 import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
@@ -23,7 +22,7 @@ export default function Home() {
           <p className="lede">LED display boards made to your size in Jaipur — and the websites, engineering and parts to go with them.</p>
           <div className="btn-row">
             <Button href={path('/start/?service=display')} size="lg">Get a quote</Button>
-            <a className="link-more" href="#studio">Design your board</a>
+            <a className="link-more" href={path('/displays/templates/')}>Design your board</a>
           </div>
         </div>
       </section>
@@ -40,15 +39,6 @@ export default function Home() {
           <h2 className="h-1" id="points-title">Built well. Looked after.</h2>
         </div>
         <Pillars />
-      </Section>
-
-      <Section dark labelledBy="exp-title" id="experience">
-        <div className="section-head center">
-          <p className="eyebrow">A simpler way to communicate</p>
-          <h2 className="h-1" id="exp-title">Your message. Ready to be seen.</h2>
-          <p className="lede">Type anything, choose a colour, and watch it run on the board.</p>
-        </div>
-        <div className="experience"><LedDemo /></div>
       </Section>
 
       <Section dark labelledBy="tpl-title" id="studio">

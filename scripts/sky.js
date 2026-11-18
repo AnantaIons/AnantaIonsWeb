@@ -36,7 +36,7 @@
              [345, 1160], [360, 1140], [370, 1110], [385, 1075], [405, 1055], [425, 1055]];
 
   function rgb(c) { return [1, 3, 5].map(function (i) { return parseInt(c.substr(i, 2), 16); }); }
-  function mix(a, b, t) { a = rgb(a); b = rgb(b); return '#' + a.map(function (v, i) { return ('0' + Math.round(v + (b[i] - v) * t).toString(16)).slice(-2); }).join(''); }
+  function mix(a, b, t) { if (!b) b = a; if (!a) a = b; a = rgb(a); b = rgb(b); return '#' + a.map(function (v, i) { return ('0' + Math.round(v + (b[i] - v) * t).toString(16)).slice(-2); }).join(''); }
 
   function run() {
     var d = new Date(), q = new URLSearchParams(location.search);

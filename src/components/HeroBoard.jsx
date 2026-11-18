@@ -32,8 +32,8 @@ export default function HeroBoard() {
         {PW} × {PH} panel board · made in our design studio · illustrative
       </p>
       <div className="btn-row hero-studio__cta">
-        <a className="btn--on-dark-pill" href={path('/display-designer.html')}>Design your own board</a>
-        <a className="link-more" href={path('/displays/templates/')}>Browse all layouts</a>
+        <a className="btn--on-dark-pill" href={path('/displays/templates/#studio')}>Design your own board</a>
+        <a className="link-more" href={path('/displays/templates/#gallery')}>Single-colour layouts</a>
       </div>
     </>
   );

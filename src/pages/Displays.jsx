@@ -43,7 +43,7 @@ export default function Displays() {
 
       <Section labelledBy="types-title" id="types">
         <SectionHead row eyebrow="What we make" id="types-title" title="Display options">
-          <Button href={path('/displays/templates/')} variant="outline">See the board gallery</Button>
+          <Button href={path('/displays/templates/')} variant="outline">Open the design studio</Button>
         </SectionHead>
         <div className="grid grid--4">
           {displayTypes.map((d) => (
@@ -68,14 +68,16 @@ export default function Displays() {
         <Pillars />
       </Section>
 
-      <Section dark labelledBy="demo-title" id="try">
-        <div className="demo-grid">
+      <Section dark labelledBy="studio-title" id="studio">
+        <div className="studio-promo">
           <div>
-            <span className="eyebrow">Try it</span>
-            <h2 className="h-1" id="demo-title">Write a notice, see it on the board</h2>
-            <p className="lede" style={{ marginTop: '16px' }}>
-              This is how a notice looks on a real LED board. Type your own message or pick an example.
-            </p>
+            <span className="eyebrow">Design studio</span>
+            <h2 className="h-1" id="studio-title">See your board before we build it</h2>
+            <p className="lede" style={{ marginTop: '16px' }}>Full-colour designs for big boards, ready single-colour layouts and a quick notice preview — all in one place.</p>
+            <div className="btn-row" style={{ marginTop: '24px' }}>
+              <a className="btn--on-dark-pill" href={path('/displays/templates/')}>Open the design studio</a>
+              <a className="link-more" href={path('/displays/templates/#try')}>Quick notice preview</a>
+            </div>
           </div>
           <LedDemo />
         </div>

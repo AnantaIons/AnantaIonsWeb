@@ -18,7 +18,12 @@ function Wordmark() {
   );
 }
 
-const isActive = (current, href) => !!current && (current === href || (href !== '/' && current.startsWith(href)));
+/* The nav item whose href is the longest prefix of the current route wins,
+   so /displays/templates/ lights up "Design studio", not "Displays". */
+const isActive = (current, href) => {
+  if (!current || href === '/' || !current.startsWith(href)) return current === href;
+  return !nav.some((n) => n.href !== href && n.href.length > href.length && current.startsWith(n.href));
+};
 
 export default function Masthead({ current }) {
   const [open, setOpen] = useState(false);

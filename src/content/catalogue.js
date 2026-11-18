@@ -66,7 +66,7 @@ export const products = [
     confirm: ['Size', 'LED colour', 'How you want to update the text'],
     about: 'A ready-to-mount board built to your size. Use the size calculator to see how many panels your space needs, then send us the size.',
     uses: ['Schools, shops, offices, temples'],
-    docs: [{ label: 'Size calculator', href: '/displays/#size' }, { label: 'Board gallery', href: '/displays/templates/' }],
+    docs: [{ label: 'Size calculator', href: '/displays/#size' }, { label: 'Design studio', href: '/displays/templates/' }],
     price: null, priceText: 'From ₹2,499/sq ft + GST', stock: 'confirm',
   },
   {
