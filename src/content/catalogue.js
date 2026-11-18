@@ -67,7 +67,7 @@ export const products = [
     about: 'A ready-to-mount board built to your size. Use the size calculator to see how many panels your space needs, then send us the size.',
     uses: ['Schools, shops, offices, temples'],
     docs: [{ label: 'Size calculator', href: '/displays/#size' }, { label: 'Board gallery', href: '/displays/templates/' }],
-    price: null, stock: 'confirm',
+    price: null, priceText: 'From ₹2,500/sq ft + GST', stock: 'confirm',
   },
   {
     id: 'esp32-devkit', cat: 'boards', name: 'ESP32 development board',

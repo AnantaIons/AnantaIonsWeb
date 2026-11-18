@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { waLink } from '../lib/wa.js';
+import { PRICES, BACKUP_FACTOR, inr } from '../content/pricing.js';
 
 /* How many P10 panels does a wall need?
    A P10 module is 320 mm × 160 mm with 32 × 16 LEDs. The board is rounded UP
@@ -20,6 +21,8 @@ export default function SizeCalculator() {
   const [w, setW] = useState('4');
   const [h, setH] = useState('2');
   const [unit, setUnit] = useState('ft');
+  const [kind, setKind] = useState('single');
+  const [backup, setBackup] = useState(false);
 
   const wmm = Math.max(0, parseFloat(w) || 0) * UNITS[unit];
   const hmm = Math.max(0, parseFloat(h) || 0) * UNITS[unit];
@@ -27,6 +30,8 @@ export default function SizeCalculator() {
   const down = Math.max(1, Math.ceil(hmm / PANEL_H - 0.02));
   const total = across * down;
   const valid = wmm > 0 && hmm > 0 && total <= 400;
+  const sqft = (across * PANEL_W * down * PANEL_H) / (304.8 * 304.8);
+  const estimate = sqft * PRICES[kind].perSqFt * (backup ? BACKUP_FACTOR : 1);
   const shown = Math.min(across, 24);
   const shownDown = Math.min(down, 12);
 
@@ -35,6 +40,7 @@ export default function SizeCalculator() {
     `Space: ${w} × ${h} ${LABEL[unit]}\n` +
     `Board: ${across} × ${down} P10 panels (${total} total), ` +
     `${fmt(across * PANEL_W, unit)} × ${fmt(down * PANEL_H, unit)}\n` +
+    `Type: ${PRICES[kind].name}${backup ? ' with battery backup' : ''} (about ${sqft.toFixed(1)} sq ft, from ${inr(estimate)} + GST)\n` +
     `Message to show: `;
 
   return (
@@ -61,11 +67,24 @@ export default function SizeCalculator() {
         </div>
       </div>
 
+      <div className="calc__kind" role="radiogroup" aria-label="Board type">
+        {Object.values(PRICES).map((p) => (
+          <button key={p.id} type="button" role="radio" aria-checked={kind === p.id}
+            className={kind === p.id ? 'is-on' : ''} onClick={() => setKind(p.id)}>
+            {p.name} <span>{inr(p.perSqFt)}/sq ft</span>
+          </button>
+        ))}
+        <label className="calc__backup">
+          <input type="checkbox" checked={backup} onChange={(e) => setBackup(e.target.checked)} />
+          Battery backup <span>(3 × price)</span>
+        </label>
+      </div>
+
       {valid ? (
         <div className="calc__result" aria-live="polite">
           <div
-            className="calc__preview" aria-hidden="true"
-            style={{ '--cols': shown, '--rows': shownDown, aspectRatio: `${across * 2} / ${down}` }}
+            className={`calc__preview${kind === 'rgb' ? ' calc__preview--rgb' : ''}`} aria-hidden="true"
+            style={{ '--cols': shown, '--rows': shownDown, aspectRatio: `${across * 2} / ${down}`, width: `min(100%, ${Math.round((240 * across * 2) / down)}px)` }}
           >
             {Array.from({ length: shown * shownDown }, (_, i) => <span key={i} />)}
           </div>
@@ -74,11 +93,12 @@ export default function SizeCalculator() {
             <div><dt>Board size</dt><dd>{fmt(across * PANEL_W, unit)} × {fmt(down * PANEL_H, unit)}</dd></div>
             <div><dt>LEDs</dt><dd>{(across * 32).toLocaleString('en-IN')} × {down * 16} dots</dd></div>
           </dl>
+          <p className="calc__estimate">Starting estimate <strong>{inr(estimate)}</strong> <span>+ GST · about {sqft.toFixed(1)} sq ft</span></p>
           <a className="btn btn--whatsapp btn--lg" href={waLink(message)} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" size={18} /> Get a quote for this size
             <span className="visually-hidden"> (opens WhatsApp in a new tab)</span>
           </a>
-          <p className="calc__note">Rounded up to whole P10 panels (32 × 16 cm each). Final size is confirmed with you before we build.</p>
+          <p className="calc__note">Rounded up to whole P10 panels (32 × 16 cm each). The estimate uses our starting price; the final size and price are confirmed with you before we build.</p>
         </div>
       ) : (
         <p className="calc__note" aria-live="polite">Enter a width and height. For boards over 400 panels, message us directly.</p>

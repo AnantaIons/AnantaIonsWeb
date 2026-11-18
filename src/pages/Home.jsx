@@ -6,16 +6,12 @@ import LedDemo from '../components/LedDemo.jsx';
 import LedBoard from '../components/LedBoard.jsx';
 import ProductArt from '../components/ProductArt.jsx';
 import { Section } from '../components/Ui.jsx';
+import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
 import { templates } from '../content/templates.js';
 import { articles } from '../content/journal.js';
 
-const POINTS = [
-  ['Made to your size', 'From a two-panel shop sign to a full wall, built from standard P10 panels.'],
-  ['Changed in seconds', 'Update the message from your phone or by SMS. No USB stick, no ladder.'],
-  ['Made in Jaipur', 'Built and tested here, with help close by when you need it.'],
-];
 
 const PICKS = ['sale', 'restaurant', 'token'].map((id) => templates.find((t) => t.id === id));
 
@@ -50,16 +46,11 @@ export default function Home() {
       </section>
 
       <Section labelledBy="points-title">
-        <h2 className="visually-hidden" id="points-title">Why our boards</h2>
-        <div className="points">
-          {POINTS.map(([t, b], i) => (
-            <div className="point" key={t}>
-              <span className="point__no">0{i + 1}</span>
-              <h3>{t}</h3>
-              <p>{b}</p>
-            </div>
-          ))}
+        <div className="section-head center">
+          <p className="eyebrow">Why Ananta Displays</p>
+          <h2 className="h-1" id="points-title">Built well. Looked after.</h2>
         </div>
+        <Pillars />
       </Section>
 
       <Section dark labelledBy="exp-title" id="experience">
@@ -88,6 +79,15 @@ export default function Home() {
           <Button href={path('/displays/templates/')}>Browse the gallery</Button>
           <a className="link-more" href={path('/display-designer.html')}>Design your own</a>
         </div>
+      </Section>
+
+      <Section labelledBy="price-title" id="pricing">
+        <div className="section-head center">
+          <p className="eyebrow">Clear pricing</p>
+          <h2 className="h-1" id="price-title">Honest prices. No surprises.</h2>
+          <p className="lede">Pick single colour or full colour. We build it to your size and confirm the final price before we start.</p>
+        </div>
+        <PriceCards />
       </Section>
 
       <Section labelledBy="more-title">

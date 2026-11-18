@@ -4,7 +4,7 @@ import ProductArt from './ProductArt.jsx';
 import { path } from '../lib/paths.js';
 import { categoryById } from '../content/catalogue.js';
 
-export const priceLabel = (p) => (p.stock === 'out' ? 'Out of stock' : p.price != null ? `₹${p.price.toLocaleString('en-IN')}` : 'Ask price');
+export const priceLabel = (p) => (p.stock === 'out' ? 'Out of stock' : p.priceText ? p.priceText : p.price != null ? `₹${p.price.toLocaleString('en-IN')}` : 'Ask price');
 
 export default function ProductCard({ p }) {
   return (

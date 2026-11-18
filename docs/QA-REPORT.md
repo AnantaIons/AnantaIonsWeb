@@ -1,6 +1,6 @@
 # ANANTA IONS — QA report
 
-Generated 2026-11-18T09:53:10.802Z by `npm run qa` against the production build in `dist/`.
+Generated 2026-11-18T10:26:23.268Z by `npm run qa` against the production build in `dist/`.
 
 ```
 ACCESSIBILITY, STRUCTURE & SEO
@@ -509,20 +509,20 @@ RESPONSIVE
   PASS  1920px
 
 WITHOUT JAVASCRIPT
-  PASS  / readable without JS  2370 chars (min 500), 0 hidden
-  PASS  /displays/ readable without JS  3680 chars (min 500), 0 hidden
+  PASS  / readable without JS  3781 chars (min 500), 0 hidden
+  PASS  /displays/ readable without JS  5575 chars (min 500), 0 hidden
   PASS  /displays/templates/ readable without JS  2935 chars (min 500), 0 hidden
   PASS  /engineering/ readable without JS  3290 chars (min 500), 0 hidden
   PASS  /journal/ readable without JS  761 chars (min 500), 0 hidden
   PASS  /websites/ readable without JS  3019 chars (min 500), 0 hidden
   PASS  /college-projects/ readable without JS  2179 chars (min 500), 0 hidden
-  PASS  /shop/ readable without JS  4176 chars (min 500), 0 hidden
+  PASS  /shop/ readable without JS  4190 chars (min 500), 0 hidden
   PASS  /start/ readable without JS  755 chars (min 500), 0 hidden
   PASS  /404.html readable without JS  302 chars (min 200), 0 hidden
-  PASS  /shop/p10-led-module/ readable without JS  1550 chars (min 500), 0 hidden
-  PASS  /shop/smps-5v/ readable without JS  1453 chars (min 500), 0 hidden
-  PASS  /shop/panel-cables/ readable without JS  1470 chars (min 500), 0 hidden
-  PASS  /shop/led-board-complete/ readable without JS  1252 chars (min 500), 0 hidden
+  PASS  /shop/p10-led-module/ readable without JS  1564 chars (min 500), 0 hidden
+  PASS  /shop/smps-5v/ readable without JS  1467 chars (min 500), 0 hidden
+  PASS  /shop/panel-cables/ readable without JS  1484 chars (min 500), 0 hidden
+  PASS  /shop/led-board-complete/ readable without JS  1266 chars (min 500), 0 hidden
   PASS  /shop/esp32-devkit/ readable without JS  1247 chars (min 500), 0 hidden
   PASS  /shop/arduino-uno/ readable without JS  908 chars (min 500), 0 hidden
   PASS  /shop/arduino-mega/ readable without JS  1079 chars (min 500), 0 hidden
@@ -535,9 +535,9 @@ WITHOUT JAVASCRIPT
 
 WEIGHT
   PASS  weight budget found assets to measure  9 files
-  PASS  both JS and CSS were measured  js 78307 B, css 80439 B
-  PASS  first-load JS under 120 kB  76.5 kB
-  PASS  CSS under 80 kB  78.6 kB
+  PASS  both JS and CSS were measured  js 81348 B, css 80305 B
+  PASS  first-load JS under 120 kB  79.4 kB
+  PASS  CSS under 80 kB  78.4 kB
 
 CONTENT INTEGRITY  (reported, does not fail the build)
 

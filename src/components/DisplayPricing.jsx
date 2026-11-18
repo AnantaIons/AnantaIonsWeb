@@ -1,0 +1,50 @@
+import { path } from '../lib/paths.js';
+import { PRICES, INCLUDED, PRICE_NOTE, PILLARS, BACKUP_FACTOR, inr } from '../content/pricing.js';
+
+/* Starting prices for LED boards: two price cards, what is included, and the
+   fine print. Used on the home page and the Displays page. */
+export function PriceCards({ calcHref = path('/displays/#size') }) {
+  return (
+    <div className="prices">
+      <div className="prices__grid">
+        {Object.values(PRICES).map((p) => (
+          <article className={`price-card price-card--${p.id}`} key={p.id} aria-labelledby={`price-${p.id}`}>
+            <span className="price-card__swatch" aria-hidden="true" />
+            <h3 id={`price-${p.id}`}>{p.name}</h3>
+            <p className="price-card__from">from</p>
+            <p className="price-card__amount">{inr(p.perSqFt)}<span> / sq ft</span></p>
+            <p className="price-card__gst">+ GST</p>
+            <p className="price-card__body">{p.body}</p>
+            <div className="price-card__backup">
+              <p className="price-card__backup-name">With battery backup</p>
+              <p className="price-card__backup-amount">from {inr(p.perSqFt * BACKUP_FACTOR)}<span> / sq ft + GST</span></p>
+              <p className="price-card__backup-body">Keeps running through power cuts.</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="prices__included">
+        <h3>Every board includes</h3>
+        <ul className="checks">{INCLUDED.map((x) => <li key={x}>{x}</li>)}</ul>
+        <a className="link-more" href={calcHref}>Work out your board’s price</a>
+      </div>
+      <p className="prices__note">{PRICE_NOTE}</p>
+    </div>
+  );
+}
+
+export function Pillars() {
+  return (
+    <div className="points points--4">
+      {PILLARS.map(([t, b], i) => (
+        <div className="point" key={t}>
+          <span className="point__no">0{i + 1}</span>
+          <h3>{t}</h3>
+          <p>{b}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default PriceCards;

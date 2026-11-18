@@ -4,6 +4,7 @@ import Icon from '../components/Icon.jsx';
 import LedMatrix from '../components/LedMatrix.jsx';
 import LedDemo from '../components/LedDemo.jsx';
 import SizeCalculator from '../components/SizeCalculator.jsx';
+import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
 import { displayTypes, displayUses } from '../content/capabilities.js';
@@ -32,7 +33,7 @@ export default function Displays() {
             </p>
             <div className="btn-row">
               <Button href={path('/start/')} size="lg">Get a quote</Button>
-              <Button href="#size" variant="on-dark" size="lg">Size calculator</Button>
+              <Button href="#pricing" variant="on-dark" size="lg">See prices</Button>
             </div>
           </div>
           <LedMatrix id="hero" lines={[{ text: 'NOTICE · EXAM HALL 3 OPENS 10 AM · ', scroll: true }, { text: 'TIMETABLE' }, { text: 'ALERTS' }]} />
@@ -53,6 +54,17 @@ export default function Displays() {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Section soft labelledBy="price-title" id="pricing">
+        <SectionHead eyebrow="Clear pricing" id="price-title" title="Starting prices"
+          lede="Single colour or full colour, made to your size. The final price is confirmed in writing before we build." />
+        <PriceCards calcHref="#size" />
+      </Section>
+
+      <Section labelledBy="why-title" id="why">
+        <SectionHead eyebrow="Why Ananta Displays" id="why-title" title="Quality product. Fast service. One complete system." />
+        <Pillars />
       </Section>
 
       <Section dark labelledBy="demo-title" id="try">
