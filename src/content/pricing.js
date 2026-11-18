@@ -6,12 +6,21 @@
    Battery = rechargeable lithium battery backup version. All per sq ft, before GST. */
 export const OFFER_LABEL = 'Launch offer';
 export const PRICES = {
-  single: { id: 'single', name: 'Single colour', mrp: 2999, price: 2499, backupMrp: 8999, backupPrice: 7499,
+  single: { id: 'single', name: 'Single colour', mrp: 2999, price: 2499, backupMrp: 6999, backupPrice: 5999,
     body: 'Amber, red, white or green. Clear and bright for notices, offers, timings and token numbers.' },
-  rgb: { id: 'rgb', name: 'Full colour (RGB)', mrp: 5999, price: 4999, backupMrp: 17999, backupPrice: 14999,
+  rgb: { id: 'rgb', name: 'Full colour (RGB)', mrp: 5999, price: 4999, backupMrp: 13999, backupPrice: 11999,
     body: 'Every colour, with logos and pictures. Made for shop fronts and advertising.' },
 };
 export const offPct = (mrp, price) => Math.round((1 - price / mrp) * 100);
+
+/* Battery-backup estimate in the size calculator. Internal only — never shown
+   on the site. Smaller boards cost relatively more to back up, so the factor
+   eases from 2.8 (small boards) to 2.4 (large boards); the per-sq-ft estimate
+   never drops below the "from" price on the cards (2.4 × standard). */
+export const backupFactor = (sqft) => {
+  const t = Math.min(1, Math.max(0, (sqft - 4) / 36));
+  return 2.8 - 0.4 * t;
+};
 
 export const INCLUDED = [
   'The complete board — nothing extra to buy',
@@ -20,13 +29,15 @@ export const INCLUDED = [
   'Full test in our workshop before delivery',
   'Set-up, and we show you how to change the message',
   'Help on call and WhatsApp after installation',
+  'Warranty on every component — panels, controller, power supply and battery',
 ];
 
 export const FEATURES = [
   ['Auto-brightness', 'Full brightness in sunlight, softer at night — easy on the eyes and saves power.'],
   ['Set up your way', 'Wi-Fi, over the internet from anywhere, USB, Bluetooth (BLE) or SMS.'],
   ['Full software support', 'Easy app and software to change messages, plus updates and help from us.'],
-  ['Battery option', 'Rechargeable lithium battery backup for places with power cuts.'],
+  ['Warranty you can trust', 'Every board is covered by warranty — panels, controller, power supply and battery.'],
+  ['Battery option', 'Rechargeable lithium battery backup for places with power cuts, covered by warranty.'],
   ['Shipping across India', 'Packed safely and shipped anywhere in India. Installation available in Jaipur.'],
 ];
 

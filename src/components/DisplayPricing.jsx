@@ -20,7 +20,7 @@ export function PriceCards({ calcHref = path('/displays/#size') }) {
               <p className="price-card__backup-name">With lithium battery backup</p>
               <p className="price-card__backup-was">from <s aria-label={`regular price ${inr(p.backupMrp)}`}>{inr(p.backupMrp)}</s></p>
               <p className="price-card__backup-amount">{inr(p.backupPrice)}<span> / sq ft + GST</span></p>
-              <p className="price-card__backup-body">Built-in rechargeable lithium battery keeps the board running through power cuts.</p>
+              <p className="price-card__backup-body">Built-in rechargeable lithium battery keeps the board running through power cuts. Battery covered by warranty.</p>
             </div>
           </article>
         ))}

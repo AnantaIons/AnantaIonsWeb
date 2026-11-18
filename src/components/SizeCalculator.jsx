@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { waLink } from '../lib/wa.js';
-import { PRICES, inr } from '../content/pricing.js';
+import { PRICES, backupFactor, inr } from '../content/pricing.js';
 
 /* How many P10 panels does a wall need?
    A P10 module is 320 mm × 160 mm with 32 × 16 LEDs. The board is rounded UP
@@ -32,8 +32,9 @@ export default function SizeCalculator() {
   const valid = wmm > 0 && hmm > 0 && total <= 400;
   const sqft = (across * PANEL_W * down * PANEL_H) / (304.8 * 304.8);
   const P = PRICES[kind];
-  const estimate = sqft * (backup ? P.backupPrice : P.price);
-  const regular = sqft * (backup ? P.backupMrp : P.mrp);
+  const k = backup ? backupFactor(sqft) : 1;
+  const estimate = Math.round((sqft * P.price * k) / 100) * 100 - 1;
+  const regular = Math.round((sqft * P.mrp * k) / 100) * 100 - 1;
   const shown = Math.min(across, 24);
   const shownDown = Math.min(down, 12);
 

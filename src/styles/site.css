@@ -1527,8 +1527,8 @@ html[data-sky='night'] .features { background: var(--sky-card); }
 html[data-sky='night'] .price-card__offer { background: #F5F5F7; color: #0A1222; }
 .price-card s, .calc__estimate s { color: var(--text-secondary); font-weight: 500; text-decoration-thickness: 1.5px; }
 .calc__estimate s { font-size: 17px; }
-.features__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(5, 1fr); }
-@media (max-width: 1100px) { .features__grid { grid-template-columns: repeat(3, 1fr); } }
+.features__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px 28px; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1100px) { .features__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 760px) { .features__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .features__grid { grid-template-columns: 1fr; } }
 .price-card__backup-was { font-size: 14px; color: var(--text-secondary); margin-top: 2px; }
