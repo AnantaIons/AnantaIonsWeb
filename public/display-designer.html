@@ -3,53 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop LED Display Templates</title>
+<title>Design your LED board — ANANTA IONS</title>
+<link rel="icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+Devanagari:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0f1110; --card:#181b19; --line:#2a2f2c; --text:#e8ece9; --muted:#9aa39d; --acc:#d5bd84; }
+  @font-face { font-family:"Inter var"; src:url("fonts/inter-latin-var.woff2") format("woff2"); font-weight:100 900; font-display:swap; }
+  :root { --bg:#F5F5F7; --card:#FFFFFF; --line:#D2D2D7; --text:#1D1D1F; --muted:#6E6E73; --acc:#1D1D1F; --copper:#A0522D; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, sans-serif; line-height:1.5; }
-  .wrap { max-width:1100px; margin:0 auto; padding:24px 16px 48px; }
-  h1 { font-size:22px; font-weight:500; margin:0 0 4px; }
-  h2 { font-size:13px; font-weight:500; color:var(--muted); margin:0 0 8px; text-transform:uppercase; letter-spacing:.06em; }
-  .sub { color:var(--muted); font-size:14px; margin:0 0 18px; }
-  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Inter var", Inter, -apple-system, system-ui, sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .top { position:sticky; top:0; z-index:5; background:rgba(255,255,255,.8); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(0,0,0,.08); }
+  .top__in { max-width:1100px; margin:0 auto; padding:0 20px; height:52px; display:flex; align-items:center; justify-content:space-between; }
+  .top a { color:var(--text); text-decoration:none; font-size:14px; font-weight:600; letter-spacing:.02em; }
+  .top a.cta { font-weight:500; color:#fff; background:#1D1D1F; padding:7px 16px; border-radius:980px; font-size:13px; }
+  .wrap { max-width:1100px; margin:0 auto; padding:56px 20px 72px; }
+  .eyebrow { color:var(--copper); font-size:15px; font-weight:600; margin:0 0 8px; text-align:center; }
+  h1 { font-size:clamp(34px,5vw,56px); font-weight:700; letter-spacing:-0.035em; line-height:1.05; margin:0 0 14px; text-align:center; }
+  h2 { font-size:17px; font-weight:600; color:var(--text); margin:0 0 12px; letter-spacing:-0.01em; }
+  .sub { color:var(--muted); font-size:15px; margin:0 0 18px; }
+  .lede { color:var(--muted); font-size:19px; max-width:640px; margin:0 auto 12px; text-align:center; }
+  .fine { color:var(--muted); font-size:13px; text-align:center; margin:0 auto 40px; }
+  .panel { background:var(--card); border:0; border-radius:22px; padding:24px; margin-bottom:16px; }
   .biz { display:flex; flex-wrap:wrap; gap:8px; }
-  .biz button { background:#0b0d0c; color:var(--text); border:1px solid var(--line); }
-  .biz button.on { background:var(--acc); color:#0a0a0a; border-color:var(--acc); }
+  .biz button { background:#F5F5F7; color:var(--text); border:1px solid transparent; }
+  .biz button.on { background:#1D1D1F; color:#fff; }
   .size { display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; align-items:end; }
   @media (max-width:560px) { .size { grid-template-columns:1fr 1fr; } .size > :first-child { grid-column:1/-1; } }
-  .info { margin-top:10px; font-size:13px; color:var(--muted); }
-  .info b { color:var(--text); font-weight:500; }
-  .form { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:24px; }
-  label { font-size:12px; color:var(--muted); display:block; margin-bottom:4px; }
-  input, select { width:100%; background:#0b0d0c; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:9px 10px; font:inherit; font-size:15px; }
-  input:focus, select:focus { outline:none; border-color:var(--acc); }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; }
+  .info { margin-top:12px; font-size:13px; color:var(--muted); }
+  .info b { color:var(--text); font-weight:600; }
+  .form { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:32px; }
+  label { font-size:13px; color:var(--muted); display:block; margin-bottom:6px; }
+  input, select { width:100%; background:#F5F5F7; color:var(--text); border:1px solid transparent; border-radius:12px; padding:11px 12px; font:inherit; font-size:16px; }
+  input:focus, select:focus { outline:none; border-color:#0071E3; background:#fff; box-shadow:0 0 0 4px rgba(0,113,227,.15); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }
   .grid.wide { grid-template-columns:1fr; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; }
-  .frame { background:#2b2b2b; padding:6px; border-radius:6px; }
-  canvas.led { width:100%; display:block; background:#050505; }
-  .row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; }
-  .name { font-size:15px; font-weight:500; }
-  button { background:var(--acc); color:#0a0a0a; border:0; border-radius:8px; padding:8px 12px; font:inherit; font-size:14px; font-weight:500; cursor:pointer; }
-  button:hover { filter:brightness(1.1); }
-  .reset { background:transparent; color:var(--muted); border:1px solid var(--line); }
-  .png { display:none; margin-top:10px; }
-  .png img { width:100%; image-rendering:pixelated; border:1px solid var(--line); }
-  .png p { font-size:12px; color:var(--muted); margin:6px 0 0; }
-  .note { color:var(--muted); font-size:13px; margin-top:28px; border-top:1px solid var(--line); padding-top:14px; }
-  .msg { font-size:12px; color:var(--muted); }
+  .card { background:var(--card); border:0; border-radius:22px; padding:16px; }
+  .frame { background:#1D1D1F; padding:8px; border-radius:10px; }
+  canvas.led { width:100%; display:block; background:#050505; border-radius:2px; }
+  .row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .name { font-size:16px; font-weight:600; }
+  button { background:#1D1D1F; color:#fff; border:0; border-radius:980px; padding:9px 16px; min-height:36px; font:inherit; font-size:14px; font-weight:500; cursor:pointer; }
+  button:hover { background:#3A3A3C; }
+  .biz button:hover { background:#E8E8ED; } .biz button.on:hover { background:#1D1D1F; }
+  .reset { background:transparent; color:var(--copper); border:0; padding-left:0; }
+  .reset:hover { background:transparent; text-decoration:underline; }
+  .png { display:none; margin-top:12px; }
+  .png img { width:100%; image-rendering:pixelated; border-radius:8px; }
+  .png p { font-size:13px; color:var(--muted); margin:6px 0 0; }
+  .note { color:var(--muted); font-size:14px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px; }
+  .msg { font-size:13px; color:var(--muted); }
+  :focus-visible { outline:2px solid #0071E3; outline-offset:2px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p><a href="./" style="color:#d5bd84;text-decoration:none">← ANANTA IONS</a></p>
-  <p class="sub">Illustrative preview. Actual display appearance and controller compatibility may vary.</p>
-  <h1>Shop LED display templates</h1>
-  <p class="sub">Pick a business and screen size, edit the details, and download any design as an exact-resolution PNG, or as an animated GIF with scrolling text, for your controller software. Built for P10 panels (32 × 16 px, 32 × 16 cm each).</p>
+<header class="top"><div class="top__in"><a href="./">ANANTA IONS</a><a class="cta" href="start/?service=display">Get a quote</a></div></header>
+<main class="wrap">
+  <p class="eyebrow">Display designer</p>
+  <h1>Design your board.</h1>
+  <p class="lede">Pick a business and screen size, edit the details, and download any design as an exact-resolution PNG, or as an animated GIF with scrolling text, for your controller software. Built for P10 panels (32 × 16 px, 32 × 16 cm each).</p>
+  <p class="fine">Illustrative preview. Actual display appearance and controller compatibility may vary.</p>
 
   <div class="panel">
     <h2>Business</h2>
@@ -120,7 +133,7 @@
   <div class="grid" id="grid"></div>
 
   <p class="note">Tip: load the PNG into your controller's software (HD2020 / NovaLCT / LED Art) as an image program at the same resolution shown above, and add scrolling text or transitions there. On 1–2 row strips, put each design in its own program and let the controller rotate them.</p>
-</div>
+</main>
 
 <script>
 const F = '"Archivo Black", Arial Black, Arial, sans-serif';

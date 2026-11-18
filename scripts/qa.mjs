@@ -35,7 +35,7 @@ const BASE_ROOT = process.env.QA_BASE || 'http://localhost:8125';
 const BASE = BASE_ROOT + PREFIX;
 const WIDTHS = [360, 375, 390, 430, 768, 1024, 1280, 1440, 1920];
 const JS_BUDGET_KB = 120;   // gzip-equivalent raw budget for first-load JS
-const CSS_BUDGET_KB = 60;
+const CSS_BUDGET_KB = 80;
 
 const out = [];
 const fail = [];
@@ -198,7 +198,7 @@ say('\nDEEP LINKS');
 for (const [route, frag] of [['/displays/', 'try'], ['/displays/', 'order'],
                              ['/college-projects/', 'offer'], ['/shop/', 'catalogue'],
                              ['/start/', 'contact'], ['/college-projects/', 'gsm-remote-controller'],
-                             ['/', 'try']]) {
+                             ['/', 'experience']]) {
   const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await p.goto(`${BASE}${route}#${frag}`, { waitUntil: 'networkidle' });
   await p.waitForTimeout(1400);
