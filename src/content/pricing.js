@@ -2,16 +2,16 @@
    Per square foot of finished board, before GST. Change them here and every
    page (home, Displays, size calculator, shop) follows. */
 
+/* mrp = regular price (ends in 999), price = launch-offer price shown big.
+   Battery = rechargeable lithium battery backup version. All per sq ft, before GST. */
+export const OFFER_LABEL = 'Launch offer';
 export const PRICES = {
-  single: { id: 'single', name: 'Single colour', perSqFt: 2500,
+  single: { id: 'single', name: 'Single colour', mrp: 2999, price: 2499, backupMrp: 8999, backupPrice: 7499,
     body: 'Amber, red, white or green. Clear and bright for notices, offers, timings and token numbers.' },
-  rgb: { id: 'rgb', name: 'Full colour (RGB)', perSqFt: 5000,
+  rgb: { id: 'rgb', name: 'Full colour (RGB)', mrp: 5999, price: 4999, backupMrp: 17999, backupPrice: 14999,
     body: 'Every colour, with logos and pictures. Made for shop fronts and advertising.' },
 };
-
-/* Rechargeable lithium battery backup version: keeps the board running through power cuts.
-   Owner-set at 3 × the standard price. */
-export const BACKUP_FACTOR = 3;
+export const offPct = (mrp, price) => Math.round((1 - price / mrp) * 100);
 
 export const INCLUDED = [
   'The complete board — nothing extra to buy',
@@ -27,9 +27,10 @@ export const FEATURES = [
   ['Set up your way', 'Wi-Fi, over the internet from anywhere, USB, Bluetooth (BLE) or SMS.'],
   ['Full software support', 'Easy app and software to change messages, plus updates and help from us.'],
   ['Battery option', 'Rechargeable lithium battery backup for places with power cuts.'],
+  ['Shipping across India', 'Packed safely and shipped anywhere in India. Installation available in Jaipur.'],
 ];
 
-export const PRICE_NOTE = 'Starting prices per square foot of finished board, GST extra. Versions with a built-in rechargeable lithium battery are 3 × the standard price. The final price depends on size, mounting and location, and we confirm it in writing before we build.';
+export const PRICE_NOTE = 'Starting prices per square foot of finished board, GST and shipping extra. The final price depends on size, mounting and location, and we confirm it in writing before we build.';
 
 export const PILLARS = [
   ['Quality you can see', 'Bright, even panels, a strong frame and neat wiring. Every board runs a full test before it leaves our workshop.'],

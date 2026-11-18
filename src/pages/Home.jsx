@@ -1,7 +1,7 @@
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
-import LedMatrix from '../components/LedMatrix.jsx';
+import HeroBoard from '../components/HeroBoard.jsx';
 import LedDemo from '../components/LedDemo.jsx';
 import LedBoard from '../components/LedBoard.jsx';
 import ProductArt from '../components/ProductArt.jsx';
@@ -33,15 +33,7 @@ export default function Home() {
       <section className="stage" aria-label="Product view">
         <div className="container">
           <div className="board-real__mount" aria-hidden="true"><span /><span /></div>
-          <div className="board-real">
-            <LedMatrix id="hero" lines={[
-              { text: 'WELCOME' },
-              { text: 'OPEN 9-9' },
-              { text: 'FLAT 20% OFF TODAY · NEW STOCK IN · ', scroll: true },
-            ]} />
-          </div>
-          <div className="board-real__reflect" aria-hidden="true" />
-          <p className="stage__caption">Single-colour P10 board, 4 × 3 panels · illustrative</p>
+          <HeroBoard />
         </div>
       </section>
 

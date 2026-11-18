@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { waLink } from '../lib/wa.js';
-import { PRICES, BACKUP_FACTOR, inr } from '../content/pricing.js';
+import { PRICES, inr } from '../content/pricing.js';
 
 /* How many P10 panels does a wall need?
    A P10 module is 320 mm × 160 mm with 32 × 16 LEDs. The board is rounded UP
@@ -31,7 +31,9 @@ export default function SizeCalculator() {
   const total = across * down;
   const valid = wmm > 0 && hmm > 0 && total <= 400;
   const sqft = (across * PANEL_W * down * PANEL_H) / (304.8 * 304.8);
-  const estimate = sqft * PRICES[kind].perSqFt * (backup ? BACKUP_FACTOR : 1);
+  const P = PRICES[kind];
+  const estimate = sqft * (backup ? P.backupPrice : P.price);
+  const regular = sqft * (backup ? P.backupMrp : P.mrp);
   const shown = Math.min(across, 24);
   const shownDown = Math.min(down, 12);
 
@@ -40,7 +42,7 @@ export default function SizeCalculator() {
     `Space: ${w} × ${h} ${LABEL[unit]}\n` +
     `Board: ${across} × ${down} P10 panels (${total} total), ` +
     `${fmt(across * PANEL_W, unit)} × ${fmt(down * PANEL_H, unit)}\n` +
-    `Type: ${PRICES[kind].name}${backup ? ' with lithium battery backup' : ''} (about ${sqft.toFixed(1)} sq ft, from ${inr(estimate)} + GST)\n` +
+    `Type: ${PRICES[kind].name}${backup ? ' with lithium battery backup' : ''} (about ${sqft.toFixed(1)} sq ft, from ${inr(estimate)} + GST, launch offer)\n` +
     `Message to show: `;
 
   return (
@@ -71,12 +73,12 @@ export default function SizeCalculator() {
         {Object.values(PRICES).map((p) => (
           <button key={p.id} type="button" role="radio" aria-checked={kind === p.id}
             className={kind === p.id ? 'is-on' : ''} onClick={() => setKind(p.id)}>
-            {p.name} <span>{inr(p.perSqFt)}/sq ft</span>
+            {p.name} <span>{inr(p.price)}/sq ft</span>
           </button>
         ))}
         <label className="calc__backup">
           <input type="checkbox" checked={backup} onChange={(e) => setBackup(e.target.checked)} />
-          Lithium battery backup <span>(3 × price)</span>
+          Lithium battery backup
         </label>
       </div>
 
@@ -93,7 +95,8 @@ export default function SizeCalculator() {
             <div><dt>Board size</dt><dd>{fmt(across * PANEL_W, unit)} × {fmt(down * PANEL_H, unit)}</dd></div>
             <div><dt>LEDs</dt><dd>{(across * 32).toLocaleString('en-IN')} × {down * 16} dots</dd></div>
           </dl>
-          <p className="calc__estimate">Starting estimate <strong>{inr(estimate)}</strong> <span>+ GST · about {sqft.toFixed(1)} sq ft</span></p>
+          <p className="calc__estimate">Starting estimate <s>{inr(regular)}</s> <strong>{inr(estimate)}</strong> <span>+ GST · about {sqft.toFixed(1)} sq ft</span></p>
+          <p className="calc__save">You save {inr(regular - estimate)} with the launch offer.</p>
           <a className="btn btn--whatsapp btn--lg" href={waLink(message)} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" size={18} /> Get a quote for this size
             <span className="visually-hidden"> (opens WhatsApp in a new tab)</span>
