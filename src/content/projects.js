@@ -9,6 +9,25 @@
 
 export const projects = [
   {
+    id: 'industrial-iot-p10-monitor',
+    verified: true,
+    title: 'Factory Climate Monitor',
+    domain: 'Industrial IoT',
+    status: 'Prototype',
+    summary:
+      'Shows time, temperature and humidity on a large LED board, sends readings to a ' +
+      'server over the mobile network, and switches fans or heaters by SMS.',
+    problem:
+      'Shop floors need to keep heat and humidity in range, but nobody watches a small ' +
+      'thermometer, and many sites have no reliable Wi-Fi.',
+    approach:
+      'An ATmega2560 reads a DHT22 sensor and a DS3231 clock and shows the values on two ' +
+      'P10 panels. A cellular modem sends a reading to the server every minute and takes ' +
+      'six SMS commands to switch fan and heater relays or ask for status. Above 40 °C or ' +
+      '80% humidity, a buzzer sounds and an SMS alert goes out.',
+    result: null,
+  },
+  {
     id: 'p10-display-controller',
     verified: true,
     title: 'Campus Display Network',
