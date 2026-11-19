@@ -61,6 +61,8 @@ const html = (page) => {
 <meta name="twitter:description" content="${esc(page.description)}">
 <meta name="twitter:image" content="${ORIGIN}${asset('/og-image.png')}">
 
+${page.indexable === false ? '' : `<link rel="alternate" type="text/markdown" href="${asset(page.route)}index.md" title="This page as Markdown">\n`}<link rel="alternate" type="text/plain" href="${asset('/llms.txt')}" title="ANANTA IONS for AI agents">
+
 <link rel="icon" href="${asset('/favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${asset('/logo.png')}">
 

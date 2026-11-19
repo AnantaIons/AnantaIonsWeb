@@ -6,7 +6,7 @@ import { site, contact } from '../content/site.js';
 
 const COLS = [
   { heading: 'What we do', links: [['LED Displays', '/displays/'], ['Design studio', '/displays/templates/'], ['Engineering', '/engineering/'], ['Websites', '/websites/'], ['College Projects', '/college-projects/'], ['Shop', '/shop/']] },
-  { heading: 'Quick links', links: [['Try the LED demo', '/displays/templates/#try'], ['LED prices', '/displays/#pricing'], ['Journal', '/journal/'], ['Student discount', '/college-projects/#offer'], ['Component list', '/shop/#catalogue'], ['Contact', '/start/']] },
+  { heading: 'Quick links', links: [['Try the LED demo', '/displays/templates/#try'], ['LED prices', '/displays/#pricing'], ['Journal', '/journal/'], ['Student discount', '/college-projects/#offer'], ['Component list', '/shop/#catalogue'], ['For AI agents', '/llms.txt'], ['Contact', '/start/']] },
 ];
 
 export default function SiteFooter() {

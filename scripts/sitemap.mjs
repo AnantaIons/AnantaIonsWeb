@@ -31,11 +31,15 @@ const robots = INDEXABLE
 User-agent: *
 Allow: /
 
+# AI agents: ${at('/llms.txt')}
 Sitemap: ${at('/sitemap.xml')}
 `
   : `# ANANTA IONS — preview deployment, not for indexing.
 # Set INDEXABLE=true at build time to open this up for the real launch.
 User-agent: *
+Allow: ${BASE}llms.txt
+Allow: ${BASE}llms-full.txt
+Allow: ${BASE}*index.md
 Disallow: /
 `;
 
