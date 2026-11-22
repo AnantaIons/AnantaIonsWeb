@@ -86,7 +86,7 @@ export default function Home() {
                 <div className="device__bar"><i /><i /><i /><span>kotaquantumvalley.in</span></div>
                 <img src={path('/work/kqv-home.webp')} alt="" width="1600" height="1000" loading="lazy" />
               </div>
-              <img className="tile__phone" src={path('/work/kqv-mobile.webp')} alt="" width="600" height="1299" loading="lazy" />
+              <img className="tile__phone" src={path('/work/kqv-mobile.webp')} alt="" width="600" height="1298" loading="lazy" />
             </div>
           </article>
 

@@ -19,7 +19,7 @@ const KQV_FACTS = [
   ['English + हिन्दी', 'Every page has a Hindi version, one tap away.'],
   ['Four courses', 'Quantum basics, mathematics, programming and operating systems.'],
   ['Built-in tools', 'A quantum lab in the browser, site-wide search and a chat button.'],
-  ['Light and dark', 'Readers choose the theme that suits their eyes.'],
+  ['Live sky over Kota', 'The home page sky follows the real sun and moon in Kota, in light or dark theme.'],
 ];
 
 function OurWork() {
@@ -31,7 +31,7 @@ function OurWork() {
           <div className="device__bar"><i /><i /><i /><span>kotaquantumvalley.in</span></div>
           <img src={img('kqv-home')} alt="Kota Quantum Valley home page: Think. Build. Explore." width="1600" height="1000" loading="lazy" />
         </div>
-        <div className="work__phone"><img src={img('kqv-mobile')} alt="Kota Quantum Valley on a phone" width="600" height="1299" loading="lazy" /></div>
+        <div className="work__phone"><img src={img('kqv-mobile')} alt="Kota Quantum Valley on a phone" width="600" height="1298" loading="lazy" /></div>
       </div>
       <div className="work__info">
         <span className="eyebrow">An Ananta Ions initiative</span>
