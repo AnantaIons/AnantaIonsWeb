@@ -306,7 +306,6 @@ main:focus { outline: none; }
   border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
 }
 .stat__value { display: block; font-size: clamp(40px, 4.4vw, 56px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: var(--gold-text); }
-.stat__value--sm { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.01em; color: var(--text-primary); }
 .stat__value::after { content: ''; display: block; width: 32px; height: 2px; background: var(--gradient-aurum); margin: 18px 0 14px; border-radius: 2px; }
 .stat__caption { font-size: 15px; color: var(--text-secondary); }
 
@@ -1263,11 +1262,8 @@ body { font-family: var(--font-ui); letter-spacing: -0.003em; font-feature-setti
 .experience { max-width: 1080px; margin: 0 auto; }
 .section-head.center { text-align: center; margin-left: auto; margin-right: auto; max-width: 760px; }
 .section-head.center .lede { margin-left: auto; margin-right: auto; }
-.tpl-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: end; margin-top: 8px; }
-@media (max-width: 800px) { .tpl-row { grid-template-columns: 1fr; } }
 .tpl { margin: 0; }
 .tpl figcaption { margin-top: 12px; text-align: center; font-size: 15px; color: var(--text-secondary); }
-.center-row { justify-content: center; align-items: center; gap: 24px; margin-top: 40px; }
 .tile__art--offer { place-items: center; text-align: center; padding-bottom: 48px; }
 .tile__big { font-size: clamp(72px, 9vw, 120px) !important; font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: var(--text) !important; }
 .tile__art--offer p:not(.tile__big) { font-size: 17px; max-width: 24ch; }
@@ -1514,12 +1510,10 @@ html[data-sky='night'] .price-card__offer { background: #F5F5F7; color: #0A1222;
 .board-real--hero { max-width: 1180px; box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 -1px 0 rgba(0,0,0,.6) inset, 0 60px 90px -40px rgba(var(--hb-glow, 255, 150, 40), .4), 0 40px 60px -30px rgba(0,0,0,.9); transition: box-shadow .8s ease; }
 .board-real--hero .board { border-radius: 3px; background: #050403; }
 .board-real--hero .board svg { display: block; width: 100%; height: auto; }
-.js .hero-board__slide { animation: hb-in .6s ease both; }
 @keyframes hb-in { from { opacity: 0; filter: brightness(1.8) blur(1px); } to { opacity: 1; filter: none; } }
 .hero-board__reflect { max-width: 1180px; background: radial-gradient(50% 100% at 50% 0%, rgba(var(--hb-glow, 255, 150, 40), .22), transparent 70%); transition: background .8s ease; }
 .board-real__mount { max-width: 860px; }
 .hero-board__now { color: #F5F5F7; font-weight: 600; }
-@media (prefers-reduced-motion: reduce) { .hero-board__slide { animation: none; } }
 .board-real--hero .board__off { fill: color-mix(in srgb, var(--led-off) 55%, #000) !important; }
 .hero-studio { position: relative; width: 100%; border-radius: 3px; overflow: hidden; background: #050505; }
 .hero-studio iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
@@ -1688,3 +1682,47 @@ html[data-sky="night"], .dark { --red: #FF4D5A; --red-soft: rgba(255, 77, 90, .1
     scroll-snap-type: x mandatory; padding-bottom: 8px; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
   .night-use { scroll-snap-align: start; }
 }
+
+/* v10 — colour rhythm for the lower half of the home page */
+html section.section--warm.section--warm { background:
+  radial-gradient(60% 50% at 12% 0%, rgba(255, 122, 69, .14), transparent 70%),
+  radial-gradient(50% 45% at 92% 100%, rgba(200, 16, 46, .10), transparent 70%),
+  linear-gradient(180deg, #FFF8F2 0%, #FFFFFF 100%) !important; }
+html[data-sky="night"] section.section--warm.section--warm { background:
+  radial-gradient(60% 50% at 12% 0%, rgba(255, 122, 69, .16), transparent 70%),
+  radial-gradient(50% 45% at 92% 100%, rgba(255, 77, 90, .14), transparent 70%),
+  linear-gradient(180deg, #1A0F1C 0%, #120A14 100%) !important; }
+
+.price-card__swatch { display: block; width: auto; height: 56px; margin: -32px -28px 22px; border-radius: 0; }
+.price-card--single .price-card__swatch { background: radial-gradient(circle, #FFA000 0 34%, transparent 40%) 0 0 / 8px 8px, #1A0D00; box-shadow: inset 0 -12px 24px -12px rgba(255, 160, 0, .5); }
+.price-card--rgb .price-card__swatch { background:
+  radial-gradient(circle, rgba(0,0,0,0) 0 34%, #08080F 40%) 0 0 / 8px 8px,
+  linear-gradient(90deg, #FF3B30, #FF9500, #FFCC00, #34C759, #0A84FF, #BF5AF2, #FF2D55); }
+.price-card { border: 1px solid rgba(0, 0, 0, .06); box-shadow: 0 18px 40px -28px rgba(120, 30, 20, .35); }
+html[data-sky='night'] .price-card { border-color: rgba(255, 255, 255, .08); }
+
+.ticker-band { background: #050304; border-block: 1px solid #2A0A0E; padding: 10px 0; overflow: hidden; }
+.ticker-band .board { border-radius: 0; background: transparent; }
+
+.tile--web { background: linear-gradient(165deg, #E7F0FF 0%, #F6F9FF 60%) !important; color: #0B1B33 !important; --text-secondary: #42546E; }
+.tile--web .eyebrow { color: #1F5FD1 !important; }
+.tile--eng { background: radial-gradient(120% 80% at 50% 0%, #0E3B2B 0%, #04150F 70%) !important; color: #EAF7F0 !important; --text-secondary: #9CC2B0; }
+.tile--eng .eyebrow, .tile--eng .link-more { color: #4ADE9B !important; }
+.tile--cmp { background: radial-gradient(120% 80% at 50% 0%, #3A1D0C 0%, #130903 70%) !important; color: #FBEFE4 !important; --text-secondary: #CDAE94; }
+.tile--cmp .eyebrow, .tile--cmp .link-more { color: #FFB066 !important; }
+.tile--col { background: linear-gradient(165deg, #FFE7E4 0%, #FFF6F4 60%) !important; color: #3A0A10 !important; --text-secondary: #7A3D44; }
+.tile--col .eyebrow, .tile--col .link-more { color: #C8102E !important; }
+.tile--col .tile__big { color: #C8102E !important; }
+html[data-sky='night'] .tile--web { background: linear-gradient(165deg, #10264A 0%, #0A1428 70%) !important; color: #EAF1FF !important; --text-secondary: #9DB0D0; }
+html[data-sky='night'] .tile--web .eyebrow, html[data-sky='night'] .tile--web .link-more { color: #7FB0FF !important; }
+html[data-sky='night'] .tile--col { background: linear-gradient(165deg, #3A0D16 0%, #1C070B 70%) !important; color: #FFEDEE !important; --text-secondary: #D9A3A9; }
+html[data-sky='night'] .tile--col .eyebrow, html[data-sky='night'] .tile--col .link-more, html[data-sky='night'] .tile--col .tile__big { color: #FF6B76 !important; }
+.tile--web h3, .tile--eng h3, .tile--cmp h3, .tile--col h3 { color: inherit; }
+.tile--web p, .tile--eng p, .tile--cmp p, .tile--col p { color: var(--text-secondary); }
+
+.ready--red { background: radial-gradient(80% 120% at 85% 10%, #FF7A45 0%, transparent 55%), linear-gradient(135deg, #8E0B22 0%, #C8102E 55%, #E2343F 100%) !important; color: #fff; }
+.ready--red .eyebrow { color: #FFD8C9 !important; }
+.ready--red .eyebrow::before { background: #FFD8C9; }
+.ready--red .h-1 { color: #fff; }
+.ready--red .link-more { color: #fff !important; }
+.ready--red .btn--whatsapp { background: #fff !important; color: #0E6B3A !important; }

@@ -35,7 +35,7 @@ const BASE_ROOT = process.env.QA_BASE || 'http://localhost:8125';
 const BASE = BASE_ROOT + PREFIX;
 const WIDTHS = [360, 375, 390, 430, 768, 1024, 1280, 1440, 1920];
 const JS_BUDGET_KB = 120;   // gzip-equivalent raw budget for first-load JS
-const CSS_BUDGET_KB = 90;
+const CSS_BUDGET_KB = 96; // raised 2026-11-22 for night theme + colour sections (gzipped it is ~18 kB)
 
 const out = [];
 const fail = [];

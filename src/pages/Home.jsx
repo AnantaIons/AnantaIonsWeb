@@ -1,6 +1,8 @@
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
+import LedBoard from '../components/LedBoard.jsx';
+import { PRICES } from '../content/pricing.js';
 import NightUses from '../components/NightUses.jsx';
 import HeroBoard from '../components/HeroBoard.jsx';
 import HeroScenes from '../components/HeroScenes.jsx';
@@ -52,7 +54,7 @@ export default function Home() {
         <HeroBoard />
       </Section>
 
-      <Section labelledBy="price-title" id="pricing">
+      <Section labelledBy="price-title" id="pricing" className="section--warm">
         <div className="section-head center">
           <p className="eyebrow">Clear pricing</p>
           <h2 className="h-1" id="price-title">Honest prices. No surprises.</h2>
@@ -61,12 +63,18 @@ export default function Home() {
         <PriceCards />
       </Section>
 
+      <div className="ticker-band" aria-hidden="true">
+        <LedBoard id="tick" panels={[16, 1]} colour="red" framed={false} items={[
+          { text: `SINGLE COLOUR FROM RS ${PRICES.single.price} PER SQ FT · FULL COLOUR FROM RS ${PRICES.rgb.price} · BATTERY BACKUP · WARRANTY ON EVERY PART · SHIPPING ACROSS INDIA · `, size: 2, y: 1, effect: 'scroll', speed: 30 },
+        ]} />
+      </div>
+
       <Section labelledBy="more-title">
         <div className="section-head center">
           <h2 className="h-1" id="more-title">More from Ananta Ions.</h2>
         </div>
         <div className="tiles">
-          <article className="tile" aria-labelledby="t-web">
+          <article className="tile tile--web" aria-labelledby="t-web">
             <p className="eyebrow">Ananta Digital</p>
             <h3 id="t-web">Websites that work on every phone.</h3>
             <div className="tile__links">
@@ -82,7 +90,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="tile tile--dark" aria-labelledby="t-eng">
+          <article className="tile tile--dark tile--eng" aria-labelledby="t-eng">
             <p className="eyebrow">Ananta Engineering</p>
             <h3 id="t-eng">Firmware and electronics, built to last.</h3>
             <div className="tile__links">
@@ -104,7 +112,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="tile tile--dark" aria-labelledby="t-cmp">
+          <article className="tile tile--dark tile--cmp" aria-labelledby="t-cmp">
             <p className="eyebrow">Ananta Components</p>
             <h3 id="t-cmp">The right part, with advice.</h3>
             <div className="tile__links">
@@ -118,7 +126,7 @@ export default function Home() {
             </ul>
           </article>
 
-          <article className="tile" aria-labelledby="t-col">
+          <article className="tile tile--col" aria-labelledby="t-col">
             <p className="eyebrow">College Projects</p>
             <h3 id="t-col">Projects that work on viva day.</h3>
             <div className="tile__links">
@@ -136,7 +144,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <section className="section ready" aria-labelledby="ready-title">
+      <section className="section ready ready--red" aria-labelledby="ready-title">
         <div className="container">
           <p className="eyebrow">Let’s build something useful</p>
           <h2 className="h-1" id="ready-title">Ready to be seen?</h2>
