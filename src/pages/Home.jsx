@@ -1,81 +1,77 @@
 import Layout from '../components/Layout.jsx';
 import Icon from '../components/Icon.jsx';
 import HeroScenes from '../components/HeroScenes.jsx';
+import BoardSeries from '../components/BoardSeries.jsx';
 import BoardAnatomy, { ANATOMY } from '../components/BoardAnatomy.jsx';
-import { PRICES, STANDARD, inr, offPct } from '../content/pricing.js';
+import { FROM_PRICE, inr } from '../content/pricing.js';
 import { contact } from '../content/site.js';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
 
-/* Home sells one thing: the Standard LED board. Three parts only —
-   see boards at work, see the board and its price, talk to us. */
-const ORDER = (kind) => `Hello ANANTA IONS, I want the Standard ${STANDARD.size} LED board (${kind}). Please share the details.`;
+const ASK = 'Hello ANANTA IONS, I want an LED display board for my shop.';
 const tel = `tel:${contact.phone.value.replace(/\s/g, '')}`;
 
 export default function Home() {
   return (
     <Layout current="/">
-      <section className="sell-hero" aria-labelledby="hero-title">
-        <div className="container sell-hero__grid">
-          <div className="sell-hero__copy">
-            <p className="eyebrow eyebrow--red">LED display boards · Jaipur</p>
-            <h1 className="h-display" id="hero-title">LED boards that bring in <span className="hl">customers.</span></h1>
-            <p className="lede">Our Standard board — {STANDARD.size}, made for shops. Bright day and night, and you change the message from your phone.</p>
-            <div className="btn-row">
-              <a className="btn btn--red btn--lg" href="#standard">See the board and price</a>
-              <a className="link-more" href={waLink(ORDER('single colour'))} target="_blank" rel="noopener noreferrer">Ask on WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a>
-            </div>
-            <ul className="trust-row">
-              <li><Icon name="check" size={16} /> Free design preview</li>
-              <li><Icon name="check" size={16} /> Pay the rest after installation</li>
-              <li><Icon name="check" size={16} /> Warranty on every part</li>
-            </ul>
+      <section className="p-hero" aria-labelledby="hero-title">
+        <div className="container">
+          <h1 className="p-hero__title" id="hero-title">Light up your shop.</h1>
+          <p className="p-hero__sub">LED display boards from {inr(FROM_PRICE)}. Made in India.</p>
+          <div className="p-hero__cta">
+            <a className="p-btn p-btn--red" href="#boards">See boards</a>
+            <a className="p-btn p-btn--ghost" href={waLink(ASK)} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} /> WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a>
           </div>
-          <div className="sell-hero__art"><HeroScenes /></div>
+          <div className="p-hero__stage"><HeroScenes /></div>
         </div>
       </section>
 
-      <section className="section std" id="standard" aria-labelledby="std-title">
+      <section className="p-pitch" aria-labelledby="pitch-title">
         <div className="container">
-          <div className="section-head center">
-            <p className="eyebrow eyebrow--red">The Standard board</p>
-            <h2 className="h-1" id="std-title">{STANDARD.size}. One price. Everything inside.</h2>
-            <p className="lede">{STANDARD.exact}. Built in batches, so it costs less.</p>
-          </div>
-          <div className="std__grid">
-            <div className="std__anat">
-              <BoardAnatomy />
-              <ol className="anat__list">
-                {ANATOMY.map(([t, b]) => <li key={t}><strong>{t}</strong> {b}</li>)}
-              </ol>
-            </div>
-            <div className="std__buy">
-              {[['single', 'Single colour', 'Amber, red, white or green. Best for offers, timings and notices.'], ['rgb', 'Full colour', 'Every colour, with your logo and pictures.']].map(([k, n, b]) => (
-                <div className={`std__card std__card--${k}`} key={k}>
-                  <p className="std__name">{n}</p>
-                  <p className="std__off">Launch offer · {offPct(STANDARD[k].mrp, STANDARD[k].price)}% off</p>
-                  <p className="std__price"><s aria-label={`regular price ${inr(STANDARD[k].mrp)}`}>{inr(STANDARD[k].mrp)}</s> <strong>{inr(STANDARD[k].price)}</strong> <span>+ GST</span></p>
-                  <p className="std__body">{b}</p>
-                  <a className="btn btn--red" href={waLink(ORDER(n.toLowerCase()))} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} /> Order on WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a>
-                </div>
-              ))}
-              <p className="std__note">Need another size? From {inr(PRICES.single.price)}/sq ft single colour and {inr(PRICES.rgb.price)}/sq ft full colour — <a href={path('/displays/#size')}>work out your price</a>. Battery backup available. Shipping extra; installation in Jaipur.</p>
-            </div>
-          </div>
+          <h2 className="p-pitch__line" id="pitch-title">Printed boards disappear after 7 pm. <span>LED boards keep selling.</span></h2>
+          <p className="p-pitch__sub">Change today’s offer from your phone in a minute.</p>
         </div>
       </section>
 
-      <section className="section ready ready--red" aria-labelledby="ready-title">
+      <section className="p-sec" id="boards" aria-labelledby="boards-title">
         <div className="container">
-          <p className="eyebrow">Free design preview · pay the rest after installation</p>
-          <h2 className="h-1" id="ready-title">Ready to be seen?</h2>
-          <div className="btn-row">
-            <a className="btn btn--whatsapp btn--lg" href={waLink(ORDER('please suggest'))} target="_blank" rel="noopener noreferrer">
-              <Icon name="whatsapp" size={18} /> Talk to us on WhatsApp<span className="visually-hidden"> (opens in a new tab)</span>
-            </a>
-            <a className="link-more" href={tel}>Call {contact.phone.value}</a>
+          <h2 className="p-h2" id="boards-title">Pick your board.</h2>
+          <BoardSeries />
+        </div>
+      </section>
+
+      <section className="p-sec p-sec--soft" id="inside" aria-labelledby="inside-title">
+        <div className="container p-inside">
+          <div>
+            <h2 className="p-h2 p-h2--left" id="inside-title">Everything inside.</h2>
+            <ol className="p-parts">
+              {ANATOMY.map(([t]) => <li key={t}>{t}</li>)}
+            </ol>
+            <p className="p-made"><span className="p-made__flag" aria-hidden="true"><i /><i /><i /></span> Made in India. Built for quality.</p>
           </div>
-          <p className="ready__also">Also from us: <a href={path('/websites/')}>Websites</a> · <a href={path('/engineering/')}>Engineering</a> · <a href={path('/shop/')}>Components</a> · <a href={path('/college-projects/')}>College projects</a></p>
+          <BoardAnatomy />
+        </div>
+      </section>
+
+      <section className="p-sec p-promise" aria-label="Our promise">
+        <div className="container">
+          <ul className="p-promise__list">
+            <li><strong>Free</strong><span>design preview</span></li>
+            <li><strong>50%</strong><span>paid after installation</span></li>
+            <li><strong>Warranty</strong><span>on every part</span></li>
+            <li><strong>Jaipur</strong><span>tested before delivery</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="p-sec p-final" aria-labelledby="ready-title">
+        <div className="container">
+          <h2 className="p-h2" id="ready-title">Ready to be seen?</h2>
+          <div className="p-hero__cta">
+            <a className="p-btn p-btn--red" href={waLink(ASK)} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18} /> Talk on WhatsApp<span className="visually-hidden"> (opens in a new tab)</span></a>
+            <a className="p-btn p-btn--ghost" href={tel}><Icon name="phone" size={18} /> Call</a>
+          </div>
+          <p className="p-also"><a href={path('/websites/')}>Websites</a><a href={path('/engineering/')}>Engineering</a><a href={path('/shop/')}>Components</a><a href={path('/college-projects/')}>College projects</a></p>
         </div>
       </section>
     </Layout>

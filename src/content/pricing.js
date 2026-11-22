@@ -63,3 +63,28 @@ export const STANDARD = {
   single: { mrp: 34999, price: 29999 },
   rgb: { mrp: 69999, price: 59999 },
 };
+
+/* Two series, three sizes each, fixed prices before GST. P10 panels are
+   320 × 160 mm. Jyoti (light) = single colour. Rangoli = full colour.
+   Small boards carry the same controller, power and frame as big ones,
+   so they cost more per sq ft. */
+export const SIZES = {
+  mini:  { label: 'Mini',  size: '3 × ½ ft',   exact: '0.96 × 0.16 m · 3 panels',  panels: [3, 1], use: 'Counter, door or reception.' },
+  shop:  { label: 'Shop',  size: '6 × 1 ft',   exact: '1.92 × 0.32 m · 12 panels', panels: [6, 2], use: 'Above the shop front.' },
+  max:   { label: 'Max',   size: '5 × 2.5 ft', exact: '1.6 × 0.8 m · 25 panels',   panels: [5, 5], use: 'Seen from across the road.' },
+};
+export const SERIES = [
+  { id: 'jyoti', name: 'Jyoti', tag: 'Single colour series', body: 'Amber, red, white or green. Sharp, bright text for offers, timings and notices.',
+    models: [
+      { size: 'mini', mrp: 9999, price: 7999, demo: [{ text: 'OPEN 24X7 · ', size: 2, y: 1, effect: 'scroll', speed: 18 }] },
+      { size: 'shop', mrp: 17999, price: 14999, demo: [{ text: 'GUPTA SWEETS', size: 2, y: 1 }, { text: 'FRESH JALEBI · HOT SAMOSA · ', size: 2, y: 17, effect: 'scroll', speed: 24 }] },
+      { size: 'max', mrp: 34999, price: 29999, demo: [{ text: 'TOKEN', size: 3, y: 12 }, { text: 'NO 27', size: 4, y: 42 }] },
+    ] },
+  { id: 'rangoli', name: 'Rangoli', tag: 'Full colour series', body: 'Every colour — your logo, pictures and offers that stand out.',
+    models: [
+      { size: 'mini', mrp: 15999, price: 12999, demo: [{ text: 'WELCOME · ', size: 2, y: 1, effect: 'scroll', speed: 18 }] },
+      { size: 'shop', mrp: 32999, price: 27999, demo: [{ text: 'STYLE HUB', size: 2, y: 1 }, { text: 'NEW ARRIVALS · FLAT 50% OFF · ', size: 2, y: 17, effect: 'scroll', speed: 24 }] },
+      { size: 'max', mrp: 69999, price: 59999, demo: [{ text: 'MEGA', size: 4, y: 10 }, { text: 'SALE', size: 4, y: 44 }] },
+    ] },
+];
+export const FROM_PRICE = 7999;

@@ -5,7 +5,7 @@ const Dot = ({ x, y, n }) => (
 );
 
 export const ANATOMY = [
-  ['LED panels', '25 P10 panels, 160 × 80 bright LEDs, outdoor rated.'],
+  ['LED panels', 'P10 panels with bright LEDs, outdoor rated. Joined to make each size.'],
   ['Controller', 'Stores your messages. Update by Wi-Fi, internet, Bluetooth or USB.'],
   ['Power supply', '5 V supplies sized for the full board, with a fuse.'],
   ['Light sensor', 'Auto-brightness: full in sunlight, softer at night.'],

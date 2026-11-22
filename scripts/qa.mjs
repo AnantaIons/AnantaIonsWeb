@@ -198,7 +198,7 @@ say('\nDEEP LINKS');
 for (const [route, frag] of [['/displays/templates/', 'try'], ['/displays/templates/', 'studio'], ['/displays/', 'order'], ['/displays/', 'pricing'],
                              ['/college-projects/', 'offer'], ['/shop/', 'catalogue'],
                              ['/start/', 'contact'], ['/college-projects/', 'gsm-remote-controller'],
-                             ['/', 'standard']]) {
+                             ['/', 'boards']]) {
   const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await p.goto(`${BASE}${route}#${frag}`, { waitUntil: 'networkidle' });
   await p.waitForTimeout(1400);
