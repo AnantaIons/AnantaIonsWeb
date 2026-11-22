@@ -51,3 +51,15 @@ export const PILLARS = [
 ];
 
 export const inr = (n) => `₹${Math.round(n).toLocaleString('en-IN')}`;
+
+/* The Standard board — one fixed size for small shops, built in batches so it
+   costs less to make. 5 × 5 P10 panels = 160 × 80 LEDs, 1.6 m × 0.8 m
+   (5.25 × 2.62 ft), sold as "5 × 2.5 ft". Prices before GST. */
+export const STANDARD = {
+  name: 'Standard board',
+  size: '5 × 2.5 ft',
+  exact: '1.6 m × 0.8 m display (5.25 × 2.62 ft), 25 P10 panels, 160 × 80 LEDs',
+  panels: [5, 5],
+  single: { mrp: 34999, price: 29999 },
+  rgb: { mrp: 69999, price: 59999 },
+};

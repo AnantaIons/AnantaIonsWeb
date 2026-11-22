@@ -96,36 +96,6 @@ export default function BoardGallery() {
         </div>
       </Section>
 
-      <Section dark labelledBy="fonts-title">
-        <SectionHead eyebrow="Font sizes" id="fonts-title" title="Four text sizes, one board"
-          lede="Bigger text reads from further away but fits fewer letters. Most boards mix two sizes: a big headline and a small detail line." />
-        <div className="font-sizes">
-          <LedBoard id="sizes" panels={[8, 4]} colour="amber" items={[
-            { text: 'SIZE 1 · 7 LEDS TALL', size: 1, y: 3, align: 'left', x: 4 },
-            { text: 'SIZE 2 · 14 LEDS', size: 2, y: 13, align: 'left', x: 4 },
-            { text: 'SIZE 3', size: 3, y: 30, align: 'left', x: 4 },
-            { text: '4', size: 4, y: 31, align: 'right' },
-          ]} />
-          <dl className="size-guide">
-            {sizeGuide.map(([n, name, tall, use]) => (
-              <div key={n}><dt><span className="step__no">{n}</span> {name}</dt><dd>{tall} — {use}</dd></div>
-            ))}
-          </dl>
-        </div>
-      </Section>
-
-      <Section labelledBy="colours-title">
-        <SectionHead eyebrow="LED colours" id="colours-title" title="Single-colour boards in four colours" />
-        <div className="grid grid--4">
-          {Object.entries(LED_COLOURS).map(([k, c]) => (
-            <div className="card" key={k}>
-              <LedBoard id={`col-${k}`} panels={[2, 1]} colour={k} items={[{ text: c.label.toUpperCase(), size: 2, y: 1 }]} />
-              <h3 className="h-3">{c.label}</h3>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       <Section dark labelledBy="try-title" id="try">
         <div className="demo-grid">
           <div>
