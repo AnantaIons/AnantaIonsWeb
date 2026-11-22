@@ -17,7 +17,7 @@ import TurndownService from 'turndown';
 import { parse } from 'node-html-parser';
 import { pages, ORIGIN } from '../src/lib/pages.js';
 import { site, contact } from '../src/content/site.js';
-import { PRICES, INCLUDED, FEATURES, PRICE_NOTE, OFFER_LABEL, inr } from '../src/content/pricing.js';
+import { PRICES, INCLUDED, FEATURES, PRICE_NOTE, OFFER_LABEL, inr, SERIES, SIZES } from '../src/content/pricing.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = resolve(ROOT, 'dist');
@@ -98,7 +98,11 @@ This file is for AI agents and assistants. Every page of the website is also ava
 - Enquiry page: ${at('/start/')}
 - Shipping: across India. Installation available in Jaipur.
 
-## LED display prices (${OFFER_LABEL.toLowerCase()})
+## Ready-made boards (fixed price, before GST)
+
+${SERIES.map((se) => `${se.name} series — ${se.tag.toLowerCase()}:\n` + se.models.map((m) => `- ${se.name} ${SIZES[m.size].label}, ${SIZES[m.size].size} (${SIZES[m.size].exact}): ${inr(m.price)} (regular ${inr(m.mrp)})`).join('\n')).join('\n\n')}
+
+## Custom sizes — LED display prices (${OFFER_LABEL.toLowerCase()})
 
 ${PRICES.single && price(PRICES.single)}
 ${PRICES.rgb && price(PRICES.rgb)}
