@@ -36,12 +36,12 @@ export const contact = {
 };
 
 export const nav = [
-  { label: 'Displays',         href: '/displays/'         },
-  { label: 'Design studio',    href: '/displays/templates/' },
-  { label: 'Websites',         href: '/websites/'         },
-  { label: 'Engineering',      href: '/engineering/'      },
-  { label: 'Shop',             href: '/shop/'             },
-  { label: 'College Projects', href: '/college-projects/' },
+  { label: 'Displays',         href: '/displays/',          dept: 'displays' },
+  { label: 'Design studio',    href: '/displays/templates/', dept: 'displays' },
+  { label: 'Websites',         href: '/websites/',          dept: 'websites' },
+  { label: 'Engineering',      href: '/engineering/',       dept: 'engineering' },
+  { label: 'Shop',             href: '/shop/',              dept: 'shop' },
+  { label: 'College Projects', href: '/college-projects/', dept: 'college' },
 ];
 
 export const primaryCta = { label: 'Contact us', href: '/start/' };

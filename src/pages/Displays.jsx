@@ -1,14 +1,11 @@
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
-import Icon from '../components/Icon.jsx';
 import LedBoard from '../components/LedBoard.jsx';
 import NightUses from '../components/NightUses.jsx';
 import SizeCalculator from '../components/SizeCalculator.jsx';
 import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
-import { displayTypes } from '../content/capabilities.js';
-import { platform } from '../content/products.js';
 import { projects } from '../content/projects.js';
 
 const ORDER_STEPS = [
@@ -42,22 +39,6 @@ export default function Displays() {
           ]} />
         </div>
       </section>
-
-      <Section labelledBy="types-title" id="types">
-        <SectionHead row eyebrow="What we make" id="types-title" title="Display options">
-          <Button href={path('/displays/templates/')} variant="outline">Open the design studio</Button>
-        </SectionHead>
-        <div className="grid grid--4">
-          {displayTypes.map((d) => (
-            <div className="card corner" key={d.title}>
-              <span className={`badge ${d.status === 'In development' ? 'badge--gold badge--live' : 'badge--ok'}`}>{d.status}</span>
-              <Icon name={d.icon} size={24} className="card__icon" />
-              <h3 className="h-3">{d.title}</h3>
-              <p>{d.body}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
 
       <Section soft labelledBy="price-title" id="pricing">
         <SectionHead eyebrow="Clear pricing" id="price-title" title="Starting prices"
@@ -121,20 +102,6 @@ export default function Displays() {
             </dl>
           </article>
         ))}
-      </Section>
-
-      <Section soft labelledBy="network-title" id="network">
-        <SectionHead eyebrow="Coming next" id="network-title" title="Campus display network"
-          lede="For campuses with many boards: every board run from one dashboard. We are building it now and looking for schools and colleges in Jaipur to try it first." />
-        <div className="grid grid--4">
-          {platform.map((f) => (
-            <div className="card" key={f.title}>
-              <Icon name={f.icon} size={24} className="card__icon" />
-              <h3 className="h-3">{f.title}</h3>
-              <p>{f.body}</p>
-            </div>
-          ))}
-        </div>
       </Section>
 
       <Section labelledBy="order-title" id="order">

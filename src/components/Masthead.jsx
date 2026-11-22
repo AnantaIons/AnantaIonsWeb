@@ -63,6 +63,7 @@ export default function Masthead({ current }) {
                 <li key={item.href}>
                   <a
                     className={`masthead__link${active ? ' is-active' : ''}`}
+                    data-dept={item.dept}
                     href={path(item.href)}
                     aria-current={active ? 'page' : undefined}
                   >

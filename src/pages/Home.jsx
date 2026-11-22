@@ -21,7 +21,7 @@ const tel = `tel:${contact.phone.value.replace(/\s/g, '')}`;
 
 const STEPS = [
   ['Tell us the place', 'Send the wall or frame size and a photo on WhatsApp. We suggest the board size and colour.'],
-  ['See your design', 'We send a preview of your board with your name, offer and number before anything is built.'],
+  ['See your design, free', 'We send a preview of your board with your name, offer and number. You pay half only when you like it.'],
   ['Built and tested', 'Panels, controller, power supply and case are assembled and run in our workshop before delivery.'],
   ['Installed and running', 'We install in Jaipur or ship across India, and show you how to change the message from your phone.'],
 ];
@@ -33,6 +33,7 @@ const FAQ = [
   ['Will it work outside, in rain and sun?', 'For outdoor boards we use outdoor-rated panels in a closed case, and auto-brightness keeps it readable in sunlight and soft at night.'],
   ['What about power cuts?', 'Choose the lithium battery backup version and the board keeps running through power cuts. The battery is covered by warranty too.'],
   ['What is included in the price?', 'The complete board: panels, controller, cables, power supply, case and body, testing, set-up and help after installation. GST and shipping are extra.'],
+  ['How do I pay?', 'Half to start, once you approve the design. The rest after the board is installed and running. You get a proper bill with GST.'],
   ['How long does it take?', 'It depends on size and colour. We confirm the delivery date in writing with your quote, before you pay anything.'],
 ];
 
@@ -58,6 +59,7 @@ export default function Home() {
             <ul className="trust-row">
               <li><Icon name="check" size={16} /> Warranty on every part</li>
               <li><Icon name="check" size={16} /> Tested before delivery</li>
+              <li><Icon name="check" size={16} /> Pay the rest after installation</li>
               <li><Icon name="check" size={16} /> Ships across India</li>
             </ul>
           </div>
