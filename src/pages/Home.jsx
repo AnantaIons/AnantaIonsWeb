@@ -1,14 +1,14 @@
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
+import NightUses from '../components/NightUses.jsx';
 import HeroBoard from '../components/HeroBoard.jsx';
 import HeroScenes from '../components/HeroScenes.jsx';
 import ProductArt from '../components/ProductArt.jsx';
 import { Section } from '../components/Ui.jsx';
-import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
+import { PriceCards } from '../components/DisplayPricing.jsx';
 import { path } from '../lib/paths.js';
 import { waLink } from '../lib/wa.js';
-import { articles } from '../content/journal.js';
 
 
 
@@ -33,12 +33,13 @@ export default function Home() {
         </div>
       </section>
 
-      <Section labelledBy="points-title">
+      <Section dark labelledBy="night-title" id="after-dark" className="after-dark">
         <div className="section-head center">
-          <p className="eyebrow">Why Ananta Displays</p>
-          <h2 className="h-1" id="points-title">Built well. Looked after.</h2>
+          <p className="eyebrow eyebrow--red">After dark</p>
+          <h2 className="h-1" id="night-title">When the street goes dark, your board keeps selling.</h2>
+          <p className="lede">Shops, hospitals, schools and highways — the places our boards are made for, as they look at night.</p>
         </div>
-        <Pillars />
+        <NightUses limit={6} />
       </Section>
 
       <Section dark labelledBy="tpl-title" id="studio">
@@ -132,23 +133,6 @@ export default function Home() {
               </ul>
             </div>
           </article>
-        </div>
-      </Section>
-
-      <Section soft labelledBy="journal-title">
-        <div className="section-head center">
-          <h2 className="h-1" id="journal-title">From the journal.</h2>
-          <p className="lede"><a className="link-more" href={path('/journal/')}>All articles</a></p>
-        </div>
-        <div className="grid grid--3">
-          {articles.map((a) => (
-            <a className="card card--link" key={a.slug} href={path(`/journal/${a.slug}/`)}>
-              <span className="badge">{a.topic}</span>
-              <h3 className="h-3">{a.title}</h3>
-              <p>{a.dek}</p>
-              <span className="link-more card__foot">Read</span>
-            </a>
-          ))}
         </div>
       </Section>
 

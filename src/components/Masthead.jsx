@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { path } from '../lib/paths.js';
+import ThemeToggle from './ThemeToggle.jsx';
 import Icon from './Icon.jsx';
 import Mark from './Mark.jsx';
 import Button from './Button.jsx';
@@ -74,6 +75,7 @@ export default function Masthead({ current }) {
         </nav>
 
         <div className="masthead__tools">
+          <ThemeToggle />
           <QuoteBasket />
           <div className="masthead__cta">
             <Button href={path(primaryCta.href)} size="sm">{primaryCta.label}</Button>

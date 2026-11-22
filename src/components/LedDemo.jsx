@@ -28,6 +28,7 @@ export default function LedDemo({ heading = 'NOTICE' }) {
       <div className={paused ? 'demo__board is-paused' : 'demo__board'}>
         <LedMatrix
           id="demo"
+          colour={colour}
           lines={[{ text: heading }, { text: `${shown} · `, scroll: true }]}
         />
       </div>

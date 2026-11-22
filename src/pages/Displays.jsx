@@ -1,14 +1,13 @@
 import Layout from '../components/Layout.jsx';
 import Button from '../components/Button.jsx';
 import Icon from '../components/Icon.jsx';
-import LedMatrix from '../components/LedMatrix.jsx';
-import LedDemo from '../components/LedDemo.jsx';
+import LedBoard from '../components/LedBoard.jsx';
+import NightUses from '../components/NightUses.jsx';
 import SizeCalculator from '../components/SizeCalculator.jsx';
 import { PriceCards, Pillars } from '../components/DisplayPricing.jsx';
-import AppScenes from '../components/AppScenes.jsx';
 import { Section, SectionHead, CtaStrip } from '../components/Ui.jsx';
 import { path } from '../lib/paths.js';
-import { displayTypes, displayUses } from '../content/capabilities.js';
+import { displayTypes } from '../content/capabilities.js';
 import { platform } from '../content/products.js';
 import { projects } from '../content/projects.js';
 
@@ -37,7 +36,10 @@ export default function Displays() {
               <Button href="#pricing" variant="on-dark" size="lg">See prices</Button>
             </div>
           </div>
-          <LedMatrix id="hero" lines={[{ text: 'NOTICE · EXAM HALL 3 OPENS 10 AM · ', scroll: true }, { text: 'TIMETABLE' }, { text: 'ALERTS' }]} />
+          <LedBoard id="hero" panels={[4, 2]} colour="red" items={[
+            { text: 'OPEN 24X7', size: 2, y: 1 },
+            { text: 'SALE 30% OFF · HOME DELIVERY · NEW STOCK · ', size: 2, y: 17, effect: 'scroll' },
+          ]} />
         </div>
       </section>
 
@@ -69,7 +71,7 @@ export default function Displays() {
       </Section>
 
       <Section dark labelledBy="studio-title" id="studio">
-        <div className="studio-promo">
+        <div className="studio-promo studio-promo--solo">
           <div>
             <span className="eyebrow">Design studio</span>
             <h2 className="h-1" id="studio-title">See your board before we build it</h2>
@@ -79,7 +81,6 @@ export default function Displays() {
               <a className="link-more" href={path('/displays/templates/#try')}>Quick notice preview</a>
             </div>
           </div>
-          <LedDemo />
         </div>
       </Section>
 
@@ -97,17 +98,10 @@ export default function Displays() {
         </div>
       </Section>
 
-      <Section gold labelledBy="uses-title">
-        <SectionHead eyebrow="Where they work" id="uses-title" title="Boards for every kind of place" />
-        <AppScenes />
-        <div className="grid grid--4">
-          {displayUses.map(([t, b]) => (
-            <div className="stat" key={t}>
-              <span className="stat__value stat__value--sm">{t}</span>
-              <p className="stat__caption">{b}</p>
-            </div>
-          ))}
-        </div>
+      <Section dark labelledBy="uses-title" className="after-dark">
+        <SectionHead eyebrow="Where they work" id="uses-title" title="Real places, after dark"
+          lede="LED boards do most of their work in the evening, when printed signs disappear. These are the places we make them for." />
+        <NightUses pre="dn-" />
       </Section>
 
       <Section labelledBy="built-title" id="built">

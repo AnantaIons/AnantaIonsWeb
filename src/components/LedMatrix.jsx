@@ -1,3 +1,4 @@
+import LedBoard from './LedBoard.jsx';
 /* An LED notice board, drawn — the product itself as the hero image.
 
    Four P10 panels side by side: 128 × 16 LEDs. The unlit grid is one rect
@@ -110,38 +111,10 @@ const DEFAULT_LINES = [
   { text: 'TIMETABLES' },
 ];
 
-export default function LedMatrix({ lines = DEFAULT_LINES, id = 'led' }) {
-  const ROWS = lines.length * 16;
-  return (
-    <figure className="matrix" aria-hidden="true">
-      <div className="matrix__frame">
-        <svg viewBox={`0 0 ${COLS} ${ROWS}`} preserveAspectRatio="xMidYMid meet" focusable="false">
-          <defs>
-            <pattern id={`${id}-off`} width="1" height="1" patternUnits="userSpaceOnUse">
-              <circle cx=".5" cy=".5" r=".36" className="matrix__off" />
-            </pattern>
-            <pattern id={`${id}-on`} width="1" height="1" patternUnits="userSpaceOnUse">
-              <circle cx=".5" cy=".5" r=".4" className="matrix__on" />
-            </pattern>
-          </defs>
-          <rect width={COLS} height={ROWS} fill={`url(#${id}-off)`} />
-          {lines.map((l, i) => {
-            const top = i * 16 + 1;
-            if (l.scroll) {
-              const width = l.text.length * ADVANCE;
-              return (
-                <g key={`${i}-${l.text}`} className="matrix__scroll"
-                  style={{ '--shift': `-${width}px`, '--steps': width, '--dur': `${(width / 24).toFixed(1)}s` }}>
-                  <path d={glyphPath(l.text, 0, top) + glyphPath(l.text, width, top)} fill={`url(#${id}-on)`} />
-                </g>
-              );
-            }
-            const w = l.text.length * ADVANCE - SCALE;
-            const x0 = Math.floor((COLS - w) / 2);
-            return <path key={i} d={glyphPath(l.text, x0, top)} fill={`url(#${id}-on)`} />;
-          })}
-        </svg>
-      </div>
-    </figure>
-  );
+/* Kept for older call sites: draws through LedBoard, so every P10 board on
+   the site has the same LEDs, frame, seams and colours. One line = one
+   panel row (16 LEDs); four panels wide. */
+export default function LedMatrix({ lines = DEFAULT_LINES, id = 'led', colour = 'amber' }) {
+  const items = lines.map((l, i) => ({ text: l.text, size: 2, y: i * 16 + 1, effect: l.scroll ? 'scroll' : 'static' }));
+  return <LedBoard id={id} panels={[4, lines.length]} items={items} colour={colour} />;
 }

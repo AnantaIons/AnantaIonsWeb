@@ -207,8 +207,8 @@ export const SCENES = [
   },
 ];
 
-export function SceneArt({ s }) {
-  const id = `scn-${s.id}`;
+export function SceneArt({ s, pre = '' }) {
+  const id = `${pre}scn-${s.id}`;
   return (
     <svg viewBox={`0 0 ${VW} ${VH}`} aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
       <Defs id={id} glow={s.glow} />

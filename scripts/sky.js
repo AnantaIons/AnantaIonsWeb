@@ -41,6 +41,11 @@
   function run() {
     var d = new Date(), q = new URLSearchParams(location.search);
     var minute = q.get('sky') ? (+q.get('sky') % 24) * 60 : d.getHours() * 60 + d.getMinutes();
+    var pick = 'auto';
+    try { pick = localStorage.getItem('ai-theme') || 'auto'; } catch (e) {}
+    if (!q.get('sky') && pick === 'night') minute = 22 * 60;
+    if (!q.get('sky') && pick === 'day') minute = 11 * 60;
+    document.documentElement.dataset.theme = pick;
     var doy = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
     var season = 'hemant';
     for (var i = 0; i < STARTS.length; i++) if (doy >= STARTS[i][0]) season = STARTS[i][1];
@@ -77,6 +82,7 @@
       }
     }
   }
+  window.__sky = run;
   run();
   setInterval(run, 300000);
 })();
